@@ -29,7 +29,7 @@ CREATE TABLE est.Agente (
     cognome VARCHAR(255) NOT NULL,
     email VARCHAR(255) PRIMARY KEY,
     password VARCHAR(255) NOT NULL,
-    partitaIVA CHAR(11) REFERENCES est.Agenzia(partitaIVA),
+    partitaIVA CHAR(11) REFERENCES est.Agenzia(partitaIVA) ON DELETE CASCADE,
 
     CONSTRAINT checkValidEmail CHECK (email ~ '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
     CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$')
@@ -41,7 +41,7 @@ CREATE TABLE est.Amministratore (
     cognome VARCHAR(255) NOT NULL,
     email VARCHAR(255) PRIMARY KEY,
     password VARCHAR(255) NOT NULL,
-    partitaIVA CHAR(11) REFERENCES est.Agenzia(partitaIVA),
+    partitaIVA CHAR(11) REFERENCES est.Agenzia(partitaIVA) ON DELETE CASCADE,
 
     CONSTRAINT checkValidEmail CHECK (email ~ '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
     CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$')
@@ -54,7 +54,7 @@ CREATE TABLE est.Gestore (
     email VARCHAR(255) PRIMARY KEY,
     password VARCHAR(255) NOT NULL,
     passwordAdmin VARCHAR(255) NOT NULL,
-    partitaIVA CHAR(11) REFERENCES est.Agenzia(partitaIVA),
+    partitaIVA CHAR(11) REFERENCES est.Agenzia(partitaIVA) ON DELETE CASCADE,
 
     CONSTRAINT checkValidEmail CHECK (email ~ '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
     CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'),
@@ -84,7 +84,7 @@ CREATE TABLE est.Annuncio (
     terrazzo BOOLEAN NOT NULL,
     giardino BOOLEAN NOT NULL,
     tipoAnnuncio ENUM_ANNUNCIO NOT NULL,
-    email VARCHAR(255) REFERENCES est.Agente(email),
+    email VARCHAR(255) REFERENCES est.Agente(email) ON DELETE CASCADE,
 
     CONSTRAINT checkValidPrezzo CHECK (prezzo > 0),
     CONSTRAINT checkValidDimensioni CHECK (dimensioni > 0),
@@ -98,19 +98,19 @@ CREATE TABLE est.Prenotazione (
     dataInizio TIMESTAMP NOT NULL,
     dataFine TIMESTAMP NOT NULL,
     isAccettata BOOLEAN,
-    idAnnuncio INTEGER REFERENCES est.Annuncio(idAnnuncio),
-    email VARCHAR(255) REFERENCES est.Cliente(email),
+    idAnnuncio INTEGER REFERENCES est.Annuncio(idAnnuncio) ON DELETE CASCADE,
+    email VARCHAR(255) REFERENCES est.Cliente(email) ON DELETE CASCADE,
 
     CONSTRAINT checkValidData CHECK ((dataInizio < dataFine)),
-    CONSTRAINT checkValidDataPrenotazione CHECK ((dataInizio < CURRENT_TIMESTAMP))
+    CONSTRAINT checkValidDataPrenotazione CHECK ((dataInizio > CURRENT_TIMESTAMP))
 );
 
 -- Table Notifica
 CREATE TABLE est.Notifica (
     idNotifica INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     dataOra TIMESTAMP NOT NULL,
-    email VARCHAR(255) REFERENCES est.Agente(email),
-    idAnnuncio INTEGER REFERENCES est.Annuncio(idAnnuncio),
+    email VARCHAR(255) REFERENCES est.Agente(email) ON DELETE CASCADE,
+    idPrenotazione INTEGER REFERENCES est.Prenotazione(idPrenotazione) ON DELETE CASCADE,
 
     CONSTRAINT checkValidDataNotifica CHECK ((dataOra < CURRENT_TIMESTAMP))
 );
