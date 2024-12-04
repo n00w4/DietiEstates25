@@ -31,7 +31,7 @@ DECLARE
     emailAgente VARCHAR(255);
 BEGIN
     SELECT email INTO emailAgente FROM est.Annuncio WHERE idAnnuncio = NEW.idAnnuncio;
-    INSERT INTO est.Notifica (dataOra, email, idPrenotazione) VALUES (CURRENT_TIMESTAMP, emailAgente, NEW.idPrenotazione)
+    INSERT INTO est.Notifica (dataOra, email, idPrenotazione) VALUES (CURRENT_TIMESTAMP, emailAgente, NEW.idPrenotazione);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
