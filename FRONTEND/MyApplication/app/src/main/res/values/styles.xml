@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.Material3.DayNight">
+        <!-- General theme colors -->
+        <item name="colorPrimary">#54B5F0</item> <!-- Blue color -->
+        <item name="colorOnPrimary">#D9F0FF</item> <!-- Text color on buttons -->
+        <item name="colorSecondary">#03DAC6</item>
+
+        <!-- Override button styles -->
+        <item name="materialButtonStyle">@style/BlueButton</item>
+        <item name="android:windowBackground">@color/background_color</item>
+    </style>
+
+    <!-- Define a custom button style -->
+    <style name="BlueButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">#54B5F0</item> <!-- Blue background -->
+        <item name="android:textColor">#D9F0FF</item> <!-- White text -->
+    </style>
+
+    <!-- Define a custom style for EditText -->
+    <style name="EditTextStyle" parent="Widget.Material3.TextInputEditText.OutlinedBox.Dense" >
+        <!-- Set the background color for all EditTexts -->
+        <item name="android:background">#FFFFFF</item> <!-- White background -->
+        <!-- Set the text color for all EditTexts -->
+        <item name="android:textColor">#000000</item> <!-- Black text -->
+        <!-- Optional: You can also set other properties like hint color -->
+        <item name="android:textColorHint">#9E9E9E</item> <!-- Hint color -->
+        <item name="android:padding">16dp</item> <!-- Padding for inner content -->
+    </style>
+</resources>
