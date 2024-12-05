@@ -5,63 +5,93 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".MainActivity"
+    android:background="@color/background_color">
 
     <LinearLayout
-        android:layout_width="412dp"
-        android:layout_height="733dp"
+        android:layout_width="357dp"
+        android:layout_height="729dp"
+        android:layout_marginTop="200dp"
         android:orientation="vertical"
-        android:background="D9F0FF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-2dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/dietiestates25" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:theme="@style/AppTheme" />
-
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Switch"
-            android:theme="@style/AppTheme" />
-
-        <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/textView3"
+            style="@style/LoginTitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter text"
-            android:inputType="textPassword"
-            android:theme="@style/AppTheme"/>
+            android:text="Benvenuto" />
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/LoginTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="E-mail" />
 
         <EditText
             android:id="@+id/editTextTextEmailAddress"
+            style="@style/LoginEditText"
+            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:theme="@style/AppTheme"/>
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/LoginTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/editTextTextPassword"
+            style="@style/LoginEditText"
+            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
-            android:layout_height="114dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:theme="@style/AppTheme"/>
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                style="@style/LoginCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ricordami" />
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/ForgotPasswordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ho dimenticato la password" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/LoginButton"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="Accedi" />
 
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

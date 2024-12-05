@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Stile generale per i TextView principali -->
+    <style name="LoginTextView" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- Stile per il titolo -->
+    <style name="LoginTitleTextView" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!-- Stile per EditText -->
+    <style name="LoginEditText" parent="Widget.Material3.TextInputEditText.OutlinedBox.Dense">
+        <item name="android:background">@drawable/rounded_edit_text</item> <!-- Bordi arrotondati -->
+        <item name="android:textColor">#000000</item>
+        <item name="android:hintTextColor">#9E9E9E</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <!-- Stile per il pulsante di login -->
+    <style name="LoginButton" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">#A3D5FF</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- Stile per CheckBox -->
+    <style name="LoginCheckBox" parent="Widget.Material3.CompoundButton.CheckBox">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:buttonTint">#FFFFFF</item>
+    </style>
+
+    <!-- Stile per il link "Ho dimenticato la password" -->
+    <style name="ForgotPasswordTextView" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:gravity">end</item>
+    </style>
+</resources>
