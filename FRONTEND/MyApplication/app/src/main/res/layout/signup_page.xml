@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/signup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="357dp"
         android:layout_height="729dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,23 +19,56 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgLogo"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             app:srcCompat="@drawable/dietiestates25" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textBenvenuto"
             style="@style/LoginTitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Benvenuto" />
 
         <TextView
+            android:id="@+id/textNome"
+            style="@style/LoginTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Nome" />
+
+        <EditText
+            android:id="@+id/editTextNome"
+            style="@style/LoginEditText"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginBottom="16dp"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/textView02"
+            style="@style/LoginTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Cognome" />
+
+        <EditText
+            android:id="@+id/editTextTextCognome"
+            style="@style/LoginEditText"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginBottom="16dp"
+            android:inputType="textPassword" />
+
+        <TextView
             android:id="@+id/textView"
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="16dp"
             android:text="E-mail" />
 
         <EditText
@@ -43,7 +76,7 @@
             style="@style/LoginEditText"
             android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:inputType="textEmailAddress" />
 
         <TextView
@@ -51,6 +84,7 @@
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="16dp"
             android:text="Password" />
 
         <EditText
@@ -58,31 +92,9 @@
             style="@style/LoginEditText"
             android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:inputType="textPassword" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                style="@style/LoginCheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ricordami" />
-
-            <TextView
-                android:id="@+id/textView4"
-                style="@style/ForgotPasswordTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Ho dimenticato la password" />
-
-        </LinearLayout>
 
         <Button
             android:id="@+id/button2"
@@ -90,9 +102,7 @@
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:text="Accedi" />
-
-
+            android:text="Crea account" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,48 +116,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Non hai ancora un account?" />
+                android:text="Hai già un account?" />
 
             <TextView
-                android:id="@+id/textRegistrati"
+                android:id="@+id/textView7"
                 style="@style/ForgotPasswordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="Accedi"
                 android:clickable="true"
-                android:text="Registrati"
-                android:textStyle="bold" />
-
+                android:textStyle="bold"/>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView8"
-            style="@style/ForgotPasswordTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Accedi con:" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-
-            <ImageView
-                android:id="@+id/imageViewFacebook"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                app:srcCompat="@drawable/dietiestates25" />
-
-            <ImageView
-                android:id="@+id/imageViewGoogle"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                app:srcCompat="@drawable/dietiestates25" />
-
-        </LinearLayout>
 
     </LinearLayout>
 
