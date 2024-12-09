@@ -6,8 +6,8 @@ public class Prenotazione {
 	private Timestamp dataInizio;
 	private Timestamp dataFine;
 	private boolean isAccettata;
-	Cliente cliente;
-	Annuncio annuncio;
+	private Cliente cliente;
+	private Annuncio annuncio;
 	
 	//Getters and Setters for dataInizio
 	public Timestamp getDataInizio() {
@@ -32,5 +32,23 @@ public class Prenotazione {
 	public void setAccettata(boolean isAccettata) {
 		this.isAccettata = isAccettata;
 	}
+	
+	//Getters and Setters for Cliente
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	//Getters and Setters for Annuncio
+	public Annuncio getAnnuncio() {
+		return annuncio;
+	}
+	public void setAnnuncio(Annuncio annuncio) {
+		this.annuncio = annuncio;
+	}
+	
+	
 	
 }

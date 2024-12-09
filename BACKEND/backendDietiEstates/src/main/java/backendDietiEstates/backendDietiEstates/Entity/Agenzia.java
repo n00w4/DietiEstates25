@@ -3,8 +3,7 @@ package backendDietiEstates.backendDietiEstates.Entity;
 public class Agenzia {
 	private String nomeAgenzia;
 	private String partitaIVA;
-	private Agente agente;
-	
+
 	public String getNomeAgenzia() {
 		return nomeAgenzia;
 	}
@@ -18,12 +17,6 @@ public class Agenzia {
 	public void setPartitaIVA(String partitaIVA) {
 		this.partitaIVA = partitaIVA;
 	}
-	public Agente getAgente() {
-		return agente;
-	}
-	public void setAgente(Agente agente) {
-		this.agente = agente;
-	}
-	
+
 	
 }
