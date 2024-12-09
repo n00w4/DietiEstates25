@@ -1,6 +1,6 @@
 package com.example.myapplication.Entity
 
 class Agenzia {
-    private nomeAgenzia: String? = null
-    private partitaIVA: String? = null
+    private var nomeAgenzia: String? = null
+    private var partitaIVA: String? = null
 }
