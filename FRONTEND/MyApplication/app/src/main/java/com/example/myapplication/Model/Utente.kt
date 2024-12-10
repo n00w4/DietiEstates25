@@ -1,4 +1,4 @@
-package com.example.myapplication.Entity
+package com.example.myapplication.Model
 
 open class Utente {
     private var nome: String? = null

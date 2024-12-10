@@ -1,14 +1,12 @@
-package com.example.myapplication
+package com.example.myapplication.View
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.TextView
+import com.example.myapplication.R
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.signup_page) // Assuming this is the layout file for SignupPage
-
+        setContentView(R.layout.signup_page)
     }
 }
