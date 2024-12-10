@@ -1,4 +1,4 @@
-package backendDietiEstates.backendDietiEstates;
+package dietiEstates.backendDietiEstates;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
