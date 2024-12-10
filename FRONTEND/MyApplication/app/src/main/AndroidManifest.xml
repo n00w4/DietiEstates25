@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.SignUpActivity"></activity>
+        <activity android:name=".View.HomeClienteActivity"></activity>
     </application>
 
 </manifest>

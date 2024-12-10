@@ -6,7 +6,7 @@
         <item name="colorPrimary">#54B5F0</item>
         <item name="colorOnPrimary">#D9F0FF</item>
         <item name="colorSecondary">#03DAC6</item>
-        <item name="android:windowBackground">@color/background_color</item>
+        <item name="android:windowBackground">@color/background_color_dark</item>
 
         <!-- Default Button Style -->
         <item name="materialButtonStyle">@style/BlueButton</item>
