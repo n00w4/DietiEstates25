@@ -1,14 +1,21 @@
-package backendDietiEstates.backendDietiEstates.Entity;
+package dietiEstates.backendDietiEstates.Data;
 
 import java.sql.Timestamp;
 
 public class Prenotazione {
+	private int ID;
 	private Timestamp dataInizio;
 	private Timestamp dataFine;
 	private boolean isAccettata;
 	private Cliente cliente;
 	private Annuncio annuncio;
 	
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
 	//Getters and Setters for dataInizio
 	public Timestamp getDataInizio() {
 		return dataInizio;

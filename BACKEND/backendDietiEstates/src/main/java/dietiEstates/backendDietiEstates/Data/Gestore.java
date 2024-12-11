@@ -1,4 +1,4 @@
-package backendDietiEstates.backendDietiEstates.Entity;
+package dietiEstates.backendDietiEstates.Data;
 
 public class Gestore extends Amministratore{
 	private String passwordAdmin;

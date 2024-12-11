@@ -1,8 +1,8 @@
-package backendDietiEstates.backendDietiEstates.Entity;
+package dietiEstates.backendDietiEstates.Data;
 
-public class Agente extends Utente {
+public class Amministratore extends Utente {
 	private Agenzia agenzia;
-
+	
 	//Getter and Setter for agenzia
 	public Agenzia getAgenzia() {
 		return agenzia;
@@ -11,5 +11,4 @@ public class Agente extends Utente {
 	public void setAgenzia(Agenzia agenzia) {
 		this.agenzia = agenzia;
 	}
-	
 }

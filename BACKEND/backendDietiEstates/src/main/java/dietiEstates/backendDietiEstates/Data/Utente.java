@@ -1,4 +1,4 @@
-package backendDietiEstates.backendDietiEstates.Entity;
+package dietiEstates.backendDietiEstates.Data;
 
 public class Utente {
 	private String nome;

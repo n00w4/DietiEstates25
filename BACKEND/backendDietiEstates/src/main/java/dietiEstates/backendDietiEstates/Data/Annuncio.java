@@ -1,21 +1,31 @@
-package backendDietiEstates.backendDietiEstates.Entity;
+package dietiEstates.backendDietiEstates.Data;
 
 public class Annuncio {
+	private int ID;
 	private String titolo;
 	private String indirizzo;
+	private String immagine;
 	private String descrizione;
 	private int dimensioni;
 	private float prezzo;
+	private String piano;
 	private int numeroStanze;
 	private String classeEnergetica;
 	private boolean ascensore;
 	private boolean portineria;
-	private boolean climatizzaione;
+	private boolean climatizzazione;
 	private boolean boxAuto;
 	private boolean terrazzo;
 	private boolean giardino;
 	private String tipoAnnuncio;
+	private Agente agente;
 	
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
 	public String getTitolo() {
 		return titolo;
 	}
@@ -27,6 +37,12 @@ public class Annuncio {
 	}
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
+	}
+	public String getImmagine() {
+		return immagine;
+	}
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
 	}
 	public String getDescrizione() {
 		return descrizione;
@@ -45,6 +61,12 @@ public class Annuncio {
 	}
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
+	}
+	public String getPiano() {
+		return piano;
+	}
+	public void setPiano(String piano) {
+		this.piano = piano;
 	}
 	public int getNumeroStanze() {
 		return numeroStanze;
@@ -70,11 +92,11 @@ public class Annuncio {
 	public void setPortineria(boolean portineria) {
 		this.portineria = portineria;
 	}
-	public boolean isClimatizzaione() {
-		return climatizzaione;
+	public boolean isClimatizzazione() {
+		return climatizzazione;
 	}
-	public void setClimatizzaione(boolean climatizzaione) {
-		this.climatizzaione = climatizzaione;
+	public void setClimatizzazione(boolean climatizzazione) {
+		this.climatizzazione = climatizzazione;
 	}
 	public boolean isBoxAuto() {
 		return boxAuto;
@@ -99,5 +121,11 @@ public class Annuncio {
 	}
 	public void setTipoAnnuncio(String tipoAnnuncio) {
 		this.tipoAnnuncio = tipoAnnuncio;
+	}
+	public Agente getAgente() {
+		return agente;
+	}
+	public void setAgente(Agente agente) {
+		this.agente = agente;
 	}
 }
