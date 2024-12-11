@@ -1,6 +1,5 @@
 package com.example.myapplication.View
 
-import RicercaMappaActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
