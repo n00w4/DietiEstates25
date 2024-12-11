@@ -2,6 +2,9 @@ package com.example.myapplication.View
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.R
 import com.google.android.material.tabs.TabLayout
@@ -28,12 +31,10 @@ class HomeClienteActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                // Do nothing here if not needed
+            override fun onTabUnselected(tab: TabLayout.Tab?) { // Do nothing here if not needed
             }
 
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                // Do nothing here if not needed
+            override fun onTabReselected(tab: TabLayout.Tab?) { // Do nothing here if not needed
             }
         })
 
