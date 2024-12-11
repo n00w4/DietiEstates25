@@ -61,6 +61,52 @@ CREATE TABLE est.Gestore (
     CONSTRAINT checkValidPasswdAdmin CHECK (passwordAdmin ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$')
 );
 
+-- View unificata per tutti gli utenti
+CREATE OR REPLACE VIEW est.utenti_unificati AS
+SELECT 
+    'Cliente' AS tipo_utente,
+    nome,
+    cognome,
+    email,
+    password,
+    NULL AS passwordAdmin,
+    NULL AS partitaIVA
+FROM 
+    est.Cliente
+UNION ALL
+SELECT 
+    'Agente' AS tipo_utente,
+    nome,
+    cognome,
+    email,
+    password,
+    NULL AS passwordAdmin,
+    partitaIVA
+FROM 
+    est.Agente
+UNION ALL
+SELECT 
+    'Amministratore' AS tipo_utente,
+    nome,
+    cognome,
+    email,
+    password,
+    NULL AS passwordAdmin,
+    partitaIVA
+FROM 
+    est.Amministratore
+UNION ALL
+SELECT 
+    'Gestore' AS tipo_utente,
+    nome,
+    cognome,
+    email,
+    password,
+    passwordAdmin,
+    partitaIVA
+FROM 
+    est.Gestore;
+
 -- Tipo ENUM_ANNUNCIO
 DROP TYPE IF EXISTS ENUM_ANNUNCIO CASCADE;
 CREATE TYPE ENUM_ANNUNCIO AS ENUM ('vendita', 'affitto');
