@@ -20,13 +20,12 @@ public class SQLAgenteDAO implements AgenteDAO {
 		try {
 			String sql = "INSERT INTO est.Agente VALUES (?. ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
-			
-			String partitaIVA = agente.getAgenzia().getPartitaIVA();
+
 			statement.setString(1, agente.getNome());
 			statement.setString(2, agente.getCognome());
 			statement.setString(3, agente.getEmail());
 			statement.setString(4, agente.getPassword());
-			statement.setString(5, partitaIVA);
+			statement.setString(5, agente.getPartitaIVA());
 			
 			return statement.execute();
 		} catch (SQLException e) {

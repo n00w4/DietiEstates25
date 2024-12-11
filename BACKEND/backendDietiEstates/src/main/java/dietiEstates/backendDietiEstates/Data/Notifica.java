@@ -8,6 +8,14 @@ public class Notifica {
 	private Agente agente;
 	private Prenotazione prenotazione;
 	
+	public Notifica(int iD, Timestamp dataOra, Agente agente, Prenotazione prenotazione) {
+		super();
+		ID = iD;
+		this.dataOra = dataOra;
+		this.agente = agente;
+		this.prenotazione = prenotazione;
+	}
+	
 	public int getID() {
 		return ID;
 	}

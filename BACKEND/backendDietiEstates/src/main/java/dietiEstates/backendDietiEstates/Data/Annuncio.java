@@ -20,6 +20,31 @@ public class Annuncio {
 	private String tipoAnnuncio;
 	private Agente agente;
 	
+	
+	public Annuncio(int iD, String titolo, String indirizzo, String immagine, String descrizione, int dimensioni,
+			float prezzo, String piano, int numeroStanze, String classeEnergetica, boolean ascensore,
+			boolean portineria, boolean climatizzazione, boolean boxAuto, boolean terrazzo, boolean giardino,
+			String tipoAnnuncio, Agente agente) {
+		ID = iD;
+		this.titolo = titolo;
+		this.indirizzo = indirizzo;
+		this.immagine = immagine;
+		this.descrizione = descrizione;
+		this.dimensioni = dimensioni;
+		this.prezzo = prezzo;
+		this.piano = piano;
+		this.numeroStanze = numeroStanze;
+		this.classeEnergetica = classeEnergetica;
+		this.ascensore = ascensore;
+		this.portineria = portineria;
+		this.climatizzazione = climatizzazione;
+		this.boxAuto = boxAuto;
+		this.terrazzo = terrazzo;
+		this.giardino = giardino;
+		this.tipoAnnuncio = tipoAnnuncio;
+		this.agente = agente;
+	}
+	
 	public int getID() {
 		return ID;
 	}

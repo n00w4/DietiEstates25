@@ -4,6 +4,11 @@ public class Agenzia {
 	private String nomeAgenzia;
 	private String partitaIVA;
 
+	public Agenzia(String nomeAgenzia, String partitaIVA) {
+		this.nomeAgenzia = nomeAgenzia;
+		this.partitaIVA = partitaIVA;
+	}
+	
 	public String getNomeAgenzia() {
 		return nomeAgenzia;
 	}

@@ -1,10 +1,18 @@
 package dietiEstates.backendDietiEstates.Data;
 
-public class Utente {
+public abstract class Utente {
 	private String nome;
 	private String cognome;
 	private String email;
 	private String password;
+	
+	public Utente(String nome, String cognome, String email, String password) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+		this.password = password;
+	}
 	
 	//Getter and Setter for nome
 	public String getNome() {

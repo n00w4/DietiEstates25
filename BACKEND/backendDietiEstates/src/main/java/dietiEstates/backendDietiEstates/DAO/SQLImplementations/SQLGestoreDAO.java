@@ -20,14 +20,13 @@ public class SQLGestoreDAO implements GestoreDAO {
         try {
             String sql = "INSERT INTO est.Gestore VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            String partitaIVA = gestore.getAgenzia().getPartitaIVA();
             
             statement.setString(1, gestore.getNome());
             statement.setString(2, gestore.getCognome());
             statement.setString(3, gestore.getEmail());
             statement.setString(4, gestore.getPassword());
             statement.setString(5, gestore.getPasswordAdmin());
-            statement.setString(6, partitaIVA);
+            statement.setString(6, gestore.getPartitaIVA());
 
             return statement.execute();
         } catch (SQLException e) {

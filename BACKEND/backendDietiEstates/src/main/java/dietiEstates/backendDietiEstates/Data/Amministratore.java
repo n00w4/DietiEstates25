@@ -1,14 +1,19 @@
 package dietiEstates.backendDietiEstates.Data;
 
 public class Amministratore extends Utente {
-	private Agenzia agenzia;
+	private String partitaIVA;
 	
-	//Getter and Setter for agenzia
-	public Agenzia getAgenzia() {
-		return agenzia;
+	public Amministratore(String nome, String cognome, String email, String password, String partitaIVA) {
+		super(nome, cognome, email, password);
+		this.partitaIVA = partitaIVA;
 	}
 
-	public void setAgenzia(Agenzia agenzia) {
-		this.agenzia = agenzia;
+	//Getter and Setter for agenzia
+	public String getPartitaIVA() {
+		return partitaIVA;
+	}
+
+	public void setPartitaIVA(String partitaIVA) {
+		this.partitaIVA = partitaIVA;
 	}
 }

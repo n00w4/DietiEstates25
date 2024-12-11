@@ -21,12 +21,11 @@ public class SQLAmministratoreDAO implements AmministratoreDAO {
 			String sql = "INSERT INTO est.Amministratore VALUES (?. ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			
-			String partitaIVA = amministratore.getAgenzia().getPartitaIVA();
 			statement.setString(1, amministratore.getNome());
 			statement.setString(2, amministratore.getCognome());
 			statement.setString(3, amministratore.getEmail());
 			statement.setString(4, amministratore.getPassword());
-			statement.setString(5, partitaIVA);
+			statement.setString(5, amministratore.getPartitaIVA());
 			
 			return statement.execute();
 		} catch (SQLException e) {
