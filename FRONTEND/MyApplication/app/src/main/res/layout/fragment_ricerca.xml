@@ -6,21 +6,18 @@
     tools:context=".View.RicercaFragment"
     android:background="@color/background_color_light">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_gravity="center_vertical"
         android:padding="16dp">
 
         <TextView
             android:id="@+id/title_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="Ricerca Immobili"
             android:textSize="24sp"
             android:layout_marginBottom="16dp"/>
@@ -40,7 +37,7 @@
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:hint="Inserisci posizione sulla mappa:" />
+                android:hint="Scegli posizione sulla mappa:" />
 
             <Button
                 android:id="@+id/btn_map"
@@ -50,6 +47,20 @@
                 android:text="Mappa" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/text_latitudine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Latitudine: "
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text_longitudine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Longitudine: "
+            android:textSize="16sp" />
+
         <Button
             android:id="@+id/btn_cerca"
             android:layout_width="320dp"
@@ -57,168 +68,17 @@
             android:layout_gravity="center"
             android:text="Cerca"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Applica filtri:"
-            android:textSize="20sp"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tipo di Immobile"/>
-
-        <Spinner
-            android:id="@+id/spinner_tipo_annuncio"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/tipo_annuncio"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prezzo Minimo"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
-
-        <SeekBar
-            android:id="@+id/seekBar_prezzo_min"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="1000000"
-            android:progress="0" />
-
-        <TextView
-            android:id="@+id/text_prezzo_min"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="€ 0"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prezzo Massimo"
-            android:layout_marginBottom="8dp"/>
-
-        <SeekBar
-            android:id="@+id/seekBar_prezzo_max"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="1000000"
-            android:progress="1000000" />
-
-        <TextView
-            android:id="@+id/text_prezzo_max"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="€ 1.000.000"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Piano"/>
-
-        <Spinner
-            android:id="@+id/spinner_piano"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/piano"
-            android:layout_marginBottom="20dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Numero di Stanze"
-            android:layout_marginBottom="8dp"/>
-
-        <SeekBar
-            android:id="@+id/seekBar_stanze"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="20"
-            android:progress="3" />
-
-        <TextView
-            android:id="@+id/text_stanze"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="3 stanze"
-            android:layout_marginBottom="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Classe Energetica"/>
-
-        <Spinner
-            android:id="@+id/spinner_classe_ene"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/classe_energetica"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Servizi:"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_portineria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Portineria"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_terrazzo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Terrazzo"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_ascensore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ascensore"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_climatizzazione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Climatizzazione"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_auto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Box Auto"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_giardino"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Giardino"/>
-
-
+            android:layout_marginBottom="5dp"/>
 
         <Button
-            android:id="@+id/btn_applica_filtri"
+            android:id="@+id/btn_filtri"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Applica filtri"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginBottom="20dp"/>
 
     </LinearLayout>
 
-    </ScrollView>
 
 </FrameLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_ricerca_filtri"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.RicercaFiltriFragment"
+    android:background="@color/background_color_light">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Applica filtri:"
+                android:textSize="20sp"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo di Immobile"/>
+
+            <Spinner
+                android:id="@+id/spinner_tipo_annuncio"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/tipo_annuncio"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prezzo Minimo"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/text_prezzo_min"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:hint="Prezzo minimo"
+                android:layout_marginBottom="8dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prezzo Massimo"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/text_prezzo_max"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:hint="Prezzo massimo"
+                android:layout_marginBottom="8dp"
+                android:inputType="number"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Piano"/>
+
+            <Spinner
+                android:id="@+id/spinner_piano"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/piano"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Numero di stanze minimo"
+                android:layout_marginBottom="8dp"/>
+
+            <SeekBar
+                android:id="@+id/seekBar_stanze"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="20"
+                android:progress="3" />
+
+            <TextView
+                android:id="@+id/text_stanze"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="3 stanze"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Classe Energetica"/>
+
+            <Spinner
+                android:id="@+id/spinner_classe_ene"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/classe_energetica"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Servizi:"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_portineria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Portineria"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_terrazzo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terrazzo"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_ascensore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ascensore"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_climatizzazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Climatizzazione"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Box Auto"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_giardino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giardino"/>
+
+
+
+            <Button
+                android:id="@+id/btn_applica_filtri"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Applica filtri e cerca"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>
