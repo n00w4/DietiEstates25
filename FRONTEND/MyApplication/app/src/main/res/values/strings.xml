@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">DietiEstates25</string>
 
+    <string name="cerca_tab_text">Cerca</string>
+    <string name="profilo_tab_text">Profilo</string>
+
     <string-array name="tipo_annuncio">
         <item>Affitto</item>
         <item>Vendita</item>
@@ -24,8 +27,9 @@
         <item>6°-10° piano</item>
         <item>>10° piano</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <string name="latitude_text">Latitudine: %1$.6f</string>
+    <string name="longitude_text">Longitudine: %1$.6f</string>
 
 </resources>

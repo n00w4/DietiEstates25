@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -10,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.View.HomeClienteActivity
 import com.example.myapplication.View.SignUpActivity
+import com.example.myapplication.controllers.LoginController
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,17 +22,17 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val controller = LoginController(this)
+
         val textRegistrati = findViewById<TextView>(R.id.textRegistrati)
         val btnAccedi = findViewById<Button>(R.id.accedi_btn)
 
-        textRegistrati.setOnClickListener{
-            val signUpPage = Intent(this, SignUpActivity::class.java)
-            startActivity(signUpPage)
+        textRegistrati.setOnClickListener {
+            controller.onTextRegistratiClicked()
         }
 
-        btnAccedi.setOnClickListener{
-            val homePage = Intent(this, HomeClienteActivity::class.java)
-            startActivity(homePage)
+        btnAccedi.setOnClickListener {
+            controller.onBtnAccediClicked()
         }
     }
 

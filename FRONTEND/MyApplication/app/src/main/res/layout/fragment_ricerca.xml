@@ -65,6 +65,7 @@
             android:id="@+id/btn_cerca"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:layout_gravity="center"
             android:text="Cerca"
             android:layout_marginTop="16dp"
@@ -72,6 +73,7 @@
 
         <Button
             android:id="@+id/btn_filtri"
+            style="@style/LoginButton"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

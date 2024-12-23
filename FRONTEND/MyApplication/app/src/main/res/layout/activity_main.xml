@@ -41,9 +41,10 @@
         <EditText
             android:id="@+id/editTextTextEmailAddress"
             style="@style/LoginEditText"
+            android:hint="Email"
             android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:inputType="textEmailAddress" />
 
         <TextView
@@ -56,9 +57,10 @@
         <EditText
             android:id="@+id/editTextTextPassword"
             style="@style/LoginEditText"
+            android:hint="Password"
             android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:inputType="textPassword" />
 
         <LinearLayout
