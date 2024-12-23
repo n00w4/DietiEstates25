@@ -3,6 +3,7 @@ package it.dietiestates.dao.sql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import it.dietiestates.dao.AnnuncioDAO;
 import it.dietiestates.data.Annuncio;
@@ -47,5 +48,20 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 	    return false;
 	}
 
+	@Override
+	public boolean delete(Annuncio annuncio) throws DataAccessException {
+		try {
+			String sql = "DELETE FROM est.Annuncio WHERE idAnnuncio = ? AND email = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			String emailAgente = annuncio.getAgente().getEmail();
 
+			statement.setInt(1, annuncio.getID());
+			statement.setString(2, emailAgente);
+
+			return statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

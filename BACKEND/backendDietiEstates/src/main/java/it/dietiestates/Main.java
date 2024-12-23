@@ -28,14 +28,11 @@ public class Main {
     /**
      * Main method.
      * @param args Command line arguments
-     * @throws IOException If an I/O error occurs
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // Start the server
         final HttpServer server = startServer();
-        System.out.println(String.format(
-                "Jersey app started with endpoints available at %s%nInput something in the console to stop it...",
-                BASE_URI));
+        System.out.printf("Jersey app started with endpoints available at %s%nInput something in the console to stop it...%n", BASE_URI);
 
         // Wait for user input to stop the server
         try {

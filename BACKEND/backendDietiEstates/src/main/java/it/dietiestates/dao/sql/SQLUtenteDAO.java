@@ -11,7 +11,7 @@ import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.utils.UtenteFactory;
 
 public class SQLUtenteDAO implements UtenteDAO {
-	private Connection connection;
+	private final Connection connection;
 	
 	public SQLUtenteDAO(Connection connection) {
         this.connection = connection;
@@ -36,9 +36,8 @@ public class SQLUtenteDAO implements UtenteDAO {
 				String passwordUtente = rs.getString("password");
 				String passwordAdmin = rs.getString("passwordAdmin");
 				String partitaIVA = rs.getString("partitaIVA");
-				
-				Utente utente = UtenteFactory.creaUtente(tipoUtente, nome, cognome, emailUtente, passwordUtente, passwordAdmin, partitaIVA);
-				return utente;
+
+				return UtenteFactory.creaUtente(tipoUtente, nome, cognome, emailUtente, passwordUtente, passwordAdmin, partitaIVA);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

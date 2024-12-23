@@ -35,4 +35,22 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
         }
         return false;
     }
+
+    @Override
+    public boolean delete(Prenotazione prenotazione) throws DataAccessException {
+        try {
+            String sql = "DELETE FROM est.Prenotazione WHERE idPrenotazione = ? AND email = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            int idAnnuncio = prenotazione.getID();
+            String emailCliente = prenotazione.getCliente().getEmail();
+
+            statement.setInt(1, idAnnuncio);
+            statement.setString(2, emailCliente);
+
+            return statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
