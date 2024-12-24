@@ -6,7 +6,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 @ApplicationPath("api")
 public class RESTConfig extends ResourceConfig {
     public RESTConfig() {
-        packages("dietiEstates.backendDietiEstates");
+        packages("it.dietiestates");
     }
 }
 

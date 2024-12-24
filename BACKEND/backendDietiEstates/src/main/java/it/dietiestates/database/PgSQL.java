@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class PgSQL {
-    private static final String DRIVER = "org.postgresql.Driver";
     private static final String URL = "jdbc:postgresql://localhost:5432/DietiEstates25?currentSchema=est";
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
@@ -18,12 +17,7 @@ public class PgSQL {
         if (connection == null || connection.isClosed()) {
             synchronized (PgSQL.class) {
                 if (connection == null || connection.isClosed()) {
-                    try {
-                        Class.forName(DRIVER);
-                        connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                    } catch (ClassNotFoundException e) {
-                        throw new SQLException("Driver JDBC non trovato", e);
-                    }
+                    connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 }
             }
         }
