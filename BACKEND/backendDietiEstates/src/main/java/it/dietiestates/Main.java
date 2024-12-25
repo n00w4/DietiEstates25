@@ -3,15 +3,21 @@ package it.dietiestates;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-
 import it.dietiestates.restconfig.RESTConfig;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
     public static final String BASE_URI = "http://localhost:8080/";
+    // TODO: valutare se passare ad HTTPS
+
+    // Creazione di un logger
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -30,21 +36,26 @@ public class Main {
      * @param args Command line arguments
      */
     public static void main(String[] args) {
+        // Configurazione del logger su console
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        logger.addHandler(consoleHandler);
+        logger.setLevel(Level.INFO);
+
         // Start the server
         final HttpServer server = startServer();
-        System.out.printf("Jersey app started with endpoints available at %s%nInput something in the console to stop it...%n", BASE_URI);
+
+        // Usa il logger per i messaggi
+        logger.info("Jersey app started with endpoints available at " + BASE_URI);
+        logger.info("Input something in the console to stop it...");
 
         // Wait for user input to stop the server
         try {
             System.in.read();
         } catch (IOException e) {
-            System.err.println("Error waiting for input: " + e.getMessage());
+            logger.severe("Error waiting for input: " + e.getMessage());
         } finally {
             server.shutdownNow(); // Gracefully stop the server
-            System.out.println("Server stopped.");
+            logger.info("Server stopped.");
         }
     }
 }
-
-
-

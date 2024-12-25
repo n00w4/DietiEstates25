@@ -17,10 +17,8 @@ public class SQLGestoreDAO implements GestoreDAO {
 
     @Override
     public boolean insert(Gestore gestore) throws DataAccessException {
-        try {
-            String sql = "INSERT INTO est.Gestore VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            
+        String query = "INSERT INTO est.Gestore VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, gestore.getNome());
             statement.setString(2, gestore.getCognome());
             statement.setString(3, gestore.getEmail());

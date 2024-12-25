@@ -9,7 +9,7 @@ import it.dietiestates.data.Prenotazione;
 import it.dietiestates.exception.DataAccessException;
 
 public class SQLPrenotazioneDAO implements PrenotazioneDAO {
-    private Connection connection;
+    private final Connection connection;
 
     public SQLPrenotazioneDAO(Connection dbConnection) {
         this.connection = dbConnection;
@@ -17,9 +17,8 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
 
     @Override
     public boolean insert(Prenotazione prenotazione) throws DataAccessException {
-        try {
-            String sql = "INSERT INTO est.Prenotazione (dataInizio, dataFine, isAccettata, idAnnuncio, email) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+        String query = "INSERT INTO est.Prenotazione (dataInizio, dataFine, isAccettata, idAnnuncio, email) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             int idAnnuncio = prenotazione.getID();
             String emailCliente = prenotazione.getCliente().getEmail();
 
@@ -31,16 +30,14 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
 
             return statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DataAccessException("Errore durante l'inserimento della prenotazione", e);
         }
-        return false;
     }
 
     @Override
     public boolean delete(Prenotazione prenotazione) throws DataAccessException {
-        try {
-            String sql = "DELETE FROM est.Prenotazione WHERE idPrenotazione = ? AND email = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+        String query = "DELETE FROM est.Prenotazione WHERE idPrenotazione = ? AND email = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             int idAnnuncio = prenotazione.getID();
             String emailCliente = prenotazione.getCliente().getEmail();
 
@@ -49,8 +46,7 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
 
             return statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DataAccessException("Errore durante l'eliminazione della prenotazione", e);
         }
-        return false;
     }
 }

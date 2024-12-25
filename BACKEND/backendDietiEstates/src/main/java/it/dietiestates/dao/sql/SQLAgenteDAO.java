@@ -16,11 +16,9 @@ public class SQLAgenteDAO implements AgenteDAO {
 	}
 	
 	@Override
-	public boolean insert(Agente agente) throws DataAccessException {		
-		try {
-			String sql = "INSERT INTO est.Agente VALUES (?. ?, ?, ?, ?)";
-			PreparedStatement statement = connection.prepareStatement(sql);
-
+	public boolean insert(Agente agente) throws DataAccessException {
+		String sql = "INSERT INTO est.Agente VALUES (?. ?, ?, ?, ?)";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
 			statement.setString(1, agente.getNome());
 			statement.setString(2, agente.getCognome());
 			statement.setString(3, agente.getEmail());

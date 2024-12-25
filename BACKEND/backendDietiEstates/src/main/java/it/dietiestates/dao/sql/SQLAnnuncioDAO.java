@@ -3,7 +3,6 @@ package it.dietiestates.dao.sql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 import it.dietiestates.dao.AnnuncioDAO;
 import it.dietiestates.data.Annuncio;
@@ -18,9 +17,8 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 	
 	@Override
 	public boolean insert(Annuncio annuncio) throws DataAccessException {
-	    try {
-	        String sql = "INSERT INTO est.Annuncio VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	        PreparedStatement statement = connection.prepareStatement(sql);
+		String query = "INSERT INTO est.Annuncio VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try (PreparedStatement statement = connection.prepareStatement(query)) {
 	        String emailAgente = annuncio.getAgente().getEmail();
 	        
 	        statement.setString(1, annuncio.getTitolo());
@@ -50,9 +48,8 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 	@Override
 	public boolean delete(Annuncio annuncio) throws DataAccessException {
-		try {
-			String sql = "DELETE FROM est.Annuncio WHERE idAnnuncio = ? AND email = ?";
-			PreparedStatement statement = connection.prepareStatement(sql);
+		String query = "DELETE FROM est.Annuncio WHERE idAnnuncio = ? AND email = ?";
+		try (PreparedStatement statement = connection.prepareStatement(query)) {
 			String emailAgente = annuncio.getAgente().getEmail();
 
 			statement.setInt(1, annuncio.getID());

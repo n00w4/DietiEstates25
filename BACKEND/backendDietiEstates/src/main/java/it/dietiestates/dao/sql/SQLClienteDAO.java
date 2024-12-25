@@ -17,10 +17,8 @@ public class SQLClienteDAO implements ClienteDAO {
 	
 	@Override
 	public boolean insert(Cliente cliente) throws DataAccessException {
-	    try {
-	        String sql = "INSERT INTO est.Cliente VALUES (?, ?, ?, ?)";
-	        PreparedStatement statement = connection.prepareStatement(sql);
-	        
+		String query = "INSERT INTO est.Cliente VALUES (?, ?, ?, ?)";
+		try (PreparedStatement statement = connection.prepareStatement(query)) {
 	        statement.setString(1, cliente.getNome());
 	        statement.setString(2, cliente.getCognome());
 	        statement.setString(3, cliente.getEmail());

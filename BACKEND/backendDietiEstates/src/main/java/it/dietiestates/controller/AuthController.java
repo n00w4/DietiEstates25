@@ -31,7 +31,6 @@ public class AuthController {
                 return Response.status(Response.Status.UNAUTHORIZED).entity("Credenziali non valide").build();
             }
         } catch (Exception e) {
-        	System.out.println(e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Errore del server").build();
         }
     }
