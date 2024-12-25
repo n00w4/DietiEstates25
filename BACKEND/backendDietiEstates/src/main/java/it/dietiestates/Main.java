@@ -7,7 +7,6 @@ import it.dietiestates.restconfig.RESTConfig;
 
 import java.io.IOException;
 import java.net.URI;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,16 +34,12 @@ public class Main {
      * Main method.
      * @param args Command line arguments
      */
-    public static void main(String[] args) {
-        // Configurazione del logger su console
-        ConsoleHandler consoleHandler = new ConsoleHandler();
-        logger.addHandler(consoleHandler);
+    public static void main(String[] args) throws IOException {
         logger.setLevel(Level.INFO);
 
         // Start the server
         final HttpServer server = startServer();
 
-        // Usa il logger per i messaggi
         logger.info("Jersey app started with endpoints available at " + BASE_URI);
         logger.info("Input something in the console to stop it...");
 
