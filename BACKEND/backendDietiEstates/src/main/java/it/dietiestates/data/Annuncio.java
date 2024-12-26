@@ -1,7 +1,7 @@
 package it.dietiestates.data;
 
 public class Annuncio {
-	private int ID;
+	private int id;
 	private String titolo;
 	private String indirizzo;
 	private String immagine;
@@ -20,36 +20,32 @@ public class Annuncio {
 	private String tipoAnnuncio;
 	private Agente agente;
 	
-	
-	public Annuncio(int iD, String titolo, String indirizzo, String immagine, String descrizione, int dimensioni,
-			float prezzo, String piano, int numeroStanze, String classeEnergetica, boolean ascensore,
-			boolean portineria, boolean climatizzazione, boolean boxAuto, boolean terrazzo, boolean giardino,
-			String tipoAnnuncio, Agente agente) {
-		ID = iD;
-		this.titolo = titolo;
-		this.indirizzo = indirizzo;
-		this.immagine = immagine;
-		this.descrizione = descrizione;
-		this.dimensioni = dimensioni;
-		this.prezzo = prezzo;
-		this.piano = piano;
-		this.numeroStanze = numeroStanze;
-		this.classeEnergetica = classeEnergetica;
-		this.ascensore = ascensore;
-		this.portineria = portineria;
-		this.climatizzazione = climatizzazione;
-		this.boxAuto = boxAuto;
-		this.terrazzo = terrazzo;
-		this.giardino = giardino;
-		this.tipoAnnuncio = tipoAnnuncio;
-		this.agente = agente;
+	public Annuncio(Builder builder) {
+		this.id = builder.id;
+		this.titolo = builder.titolo;
+		this.indirizzo = builder.indirizzo;
+		this.immagine = builder.immagine;
+		this.descrizione = builder.descrizione;
+		this.dimensioni = builder.dimensioni;
+		this.prezzo = builder.prezzo;
+		this.piano = builder.piano;
+		this.numeroStanze = builder.numeroStanze;
+		this.classeEnergetica = builder.classeEnergetica;
+		this.ascensore = builder.ascensore;
+		this.portineria = builder.portineria;
+		this.climatizzazione = builder.climatizzazione;
+		this.boxAuto = builder.boxAuto;
+		this.terrazzo = builder.terrazzo;
+		this.giardino = builder.giardino;
+		this.tipoAnnuncio = builder.tipoAnnuncio;
+		this.agente = builder.agente;
 	}
-	
+
 	public int getID() {
-		return ID;
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setID(int id) {
+		this.id = id;
 	}
 	public String getTitolo() {
 		return titolo;
@@ -152,5 +148,119 @@ public class Annuncio {
 	}
 	public void setAgente(Agente agente) {
 		this.agente = agente;
+	}
+
+	public static class Builder {
+		private int id;
+		private String titolo;
+		private String indirizzo;
+		private String immagine;
+		private String descrizione;
+		private int dimensioni;
+		private float prezzo;
+		private String piano;
+		private int numeroStanze;
+		private String classeEnergetica;
+		private boolean ascensore;
+		private boolean portineria;
+		private boolean climatizzazione;
+		private boolean boxAuto;
+		private boolean terrazzo;
+		private boolean giardino;
+		private String tipoAnnuncio;
+		private Agente agente;
+
+		public Builder(int id) {
+			this.id = id;
+		}
+
+		public Builder titolo(String titolo) {
+			this.titolo = titolo;
+			return this;
+		}
+
+		public Builder indirizzo(String indirizzo) {
+			this.indirizzo = indirizzo;
+			return this;
+		}
+
+		public Builder immagine(String immagine) {
+			this.immagine = immagine;
+			return this;
+		}
+
+		public Builder descrizione(String descrizione) {
+			this.descrizione = descrizione;
+			return this;
+		}
+
+		public Builder dimensioni(int dimensioni) {
+			this.dimensioni = dimensioni;
+			return this;
+		}
+
+		public Builder prezzo(float prezzo) {
+			this.prezzo = prezzo;
+			return this;
+		}
+
+		public Builder piano(String piano) {
+			this.piano = piano;
+			return this;
+		}
+
+		public Builder numeroStanze(int numeroStanze) {
+			this.numeroStanze = numeroStanze;
+			return this;
+		}
+
+		public Builder classeEnergetica(String classeEnergetica) {
+			this.classeEnergetica = classeEnergetica;
+			return this;
+		}
+
+		public Builder ascensore(boolean ascensore) {
+			this.ascensore = ascensore;
+			return this;
+		}
+
+		public Builder portineria(boolean portineria) {
+			this.portineria = portineria;
+			return this;
+		}
+
+		public Builder climatizzazione(boolean climatizzazione) {
+			this.climatizzazione = climatizzazione;
+			return this;
+		}
+
+		public Builder boxAuto(boolean boxAuto) {
+			this.boxAuto = boxAuto;
+			return this;
+		}
+
+		public Builder terrazzo(boolean terrazzo) {
+			this.terrazzo = terrazzo;
+			return this;
+		}
+
+		public Builder giardino(boolean giardino) {
+			this.giardino = giardino;
+			return this;
+		}
+
+		public Builder tipoAnnuncio(String tipoAnnuncio) {
+			this.tipoAnnuncio = tipoAnnuncio;
+			return this;
+		}
+
+		public Builder agente(Agente agente) {
+			this.agente = agente;
+			return this;
+		}
+
+		public Annuncio build() {
+			return new Annuncio(this);
+		}
 	}
 }
