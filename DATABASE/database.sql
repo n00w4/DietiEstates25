@@ -1,5 +1,8 @@
 -- In questo file è riportata la creazione del database
 
+-- Verifica estensione postGIS per dati geografici
+CREATE EXTENSION IF NOT EXISTS postgis;
+
 -- Creazione schema
 DROP SCHEMA IF EXISTS est CASCADE;
 CREATE SCHEMA est;
@@ -130,6 +133,7 @@ CREATE TABLE est.Annuncio (
     terrazzo BOOLEAN NOT NULL,
     giardino BOOLEAN NOT NULL,
     tipoAnnuncio ENUM_ANNUNCIO NOT NULL,
+    posizione GEOMETRY(Point, 4326),
     email VARCHAR(255) REFERENCES est.Agente(email) ON DELETE CASCADE,
 
     CONSTRAINT checkValidPrezzo CHECK (prezzo > 0),
