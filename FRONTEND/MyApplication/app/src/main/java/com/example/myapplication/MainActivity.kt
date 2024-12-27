@@ -7,9 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.myapplication.View.HomeClienteActivity
-import com.example.myapplication.View.SignUpActivity
-import com.example.myapplication.controllers.LoginController
+import com.example.myapplication.controller.LoginController
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

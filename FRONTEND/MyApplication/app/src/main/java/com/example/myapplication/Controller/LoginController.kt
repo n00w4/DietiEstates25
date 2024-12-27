@@ -1,9 +1,9 @@
-package com.example.myapplication.controllers
+package com.example.myapplication.controller
 
 import android.content.Context
 import android.content.Intent
-import com.example.myapplication.View.HomeClienteActivity
-import com.example.myapplication.View.SignUpActivity
+import com.example.myapplication.view.HomeClienteActivity
+import com.example.myapplication.view.SignUpActivity
 
 class LoginController(private val context: Context) {
 

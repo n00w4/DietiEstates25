@@ -1,4 +1,4 @@
-package com.example.myapplication.View
+package com.example.myapplication.view
 
 import android.content.Context
 import android.content.Intent
@@ -18,8 +18,8 @@ import org.osmdroid.events.MapEventsReceiver
 class RicercaMappaActivity : AppCompatActivity() {
     private lateinit var mapView: MapView
     private lateinit var btnSaveLocation: Button
-    private var selectedLatitude: Double = 0.0
-    private var selectedLongitude: Double = 0.0
+    private var selectedLatitude: Double = 41.9028
+    private var selectedLongitude: Double = 12.4964
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class RicercaMappaActivity : AppCompatActivity() {
         mapView.setMultiTouchControls(true)
         mapView.controller.setZoom(10.0)
 
-        val startPoint = GeoPoint(41.9028, 12.4964) // Punto iniziale (es. Roma)
+        val startPoint = GeoPoint(selectedLatitude, selectedLongitude) // Punto iniziale (Roma)
         mapView.controller.setCenter(startPoint)
 
         // Aggiungi un marker

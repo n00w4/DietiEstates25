@@ -1,4 +1,4 @@
-package com.example.myapplication.Model
+package com.example.myapplication.model
 
 data class Agenzia (
     private var nomeAgenzia: String,

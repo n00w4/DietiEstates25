@@ -31,5 +31,6 @@
 
     <string name="latitude_text">Latitudine: %1$.6f</string>
     <string name="longitude_text">Longitudine: %1$.6f</string>
+    <string name="address_text">Indirizzo: %1$s</string>
 
 </resources>

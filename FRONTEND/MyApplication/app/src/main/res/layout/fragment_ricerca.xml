@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.RicercaFragment"
+    tools:context=".view.RicercaFragment"
     android:background="@color/background_color_light">
 
     <LinearLayout
@@ -51,14 +51,21 @@
             android:id="@+id/text_latitudine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Latitudine: "
+            android:text="@string/latitude_text"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/text_longitudine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Longitudine: "
+            android:text="@string/longitude_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address_text"
             android:textSize="16sp" />
 
         <Button

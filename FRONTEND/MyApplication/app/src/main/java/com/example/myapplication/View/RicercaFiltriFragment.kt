@@ -1,4 +1,4 @@
-package com.example.myapplication.View
+package com.example.myapplication.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import com.example.myapplication.Controller.RicercaFiltriController
+import com.example.myapplication.controller.RicercaFiltriController
 import com.example.myapplication.R
 
 class RicercaFiltriFragment : Fragment() {

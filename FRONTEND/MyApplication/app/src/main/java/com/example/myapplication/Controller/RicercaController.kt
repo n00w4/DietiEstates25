@@ -1,4 +1,4 @@
-package com.example.myapplication.Controller
+package com.example.myapplication.controller
 
 import android.app.Activity
 import android.content.Intent
@@ -6,8 +6,8 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.myapplication.R
-import com.example.myapplication.View.RicercaFiltriFragment
-import com.example.myapplication.View.RicercaMappaActivity
+import com.example.myapplication.view.RicercaFiltriFragment
+import com.example.myapplication.view.RicercaMappaActivity
 
 class RicercaController(
     private val fragment: Fragment,

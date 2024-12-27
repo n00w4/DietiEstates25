@@ -27,9 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.SignUpActivity"></activity>
-        <activity android:name=".View.HomeClienteActivity"></activity>
-        <activity android:name=".View.RicercaMappaActivity"></activity>
+        <activity android:name=".view.SignUpActivity"></activity>
+        <activity android:name=".view.HomeClienteActivity"></activity>
+        <activity android:name=".view.RicercaMappaActivity"></activity>
     </application>
 
 </manifest>
