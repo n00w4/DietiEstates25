@@ -18,7 +18,8 @@ public class Annuncio {
 	private boolean terrazzo;
 	private boolean giardino;
 	private String tipoAnnuncio;
-	private Agente agente;
+	private String posizione; // TODO: decidere se rimanere con posizione String oppure passare a lat e longitudine di tipo double
+	private String emailAgente;
 	
 	public Annuncio(Builder builder) {
 		this.id = builder.id;
@@ -38,7 +39,8 @@ public class Annuncio {
 		this.terrazzo = builder.terrazzo;
 		this.giardino = builder.giardino;
 		this.tipoAnnuncio = builder.tipoAnnuncio;
-		this.agente = builder.agente;
+		this.posizione = builder.posizione;
+		this.emailAgente = builder.emailAgente;
 	}
 
 	public int getID() {
@@ -143,11 +145,17 @@ public class Annuncio {
 	public void setTipoAnnuncio(String tipoAnnuncio) {
 		this.tipoAnnuncio = tipoAnnuncio;
 	}
-	public Agente getAgente() {
-		return agente;
+	public String getPosizione() {
+		return posizione;
 	}
-	public void setAgente(Agente agente) {
-		this.agente = agente;
+	public void setPosizione(String posizione) {
+		this.posizione = posizione;
+	}
+	public String getEmailAgente() {
+		return emailAgente;
+	}
+	public void setAgente(String emailAgente) {
+		this.emailAgente = emailAgente;
 	}
 
 	public static class Builder {
@@ -168,7 +176,8 @@ public class Annuncio {
 		private boolean terrazzo;
 		private boolean giardino;
 		private String tipoAnnuncio;
-		private Agente agente;
+		private String posizione;
+		private String emailAgente;
 
 		public Builder(int id) {
 			this.id = id;
@@ -254,8 +263,13 @@ public class Annuncio {
 			return this;
 		}
 
-		public Builder agente(Agente agente) {
-			this.agente = agente;
+		public Builder posizione(String posizione) {
+			this.posizione = posizione;
+			return this;
+		}
+
+		public Builder emailAgente(String emailAgente) {
+			this.emailAgente = emailAgente;
 			return this;
 		}
 

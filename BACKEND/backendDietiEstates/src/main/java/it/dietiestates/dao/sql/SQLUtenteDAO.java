@@ -27,15 +27,15 @@ public class SQLUtenteDAO implements UtenteDAO {
 			statement.setString(1, email);
 			statement.setString(2, password);
 
-			try (ResultSet rs = statement.executeQuery()) {
-				if (rs.next()) {
-					String tipoUtente = rs.getString("tipo_utente");
-					String nome = rs.getString("nome");
-					String cognome = rs.getString("cognome");
-					String emailUtente = rs.getString("email");
-					String passwordUtente = rs.getString("password");
-					String passwordAdmin = rs.getString("passwordAdmin");
-					String partitaIVA = rs.getString("partitaIVA");
+			try (ResultSet resultSet = statement.executeQuery()) {
+				if (resultSet.next()) {
+					String tipoUtente = resultSet.getString("tipo_utente");
+					String nome = resultSet.getString("nome");
+					String cognome = resultSet.getString("cognome");
+					String emailUtente = resultSet.getString("email");
+					String passwordUtente = resultSet.getString("password");
+					String passwordAdmin = resultSet.getString("passwordAdmin");
+					String partitaIVA = resultSet.getString("partitaIVA");
 
 					return UtenteFactory.creaUtente(tipoUtente, nome, cognome, emailUtente, passwordUtente, passwordAdmin, partitaIVA);
 				}
