@@ -1,5 +1,8 @@
 -- In questo file è riportata la creazione del database
 
+-- Verifica estensione postGIS per dati geografici
+CREATE EXTENSION IF NOT EXISTS postgis;
+
 -- Creazione schema
 DROP SCHEMA IF EXISTS est CASCADE;
 CREATE SCHEMA est;
@@ -130,13 +133,18 @@ CREATE TABLE est.Annuncio (
     terrazzo BOOLEAN NOT NULL,
     giardino BOOLEAN NOT NULL,
     tipoAnnuncio ENUM_ANNUNCIO NOT NULL,
+    posizione GEOGRAPHY(Point, 4326) USING posizione::GEOGRAPHY,
     email VARCHAR(255) REFERENCES est.Agente(email) ON DELETE CASCADE,
 
     CONSTRAINT checkValidPrezzo CHECK (prezzo > 0),
     CONSTRAINT checkValidDimensioni CHECK (dimensioni > 0),
     CONSTRAINT checkValidNumeroStanze CHECK (numeroStanze > 0),
-    CONSTRAINT checkValidImmagine CHECK (immagine ~ '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+    CONSTRAINT checkValidImmagine CHECK (immagine ~ '^[a-zA-Z0-9._%-]+\.(jpg|jpeg|png|gif)$'),
+    CONSTRAINT enforceSridPosizione CHECK (ST_SRID(posizione) = 4326)
 );
+
+-- Index per posizione (potrebbe essere necessario avere permessi speciali)
+CREATE INDEX idxPosizione ON est.Annuncio USING GIST (posizione);
 
 -- Table Prenotazione
 CREATE TABLE est.Prenotazione (

@@ -7,6 +7,11 @@ import it.dietiestates.data.Gestore;
 import it.dietiestates.data.Utente;
 
 public class UtenteFactory {
+    // Costruttore privato per evitare l'instanziazione della classe
+    private UtenteFactory() {
+        throw new UnsupportedOperationException("Utility class should not be instantiated");
+    }
+
 	public static Utente creaUtente(
 			String tipoUtente,
             String nome,
@@ -15,7 +20,7 @@ public class UtenteFactory {
             String password,
             String passwordAdmin,
             String partitaIVA) {
-		
+
 		switch (tipoUtente) {
 			case "Cliente":
                 return new Cliente(nome, cognome, email, password);

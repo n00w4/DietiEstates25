@@ -3,7 +3,7 @@ package it.dietiestates.data;
 import java.sql.Timestamp;
 
 public class Prenotazione {
-	private int ID;
+	private int id;
 	private Timestamp dataInizio;
 	private Timestamp dataFine;
 	private boolean isAccettata;
@@ -11,10 +11,10 @@ public class Prenotazione {
 	private Annuncio annuncio;
 	
 	public int getID() {
-		return ID;
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setID(int id) {
+		id = id;
 	}
 	//Getters and Setters for dataInizio
 	public Timestamp getDataInizio() {
@@ -55,7 +55,4 @@ public class Prenotazione {
 	public void setAnnuncio(Annuncio annuncio) {
 		this.annuncio = annuncio;
 	}
-	
-	
-	
 }

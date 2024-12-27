@@ -2,6 +2,7 @@ package it.dietiestates.controller;
 
 import java.sql.SQLException;
 
+import it.dietiestates.dao.UtenteDAO;
 import it.dietiestates.dao.sql.SQLUtenteDAO;
 import it.dietiestates.data.Utente;
 import it.dietiestates.database.PgSQL;
@@ -12,7 +13,7 @@ import jakarta.ws.rs.core.Response;
 
 @Path("auth")
 public class AuthController {
-    private final SQLUtenteDAO utenteDAO;
+    private final UtenteDAO utenteDAO;
     
     public AuthController() throws SQLException {
         this.utenteDAO = new SQLUtenteDAO(PgSQL.getConnection());
@@ -31,7 +32,6 @@ public class AuthController {
                 return Response.status(Response.Status.UNAUTHORIZED).entity("Credenziali non valide").build();
             }
         } catch (Exception e) {
-        	System.out.println(e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Errore del server").build();
         }
     }

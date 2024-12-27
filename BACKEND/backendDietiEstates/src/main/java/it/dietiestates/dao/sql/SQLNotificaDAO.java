@@ -9,7 +9,7 @@ import it.dietiestates.data.Notifica;
 import it.dietiestates.exception.DataAccessException;
 
 public class SQLNotificaDAO implements NotificaDAO {
-    private Connection connection;
+    private final Connection connection;
 
     public SQLNotificaDAO(Connection dbConnection) {
         this.connection = dbConnection;
@@ -17,9 +17,8 @@ public class SQLNotificaDAO implements NotificaDAO {
 
     @Override
     public boolean insert(Notifica notifica) throws DataAccessException {
-        try {
-            String sql = "INSERT INTO est.Notifica (dataOra, email, idPrenotazione) VALUES (?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+        String query = "INSERT INTO est.Notifica (dataOra, email, idPrenotazione) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             String emailAgente = notifica.getAgente().getEmail();
             int prenotazioneID = notifica.getPrenotazione().getID();
 
@@ -29,9 +28,7 @@ public class SQLNotificaDAO implements NotificaDAO {
 
             return statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DataAccessException("Errore durante l'inserimento della notifica", e);
         }
-        return false;
     }
 }
-

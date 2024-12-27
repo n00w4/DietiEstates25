@@ -3,24 +3,24 @@ package it.dietiestates.data;
 import java.sql.Timestamp;
 
 public class Notifica {
-	private int ID;
+	private int id;
 	private Timestamp dataOra;
 	private Agente agente;
 	private Prenotazione prenotazione;
 	
-	public Notifica(int iD, Timestamp dataOra, Agente agente, Prenotazione prenotazione) {
+	public Notifica(int id, Timestamp dataOra, Agente agente, Prenotazione prenotazione) {
 		super();
-		ID = iD;
+		id = id;
 		this.dataOra = dataOra;
 		this.agente = agente;
 		this.prenotazione = prenotazione;
 	}
 	
 	public int getID() {
-		return ID;
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setID(int id) {
+		id = id;
 	}
 	public Timestamp getDataOra() {
 		return dataOra;
