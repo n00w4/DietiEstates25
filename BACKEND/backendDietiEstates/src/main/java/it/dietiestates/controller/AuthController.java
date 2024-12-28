@@ -6,7 +6,7 @@ import it.dietiestates.dao.UtenteDAO;
 import it.dietiestates.dao.sql.SQLUtenteDAO;
 import it.dietiestates.data.Utente;
 import it.dietiestates.database.PgSQL;
-import it.dietiestates.services.JWTService;
+import it.dietiestates.filter.JWTService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;

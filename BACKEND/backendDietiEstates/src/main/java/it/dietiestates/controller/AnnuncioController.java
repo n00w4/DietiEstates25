@@ -6,6 +6,7 @@ import it.dietiestates.data.Annuncio;
 import it.dietiestates.data.RicercaAnnuncio;
 import it.dietiestates.database.PgSQL;
 import it.dietiestates.exception.DataAccessException;
+import it.dietiestates.filter.RequireJWTAuthentication;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -13,15 +14,21 @@ import jakarta.ws.rs.core.Response;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Path("annunci")
 public class AnnuncioController {
     private final AnnuncioDAO annuncioDAO;
+    private static final Logger logger = Logger.getLogger(AnnuncioController.class.getName());
+
 
     public AnnuncioController() throws SQLException {
         this.annuncioDAO = new SQLAnnuncioDAO(PgSQL.getConnection());
     }
 
+    @Path("search")
+    @RequireJWTAuthentication
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -30,11 +37,14 @@ public class AnnuncioController {
         try {
             listaAnnunci = annuncioDAO.getAnnunciFromSearch(ricerca);
             if (listaAnnunci.equals(Collections.emptyList())) {
+                logger.info("Richiesta di annunci non trovata");
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
         } catch (DataAccessException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Errore durante la ricerca di annunci", e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
+        logger.info("Richiesta annunci effettuata con successo");
         return Response.ok(listaAnnunci).build();
     }
 }

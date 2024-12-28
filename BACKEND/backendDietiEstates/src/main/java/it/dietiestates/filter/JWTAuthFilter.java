@@ -9,8 +9,6 @@ import jakarta.ws.rs.ext.Provider;
 
 import java.io.IOException;
 
-import it.dietiestates.services.JWTService;
-
 @Provider
 @RequireJWTAuthentication
 @Priority(Priorities.AUTHENTICATION)
