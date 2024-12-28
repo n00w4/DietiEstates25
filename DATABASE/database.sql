@@ -133,7 +133,7 @@ CREATE TABLE est.Annuncio (
     terrazzo BOOLEAN NOT NULL,
     giardino BOOLEAN NOT NULL,
     tipoAnnuncio ENUM_ANNUNCIO NOT NULL,
-    posizione GEOGRAPHY(Point, 4326) USING posizione::GEOGRAPHY,
+    posizione GEOGRAPHY(Point, 4326),
     email VARCHAR(255) REFERENCES est.Agente(email) ON DELETE CASCADE,
 
     CONSTRAINT checkValidPrezzo CHECK (prezzo > 0),
