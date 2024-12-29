@@ -14,7 +14,6 @@ import jakarta.ws.rs.core.Response;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Path("annunci")
@@ -33,7 +32,7 @@ public class AnnuncioController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAnnunciFromSearch(RicercaAnnuncio ricerca) {
-        List<Annuncio> listaAnnunci = null;
+        List<Annuncio> listaAnnunci;
         try {
             listaAnnunci = annuncioDAO.getAnnunciFromSearch(ricerca);
             if (listaAnnunci.equals(Collections.emptyList())) {
@@ -41,7 +40,6 @@ public class AnnuncioController {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
         } catch (DataAccessException e) {
-            logger.log(Level.SEVERE, "Errore durante la ricerca di annunci", e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
         logger.info("Richiesta annunci effettuata con successo");

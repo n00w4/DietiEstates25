@@ -41,7 +41,6 @@ public class SQLUtenteDAO implements UtenteDAO {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DataAccessException("Errore durante l'autenticazione dell'utente", e);
 		}
 		return null;

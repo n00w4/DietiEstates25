@@ -3,6 +3,8 @@ package it.dietiestates.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PgSQL {
     private static final String URL = "jdbc:postgresql://localhost:5432/DietiEstates25?currentSchema=est,public";
@@ -10,6 +12,7 @@ public class PgSQL {
     private static final String PASSWORD = System.getenv("DB_PASSWORD");
 
     private static Connection connection;
+    private static final Logger logger = Logger.getLogger(PgSQL.class.getName());
 
     private PgSQL() {}
 
@@ -29,7 +32,7 @@ public class PgSQL {
             try {
                 connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.log(Level.SEVERE, "Errore durante la chiusura della connessione", e);
             }
         }
     }

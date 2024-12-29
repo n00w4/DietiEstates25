@@ -27,9 +27,8 @@ public class SQLAgenteDAO implements AgenteDAO {
 			
 			return statement.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DataAccessException("Errore durante l'inserimento dell'agente", e);
 		}
-		return false;
 	}
 
 }

@@ -28,9 +28,8 @@ public class SQLGestoreDAO implements GestoreDAO {
 
             return statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DataAccessException("Errore durante l'inserimento del gestore", e);
         }
-        return false;
     }
 }
 

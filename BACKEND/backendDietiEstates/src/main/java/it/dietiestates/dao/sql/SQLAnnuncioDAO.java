@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import it.dietiestates.dao.AnnuncioDAO;
@@ -44,9 +43,8 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 	        return statement.execute();
 	    } catch (SQLException e) {
-	        e.printStackTrace();
+			throw new DataAccessException("Errore durante l'inserimento dell'annuncio", e);
 	    }
-	    return false;
 	}
 
 	@Override
@@ -58,9 +56,8 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 			return statement.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DataAccessException("Errore durante la cancellazione dell'annuncio", e);
 		}
-		return false;
 	}
 
 	@Override
@@ -135,8 +132,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 				}
 			}
 		} catch (SQLException e) {
-            e.printStackTrace();
-			return Collections.emptyList();
+			throw new DataAccessException("Errore durante la ricerca dell'annuncio", e);
         }
 		return listaAnnunci;
     }

@@ -24,8 +24,7 @@ public class SQLAgenziaDAO implements AgenziaDAO {
 			
 			return statement.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DataAccessException("Errore durante l'inserimento dell'agenzia", e);
 		}
-		return false;
 	}
 }

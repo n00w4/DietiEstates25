@@ -27,8 +27,7 @@ public class SQLAmministratoreDAO implements AmministratoreDAO {
 			
 			return statement.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DataAccessException("Errore durante l'inserimento dell'amministratore", e);
 		}
-		return false;
 	}
 }
