@@ -13,8 +13,10 @@ public abstract class Utente {
 		this.email = email;
 		this.password = password;
 	}
-	
-	//Getter and Setter for nome
+
+    public Utente() {}
+
+    //Getter and Setter for nome
 	public String getNome() {
 		return nome;
 	}
