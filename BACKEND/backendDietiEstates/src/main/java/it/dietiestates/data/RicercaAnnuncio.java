@@ -17,8 +17,8 @@ public class RicercaAnnuncio {
     private double latitudine;
     private double longitudine;
 
-    // Costruttore predefinito pubblico per deserializzazione dei dati
     public RicercaAnnuncio() {
+        // Costruttore predefinito pubblico per deserializzazione dei dati
     }
 
     public int getDimensioni() {

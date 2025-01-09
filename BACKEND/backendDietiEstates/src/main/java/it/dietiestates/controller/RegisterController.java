@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 @Path("register")
 public class RegisterController {
     private final ClienteDAO clienteDAO;
-    private static Logger logger = Logger.getLogger(RegisterController.class.getName());
+    private static final Logger logger = Logger.getLogger(RegisterController.class.getName());
 
     public RegisterController() throws SQLException {
         this.clienteDAO = new SQLClienteDAO(PgSQL.getConnection());

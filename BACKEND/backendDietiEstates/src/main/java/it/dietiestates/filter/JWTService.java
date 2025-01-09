@@ -8,6 +8,7 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import java.util.Date;
 
 public class JWTService {
+    private static final String ISSUER = "dieti-estates";
     private static final String SECRET = System.getenv("JWT_SECRET");
     private static final Algorithm ALGORITHM = Algorithm.HMAC256(SECRET);
     private static final long EXPIRATION_TIME = 3600000; // 1 ora in millisecondi
@@ -21,6 +22,7 @@ public class JWTService {
 
     public static String generateToken(String email) {
         return JWT.create()
+                .withIssuer(ISSUER)
                 .withSubject(email)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
