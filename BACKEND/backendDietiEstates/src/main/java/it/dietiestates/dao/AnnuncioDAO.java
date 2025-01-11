@@ -10,4 +10,5 @@ public interface AnnuncioDAO {
 	boolean insert(Annuncio annuncio) throws DataAccessException;
 	boolean delete(Annuncio annuncio) throws DataAccessException;
 	List<Annuncio> getAnnunciFromSearch(RicercaAnnuncio ricerca) throws DataAccessException;
+	List<Annuncio> getAllAnnunci() throws DataAccessException;
 }

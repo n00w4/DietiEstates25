@@ -26,6 +26,25 @@ public class AnnuncioController {
         this.annuncioDAO = new SQLAnnuncioDAO(PgSQL.getConnection());
     }
 
+    @Path("getAll")
+    @RequireJWTAuthentication
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllAnnunci() throws DataAccessException {
+        List<Annuncio> listaAnnunci;
+        try {
+            listaAnnunci = annuncioDAO.getAllAnnunci();
+            if (listaAnnunci.equals(Collections.emptyList())) {
+                logger.info("Richiesta di tutti gli annunci non trovata");
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+        } catch (DataAccessException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        logger.info("Richiesta di tutti gli annunci effettuata con successo");
+        return Response.ok(listaAnnunci).build();
+    }
+
     @Path("search")
     @RequireJWTAuthentication
     @POST

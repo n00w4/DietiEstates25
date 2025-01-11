@@ -136,4 +136,62 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
         }
 		return listaAnnunci;
     }
+
+	@Override
+	public List<Annuncio> getAllAnnunci() throws DataAccessException {
+		String query = "SELECT * FROM est.Annuncio";
+		List<Annuncio> listaAnnunci = new ArrayList<>();
+
+		try (PreparedStatement statement = connection.prepareStatement(query)) {
+			try (ResultSet resultSet = statement.executeQuery()) {
+				while (resultSet.next()) {
+					int id = resultSet.getInt("idAnnuncio");
+					String titolo = resultSet.getString("titolo");
+					String indirizzo = resultSet.getString("indirizzo");
+					String immagine = resultSet.getString("immagine");
+					String descrizione = resultSet.getString("descrizione");
+					int dimensioni = resultSet.getInt("dimensioni");
+					float prezzo = resultSet.getFloat("prezzo");
+					String piano = resultSet.getString("piano");
+					int numeroStanze = resultSet.getInt("numeroStanze");
+					String classeEnergetica = resultSet.getString("classeEnergetica");
+					boolean ascensore = resultSet.getBoolean("ascensore");
+					boolean portineria = resultSet.getBoolean("portineria");
+					boolean climatizzazione = resultSet.getBoolean("climatizzazione");
+					boolean boxAuto = resultSet.getBoolean("boxAuto");
+					boolean terrazzo = resultSet.getBoolean("terrazzo");
+					boolean giardino = resultSet.getBoolean("giardino");
+					String tipoAnnuncio = resultSet.getString("tipoAnnuncio");
+					String posizione = resultSet.getString("posizione");
+					String emailAgente = resultSet.getString("email");
+
+					Annuncio annuncio = new Annuncio.Builder(id)
+							.titolo(titolo)
+							.indirizzo(indirizzo)
+							.immagine(immagine)
+							.descrizione(descrizione)
+							.dimensioni(dimensioni)
+							.prezzo(prezzo)
+							.piano(piano)
+							.numeroStanze(numeroStanze)
+							.classeEnergetica(classeEnergetica)
+							.ascensore(ascensore)
+							.portineria(portineria)
+							.climatizzazione(climatizzazione)
+							.boxAuto(boxAuto)
+							.terrazzo(terrazzo)
+							.giardino(giardino)
+							.tipoAnnuncio(tipoAnnuncio)
+							.posizione(posizione)
+							.emailAgente(emailAgente)
+							.build();
+
+					listaAnnunci.add(annuncio);
+				}
+			}
+		} catch (SQLException e) {
+			throw new DataAccessException("Errore durante la ricerca dell'annuncio", e);
+		}
+        return listaAnnunci;
+    }
 }
