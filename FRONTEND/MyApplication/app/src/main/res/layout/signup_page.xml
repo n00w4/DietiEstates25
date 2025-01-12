@@ -56,7 +56,7 @@
             android:text="Cognome" />
 
         <EditText
-            android:id="@+id/editTextTextCognome"
+            android:id="@+id/editTextCognome"
             style="@style/LoginEditText"
             android:layout_width="match_parent"
             android:layout_height="36dp"
@@ -72,7 +72,7 @@
             android:text="E-mail" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/editTextEmail"
             style="@style/LoginEditText"
             android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
@@ -88,7 +88,7 @@
             android:text="Password" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/editTextPassword"
             style="@style/LoginEditText"
             android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
@@ -97,7 +97,7 @@
 
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/signUpButton"
             style="@style/LoginButton"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"

@@ -1,8 +1,8 @@
 package com.example.myapplication.model
 
-open class Utente {
-    private var nome: String? = null
-    private var cognome: String? = null
-    private var email: String? = null
-    private var password: String? = null
-}
+open class Utente (
+    protected var nome: String? = null,
+    protected var cognome: String? = null,
+    protected var email: String? = null,
+    protected var password: String? = null
+)
