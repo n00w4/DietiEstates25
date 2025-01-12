@@ -50,6 +50,10 @@ public class GithubCallbackController {
                     jsonResponse = reader.readObject();
                 }
 
+                if (!jsonResponse.containsKey("access_token")) {
+                    return Response.status(Response.Status.BAD_REQUEST).entity("Access token non disponibile").build();
+                }
+
                 String accessToken = jsonResponse.getString("access_token");
                 return fetchGitHubUser(accessToken);
             }
