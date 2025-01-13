@@ -1,0 +1,95 @@
+package it.dietiestates.controller.oauth.google;
+
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.Form;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+@Path("auth/google/callback")
+@Produces(MediaType.APPLICATION_JSON)
+public class GoogleCallbackController {
+    private static final Logger logger = Logger.getLogger(GoogleCallbackController.class.getName());
+    private static final String CLIENT_ID = "your-google-client-id";
+    private static final String CLIENT_SECRET = System.getenv("GOOGLE_CLIENT_SECRET");
+    private static final String TOKEN_URL = "https://oauth2.googleapis.com/token";
+
+    @GET
+    public Response handleGoogleCallback(@QueryParam("code") String code) {
+        try (Client client = ClientBuilder.newClient()) {
+            WebTarget target = client.target(TOKEN_URL);
+            Form form = new Form()
+                    .param("client_id", CLIENT_ID)
+                    .param("client_secret", CLIENT_SECRET)
+                    .param("code", code)
+                    .param("grant_type", "authorization_code")
+                    .param("redirect_uri", "http://localhost:8080/auth/google/callback");
+
+            try (Response tokenResponse = target.request(MediaType.APPLICATION_JSON)
+                    .post(Entity.form(form))) {
+
+                if (tokenResponse.getStatus() != 200) {
+                    return Response.status(Response.Status.BAD_REQUEST).entity("Errore nel token exchange").build();
+                }
+
+                String responseBody = tokenResponse.readEntity(String.class);
+                String accessToken = extractAccessToken(responseBody);
+
+                if (accessToken == null) {
+                    logger.log(Level.SEVERE, () -> "Access token mancante nella risposta JSON: " + responseBody);
+                    return Response.status(Response.Status.BAD_REQUEST).entity("Access token mancante").build();
+                }
+
+                return fetchGoogleUser(accessToken);
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, e, () -> "Errore durante la gestione del callback: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Errore del server").build();
+        }
+    }
+
+    private String extractAccessToken(String responseBody) {
+        try (JsonReader reader = Json.createReader(new StringReader(responseBody))) {
+            JsonObject jsonResponse = reader.readObject();
+            return jsonResponse.getString("access_token", null);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, e, () -> "Errore durante l'estrazione dell'access token: " + responseBody);
+            return null;
+        }
+    }
+
+    private Response fetchGoogleUser(String accessToken) {
+        String userInfoUrl = "https://www.googleapis.com/oauth2/v2/userinfo";
+        try (Client client = ClientBuilder.newClient()) {
+            WebTarget target = client.target(userInfoUrl);
+
+            try (Response userResponse = target.request(MediaType.APPLICATION_JSON)
+                    .header("Authorization", "Bearer " + accessToken)
+                    .get()) {
+
+                if (userResponse.getStatus() != 200) {
+                    return Response.status(Response.Status.BAD_REQUEST).entity("Errore nel recupero dell'utente").build();
+                }
+
+                String userInfo = userResponse.readEntity(String.class);
+                return Response.ok(userInfo).build();
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, e, () -> "Errore durante il recupero delle informazioni utente: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Errore del server").build();
+        }
+    }
+}

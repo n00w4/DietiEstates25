@@ -44,8 +44,7 @@
             style="@style/LoginEditText"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:layout_marginBottom="16dp"
-            android:inputType="textPassword" />
+            android:layout_marginBottom="16dp" />
 
         <TextView
             android:id="@+id/textView02"
@@ -60,8 +59,7 @@
             style="@style/LoginEditText"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:layout_marginBottom="16dp"
-            android:inputType="textPassword" />
+            android:layout_marginBottom="16dp"/>
 
         <TextView
             android:id="@+id/textView"
