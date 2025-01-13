@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".MyApplicationDE"
+        android:name=".application.MyApplicationDE"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -31,6 +31,7 @@
         <activity android:name=".view.SignUpActivity"></activity>
         <activity android:name=".view.HomeClienteActivity"></activity>
         <activity android:name=".view.RicercaMappaActivity"></activity>
+        <activity android:name=".view.info.SignUpResult"></activity>
     </application>
 
 </manifest>
