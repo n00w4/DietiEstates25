@@ -1,12 +1,12 @@
 package it.dietiestates.dao.sql;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import it.dietiestates.dao.AgenteDAO;
 import it.dietiestates.data.Agente;
 import it.dietiestates.exception.DataAccessException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class SQLAgenteDAO implements AgenteDAO {
 	private Connection connection;
@@ -24,8 +24,8 @@ public class SQLAgenteDAO implements AgenteDAO {
 			statement.setString(3, agente.getEmail());
 			statement.setString(4, agente.getPassword());
 			statement.setString(5, agente.getPartitaIVA());
-			
-			return statement.execute();
+
+			return statement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			throw new DataAccessException("Errore durante l'inserimento dell'agente", e);
 		}

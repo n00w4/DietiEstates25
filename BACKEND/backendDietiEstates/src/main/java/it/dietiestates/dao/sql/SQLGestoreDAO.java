@@ -1,12 +1,12 @@
 package it.dietiestates.dao.sql;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import it.dietiestates.dao.GestoreDAO;
 import it.dietiestates.data.Gestore;
 import it.dietiestates.exception.DataAccessException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class SQLGestoreDAO implements GestoreDAO {
     private Connection connection;
@@ -26,7 +26,7 @@ public class SQLGestoreDAO implements GestoreDAO {
             statement.setString(5, gestore.getPasswordAdmin());
             statement.setString(6, gestore.getPartitaIVA());
 
-            return statement.execute();
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataAccessException("Errore durante l'inserimento del gestore", e);
         }

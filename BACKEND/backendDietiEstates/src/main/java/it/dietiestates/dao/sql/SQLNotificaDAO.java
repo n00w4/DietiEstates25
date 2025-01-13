@@ -1,12 +1,12 @@
 package it.dietiestates.dao.sql;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import it.dietiestates.dao.NotificaDAO;
 import it.dietiestates.data.Notifica;
 import it.dietiestates.exception.DataAccessException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class SQLNotificaDAO implements NotificaDAO {
     private final Connection connection;
@@ -26,7 +26,7 @@ public class SQLNotificaDAO implements NotificaDAO {
             statement.setString(2, emailAgente);
             statement.setInt(3, prenotazioneID);
 
-            return statement.execute();
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataAccessException("Errore durante l'inserimento della notifica", e);
         }

@@ -1,12 +1,12 @@
 package it.dietiestates.dao.sql;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import it.dietiestates.dao.PrenotazioneDAO;
 import it.dietiestates.data.Prenotazione;
 import it.dietiestates.exception.DataAccessException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class SQLPrenotazioneDAO implements PrenotazioneDAO {
     private final Connection connection;
@@ -28,7 +28,7 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
             statement.setInt(4, idAnnuncio);
             statement.setString(5, emailCliente);
 
-            return statement.execute();
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataAccessException("Errore durante l'inserimento della prenotazione", e);
         }
@@ -43,7 +43,7 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
             statement.setInt(1, prenotazione.getID());
             statement.setString(2, emailCliente);
 
-            return statement.execute();
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataAccessException("Errore durante l'eliminazione della prenotazione", e);
         }

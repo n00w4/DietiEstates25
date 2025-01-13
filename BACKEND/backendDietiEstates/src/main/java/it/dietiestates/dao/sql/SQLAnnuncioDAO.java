@@ -1,16 +1,16 @@
 package it.dietiestates.dao.sql;
 
+import it.dietiestates.dao.AnnuncioDAO;
+import it.dietiestates.data.Annuncio;
+import it.dietiestates.data.RicercaAnnuncio;
+import it.dietiestates.exception.DataAccessException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import it.dietiestates.dao.AnnuncioDAO;
-import it.dietiestates.data.Annuncio;
-import it.dietiestates.data.RicercaAnnuncio;
-import it.dietiestates.exception.DataAccessException;
 
 public class SQLAnnuncioDAO implements AnnuncioDAO {
 	private final Connection connection;
@@ -41,7 +41,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 	        statement.setString(16, annuncio.getTipoAnnuncio());
 	        statement.setString(17, annuncio.getEmailAgente());
 
-	        return statement.execute();
+			return statement.executeUpdate() > 0;
 	    } catch (SQLException e) {
 			throw new DataAccessException("Errore durante l'inserimento dell'annuncio", e);
 	    }
@@ -54,7 +54,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 			statement.setInt(1, annuncio.getID());
 			statement.setString(2, annuncio.getEmailAgente());
 
-			return statement.execute();
+			return statement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			throw new DataAccessException("Errore durante la cancellazione dell'annuncio", e);
 		}

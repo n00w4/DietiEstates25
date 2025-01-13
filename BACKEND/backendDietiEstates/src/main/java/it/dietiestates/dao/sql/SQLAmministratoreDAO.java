@@ -1,12 +1,12 @@
 package it.dietiestates.dao.sql;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import it.dietiestates.dao.AmministratoreDAO;
 import it.dietiestates.data.Amministratore;
 import it.dietiestates.exception.DataAccessException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class SQLAmministratoreDAO implements AmministratoreDAO {
 	private Connection connection;
@@ -24,8 +24,8 @@ public class SQLAmministratoreDAO implements AmministratoreDAO {
 			statement.setString(3, amministratore.getEmail());
 			statement.setString(4, amministratore.getPassword());
 			statement.setString(5, amministratore.getPartitaIVA());
-			
-			return statement.execute();
+
+			return statement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			throw new DataAccessException("Errore durante l'inserimento dell'amministratore", e);
 		}
