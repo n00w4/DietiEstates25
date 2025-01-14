@@ -50,7 +50,6 @@ class SignUpController(private val context: Context) {
                     else -> {
                         Toast.makeText(context, "Error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
                     }
-
                     //Per ora solo in caso di successo si cambia pagina, nei casi di errore mostra un toast.
                     //Decidere approccio per i casi di errore.
                 }
