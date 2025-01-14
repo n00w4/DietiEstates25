@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 @Produces(MediaType.APPLICATION_JSON)
 public class GoogleCallbackController {
     private static final Logger logger = Logger.getLogger(GoogleCallbackController.class.getName());
-    private static final String CLIENT_ID = "your-google-client-id";
+    private static final String CLIENT_ID = "112156935328-gd61v5j6q70h3idigvpn4v5cgnbi0id1.apps.googleusercontent.com";
     private static final String CLIENT_SECRET = System.getenv("GOOGLE_CLIENT_SECRET");
     private static final String TOKEN_URL = "https://oauth2.googleapis.com/token";
 
