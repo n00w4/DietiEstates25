@@ -1,7 +1,7 @@
 package it.dietiestates.dao;
 
 import it.dietiestates.data.Annuncio;
-import it.dietiestates.data.RicercaAnnuncio;
+import it.dietiestates.dto.RicercaAnnuncio;
 import it.dietiestates.exception.DataAccessException;
 
 import java.util.List;

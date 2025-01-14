@@ -1,5 +1,6 @@
 package it.dietiestates.controller.oauth.github;
 
+import it.dietiestates.dto.ErrorApiResponse;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
@@ -41,7 +42,8 @@ public class GithubCallbackController {
                     .post(Entity.form(form))) {
 
                 if (tokenResponse.getStatus() != 200) {
-                    return Response.status(Response.Status.BAD_REQUEST).entity("Errore nel token exchange").build();
+                    ErrorApiResponse errorApiResponse = new ErrorApiResponse("Errore nel token exchange");
+                    return Response.status(Response.Status.BAD_REQUEST).entity(errorApiResponse).build();
                 }
 
                 String responseBody = tokenResponse.readEntity(String.class);
@@ -51,7 +53,8 @@ public class GithubCallbackController {
                 }
 
                 if (!jsonResponse.containsKey("access_token")) {
-                    return Response.status(Response.Status.BAD_REQUEST).entity("Access token non disponibile").build();
+                    ErrorApiResponse errorApiResponse = new ErrorApiResponse("Access token non disponibile");
+                    return Response.status(Response.Status.BAD_REQUEST).entity(errorApiResponse).build();
                 }
 
                 String accessToken = jsonResponse.getString("access_token");
@@ -59,7 +62,8 @@ public class GithubCallbackController {
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Errore del server").build();
+            ErrorApiResponse errorResponse = new ErrorApiResponse(e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
         }
     }
 
@@ -73,7 +77,8 @@ public class GithubCallbackController {
                     .get()) {
 
                 if (userResponse.getStatus() != 200) {
-                    return Response.status(Response.Status.BAD_REQUEST).entity("Errore nel recupero dell'utente").build();
+                    ErrorApiResponse errorApiResponse = new ErrorApiResponse("Errore nel recupero dell'utente");
+                    return Response.status(Response.Status.BAD_REQUEST).entity(errorApiResponse).build();
                 }
 
                 String userInfo = userResponse.readEntity(String.class);
@@ -81,7 +86,8 @@ public class GithubCallbackController {
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Errore del server").build();
+            ErrorApiResponse errorResponse = new ErrorApiResponse(e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
         }
     }
 }

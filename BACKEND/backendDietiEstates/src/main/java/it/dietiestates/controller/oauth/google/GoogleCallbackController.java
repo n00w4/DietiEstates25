@@ -1,5 +1,6 @@
 package it.dietiestates.controller.oauth.google;
 
+import it.dietiestates.dto.ErrorApiResponse;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
@@ -42,7 +43,8 @@ public class GoogleCallbackController {
                     .post(Entity.form(form))) {
 
                 if (tokenResponse.getStatus() != 200) {
-                    return Response.status(Response.Status.BAD_REQUEST).entity("Errore nel token exchange").build();
+                    ErrorApiResponse errorApiResponse = new ErrorApiResponse("Errore nel token exchange");
+                    return Response.status(Response.Status.BAD_REQUEST).entity(errorApiResponse).build();
                 }
 
                 String responseBody = tokenResponse.readEntity(String.class);
@@ -50,14 +52,16 @@ public class GoogleCallbackController {
 
                 if (accessToken == null) {
                     logger.log(Level.SEVERE, () -> "Access token mancante nella risposta JSON: " + responseBody);
-                    return Response.status(Response.Status.BAD_REQUEST).entity("Access token mancante").build();
+                    ErrorApiResponse errorApiResponse = new ErrorApiResponse("Access token mancante");
+                    return Response.status(Response.Status.BAD_REQUEST).entity(errorApiResponse).build();
                 }
 
                 return fetchGoogleUser(accessToken);
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, e, () -> "Errore durante la gestione del callback: " + e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Errore del server").build();
+            ErrorApiResponse errorApiResponse = new ErrorApiResponse(e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorApiResponse).build();
         }
     }
 
@@ -81,7 +85,8 @@ public class GoogleCallbackController {
                     .get()) {
 
                 if (userResponse.getStatus() != 200) {
-                    return Response.status(Response.Status.BAD_REQUEST).entity("Errore nel recupero dell'utente").build();
+                    ErrorApiResponse errorApiResponse = new ErrorApiResponse("Errore nel recupero dell'utente");
+                    return Response.status(Response.Status.BAD_REQUEST).entity(errorApiResponse).build();
                 }
 
                 String userInfo = userResponse.readEntity(String.class);
@@ -89,7 +94,8 @@ public class GoogleCallbackController {
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, e, () -> "Errore durante il recupero delle informazioni utente: " + e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Errore del server").build();
+            ErrorApiResponse errorApiResponse = new ErrorApiResponse(e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorApiResponse).build();
         }
     }
 }

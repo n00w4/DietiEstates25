@@ -4,6 +4,7 @@ import it.dietiestates.dao.ClienteDAO;
 import it.dietiestates.dao.sql.SQLClienteDAO;
 import it.dietiestates.data.Cliente;
 import it.dietiestates.database.PgSQL;
+import it.dietiestates.dto.SuccessApiResponse;
 import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.exception.UniqueConstraintViolationException;
 import jakarta.ws.rs.Consumes;
@@ -30,12 +31,12 @@ public class RegisterController {
         try {
             clienteDAO.insert(nuovoCliente);
             logger.info(() -> "Cliente registrato: " + nuovoCliente.getEmail());
-            return Response.status(Response.Status.CREATED).entity("Cliente creato con successo").build();
-        } catch (UniqueConstraintViolationException ucve) {
-            logger.warning(() -> "Tentativo di registrazione con email duplicata: " + nuovoCliente.getEmail());
-            return Response.status(Response.Status.CONFLICT).entity(ucve.getMessage()).build();
+            SuccessApiResponse successResponse = new SuccessApiResponse("Cliente creato con successo");
+            return Response.status(Response.Status.CREATED).entity(successResponse).build();
+        } catch (UniqueConstraintViolationException e) {
+            return Response.status(Response.Status.CONFLICT).entity(e.getApiResponse()).build();
         } catch (DataAccessException e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Errore del server").build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getApiResponse()).build();
         }
     }
 }

@@ -1,4 +1,4 @@
-package it.dietiestates.data;
+package it.dietiestates.dto;
 
 public class RicercaAnnuncio {
     private int dimensioni;
