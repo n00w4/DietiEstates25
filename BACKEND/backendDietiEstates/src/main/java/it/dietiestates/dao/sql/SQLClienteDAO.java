@@ -3,6 +3,7 @@ package it.dietiestates.dao.sql;
 import it.dietiestates.dao.ClienteDAO;
 import it.dietiestates.data.Cliente;
 import it.dietiestates.exception.DataAccessException;
+import it.dietiestates.exception.UniqueConstraintViolationException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +27,10 @@ public class SQLClienteDAO implements ClienteDAO {
 
 			return statement.executeUpdate() > 0;
 	    } catch (SQLException e) {
-	        throw new DataAccessException("Errore durante l'inserimento del cliente", e);
-	    }
+			if ("23505".equals(e.getSQLState())) {
+				throw new UniqueConstraintViolationException("Email già registrata", e);
+			}
+			throw new DataAccessException("Errore durante l'inserimento del cliente", e);
+		}
 	}
 }
