@@ -28,7 +28,7 @@ public class SQLClienteDAO implements ClienteDAO {
 			return statement.executeUpdate() > 0;
 	    } catch (SQLException e) {
 			if ("23505".equals(e.getSQLState())) {
-				throw new UniqueConstraintViolationException("Email già registrata", e);
+				throw new UniqueConstraintViolationException("Email già registrata");
 			}
 			throw new DataAccessException("Errore durante l'inserimento del cliente", e);
 		}

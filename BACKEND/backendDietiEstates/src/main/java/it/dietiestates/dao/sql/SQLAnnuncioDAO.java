@@ -2,7 +2,7 @@ package it.dietiestates.dao.sql;
 
 import it.dietiestates.dao.AnnuncioDAO;
 import it.dietiestates.data.Annuncio;
-import it.dietiestates.data.RicercaAnnuncio;
+import it.dietiestates.dto.RicercaAnnuncio;
 import it.dietiestates.exception.DataAccessException;
 
 import java.sql.Connection;

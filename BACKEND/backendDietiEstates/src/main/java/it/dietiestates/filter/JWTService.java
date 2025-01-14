@@ -6,6 +6,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class JWTService {
     private static final String ISSUER = "dieti-estates";
@@ -20,12 +21,16 @@ public class JWTService {
 
     // TODO: decidere se adottare un refresh token per garantire sicurezza senza login troppo frequenti
 
-    public static String generateToken(String email) {
+    public static String generateToken(String nome, String cognome, String email, String tipoUtente) {
         return JWT.create()
                 .withIssuer(ISSUER)
-                .withSubject(email)
+                .withClaim("nome:", nome)
+                .withClaim("cognome:", cognome)
+                .withClaim("email:", email)
+                .withClaim("tipoUtente:", tipoUtente)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .withJWTId(UUID.randomUUID().toString())
                 .sign(ALGORITHM);
     }
 

@@ -3,8 +3,8 @@ package it.dietiestates.controller;
 import it.dietiestates.dao.AnnuncioDAO;
 import it.dietiestates.dao.sql.SQLAnnuncioDAO;
 import it.dietiestates.data.Annuncio;
-import it.dietiestates.data.RicercaAnnuncio;
 import it.dietiestates.database.PgSQL;
+import it.dietiestates.dto.RicercaAnnuncio;
 import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.filter.RequireJWTAuthentication;
 import jakarta.ws.rs.*;
@@ -30,7 +30,7 @@ public class AnnuncioController {
     @RequireJWTAuthentication
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllAnnunci() throws DataAccessException {
+    public Response getAllAnnunci() {
         List<Annuncio> listaAnnunci;
         try {
             listaAnnunci = annuncioDAO.getAllAnnunci();
