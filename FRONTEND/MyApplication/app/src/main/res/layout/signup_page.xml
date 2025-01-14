@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/imgLogo"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="160dp"
             app:srcCompat="@drawable/dietiestates25" />
 
         <TextView
@@ -30,6 +30,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Benvenuto" />
+
+        <TextView
+            android:id="@+id/textInfo"
+            style="@style/LoginTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginBottom="6dp"
+            android:text="Compila il modulo per creare un nuovo account" />
 
         <TextView
             android:id="@+id/textNome"
@@ -93,6 +102,14 @@
             android:layout_height="36dp"
             android:inputType="textPassword" />
 
+        <TextView
+            android:id="@+id/erroriTextView"
+            style="@style/LoginTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Errori:" />
+
 
         <Button
             android:id="@+id/signUpButton"
@@ -100,11 +117,12 @@
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="54dp"
+            android:layout_marginBottom="10dp"
             android:text="Crea account" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
@@ -113,6 +131,7 @@
                 style="@style/ForgotPasswordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:layout_weight="1"
                 android:text="Hai già un account?" />
 
@@ -121,6 +140,7 @@
                 style="@style/ForgotPasswordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:layout_weight="1"
                 android:text="Accedi"
                 android:clickable="true"
