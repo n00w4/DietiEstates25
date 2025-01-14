@@ -1,7 +1,7 @@
 package com.example.myapplication.model.data
 
 data class FiltriRicercaAnnunci (
-    val dimensionival : Int,
+    val dimensioni : Int,
     val prezzoMin : Float,
     val prezzoMax : Float,
     val piano : String,
