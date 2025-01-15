@@ -11,7 +11,9 @@ import java.util.logging.Logger;
  * Contiene dettagli standard per la risposta delle API.
  */
 public class ApiException extends Exception {
-    private final ErrorApiResponse apiResponse;
+    private static final long serialVersionUID = 1L;
+
+    private final transient ErrorApiResponse apiResponse;
     private static final Logger logger = Logger.getLogger(ApiException.class.getName());
 
     public ApiException(String message) {

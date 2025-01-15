@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 public class GoogleCallbackController {
     private static final Logger logger = Logger.getLogger(GoogleCallbackController.class.getName());
     private static final String CLIENT_ID = "112156935328-gd61v5j6q70h3idigvpn4v5cgnbi0id1.apps.googleusercontent.com";
+    private static final String REDIRECT_URI = "http://localhost:8080/api/auth/google/callback";
     private static final String CLIENT_SECRET = System.getenv("GOOGLE_CLIENT_SECRET");
     private static final String TOKEN_URL = "https://oauth2.googleapis.com/token";
 
@@ -37,23 +38,27 @@ public class GoogleCallbackController {
                     .param("client_secret", CLIENT_SECRET)
                     .param("code", code)
                     .param("grant_type", "authorization_code")
-                    .param("redirect_uri", "http://localhost:8080/auth/google/callback");
+                    .param("redirect_uri", REDIRECT_URI);
 
             try (Response tokenResponse = target.request(MediaType.APPLICATION_JSON)
                     .post(Entity.form(form))) {
 
+                String responseBody = tokenResponse.readEntity(String.class);
+                logger.info(() -> "Token exchange response status: " + tokenResponse.getStatus());
+                logger.info(() -> "Token exchange response body: " + responseBody);
+
                 if (tokenResponse.getStatus() != 200) {
-                    ErrorApiResponse errorApiResponse = new ErrorApiResponse("Errore nel token exchange");
-                    return Response.status(Response.Status.BAD_REQUEST).entity(errorApiResponse).build();
+                    return Response.status(Response.Status.BAD_REQUEST)
+                            .entity(new ErrorApiResponse("Errore nel token exchange: " + responseBody))
+                            .build();
                 }
 
-                String responseBody = tokenResponse.readEntity(String.class);
                 String accessToken = extractAccessToken(responseBody);
-
                 if (accessToken == null) {
-                    logger.log(Level.SEVERE, () -> "Access token mancante nella risposta JSON: " + responseBody);
-                    ErrorApiResponse errorApiResponse = new ErrorApiResponse("Access token mancante");
-                    return Response.status(Response.Status.BAD_REQUEST).entity(errorApiResponse).build();
+                    logger.severe(() -> "Access token mancante nella risposta JSON: " + responseBody);
+                    return Response.status(Response.Status.BAD_REQUEST)
+                            .entity(new ErrorApiResponse("Access token mancante"))
+                            .build();
                 }
 
                 return fetchGoogleUser(accessToken);
