@@ -55,13 +55,32 @@ public class AnnuncioController {
         try {
             listaAnnunci = annuncioDAO.getAnnunciFromSearch(ricerca);
             if (listaAnnunci.equals(Collections.emptyList())) {
-                logger.info("Richiesta di annunci non trovata");
+                logger.info("Richiesta di annunci con filtri non trovata");
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
         } catch (DataAccessException e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
-        logger.info("Richiesta annunci effettuata con successo");
+        logger.info("Richiesta annunci con filtri effettuata con successo");
+        return Response.ok(listaAnnunci).build();
+    }
+
+    @Path("search")
+    @RequireJWTAuthentication
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAnnunciFromSearchPosition(@QueryParam("longitude") double longitude, @QueryParam("latitude") double latitude) {
+        List<Annuncio> listaAnnunci;
+        try {
+            listaAnnunci = annuncioDAO.getAnnunciFromPosition(longitude, latitude);
+            if (listaAnnunci.equals(Collections.emptyList())) {
+                logger.info("Richiesta di annunci per posizione non trovata");
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+        } catch (DataAccessException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        logger.info("Richiesta annunci per posizione effettuata con successo");
         return Response.ok(listaAnnunci).build();
     }
 }

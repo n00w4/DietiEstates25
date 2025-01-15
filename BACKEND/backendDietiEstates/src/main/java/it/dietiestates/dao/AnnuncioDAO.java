@@ -11,4 +11,5 @@ public interface AnnuncioDAO {
 	boolean delete(Annuncio annuncio) throws DataAccessException;
 	List<Annuncio> getAnnunciFromSearch(RicercaAnnuncio ricerca) throws DataAccessException;
 	List<Annuncio> getAllAnnunci() throws DataAccessException;
+	List<Annuncio> getAnnunciFromPosition(double longitude, double latitude) throws DataAccessException;
 }
