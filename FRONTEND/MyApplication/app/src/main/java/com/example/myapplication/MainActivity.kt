@@ -3,11 +3,14 @@ package com.example.myapplication
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myapplication.controller.GitHubLoginController
+import com.example.myapplication.controller.GoogleLoginController
 import com.example.myapplication.controller.LoginController
 import com.example.myapplication.model.data.Credenziali
 
@@ -38,6 +41,19 @@ class MainActivity : AppCompatActivity() {
             val pwd = passwordEditText.toString()
 
             controller.onBtnAccediClicked(email, pwd)
+        }
+
+        val gitHubLoginBtn = findViewById<ImageView>(R.id.imageViewGitHub)
+        val googleLoginBtn = findViewById<ImageView>(R.id.imageViewGoogle)
+        val gitHubController = GitHubLoginController(this)
+        val googleController = GoogleLoginController(this)
+
+        gitHubLoginBtn.setOnClickListener{
+            gitHubController.gitHubLogin()
+        }
+
+        googleLoginBtn.setOnClickListener{
+            googleController.googleLogin()
         }
     }
 

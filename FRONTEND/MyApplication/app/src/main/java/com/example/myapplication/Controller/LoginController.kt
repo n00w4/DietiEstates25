@@ -36,15 +36,21 @@ class LoginController(private val context: Context) {
 
         api.login(credenziali).enqueue(object : Callback<TokenResponse> {
             override fun onResponse(call: Call<TokenResponse>, response: Response<TokenResponse>) {
-                if (response.isSuccessful) {
-                    val token = response.body()?.token
-                    if (token != null) {
-                        analizzaToken(token)
-                    } else {
-                        Toast.makeText(context,"Accesso non riuscito: il token è NULL.", Toast.LENGTH_SHORT).show()
+                when (response.code()) {
+                    200 -> {
+                        val token = response.body()?.token
+                        if (token != null) {
+                            analizzaToken(token)
+                        } else {
+                            Toast.makeText(context, "Accesso non riuscito: il token è NULL.", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                } else {
-                    Toast.makeText(context, "Le credenziali sono errate, riprovare.", Toast.LENGTH_SHORT).show()
+                    401 -> {
+                        Toast.makeText(context, "Le credenziali sono errate, riprovare.", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Toast.makeText(context, "Errore durante il login: codice ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 

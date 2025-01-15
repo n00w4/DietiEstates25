@@ -2,6 +2,7 @@ package com.example.myapplication.retrofit
 
 import com.example.myapplication.model.Annuncio
 import com.example.myapplication.model.Cliente
+import com.example.myapplication.model.data.ApiResponse
 import com.example.myapplication.model.data.Credenziali
 import com.example.myapplication.model.data.FiltriRicercaAnnunci
 import com.example.myapplication.model.data.TokenResponse
@@ -11,7 +12,7 @@ import retrofit2.http.*
 interface ApiInterface {
 
     @POST("register")
-    fun register(@Body cliente: Cliente): Call<String>
+    fun register(@Body cliente: Cliente): Call<ApiResponse>
 
     @POST("auth")
     fun login(@Body credenziali: Credenziali): Call<TokenResponse>

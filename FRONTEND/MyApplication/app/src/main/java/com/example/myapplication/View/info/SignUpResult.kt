@@ -13,7 +13,7 @@ class SignUpResult : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_result) //per ora è una pagina fatta male
 
-        val resultMessage = intent.getStringExtra("resultMessage") ?: "No message"
+        val resultMessage = intent.getStringExtra("resultMessage") ?: "Nessun messaggio"
         val statusCode = intent.getIntExtra("responseCode", -1)
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
         val statusTextView = findViewById<TextView>(R.id.statusTextView)

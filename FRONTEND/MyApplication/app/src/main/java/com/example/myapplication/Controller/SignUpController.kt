@@ -6,6 +6,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.myapplication.MainActivity
 import com.example.myapplication.model.Cliente
+import com.example.myapplication.model.data.ApiResponse
 import com.example.myapplication.retrofit.RetrofitClient
 import com.example.myapplication.view.info.SignUpResult
 import retrofit2.Call
@@ -32,15 +33,19 @@ class SignUpController(private val context: Context) {
     private fun signUp(cliente: Cliente) {
         val api = RetrofitClient.instance
 
-        api.register(cliente).enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
+        api.register(cliente).enqueue(object : Callback<ApiResponse> {
+            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 when (response.code()) {
                     200, 201 -> {
-                        val message = response.body() ?: "Unknown success response"
-                        val signUpResult = Intent(context, SignUpResult::class.java)
-                        signUpResult.putExtra("resultMessage", message)
-                        signUpResult.putExtra("responseCode", response.code())
-                        context.startActivity(signUpResult)
+                        val apiResponse = response.body()
+                        if (apiResponse != null) {
+                            val signUpResult = Intent(context, SignUpResult::class.java)
+                            signUpResult.putExtra("resultMessage", apiResponse.message)
+                            signUpResult.putExtra("responseCode", response.code())
+                            context.startActivity(signUpResult)
+                        } else {
+                            Toast.makeText(context, "Errore: la risposta del server è incompleta", Toast.LENGTH_LONG).show()
+                        }
                     }
                     409 -> {
                         Toast.makeText(context, "Esiste già un account con quest'email. Impossibile creare un nuovo account", Toast.LENGTH_SHORT).show()
@@ -51,12 +56,10 @@ class SignUpController(private val context: Context) {
                     else -> {
                         Toast.makeText(context, "Error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
                     }
-                    //Per ora solo in caso di successo si cambia pagina, nei casi di errore mostra un toast.
-                    //Decidere approccio per i casi di errore.
                 }
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                 Toast.makeText(context, "Failed to connect to server: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
