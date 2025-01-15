@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnAccedi.setOnClickListener {
-            val email = emailEditText.toString()
-            val pwd = passwordEditText.toString()
+            val email = emailEditText.text.toString().trim()
+            val pwd = passwordEditText.text.toString().trim()
 
             controller.onBtnAccediClicked(email, pwd)
         }
