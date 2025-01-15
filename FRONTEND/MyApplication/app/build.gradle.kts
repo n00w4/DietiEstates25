@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.osmdroid)
     implementation(libs.retrofit)
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.auth0.android:jwtdecode:2.0.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
