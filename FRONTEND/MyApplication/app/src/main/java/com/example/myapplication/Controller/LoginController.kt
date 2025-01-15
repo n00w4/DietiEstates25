@@ -41,7 +41,7 @@ class LoginController(private val context: Context) {
                     if (token != null) {
                         analizzaToken(token)
                     } else {
-                        Toast.makeText(context,"Accesso on riuscito: il token è NULL.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context,"Accesso non riuscito: il token è NULL.", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Toast.makeText(context, "Le credenziali sono errate, riprovare.", Toast.LENGTH_SHORT).show()

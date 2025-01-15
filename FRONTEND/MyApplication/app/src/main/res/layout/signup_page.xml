@@ -148,7 +148,7 @@
                 android:text="Hai già un account?" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/loginText"
                 style="@style/ForgotPasswordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

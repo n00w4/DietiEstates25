@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.EditText
 import android.widget.Toast
+import com.example.myapplication.MainActivity
 import com.example.myapplication.model.Cliente
 import com.example.myapplication.retrofit.RetrofitClient
 import com.example.myapplication.view.info.SignUpResult
@@ -42,7 +43,7 @@ class SignUpController(private val context: Context) {
                         context.startActivity(signUpResult)
                     }
                     409 -> {
-                        Toast.makeText(context, "Conflict: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Esiste già un account con quest'email. Impossibile creare un nuovo account", Toast.LENGTH_SHORT).show()
                     }
                     500 -> {
                         Toast.makeText(context, "Server error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
@@ -59,5 +60,10 @@ class SignUpController(private val context: Context) {
                 Toast.makeText(context, "Failed to connect to server: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    fun onLoginClicked(){
+        val loginPage = Intent(context, MainActivity::class.java)
+        context.startActivity(loginPage)
     }
 }

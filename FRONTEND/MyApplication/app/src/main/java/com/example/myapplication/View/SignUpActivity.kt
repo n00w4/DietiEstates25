@@ -20,6 +20,7 @@ class SignUpActivity : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.editTextEmail)
         val password = findViewById<EditText>(R.id.editTextPassword)
 
+        val loginText = findViewById<TextView>(R.id.loginText)
         val errori = findViewById<TextView>(R.id.erroriTextView)
         val signUpBtn = findViewById<Button>(R.id.signUpButton)
 
@@ -37,6 +38,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (messaggiDiErrore.isEmpty()) {
                     errori.visibility = TextView.GONE
                     signUpBtn.isEnabled = true
+                    signUpBtn.backgroundTintList = getColorStateList(R.color.button_color_light)
                 } else {
                     errori.visibility = TextView.VISIBLE
                     errori.text = messaggiDiErrore.joinToString("\n")
@@ -48,6 +50,10 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpBtn.setOnClickListener {
             signUpController.handleSignUp(nome, cognome, email, password)
+        }
+
+        loginText.setOnClickListener {
+            signUpController.onLoginClicked()
         }
     }
 

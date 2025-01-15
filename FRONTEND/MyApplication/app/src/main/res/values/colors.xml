@@ -8,4 +8,8 @@
     <!-- Background color -->
     <color name="background_color_dark">#54B5F0</color>
     <color name="background_color_light">#d9f0ff</color>
+
+    <!-- Other colors -->
+    <color name="button_color_light">#A3D5FF</color>
+
 </resources>
