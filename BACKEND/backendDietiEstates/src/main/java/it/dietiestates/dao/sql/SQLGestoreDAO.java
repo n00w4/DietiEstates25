@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SQLGestoreDAO implements GestoreDAO {
-    private Connection connection;
+    private final Connection connection;
 
     public SQLGestoreDAO(Connection dbConnection) {
         this.connection = dbConnection;

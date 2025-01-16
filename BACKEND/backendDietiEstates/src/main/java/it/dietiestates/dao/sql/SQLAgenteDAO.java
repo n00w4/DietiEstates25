@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SQLAgenteDAO implements AgenteDAO {
-	private Connection connection;
+	private final Connection connection;
 	
 	public SQLAgenteDAO(Connection dbConnection) {
 		this.connection = dbConnection;
