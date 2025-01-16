@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SQLAgenziaDAO implements AgenziaDAO {
-	private Connection connection;
+	private final Connection connection;
 	
 	public SQLAgenziaDAO(Connection dbConnection) {
 		this.connection = dbConnection;

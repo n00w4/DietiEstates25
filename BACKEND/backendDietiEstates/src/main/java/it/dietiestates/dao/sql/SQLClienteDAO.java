@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SQLClienteDAO implements ClienteDAO {
-	private Connection connection;
+	private final Connection connection;
 	
 	public SQLClienteDAO(Connection dbConnection) {
 		this.connection = dbConnection;

@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SQLAmministratoreDAO implements AmministratoreDAO {
-	private Connection connection;
+	private final Connection connection;
 	
 	public SQLAmministratoreDAO(Connection dbConnection) {
 		this.connection = dbConnection;
