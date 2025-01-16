@@ -33,7 +33,7 @@
             android:id="@+id/profilo_tabitem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/cerca"
+            android:icon="@drawable/profilo"
             android:text="@string/profilo_tab_text" />
 
     </com.google.android.material.tabs.TabLayout>
