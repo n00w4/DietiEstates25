@@ -116,10 +116,11 @@
     <string name="email_hint">Inserisci la tua e-mail</string>
     <string name="password_label">Password</string>
     <string name="password_hint">Inserisci una password</string>
-    <string name="errors_label">Errori:</string>
+    <string name="errors_email_label">Errori email:</string>
+    <string name="errors_password_label">Errori password:</string>
     <string name="signup_button_text">Crea account</string>
     <string name="already_account_text">Hai già un account?</string>
-    <string name="login_text">Accedi</string>
+    <string name="login_text">Accedi </string>
     <!-- /Signup Page -->
 
     <!-- Signup Result -->

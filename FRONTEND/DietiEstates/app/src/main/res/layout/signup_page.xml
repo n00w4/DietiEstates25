@@ -37,7 +37,7 @@
             style="@style/LoginTitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Benvenuto" />
+            android:text="@string/welcome_text" />
 
         <TextView
             android:id="@+id/textInfo"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:textSize="14dp"
             android:layout_marginBottom="8dp"
-            android:text="Compila il modulo per creare un nuovo account." />
+            android:text="@string/signup_info_text" />
 
         <TextView
             android:id="@+id/textNome"
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:text="Nome" />
+            android:text="@string/name_label" />
 
         <EditText
             android:id="@+id/editTextNome"
@@ -63,7 +63,7 @@
             android:layout_height="44dp"
             android:layout_marginBottom="16dp"
             android:inputType="textPersonName"
-            android:hint="Nome"/>
+            android:hint="@string/name_label"/>
 
         <TextView
             android:id="@+id/textView02"
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:text="Cognome" />
+            android:text="@string/surname_label" />
 
         <EditText
             android:id="@+id/editTextCognome"
@@ -80,7 +80,7 @@
             android:layout_height="44dp"
             android:layout_marginBottom="16dp"
             android:inputType="textPersonName"
-            android:hint="Cognome"/>
+            android:hint="@string/surname_label"/>
 
         <TextView
             android:id="@+id/textView"
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:text="E-mail" />
+            android:text="@string/email_label" />
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:inputType="textEmailAddress"
-            android:hint="E-mail"/>
+            android:hint="@string/email_label"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -105,7 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:text="Password" />
+            android:text="@string/password_label" />
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -113,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginBottom="16dp"
-            android:hint="Password"
+            android:hint="@string/password_label"
             android:inputType="textPassword" />
 
         <TextView
@@ -122,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:text="Errori email:" />
+            android:text="@string/errors_email_label" />
 
         <TextView
             android:id="@+id/erroriPwdTextView"
@@ -130,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:text="Errori password:" />
+            android:text="@string/errors_password_label" />
 
 
         <Button
@@ -140,7 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginBottom="10dp"
-            android:text="Crea account" />
+            android:text="@string/signup_button_text" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:layout_weight="1"
-                android:text="Hai già un account?" />
+                android:text="@string/already_account_text" />
 
             <TextView
                 android:id="@+id/loginText"
@@ -164,12 +164,10 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:layout_weight="1"
-                android:text="Accedi "
+                android:text="@string/login_text"
                 android:clickable="true"
                 android:textStyle="bold"/>
         </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
