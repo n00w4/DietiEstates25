@@ -142,6 +142,33 @@
             android:layout_marginBottom="10dp"
             android:text="Crea account" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/ForgotPasswordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_weight="1"
+                android:text="Hai già un account?" />
+
+            <TextView
+                android:id="@+id/loginText"
+                style="@style/ForgotPasswordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_weight="1"
+                android:text="Accedi "
+                android:clickable="true"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
