@@ -12,7 +12,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.controller.GitHubLoginController
 import com.example.myapplication.controller.GoogleLoginController
 import com.example.myapplication.controller.LoginController
-import com.example.myapplication.model.data.Credenziali
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

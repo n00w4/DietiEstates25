@@ -4,11 +4,11 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.fragment.app.FragmentActivity
 
-class ViewPagerAdapterCliente(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapterAmministratore(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> RicercaFragment()
+            0 -> RicercaFragment()      //TODO: sostituisci con i fragment giusti i casi 0, default
             1 -> ProfiloFragment()
             else -> RicercaFragment() // Default case
         }

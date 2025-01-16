@@ -62,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginBottom="16dp"
+            android:inputType="textPersonName"
             android:hint="Nome"/>
 
         <TextView
@@ -78,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginBottom="16dp"
+            android:inputType="textPersonName"
             android:hint="Cognome"/>
 
         <TextView
@@ -115,12 +117,20 @@
             android:inputType="textPassword" />
 
         <TextView
-            android:id="@+id/erroriTextView"
+            android:id="@+id/erroriEmailTextView"
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:text="Errori:" />
+            android:text="Errori email:" />
+
+        <TextView
+            android:id="@+id/erroriPwdTextView"
+            style="@style/LoginTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Errori password:" />
 
 
         <Button

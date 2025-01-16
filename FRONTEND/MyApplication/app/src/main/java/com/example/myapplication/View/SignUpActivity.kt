@@ -21,7 +21,10 @@ class SignUpActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.editTextPassword)
 
         val loginText = findViewById<TextView>(R.id.loginText)
-        val errori = findViewById<TextView>(R.id.erroriTextView)
+        val erroriPwd = findViewById<TextView>(R.id.erroriPwdTextView)
+            erroriPwd.visibility = TextView.GONE
+        val erroriEmail = findViewById<TextView>(R.id.erroriEmailTextView)
+            erroriEmail.visibility = TextView.GONE
         val signUpBtn = findViewById<Button>(R.id.signUpButton)
 
         val signUpController = SignUpController(this)
@@ -36,12 +39,34 @@ class SignUpActivity : AppCompatActivity() {
                 val messaggiDiErrore = verificaPassword(psw)
 
                 if (messaggiDiErrore.isEmpty()) {
-                    errori.visibility = TextView.GONE
+                    erroriPwd.visibility = TextView.GONE
                     signUpBtn.isEnabled = true
                     signUpBtn.backgroundTintList = getColorStateList(R.color.button_color_light)
                 } else {
-                    errori.visibility = TextView.VISIBLE
-                    errori.text = messaggiDiErrore.joinToString("\n")
+                    erroriPwd.visibility = TextView.VISIBLE
+                    erroriPwd.text = messaggiDiErrore.joinToString("\n")
+                    signUpBtn.isEnabled = false
+                    signUpBtn.backgroundTintList = getColorStateList(android.R.color.darker_gray)
+                }
+            }
+        })
+
+        email.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { /*empty*/ }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { /*empty*/ }
+
+            override fun afterTextChanged(s: Editable?) {
+                val mail = s.toString()
+                val messaggiDiErrore = verificaEmail(mail)
+
+                if (messaggiDiErrore.isEmpty()) {
+                    erroriEmail.visibility = TextView.GONE
+                    signUpBtn.isEnabled = true
+                    signUpBtn.backgroundTintList = getColorStateList(R.color.button_color_light)
+                } else {
+                    erroriEmail.visibility = TextView.VISIBLE
+                    erroriEmail.text = messaggiDiErrore.joinToString("\n")
                     signUpBtn.isEnabled = false
                     signUpBtn.backgroundTintList = getColorStateList(android.R.color.darker_gray)
                 }
@@ -70,6 +95,26 @@ class SignUpActivity : AppCompatActivity() {
             errori.add("La password deve contenere almeno un numero.") }
         if (!password.any { "!@#$%^&*()_+-=[]{}|;:',.<>?/".contains(it) }) {
             errori.add("La password deve contenere almeno un carattere speciale.") }
+
+        return errori
+    }
+
+    private fun verificaEmail(email: String): List<String> {
+        val errori = mutableListOf<String>()
+        val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
+
+        if(email.isEmpty()){
+            errori.add("L'email non può essere vuota.")
+        }
+        if (!email.contains('@')) {
+            errori.add("L'email deve contenere il simbolo '@'.")
+        }
+        if (!email.contains('.')) {
+            errori.add("L'email deve contenere un punto ('.') nel dominio.")
+        }
+        if (!emailRegex.matches(email)) {
+            errori.add("L'email non è valida.")
+        }
 
         return errori
     }

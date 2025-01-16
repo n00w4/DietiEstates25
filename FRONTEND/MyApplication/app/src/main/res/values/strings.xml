@@ -3,6 +3,9 @@
 
     <string name="cerca_tab_text">Cerca</string>
     <string name="profilo_tab_text">Profilo</string>
+    <string name="crea_tab_text">Crea</string>
+    <string name="prenotazioni_tab_text">Prenotazioni</string>
+    <string name="password_tab_text">Password</string>
 
     <string-array name="tipo_annuncio">
         <item>Affitto</item>
@@ -32,5 +35,7 @@
     <string name="latitude_text">Latitudine: %1$.6f</string>
     <string name="longitude_text">Longitudine: %1$.6f</string>
     <string name="address_text">Indirizzo: %1$s</string>
+
+    <string name="profilo_text">Ciao, %1$s!</string>
 
 </resources>

@@ -14,6 +14,9 @@ import retrofit2.Response
 import com.auth0.android.jwt.JWT
 import com.example.myapplication.model.data.SharedPrefManager
 import com.example.myapplication.model.data.TokenResponse
+import com.example.myapplication.view.HomeAgenteActivity
+import com.example.myapplication.view.HomeAmministratoreActivity
+import com.example.myapplication.view.HomeGestoreActivity
 
 class LoginController(private val context: Context) {
 
@@ -94,10 +97,9 @@ class LoginController(private val context: Context) {
     private fun scegliHomePage(tipoUtente: String){
         val intent = when (tipoUtente) {
             "Cliente" -> Intent(context, HomeClienteActivity::class.java)
-            //TODO: per ora porta tutti alla stessa home page!!!
-            "Agente" -> Intent(context, HomeClienteActivity::class.java)
-            "Amministratore" -> Intent(context, HomeClienteActivity::class.java)
-            "Gestore" -> Intent(context, HomeClienteActivity::class.java)
+            "Agente" -> Intent(context, HomeAgenteActivity::class.java)
+            "Amministratore" -> Intent(context, HomeAmministratoreActivity::class.java)
+            "Gestore" -> Intent(context, HomeGestoreActivity::class.java)
             else -> null
         }
 
