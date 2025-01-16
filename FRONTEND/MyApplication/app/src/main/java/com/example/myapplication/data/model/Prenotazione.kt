@@ -1,0 +1,11 @@
+package com.example.myapplication.data.model
+
+import java.sql.Timestamp
+
+data class Prenotazione(
+    private var dataInizio: Timestamp,
+    private var dataFine: Timestamp,
+    private var isAccettata: Boolean,
+    private var cliente: Cliente,
+    private var annuncio: Annuncio
+)

@@ -4,7 +4,7 @@
     android:id="@+id/fragment_ricerca_filtri"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.RicercaFiltriFragment"
+    tools:context=".view.search.RicercaFiltriFragment"
     android:background="@color/background_color_light">
 
     <ScrollView

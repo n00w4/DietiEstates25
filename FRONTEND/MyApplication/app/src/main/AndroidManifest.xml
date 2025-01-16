@@ -29,10 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.SignUpActivity"></activity>
-        <activity android:name=".view.HomeClienteActivity"></activity>
-        <activity android:name=".view.RicercaMappaActivity"></activity>
-        <activity android:name=".view.info.SignUpResult"></activity>
+        <activity android:name=".view.auth.SignUpActivity"></activity>
+        <activity android:name=".view.home.HomeClienteActivity"></activity>
+        <activity android:name=".view.search.RicercaMappaActivity"></activity>
+        <activity android:name=".view.auth.SignUpResult"></activity>
     </application>
 
 </manifest>

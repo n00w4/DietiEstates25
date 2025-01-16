@@ -9,9 +9,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.myapplication.controller.GitHubLoginController
-import com.example.myapplication.controller.GoogleLoginController
-import com.example.myapplication.controller.LoginController
+import com.example.myapplication.controller.auth.GitHubLoginController
+import com.example.myapplication.controller.auth.GoogleLoginController
+import com.example.myapplication.controller.auth.LoginController
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
