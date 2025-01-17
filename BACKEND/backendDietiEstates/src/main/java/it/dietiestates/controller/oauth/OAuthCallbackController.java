@@ -1,11 +1,10 @@
-package it.dietiestates.controller.oauth.github;
+package it.dietiestates.controller.oauth;
 
 import it.dietiestates.dto.ErrorApiResponse;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.client.Client;
@@ -20,23 +19,31 @@ import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Path("auth/github/callback")
-@Produces(MediaType.APPLICATION_JSON)
-public class GithubCallbackController {
-    private static final Logger logger = Logger.getLogger(GithubCallbackController.class.getName());
-    private static final String CLIENT_ID = "Ov23liQUbv2UNe6YL5dp";
-    private static final String CLIENT_SECRET = System.getenv("GITHUB_CLIENT_SECRET");
-    private static final String TOKEN_URL = "https://github.com/login/oauth/access_token";
+public abstract class OAuthCallbackController {
+    private static final Logger logger = Logger.getLogger(OAuthCallbackController.class.getName());
+
+    protected abstract String getTokenUrl();
+
+    protected abstract String getClientId();
+
+    protected abstract String getClientSecret();
+
+    protected abstract String getUserInfoUrl();
+
+    protected abstract String getRedirectUri();
 
     @GET
-    public Response handleGitHubCallback(@QueryParam("code") String code) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response handleCallback(@QueryParam("code") String code) {
         try (Client client = ClientBuilder.newClient()) {
             // Costruzione della richiesta HTTP per ottenere il token
-            WebTarget target = client.target(TOKEN_URL);
+            WebTarget target = client.target(getTokenUrl());
             Form form = new Form()
-                    .param("client_id", CLIENT_ID)
-                    .param("client_secret", CLIENT_SECRET)
-                    .param("code", code);
+                    .param("client_id", getClientId())
+                    .param("client_secret", getClientSecret())
+                    .param("code", code)
+                    .param("grant_type", "authorization_code")
+                    .param("redirect_uri", getRedirectUri());
 
             try (Response tokenResponse = target.request(MediaType.APPLICATION_JSON)
                     .post(Entity.form(form))) {
@@ -58,7 +65,7 @@ public class GithubCallbackController {
                 }
 
                 String accessToken = jsonResponse.getString("access_token");
-                return fetchGitHubUser(accessToken);
+                return fetchUserInfo(accessToken);
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
@@ -67,10 +74,9 @@ public class GithubCallbackController {
         }
     }
 
-    private Response fetchGitHubUser(String accessToken) {
-        String userUrl = "https://api.github.com/user";
+    private Response fetchUserInfo(String accessToken) {
         try (Client client = ClientBuilder.newClient()) {
-            WebTarget target = client.target(userUrl);
+            WebTarget target = client.target(getUserInfoUrl());
 
             try (Response userResponse = target.request(MediaType.APPLICATION_JSON)
                     .header("Authorization", "Bearer " + accessToken)
@@ -91,4 +97,3 @@ public class GithubCallbackController {
         }
     }
 }
-
