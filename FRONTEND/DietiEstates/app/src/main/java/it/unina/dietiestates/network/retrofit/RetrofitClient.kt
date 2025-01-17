@@ -1,6 +1,5 @@
 package it.unina.dietiestates.network.retrofit
 
-import it.unina.dietiestates.application.MyApplicationDE
 import it.unina.dietiestates.model.data.SharedPrefManager
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

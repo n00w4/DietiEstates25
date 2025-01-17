@@ -16,5 +16,4 @@ data class FiltriRicercaAnnunci (
     val tipoAnnuncio : String,
     val latitudine : Double,
     val longitudine : Double
-    //val sortOrder: String
 )

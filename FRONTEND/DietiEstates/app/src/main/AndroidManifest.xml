@@ -30,9 +30,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.auth.SignUpActivity"></activity>
-        <activity android:name=".view.home.HomeClienteActivity"></activity>
-        <activity android:name=".view.search.RicercaMappaActivity"></activity>
         <activity android:name=".view.auth.SignUpResult"></activity>
+        <activity android:name=".view.home.HomeClienteActivity"></activity>
+        <activity android:name=".view.home.HomeAgenteActivity"></activity>
+        <activity android:name=".view.home.HomeAmministratoreActivity"></activity>
+        <activity android:name=".view.home.HomeGestoreActivity"></activity>
+        <activity android:name=".view.search.RicercaMappaActivity"></activity>
+
     </application>
 
 </manifest>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/ricercaHomeFragment">
+
+    <fragment
+        android:id="@+id/ricercaHomeFragment"
+        android:name="it.unina.dietiestates.view.search.RicercaHomeFragment"
+        android:label="RicercaHome">
+        <action
+            android:id="@+id/action_ricercaHomeFragment_to_ricercaCittaFragment"
+            app:destination="@id/ricercaCittaFragment" />
+        <action
+            android:id="@+id/action_ricercaHomeFragment_to_ricercaMappaFragment"
+            app:destination="@id/ricercaMappaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ricercaCittaFragment"
+        android:name="it.unina.dietiestates.view.search.RicercaCittaFragment"
+        android:label="RicercaCittà">
+        <action
+            android:id="@+id/action_ricercaCittaFragment_to_ricercaFiltriFragment"
+            app:destination="@id/ricercaFiltriFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ricercaMappaFragment"
+        android:name="it.unina.dietiestates.view.search.RicercaMappaFragment"
+        android:label="RicercaMappa">
+        <action
+            android:id="@+id/action_ricercaMappaFragment_to_ricercaFiltriFragment"
+            app:destination="@id/ricercaFiltriFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ricercaFiltriFragment"
+        android:name="it.unina.dietiestates.view.search.RicercaFiltriFragment"
+        android:label="RicercaFiltri" />
+
+</navigation>

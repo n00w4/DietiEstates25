@@ -29,6 +29,18 @@
     <string name="profilo">PROFILO</string>
     <!-- /Fragment Profilo Utente -->
 
+    <!-- Fragment Ricerca Home -->
+    <string name="ricerca_home_title">Cerca un immobile</string>
+    <string name="ricerca_home_subtitle1">Visualizza gli annunci e trova quello</string>
+    <string name="ricerca_home_subtitle2">più adatto a te!</string>
+    <string name="ricerca_home_options">Scegli come effettuare la ricerca:</string>
+    <string name="ricerca_home_città">Seleziona una città</string>
+    <string name="ricerca_home_città_btn">Città</string>
+    <string name="ricerca_home_mappa">Seleziona un punto sulla mappa</string>
+    <string name="ricerca_home_mappa_btn">Mappa</string>
+    <string name="oppure">Oppure</string>
+
+
     <!-- Fragment Ricerca Filtri -->
     <!-- Titolo -->
     <string name="apply_filters_title">Applica filtri:</string>

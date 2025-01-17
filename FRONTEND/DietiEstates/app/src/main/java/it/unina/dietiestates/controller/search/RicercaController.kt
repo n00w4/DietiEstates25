@@ -33,7 +33,7 @@ class RicercaController(
     fun onFilterButtonClicked() {
         val ricercaFiltriFragment = it.unina.dietiestates.view.search.RicercaFiltriFragment()
         fragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_client, ricercaFiltriFragment)
+            .replace(R.id.nav_host_fragment, ricercaFiltriFragment)
             .addToBackStack(null)
             .commit()
     }
