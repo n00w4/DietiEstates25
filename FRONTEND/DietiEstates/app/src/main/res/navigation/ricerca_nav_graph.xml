@@ -21,10 +21,14 @@
         android:name="it.unina.dietiestates.view.search.RicercaCittaFragment"
         android:label="RicercaCittà">
         <action
+            android:id="@+id/action_ricercaCittaFragment_to_ricercaHomeFragment"
+            app:destination="@id/ricercaHomeFragment" />
+        <action
             android:id="@+id/action_ricercaCittaFragment_to_ricercaFiltriFragment"
             app:destination="@id/ricercaFiltriFragment" />
-        <!-- aggiungi action per tornare a ricercaHomeFragment-->
-        <!-- aggiungi action per andare direttamente ai Result-->
+        <action
+            android:id="@+id/action_ricercaCittaFragment_to_risultatiRicercaFragment"
+            app:destination="@id/risultatiRicercaFragment" />
     </fragment>
 
     <fragment
@@ -32,20 +36,41 @@
         android:name="it.unina.dietiestates.view.search.RicercaMappaFragment"
         android:label="RicercaMappa">
         <action
+            android:id="@+id/action_ricercaMappaFragment_to_ricercaHomeFragment"
+            app:destination="@id/ricercaHomeFragment" />
+        <action
             android:id="@+id/action_ricercaMappaFragment_to_ricercaFiltriFragment"
             app:destination="@id/ricercaFiltriFragment" />
         <action
-            android:id="@+id/action_ricercaMappaFragment_to_ricercaHomeFragment"
-            app:destination="@id/ricercaHomeFragment" />
-        <!-- aggiungi action per andare direttamente ai Result-->
+            android:id="@+id/action_ricercaMappaFragment_to_risultatiRicercaFragment"
+            app:destination="@id/risultatiRicercaFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/ricercaFiltriFragment"
         android:name="it.unina.dietiestates.view.search.RicercaFiltriFragment"
-        android:label="RicercaFiltri" />
-    <!-- aggiungi action per tornare a ricercaHomeFragment-->
-    <!-- aggiungi action per tornare a ricerca_____Fragment (vai indietro sullo stack)-->
-    <!-- aggiungi action per andare direttamente ai Result-->
+        android:label="RicercaFiltri" >
+        <action
+            android:id="@+id/action_ricercaFiltriFragment_to_ricercaHomeFragment"
+            app:destination="@id/ricercaHomeFragment" />
+        <action
+            android:id="@+id/action_ricercaFiltriFragment_to_ricercaCittaFragment"
+            app:destination="@id/ricercaCittaFragment" />
+        <action
+            android:id="@+id/action_ricercaFiltriFragment_to_ricercaMappaFragment"
+            app:destination="@id/ricercaMappaFragment" />
+        <action
+            android:id="@+id/action_ricercaFiltriFragment_to_risultatiRicercaFragment"
+            app:destination="@id/risultatiRicercaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/risultatiRicercaFragment"
+        android:name="it.unina.dietiestates.view.search.RisultatiRicercaFragment"
+        android:label="RisultatiRicerca" >
+        <action
+            android:id="@+id/action_risultatiRicercaFragment_to_ricercaHomeFragment"
+            app:destination="@id/ricercaHomeFragment" />
+    </fragment>
 
 </navigation>

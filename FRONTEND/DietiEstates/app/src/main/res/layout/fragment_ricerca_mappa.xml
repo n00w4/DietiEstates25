@@ -69,11 +69,24 @@
                 <org.osmdroid.views.MapView
                     android:id="@+id/mapView"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="400dp"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="0dp">
                 </org.osmdroid.views.MapView>
             </FrameLayout>
+
+            <TextView
+                android:id="@+id/indirizzoTag"
+                style="@style/AnnullaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Posizione approssimativa:" />
+            <TextView
+                android:id="@+id/indirizzoTextView"
+                style="@style/AnnullaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="indirizzo" />
 
             <Button
                 android:id="@+id/btn_save_location"
@@ -90,7 +103,7 @@
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/add_filters_button" />
 
 

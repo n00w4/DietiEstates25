@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import it.unina.dietiestates.controller.search.RicercaFiltriController
 import it.unina.dietiestates.R
+import androidx.navigation.fragment.findNavController
+import it.unina.dietiestates.data.viewmodel.FiltriRicercaViewModel
 
 class RicercaFiltriFragment : Fragment() {
 
+    private val filtriRicercaVM: FiltriRicercaViewModel by activityViewModels()
     private lateinit var controller: RicercaFiltriController
 
     override fun onCreateView(
@@ -67,6 +71,18 @@ class RicercaFiltriFragment : Fragment() {
             controller.handleApplyFilters(tipoImmobile, prezzoMin, prezzoMax, stanze,
                 classeEnergetica, conPortineria, conTerrazzo
             )
+
+            findNavController().navigate(R.id.action_ricercaFiltriFragment_to_risultatiRicercaFragment)
+        }
+
+        val precFragment = arguments?.getString("sourceFragment") ?: ""
+        val annullaText = view.findViewById<TextView>(R.id.annullaTextView)
+        annullaText.setOnClickListener{
+            when(precFragment){
+                "RicercaMappa" -> findNavController().navigate(R.id.action_ricercaFiltriFragment_to_ricercaMappaFragment)
+                "RicercaCittà" -> findNavController().navigate(R.id.action_ricercaFiltriFragment_to_ricercaCittaFragment)
+                else -> findNavController().navigate(R.id.action_ricercaFiltriFragment_to_ricercaHomeFragment)
+            }
         }
     }
 }

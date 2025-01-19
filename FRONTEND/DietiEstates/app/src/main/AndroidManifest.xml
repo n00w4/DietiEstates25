@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31"
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
@@ -35,7 +36,6 @@
         <activity android:name=".view.home.HomeAgenteActivity"></activity>
         <activity android:name=".view.home.HomeAmministratoreActivity"></activity>
         <activity android:name=".view.home.HomeGestoreActivity"></activity>
-        <activity android:name=".view.search.RicercaMappaActivity"></activity>
 
     </application>
 

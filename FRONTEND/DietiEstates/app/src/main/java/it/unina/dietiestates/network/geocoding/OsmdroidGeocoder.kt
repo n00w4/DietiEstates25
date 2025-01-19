@@ -29,7 +29,7 @@ class OsmdroidGeocoder {
                 val address = jsonObject.getString("display_name")
                 callback(address) // Returns the address
             } catch (e: Exception) {
-                val address = "No address found."
+                val address = "Nessun indirizzo corrispondente."
                 callback(address)
                 e.printStackTrace()
             }

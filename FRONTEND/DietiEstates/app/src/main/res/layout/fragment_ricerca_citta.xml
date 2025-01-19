@@ -19,6 +19,7 @@
             android:layout_width="357dp"
             android:layout_height="729dp"
             android:layout_marginTop="35dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,21 +27,52 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/titoloTextView"
-                style="@style/ProfiloTitleTextView"
+                android:id="@+id/annullaTextView"
+                style="@style/AnnullaTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="30dp"
-                android:text="@string/ricerca_home_title" />
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/annulla_text" />
+
+            <TextView
+                android:id="@+id/titoloTextView"
+                style="@style/ProfiloTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="30dp"
+                android:text="Scegli una provincia" />
+
+            <AutoCompleteTextView
+                android:id="@+id/cittaInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edit_text"
+                android:padding="12dp"
+                android:hint="Provincia"
+                android:inputType="text"
+                android:completionThreshold="1" />
 
             <Button
-                android:id="@+id/btn_save_location"
+                android:id="@+id/btn_cerca"
+                style="@style/BlueButton"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:text="@string/save_position_button" />
+                android:text="@string/cerca_tab_text" />
+
+            <Button
+                android:id="@+id/btn_add_filters"
+                style="@style/LoginButton"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/add_filters_button" />
 
 
         </LinearLayout>
