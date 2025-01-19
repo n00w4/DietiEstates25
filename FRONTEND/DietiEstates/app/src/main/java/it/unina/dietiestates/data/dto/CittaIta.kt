@@ -2,7 +2,7 @@ package it.unina.dietiestates.data.dto
 
 import org.osmdroid.util.GeoPoint
 
-private val cities = listOf(
+internal val cities = listOf(
     //TODO: questa non e la lista completa e non è in ordine alfabetico, ma iniziamo da qui.
     Pair(GeoPoint(37.3111, 13.5762), "Agrigento"),
     Pair(GeoPoint(42.8451, 13.5765), "Ancona"),

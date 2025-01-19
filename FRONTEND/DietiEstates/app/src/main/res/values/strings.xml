@@ -17,6 +17,8 @@
     <string name="login_with_text">Accedi con:</string>
     <!-- /Activity Main -->
 
+    <string name="annulla_text">Annulla</string>
+
     <!-- Client Home Page -->
     <string name="cerca_tab_text">Cerca</string>
     <string name="profilo_tab_text">Profilo</string>
@@ -97,6 +99,8 @@
 
     <!-- Ricerca Mappa -->
     <string name="save_position_button">Salva Posizione</string>
+    <string name="search_position_button">Cerca per posizione</string>
+    <string name="add_filters_button">Aggiungi filtri</string>
     <!-- /Ricerca Mappa -->
 
     <!-- Fragment Ricerca -->

@@ -10,9 +10,6 @@ class ViewPagerAdapterCliente(fragmentActivity: FragmentActivity) : FragmentStat
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            //0 -> RicercaHomeFragment()
-            //1 -> ProfiloFragment()
-            //else -> RicercaHomeFragment() // Default case
             0 -> RicercaNavFragment()
             1 -> ProfiloNavFragment()
             else -> RicercaNavFragment()

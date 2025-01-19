@@ -16,8 +16,6 @@ import org.osmdroid.views.overlay.MapEventsOverlay
 import org.osmdroid.events.MapEventsReceiver
 
 class RicercaMappaActivity : AppCompatActivity() {
-    private lateinit var mapView: MapView
-    private lateinit var btnSaveLocation: Button
     private var selectedLatitude: Double = 41.9028
     private var selectedLongitude: Double = 12.4964
 
@@ -31,8 +29,8 @@ class RicercaMappaActivity : AppCompatActivity() {
 
         setContentView(R.layout.ricerca_mappa)
 
-        mapView = findViewById(R.id.mapView)
-        btnSaveLocation = findViewById(R.id.btn_save_location)
+        val mapView = findViewById<MapView>(R.id.mapView)
+        val btnSaveLocation = findViewById<Button>(R.id.btn_save_location)
 
         // Configura la mappa
         mapView.setTileSource(TileSourceFactory.MAPNIK)

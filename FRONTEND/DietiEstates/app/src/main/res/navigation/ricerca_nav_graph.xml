@@ -23,6 +23,8 @@
         <action
             android:id="@+id/action_ricercaCittaFragment_to_ricercaFiltriFragment"
             app:destination="@id/ricercaFiltriFragment" />
+        <!-- aggiungi action per tornare a ricercaHomeFragment-->
+        <!-- aggiungi action per andare direttamente ai Result-->
     </fragment>
 
     <fragment
@@ -32,11 +34,18 @@
         <action
             android:id="@+id/action_ricercaMappaFragment_to_ricercaFiltriFragment"
             app:destination="@id/ricercaFiltriFragment" />
+        <action
+            android:id="@+id/action_ricercaMappaFragment_to_ricercaHomeFragment"
+            app:destination="@id/ricercaHomeFragment" />
+        <!-- aggiungi action per andare direttamente ai Result-->
     </fragment>
 
     <fragment
         android:id="@+id/ricercaFiltriFragment"
         android:name="it.unina.dietiestates.view.search.RicercaFiltriFragment"
         android:label="RicercaFiltri" />
+    <!-- aggiungi action per tornare a ricercaHomeFragment-->
+    <!-- aggiungi action per tornare a ricerca_____Fragment (vai indietro sullo stack)-->
+    <!-- aggiungi action per andare direttamente ai Result-->
 
 </navigation>
