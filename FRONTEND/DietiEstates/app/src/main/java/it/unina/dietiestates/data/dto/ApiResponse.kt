@@ -1,4 +1,4 @@
-package it.unina.dietiestates.model.data
+package it.unina.dietiestates.data.dto
 
 data class ApiResponse(
     val status: String,
