@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import it.unina.dietiestates.R
-import it.unina.dietiestates.model.data.SharedPrefManager
+import it.unina.dietiestates.data.dto.SharedPrefManager
 
 class ProfiloFragment : Fragment() {
 

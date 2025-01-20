@@ -1,6 +1,6 @@
 package it.unina.dietiestates.network.retrofit
 
-import it.unina.dietiestates.model.data.SharedPrefManager
+import it.unina.dietiestates.data.dto.SharedPrefManager
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
