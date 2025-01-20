@@ -1,19 +1,27 @@
 package it.unina.dietiestates
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import it.unina.dietiestates.controller.auth.GitHubLoginController
 import it.unina.dietiestates.controller.auth.GoogleLoginController
 import it.unina.dietiestates.controller.auth.LoginController
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var gitHubResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var googleController: GoogleLoginController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -45,15 +53,34 @@ class MainActivity : AppCompatActivity() {
         val gitHubLoginBtn = findViewById<ImageView>(R.id.imageViewGitHub)
         val googleLoginBtn = findViewById<ImageView>(R.id.imageViewGoogle)
         val gitHubController = GitHubLoginController(this)
-        val googleController = GoogleLoginController(this)
+        googleController = GoogleLoginController(this)
+
+        googleController.configureGoogleSignIn()
+
+        gitHubResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == RESULT_OK) {
+                val uri = result.data?.data
+                uri?.let {
+                    gitHubController.handleCallback(it)
+                }
+            }
+        }
 
         gitHubLoginBtn.setOnClickListener{
-            gitHubController.gitHubLogin()
+            gitHubController.login(gitHubResultLauncher)
         }
 
         googleLoginBtn.setOnClickListener{
-            googleController.googleLogin()
+            googleController.login(this)
         }
     }
+    // TODO: utilizzare gestire diversamente il cambio di finestra dato che onActivityResult è deprecata
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == GoogleLoginController.RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            googleController.handleSignInResult(task)
+        }
+    }
 }

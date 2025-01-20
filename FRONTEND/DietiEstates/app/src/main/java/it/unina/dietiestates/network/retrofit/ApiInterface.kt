@@ -17,6 +17,9 @@ interface ApiInterface {
     @POST("auth")
     fun login(@Body credenziali: Credenziali): Call<TokenResponse>
 
+    @GET("auth/github/callback")
+    fun gitHubCallback(@Query("code") code: String?): Call<ApiResponse>
+
     @GET("annunci/search")
     fun getRicercaAnnunci(@Query("lon") lon: Double,
                           @Query("lat") lat: Double): Call<List<Annuncio>>

@@ -30,12 +30,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.auth.SignUpActivity"></activity>
-        <activity android:name=".view.auth.SignUpResult"></activity>
-        <activity android:name=".view.home.HomeClienteActivity"></activity>
-        <activity android:name=".view.home.HomeAgenteActivity"></activity>
-        <activity android:name=".view.home.HomeAmministratoreActivity"></activity>
-        <activity android:name=".view.home.HomeGestoreActivity"></activity>
+
+        <activity android:name=".view.auth.GitHubWebViewActivity" android:exported="true">
+            <intent-filter android:autoVerify="false">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http" android:host="10.0.2.2" android:path="/api/auth/github/callback" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".view.auth.SignUpActivity"> </activity>
+        <activity android:name=".view.auth.SignUpResult"> </activity>
+        <activity android:name=".view.home.HomeClienteActivity"> </activity>
+        <activity android:name=".view.home.HomeAgenteActivity"> </activity>
+        <activity android:name=".view.home.HomeAmministratoreActivity"> </activity>
+        <activity android:name=".view.home.HomeGestoreActivity"> </activity>
 
     </application>
 
