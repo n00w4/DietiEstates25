@@ -6,7 +6,7 @@ import android.widget.EditText
 import android.widget.Toast
 import it.unina.dietiestates.MainActivity
 import it.unina.dietiestates.data.model.Cliente
-import it.unina.dietiestates.model.data.ApiResponse
+import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.network.retrofit.RetrofitClient
 import it.unina.dietiestates.view.auth.SignUpResult
 import retrofit2.Call

@@ -6,7 +6,7 @@ import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import it.unina.dietiestates.model.data.ApiResponse
+import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.network.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback

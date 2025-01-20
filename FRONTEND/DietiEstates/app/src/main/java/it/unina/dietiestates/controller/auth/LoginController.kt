@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import it.unina.dietiestates.model.data.Credenziali
+import it.unina.dietiestates.data.dto.Credenziali
 import it.unina.dietiestates.network.retrofit.RetrofitClient
 import it.unina.dietiestates.view.home.HomeClienteActivity
 import it.unina.dietiestates.view.auth.SignUpActivity
@@ -12,8 +12,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.auth0.android.jwt.JWT
-import it.unina.dietiestates.model.data.SharedPrefManager
-import it.unina.dietiestates.model.data.TokenResponse
+import it.unina.dietiestates.data.dto.SharedPrefManager
+import it.unina.dietiestates.data.dto.TokenResponse
 import it.unina.dietiestates.view.home.HomeAgenteActivity
 import it.unina.dietiestates.view.home.HomeAmministratoreActivity
 import it.unina.dietiestates.view.home.HomeGestoreActivity
