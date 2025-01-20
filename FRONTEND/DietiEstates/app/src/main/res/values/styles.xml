@@ -15,7 +15,7 @@
     <!-- Button Styles -->
     <style name="BlueButton" parent="Widget.Material3.Button">
         <item name="backgroundTint">#54B5F0</item>
-        <item name="android:textColor">#D9F0FF</item>
+        <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
     </style>

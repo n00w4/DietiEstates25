@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import it.unina.dietiestates.controller.search.RicercaFiltriController
 import it.unina.dietiestates.R
 import androidx.navigation.fragment.findNavController
 import it.unina.dietiestates.data.viewmodel.FiltriRicercaViewModel
@@ -15,7 +14,6 @@ import it.unina.dietiestates.data.viewmodel.FiltriRicercaViewModel
 class RicercaFiltriFragment : Fragment() {
 
     private val filtriRicercaVM: FiltriRicercaViewModel by activityViewModels()
-    private lateinit var controller: RicercaFiltriController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +25,6 @@ class RicercaFiltriFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        controller = RicercaFiltriController()
-
         val spinnerTipoAnnuncio: Spinner = view.findViewById(R.id.spinner_tipo_annuncio)
         spinnerTipoAnnuncio.setSelection(0)
 
@@ -38,39 +34,46 @@ class RicercaFiltriFragment : Fragment() {
         val spinnerPiano: Spinner = view.findViewById(R.id.spinner_piano)
         spinnerPiano.setSelection(0)
 
-        val seekBarStanze: SeekBar = view.findViewById(R.id.seekBar_stanze)
         val textStanze: TextView = view.findViewById(R.id.text_stanze)
+
+        val seekBarStanze: SeekBar = view.findViewById(R.id.seekBar_stanze)
+        val textDimensioniMin: EditText = view.findViewById(R.id.text_dim_min)
         val textPrezzoMin: EditText = view.findViewById(R.id.text_prezzo_min)
         val textPrezzoMax: EditText = view.findViewById(R.id.text_prezzo_max)
         val btnFiltri: Button = view.findViewById(R.id.btn_applica_filtri)
+        val checkBoxAscensore : CheckBox = view.findViewById(R.id.checkBox_ascensore)
         val checkBoxPortineria: CheckBox = view.findViewById(R.id.checkBox_portineria)
+        val checkBoxClimatizzazione : CheckBox = view.findViewById(R.id.checkBox_climatizzazione)
+        val checkBoxBoxAuto : CheckBox = view.findViewById(R.id.checkBox_auto)
         val checkBoxTerrazzo: CheckBox = view.findViewById(R.id.checkBox_terrazzo)
+        val checkBoxGiardino: CheckBox = view.findViewById(R.id.checkBox_giardino)
 
-        textStanze.text = "${seekBarStanze.progress}"  // Default value for rooms
+        textStanze.text = "${seekBarStanze.progress}"  // Valore minimo di default per stanze
 
         seekBarStanze.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 textStanze.text = "$progress"
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar) {   // Add implementation if needed
+            override fun onStartTrackingTouch(seekBar: SeekBar) {   // Vuoto
                 }
-            override fun onStopTrackingTouch(seekBar: SeekBar) { // Add implementation if needed
+            override fun onStopTrackingTouch(seekBar: SeekBar) { // Vuoto
                 }
         })
 
         btnFiltri.setOnClickListener {
-            val tipoImmobile = spinnerTipoAnnuncio.selectedItem.toString()
-            val prezzoMin = textPrezzoMin.text.toString().ifBlank { "0" }
-            val prezzoMax = textPrezzoMax.text.toString().ifBlank { "1000000" }
-            val stanze = seekBarStanze.progress
-            val classeEnergetica = spinnerClasseEnergetica.selectedItem.toString()
-            val conPortineria = checkBoxPortineria.isChecked
-            val conTerrazzo = checkBoxTerrazzo.isChecked
-
-            controller.handleApplyFilters(tipoImmobile, prezzoMin, prezzoMax, stanze,
-                classeEnergetica, conPortineria, conTerrazzo
-            )
+            filtriRicercaVM.filtriRicerca.tipoAnnuncio = spinnerTipoAnnuncio.selectedItem.toString()
+            filtriRicercaVM.filtriRicerca.dimensioni = textDimensioniMin.text.toString().ifBlank { "0" }.toInt()
+            filtriRicercaVM.filtriRicerca.prezzoMin = textPrezzoMin.text.toString().ifBlank { "0" }.toFloat()
+            filtriRicercaVM.filtriRicerca.prezzoMax = textPrezzoMax.text.toString().ifBlank { "1000000" }.toFloat()
+            filtriRicercaVM.filtriRicerca.numeroStanze = seekBarStanze.progress
+            filtriRicercaVM.filtriRicerca.classeEnergetica = spinnerClasseEnergetica.selectedItem.toString()
+            filtriRicercaVM.filtriRicerca.ascensore = checkBoxAscensore.isChecked
+            filtriRicercaVM.filtriRicerca.portineria = checkBoxPortineria.isChecked
+            filtriRicercaVM.filtriRicerca.climatizzazione = checkBoxClimatizzazione.isChecked
+            filtriRicercaVM.filtriRicerca.boxAuto = checkBoxBoxAuto.isChecked
+            filtriRicercaVM.filtriRicerca.terrazzo = checkBoxTerrazzo.isChecked
+            filtriRicercaVM.filtriRicerca.giardino = checkBoxGiardino.isChecked
 
             findNavController().navigate(R.id.action_ricercaFiltriFragment_to_risultatiRicercaFragment)
         }

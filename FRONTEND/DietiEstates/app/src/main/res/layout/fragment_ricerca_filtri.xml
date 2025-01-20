@@ -50,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
                 android:text="@string/property_type_label" />
 
             <Spinner
@@ -62,37 +63,102 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="Dimensioni minime" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/text_dim_min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:hint="Dimensioni minime"
+                    android:layout_marginBottom="8dp"
+                    android:inputType="number"
+                    android:autofillHints="0"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:textStyle="bold"
+                    android:text=" m2" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
                 android:text="@string/min_price_label"
+                android:textStyle="bold"
                 android:layout_marginTop="16dp" />
 
-            <EditText
-                android:id="@+id/text_prezzo_min"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:hint="@string/default_min_price_hint"
-                android:layout_marginBottom="8dp"
-                android:inputType="number"
-                android:autofillHints="0"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/text_prezzo_min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:hint="@string/default_min_price_hint"
+                    android:layout_marginBottom="8dp"
+                    android:inputType="number"
+                    android:autofillHints="0"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:textStyle="bold"
+                    android:text=" €" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
                 android:text="@string/max_price_label" />
 
-            <EditText
-                android:id="@+id/text_prezzo_max"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:hint="@string/default_max_price_hint"
-                android:layout_marginBottom="20dp"
-                android:inputType="number"
-                android:autofillHints="1.000.000"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/text_prezzo_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:hint="@string/default_max_price_hint"
+                    android:layout_marginBottom="8dp"
+                    android:inputType="number"
+                    android:autofillHints="1.000.000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:textStyle="bold"
+                    android:text=" €" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
                 android:text="@string/floor_label" />
 
             <Spinner
@@ -107,6 +173,7 @@
                 android:layout_height="wrap_content"
                 style="@style/ProfiloSubtitleTextView"
                 android:text="@string/min_rooms_label"
+                android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
             <SeekBar
@@ -129,6 +196,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
                 android:text="@string/energy_class_label" />
 
             <Spinner
@@ -142,6 +210,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
                 android:text="@string/services_label" />
 
             <CheckBox
