@@ -3,7 +3,7 @@ package it.unina.dietiestates.controller.search
 import android.content.Context
 import android.widget.Toast
 import it.unina.dietiestates.data.model.Annuncio
-import it.unina.dietiestates.model.data.FiltriRicercaAnnunci
+import it.unina.dietiestates.data.dto.FiltriRicercaAnnunci
 import it.unina.dietiestates.network.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
