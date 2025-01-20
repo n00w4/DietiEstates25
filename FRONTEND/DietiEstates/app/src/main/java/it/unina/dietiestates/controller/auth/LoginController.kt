@@ -58,7 +58,7 @@ class LoginController(private val context: Context) {
             }
 
             override fun onFailure(call: Call<TokenResponse>, t: Throwable) {
-                Toast.makeText(context, "Failed to connect to server: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Errore durante la connessione al server: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

@@ -63,6 +63,7 @@ class RicercaFiltriFragment : Fragment() {
 
         btnFiltri.setOnClickListener {
             filtriRicercaVM.filtriRicerca.tipoAnnuncio = spinnerTipoAnnuncio.selectedItem.toString()
+            filtriRicercaVM.filtriRicerca.piano = spinnerPiano.selectedItem.toString()
             filtriRicercaVM.filtriRicerca.dimensioni = textDimensioniMin.text.toString().ifBlank { "0" }.toInt()
             filtriRicercaVM.filtriRicerca.prezzoMin = textPrezzoMin.text.toString().ifBlank { "0" }.toFloat()
             filtriRicercaVM.filtriRicerca.prezzoMax = textPrezzoMax.text.toString().ifBlank { "1000000" }.toFloat()

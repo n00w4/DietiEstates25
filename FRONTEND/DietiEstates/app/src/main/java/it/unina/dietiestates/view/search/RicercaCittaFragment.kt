@@ -77,18 +77,12 @@ class RicercaCittaFragment : Fragment() {
         }
 
         btnSearch.setOnClickListener{
-            val input = cittaInput.text.toString()
-            val selectedCity = cities.find { it.second.equals(input, ignoreCase = true) }
-            if (selectedCity != null) {
-                val cityGeoPoint = selectedCity.first
-                filtriRicercaVM.filtriRicerca.latitudine = cityGeoPoint.latitude
-                filtriRicercaVM.filtriRicerca.longitudine = cityGeoPoint.longitude
-                Log.d("RicercaCitta", "Città: $input, Latitude: ${cityGeoPoint.latitude}, Longitude: ${cityGeoPoint.longitude}")
-            }
+            updateFiltriRicerca(cittaInput)
             findNavController().navigate(R.id.action_ricercaCittaFragment_to_risultatiRicercaFragment)
         }
 
         btnAddFilters.setOnClickListener{
+            updateFiltriRicerca(cittaInput)
             val bundle = Bundle().apply {
                 putString("sourceFragment", "RicercaCitta")
             }
@@ -99,5 +93,16 @@ class RicercaCittaFragment : Fragment() {
             findNavController().navigate(R.id.action_ricercaCittaFragment_to_ricercaHomeFragment)
         }
 
+    }
+
+    private fun updateFiltriRicerca(cittaInput: AutoCompleteTextView){
+        val input = cittaInput.text.toString()
+        val selectedCity = cities.find { it.second.equals(input, ignoreCase = true) }
+        if (selectedCity != null) {
+            val cityGeoPoint = selectedCity.first
+            filtriRicercaVM.filtriRicerca.latitudine = cityGeoPoint.latitude
+            filtriRicercaVM.filtriRicerca.longitudine = cityGeoPoint.longitude
+            Log.d("RicercaCitta", "Città: $input, Latitude: ${cityGeoPoint.latitude}, Longitude: ${cityGeoPoint.longitude}")
+        }
     }
 }

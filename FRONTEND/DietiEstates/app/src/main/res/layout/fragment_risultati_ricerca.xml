@@ -95,6 +95,20 @@
 
             </LinearLayout>
 
+            <FrameLayout
+                android:id="@+id/mapContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <org.osmdroid.views.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp">
+                </org.osmdroid.views.MapView>
+            </FrameLayout>
+
         </LinearLayout>
 
     </ScrollView>
