@@ -1,6 +1,7 @@
 package it.dietiestates.controller.oauth;
 
 import it.dietiestates.dto.ErrorApiResponse;
+import it.dietiestates.dto.SuccessApiResponse;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
@@ -88,7 +89,8 @@ public abstract class OAuthCallbackController {
                 }
 
                 String userInfo = userResponse.readEntity(String.class);
-                return Response.ok(userInfo).build();
+                SuccessApiResponse successResponse = new SuccessApiResponse(userInfo);
+                return Response.ok(successResponse).build();
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
