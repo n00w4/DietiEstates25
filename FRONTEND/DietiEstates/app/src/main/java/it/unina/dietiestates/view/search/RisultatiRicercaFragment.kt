@@ -1,6 +1,8 @@
 package it.unina.dietiestates.view.search
 
+import androidx.appcompat.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,7 @@ import it.unina.dietiestates.controller.search.RisultatiRicercaController
 import it.unina.dietiestates.data.model.Annuncio
 import it.unina.dietiestates.data.viewmodel.FiltriRicercaViewModel
 import it.unina.dietiestates.network.geocoding.CitiesLabelOverlay
+import it.unina.dietiestates.network.geocoding.GeoPointParser
 import org.osmdroid.config.Configuration
 import org.osmdroid.views.MapView
 import org.osmdroid.util.GeoPoint
@@ -70,31 +73,38 @@ class RisultatiRicercaFragment : Fragment() {
         osmConfig.load(requireContext(), sharedPreferences)
         // Configura la mappa
         map.setMultiTouchControls(true)
-        map.controller.setZoom(15.0)
+        map.controller.setZoom(10.0)
         val lat = filtriRicercaVM.filtriRicerca.latitudine ?: 41.9028
         val long = filtriRicercaVM.filtriRicerca.longitudine ?: 12.4964 //Default (Roma)
         map.controller.setCenter(GeoPoint(lat, long))
         map.overlays.add(0, CitiesLabelOverlay())
+        val parser = GeoPointParser()
         listaAnnunci.forEach { annuncio ->
             val marker = Marker(map)
-            marker.position = parseGeoPointFromString(annuncio.posizione)
-            marker.title = annuncio.titolo
-            marker.setOnMarkerClickListener { _, _ ->
-                //showAnnuncioPopup(annuncio)
-                true
+            val geopoint = parser.parseWKBToGeoPoint(annuncio.posizione)
+            if (geopoint != null){
+                marker.position = geopoint
+                marker.title = annuncio.titolo
+                marker.setOnMarkerClickListener { _, _ ->
+                    showAnnuncioPopup(annuncio)
+                    true
+                }
+                map.overlays.add(marker)
             }
-            map.overlays.add(marker)
         }
     }
 
-    private fun parseGeoPointFromString(positionString: String): GeoPoint? {
-        val regex = Regex("""POINT\(([-\d.]+) ([-\d.]+)\)""")
-        val matchResult = regex.find(positionString)
-        return if (matchResult != null) {
-            val (longitude, latitude) = matchResult.destructured
-            GeoPoint(latitude.toDouble(), longitude.toDouble())
-        } else {
-            null // Return null if the format is invalid
+    private fun showAnnuncioPopup(annuncio: Annuncio) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(annuncio.titolo)
+        builder.setMessage("Descrizione: ${annuncio.descrizione}")
+        builder.setPositiveButton("Dettagli") { _, _ ->
+            val intent = Intent(requireContext(), AnnuncioActivity::class.java)
+            intent.putExtra("ANNUNCIO", annuncio)
+            startActivity(intent)
         }
+        builder.setNegativeButton("Indietro", null)
+        builder.show()
     }
+
 }

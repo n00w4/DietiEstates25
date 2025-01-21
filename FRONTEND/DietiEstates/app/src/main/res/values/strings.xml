@@ -72,8 +72,8 @@
     <string name="garden_checkbox">Giardino</string>
 
     <string-array name="tipo_annuncio">
-        <item>Affitto</item>
-        <item>Vendita</item>
+        <item>affitto</item>
+        <item>vendita</item>
     </string-array>
 
     <string-array name="classe_energetica">
@@ -82,6 +82,8 @@
         <item>C</item>
         <item>D</item>
         <item>E</item>
+        <item>F</item>
+        <item>G</item>
     </string-array>
 
     <string-array name="piano">
