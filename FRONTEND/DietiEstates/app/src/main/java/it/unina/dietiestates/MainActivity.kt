@@ -20,6 +20,7 @@ import it.unina.dietiestates.controller.auth.LoginController
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gitHubResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var googleSignInLauncher: ActivityResultLauncher<Intent>
     private lateinit var googleController: GoogleLoginController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,22 +66,18 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            googleController.handleSignInResult(task)
+        }
 
         gitHubLoginBtn.setOnClickListener{
             gitHubController.login(gitHubResultLauncher)
         }
 
         googleLoginBtn.setOnClickListener{
-            googleController.login(this)
-        }
-    }
-    // TODO: utilizzare gestire diversamente il cambio di finestra dato che onActivityResult è deprecata
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == GoogleLoginController.RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            googleController.handleSignInResult(task)
+            val signInIntent = googleController.getSignInIntent()
+            googleSignInLauncher.launch(signInIntent)
         }
     }
 }

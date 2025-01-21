@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.view.ViewGroup
+import android.webkit.WebResourceRequest
 import androidx.appcompat.app.AppCompatActivity
 
 class GitHubWebViewActivity : AppCompatActivity() {
@@ -19,16 +20,17 @@ class GitHubWebViewActivity : AppCompatActivity() {
 
         // Ottieni l'URL di login passato dall'intent
         val url = intent.getStringExtra("url") ?: return
-        webView.loadUrl(url)  // Carica l'URL di login
+        webView.loadUrl(url)
 
         webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                if (url != null && url.startsWith("http://10.0.2.2:8080/api/auth/")) {
-                    // Cattura l'URL del callback
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                val requestUrl = request?.url?.toString()
+                if (requestUrl != null && requestUrl.startsWith("http://10.0.2.2:8080/api/auth/")) {
+                    // Capture the callback URL
                     val resultIntent = Intent()
-                    resultIntent.data = Uri.parse(url)  // Imposta l'URL come risultato
-                    setResult(RESULT_OK, resultIntent)  // Restituisci l'Intent con il risultato
-                    finish()  // Termina questa attività
+                    resultIntent.data = Uri.parse(requestUrl)
+                    setResult(RESULT_OK, resultIntent)
+                    finish()
                     return true
                 }
                 return false
