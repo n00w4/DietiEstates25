@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--TODO: stile per il profilo (nero doppio su sfondo azzurro chiaro). Eventualmente anche per altre pagine con lo stesso sfondo -->
-
 <resources>
 
     <style name="ProfiloTitleTextView" parent="TextAppearance.Material3.DisplayMedium">

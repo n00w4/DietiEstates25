@@ -18,13 +18,25 @@
         <LinearLayout
             android:layout_width="357dp"
             android:layout_height="729dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/homeTextView"
+                style="@style/AnnullaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/home_text" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,67 +45,51 @@
                 android:gravity="center_vertical">
 
                 <TextView
-                    android:id="@+id/latTag"
+                    android:id="@+id/titoloTag"
                     style="@style/ProfiloSubtitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Latitudine: " />
+                    android:text="La ricerca ha prodotto: " />
 
                 <TextView
-                    android:id="@+id/latTextView"
+                    android:id="@+id/numRisultatiTextView"
                     style="@style/ProfiloSubtitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="lat"/>
+                    android:text="0"/>
+                <TextView
+                    android:id="@+id/risultatiTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" risultati"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/info1Tag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:text="Clicca le icone sulla mappa per visualizzare i"/>
+            <TextView
+                android:id="@+id/info2Tag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:layout_marginBottom="10dp"
+                android:text="dettagli degli annunci corrispondenti."/>
 
-                <TextView
-                    android:id="@+id/longTag"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Longitudine: " />
-
-                <TextView
-                    android:id="@+id/longTextView"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="long"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/tipoTag"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Tipo: " />
-
-                <TextView
-                    android:id="@+id/tipoTextView"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="affitto/vendita"/>
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/erroreTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="errore"/>
 
             <FrameLayout
                 android:id="@+id/mapContainer"
@@ -103,7 +99,7 @@
                 <org.osmdroid.views.MapView
                     android:id="@+id/mapView"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="500dp"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="0dp">
                 </org.osmdroid.views.MapView>

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -94,6 +95,12 @@ class RicercaMappaFragment: Fragment() {
         annullaText.setOnClickListener {
             findNavController().navigate(R.id.action_ricercaMappaFragment_to_ricercaHomeFragment)
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
     }
 
     private fun updateLocationTextView (){

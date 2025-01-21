@@ -20,5 +20,11 @@ class AnnuncioActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.indirizzoTextView).text = annuncio?.indirizzo
         findViewById<TextView>(R.id.descrizioneTextView).text = annuncio?.descrizione
 
+        val annullaTextView = findViewById<TextView>(R.id.annullaTextView)
+        annullaTextView.setOnClickListener {
+            // Finish this activity and go back to the previous one
+            finish()
+        }
+
     }
 }

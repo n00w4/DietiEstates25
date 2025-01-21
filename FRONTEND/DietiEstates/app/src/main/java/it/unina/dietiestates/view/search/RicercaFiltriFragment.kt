@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import it.unina.dietiestates.R
@@ -84,9 +85,15 @@ class RicercaFiltriFragment : Fragment() {
         annullaText.setOnClickListener{
             when(precFragment){
                 "RicercaMappa" -> findNavController().navigate(R.id.action_ricercaFiltriFragment_to_ricercaMappaFragment)
-                "RicercaCittà" -> findNavController().navigate(R.id.action_ricercaFiltriFragment_to_ricercaCittaFragment)
+                "RicercaCitta" -> findNavController().navigate(R.id.action_ricercaFiltriFragment_to_ricercaCittaFragment)
                 else -> findNavController().navigate(R.id.action_ricercaFiltriFragment_to_ricercaHomeFragment)
             }
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
     }
 }

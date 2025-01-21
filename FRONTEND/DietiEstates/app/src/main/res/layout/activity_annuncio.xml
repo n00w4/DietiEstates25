@@ -18,88 +18,83 @@
         <LinearLayout
             android:layout_width="357dp"
             android:layout_height="729dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/annullaTextView"
+                style="@style/AnnullaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/annulla_text" />
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:contentDescription="DELogo"
-                app:srcCompat="@drawable/dietiestates25_light" />
+                android:layout_height="300dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@string/no_image"
+                app:srcCompat="@drawable/no_image" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/titoloTag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Titolo: " />
 
-                <TextView
-                    android:id="@+id/titoloTag"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Titolo: " />
+            <TextView
+                android:id="@+id/titoloTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="titolo annuncio"/>
 
-                <TextView
-                    android:id="@+id/titoloTextView"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="titolo annuncio"/>
+            <TextView
+                android:id="@+id/indirizzoTag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Indirizzo: " />
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/indirizzoTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:layout_marginBottom="15dp"
+                android:text="indirizzo annuncio"/>
 
-                <TextView
-                    android:id="@+id/indirizzoTag"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Indirizzo: " />
 
-                <TextView
-                    android:id="@+id/indirizzoTextView"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="indirizzo annuncio"/>
+            <TextView
+                android:id="@+id/descrizioneTag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Descrizione: " />
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/descrizioneTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:lineSpacingMultiplier="0.5"
+                android:text="descrizione annuncio descrizione annuncio descrizione annuncio"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/descrizioneTag"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Descrizione: " />
-
-                <TextView
-                    android:id="@+id/descrizioneTextView"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="descrizione annuncio"/>
-
-            </LinearLayout>
 
         </LinearLayout>
 

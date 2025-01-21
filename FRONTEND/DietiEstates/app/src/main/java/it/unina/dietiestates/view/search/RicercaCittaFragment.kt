@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat.getColorStateList
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -92,6 +93,12 @@ class RicercaCittaFragment : Fragment() {
         annullaText.setOnClickListener {
             findNavController().navigate(R.id.action_ricercaCittaFragment_to_ricercaHomeFragment)
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
 
     }
 

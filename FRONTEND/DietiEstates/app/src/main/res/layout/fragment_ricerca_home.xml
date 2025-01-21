@@ -26,6 +26,15 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/homeTextView"
+                style="@style/AnnullaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textAlignment="center"
+                android:text="Home" />
+
+            <TextView
                 android:id="@+id/titoloTextView"
                 style="@style/ProfiloTitleTextView"
                 android:layout_width="match_parent"

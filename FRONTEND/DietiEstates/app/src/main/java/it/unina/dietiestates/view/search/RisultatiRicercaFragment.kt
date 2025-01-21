@@ -8,10 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import it.unina.dietiestates.R
 import it.unina.dietiestates.controller.search.RisultatiRicercaController
 import it.unina.dietiestates.data.model.Annuncio
@@ -22,6 +23,7 @@ import org.osmdroid.config.Configuration
 import org.osmdroid.views.MapView
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.overlay.Marker
+import java.util.Locale
 
 class RisultatiRicercaFragment : Fragment() {
 
@@ -40,11 +42,11 @@ class RisultatiRicercaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         controller = RisultatiRicercaController(requireContext())
 
-        val latTextView = view.findViewById<TextView>(R.id.latTextView)
-        val longTextView = view.findViewById<TextView>(R.id.longTextView)
-        val tipoTextView = view.findViewById<TextView>(R.id.tipoTextView)
         val mapView = view.findViewById<MapView>(R.id.mapView)
         mapView.isVisible = false
+        val erroreTextView = view.findViewById<TextView>(R.id.erroreTextView)
+        erroreTextView.isVisible = false
+        val numAnnunci = view.findViewById<TextView>(R.id.numRisultatiTextView)
 
         controller.getRisultatiRicerca(filtriRicercaVM.filtriRicerca){ result ->
             if (result.isSuccess) {
@@ -52,18 +54,28 @@ class RisultatiRicercaFragment : Fragment() {
                 annunci?.let {
                     listaAnnunci = annunci
                     mapView.isVisible = true
+                    numAnnunci.setText(String.format(Locale.getDefault(), "%d",annunci.size))
                     initializeMap(mapView)
                 }
             }else if (result.isFailure) {
-                    val error = result.exceptionOrNull()?.message
-                    mapView.isVisible = false
-                    Toast.makeText(requireContext(), "$error", Toast.LENGTH_SHORT).show()
+                val error = result.exceptionOrNull()?.message
+                mapView.isVisible = false
+                erroreTextView.isVisible = true
+                erroreTextView.text = "$error"
             }
         }
 
-        latTextView.text = "${filtriRicercaVM.filtriRicerca.latitudine}"
-        longTextView.text = "${filtriRicercaVM.filtriRicerca.longitudine}"
-        tipoTextView.text = "${filtriRicercaVM.filtriRicerca.tipoAnnuncio}"
+        val homeTextView = view.findViewById<TextView>(R.id.homeTextView)
+
+        homeTextView.setOnClickListener{
+            findNavController().navigate(R.id.action_risultatiRicercaFragment_to_ricercaHomeFragment)
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
     }
 
     private fun initializeMap(map: MapView){

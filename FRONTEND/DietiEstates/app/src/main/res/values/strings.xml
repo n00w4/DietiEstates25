@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">DietiEstates25</string>
 
+    <string name="annulla_text">&#60; Indietro</string>
+    <string name="home_text">&#60; Torna alla Home</string>
+
     <!-- Activity Main -->
     <!-- Descrizioni immagini -->
     <string name="content_description_logo">DELogo</string>
@@ -17,8 +20,6 @@
     <string name="login_with_text">Accedi con:</string>
     <!-- /Activity Main -->
 
-    <string name="annulla_text">Annulla</string>
-
     <!-- Client Home Page -->
     <string name="cerca_tab_text">Cerca</string>
     <string name="profilo_tab_text">Profilo</string>
@@ -29,6 +30,7 @@
 
     <!-- Fragment Profilo Utente -->
     <string name="profilo">PROFILO</string>
+    <string name="profilo_text">Ciao, %1$s!</string>
     <!-- /Fragment Profilo Utente -->
 
     <!-- Fragment Ricerca Home -->
@@ -122,8 +124,6 @@
     <string name="address_text">Indirizzo: %1$s</string>
     <!-- /Fragment Ricerca -->
 
-    <string name="profilo_text">Ciao, %1$s!</string>
-
     <!-- Signup Page -->
     <string name="signup_info_text">Compila il modulo per creare un nuovo account.</string>
     <string name="name_label">Nome</string>
@@ -146,4 +146,8 @@
     <string name="result_text">Result will be displayed here.</string>
     <string name="return_login_button_text">Torna a Accedi</string>
     <!-- /Signup Result-->
+
+    <!-- Annuncio Activity-->
+    <string name="no_image">no_image.png</string>
+    <!-- /Annuncio Activity-->
 </resources>
