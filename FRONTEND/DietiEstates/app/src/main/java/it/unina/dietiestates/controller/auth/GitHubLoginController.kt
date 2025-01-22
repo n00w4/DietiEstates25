@@ -1,24 +1,19 @@
 package it.unina.dietiestates.controller.auth
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
+import com.google.gson.Gson
 import it.unina.dietiestates.data.dto.ApiResponse
+import it.unina.dietiestates.data.dto.ClienteDTO
 import it.unina.dietiestates.network.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GitHubLoginController(context: Context) : OAuthLoginController(context) {
-    override fun login(resultLauncher: ActivityResultLauncher<Intent>) {
-        val url = "http://10.0.2.2:8080/api/auth/github/"
-        commonIntentLogic(resultLauncher, url)
-    }
-
-    override fun handleCallback(uri: Uri) {
+class GitHubLoginController(context: Context, private val uri: Uri): LoginController(context) {
+    override fun handleLogin() {
         val code = uri.getQueryParameter("code")
         Log.d("GitHub", "Callback received: $code")
 
@@ -28,8 +23,18 @@ class GitHubLoginController(context: Context) : OAuthLoginController(context) {
                 when (response.code()) {
                     200 -> {
                         val userData = response.body()?.message
-                        Toast.makeText(context, userData, Toast.LENGTH_SHORT).show()
-                        // TODO: gestire istanza utente e salvare dati in SharedPreferences se utile
+                        val gson = Gson()
+                        val clienteDTO: ClienteDTO? = gson.fromJson(userData, ClienteDTO::class.java)
+                        if (clienteDTO != null) {
+                            val nomeCompleto = clienteDTO.nome?.split(" ")
+                            val nome = nomeCompleto?.getOrNull(0) ?: ""
+                            val cognome = nomeCompleto?.getOrNull(1) ?: ""
+                            val email = clienteDTO.email.toString()
+                            val tipoUtente = "Cliente"
+
+                            salvaDatiUtente(nome, cognome, email, tipoUtente)
+                            scegliHomePage(tipoUtente)
+                        }
                     }
                     else -> {
                         Toast.makeText(context, "Errore durante il login: codice ${response.code()}", Toast.LENGTH_SHORT).show()

@@ -19,7 +19,7 @@ object SharedPrefManager {
     fun saveToken(context: Context, token: String) {
         val editor = getPreferences(context).edit()
         editor.putString(KEY_TOKEN, token)
-        editor.commit()
+        editor.apply()
     }
 
     fun getToken(context: Context): String? {
@@ -29,7 +29,7 @@ object SharedPrefManager {
     fun saveUserRole(context: Context, role: String) {
         val editor = getPreferences(context).edit()
         editor.putString(USER_ROLE, role)
-        editor.commit()
+        editor.apply()
     }
 
     fun getUserRole(context: Context): String? {
@@ -39,27 +39,27 @@ object SharedPrefManager {
     fun saveUserEmail(context: Context, email: String) {
         val editor = getPreferences(context).edit()
         editor.putString(USER_EMAIL, email)
-        editor.commit()
+        editor.apply()
     }
 
     fun getUserEmail(context: Context): String? {
         return getPreferences(context).getString(USER_EMAIL, null)
     }
 
-    fun saveUserNome(context: Context, nome: String) {
+    fun saveUserNome(context: Context, nome: String?) {
         val editor = getPreferences(context).edit()
         editor.putString(USER_NOME, nome)
-        editor.commit()
+        editor.apply()
     }
 
     fun getUserNome(context: Context): String? {
         return getPreferences(context).getString(USER_NOME, null)
     }
 
-    fun saveUserCognome(context: Context, cognome: String) {
+    fun saveUserCognome(context: Context, cognome: String?) {
         val editor = getPreferences(context).edit()
         editor.putString(USER_COGNOME, cognome)
-        editor.commit()
+        editor.apply()
     }
 
     fun getUserCognome(context: Context): String? {
@@ -69,6 +69,6 @@ object SharedPrefManager {
     fun clear(context: Context) {
         val editor = getPreferences(context).edit()
         editor.clear()
-        editor.commit()
+        editor.apply()
     }
 }

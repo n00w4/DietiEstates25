@@ -1,42 +1,27 @@
 package it.unina.dietiestates.controller.auth
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 
-class GoogleLoginController(private val context: Context) {
-    private lateinit var googleSignInClient: GoogleSignInClient
-
-    fun configureGoogleSignIn() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestProfile()
-            .requestEmail()
-            .requestIdToken("112156935328-gd61v5j6q70h3idigvpn4v5cgnbi0id1.apps.googleusercontent.com")
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(context, gso)
-    }
-
-    fun getSignInIntent(): Intent {
-        return googleSignInClient.signInIntent
-    }
-
-    fun handleSignInResult(task: Task<GoogleSignInAccount>) {
+class GoogleLoginController(context: Context, private val task: Task<GoogleSignInAccount>) : LoginController(context) {
+    override fun handleLogin() {
         try {
             val account = task.getResult(ApiException::class.java)
             account?.let {
                 val email = it.email
+                val nome = it.givenName
+                val cognome = it.familyName
                 val idToken = it.idToken
+                val tipoUtente = "Cliente"
 
                 if (email != null && idToken != null) {
                     Toast.makeText(context, "Autenticato con Google: $email", Toast.LENGTH_SHORT).show()
+                    salvaDatiUtente(nome, cognome, email, tipoUtente)
+                    scegliHomePage(tipoUtente)
                 }
             }
         } catch (e: ApiException) {
