@@ -30,6 +30,17 @@ VALUES (
     '12345678901'
 );
 
+-- Insert Gestore
+INSERT INTO est.Gestore (nome, cognome, email, password, passwordAdmin, partitaIVA)
+VALUES (
+    'Marco', 
+    'Bianchi', 
+    'marco.bianchi@example.com', 
+    'Password@123', 
+    'AdminPass@456', 
+    '12345678901'
+);
+
 -- Insert Annuncio
 INSERT INTO est.Annuncio (
     titolo, indirizzo, immagine, descrizione, dimensioni, prezzo, piano, numeroStanze, 
