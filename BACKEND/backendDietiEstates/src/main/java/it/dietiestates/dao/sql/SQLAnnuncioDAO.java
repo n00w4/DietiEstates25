@@ -87,7 +87,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 				+ "AND piano = ? AND numeroStanze >= ? AND classeEnergetica = ? "
 				+ "AND ascensore = ? AND portineria = ? AND climatizzazione = ? "
 				+ "AND terrazzo = ? AND giardino = ? AND boxAuto = ? "
-				+ "AND ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 50000)";
+				+ "AND dimensioni = ? AND ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 50000)";
 
 		List<Annuncio> listaAnnunci = new ArrayList<>();
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -103,113 +103,75 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 			statement.setBoolean(10, ricerca.isTerrazzo());
 			statement.setBoolean(11, ricerca.isGiardino());
 			statement.setBoolean(12, ricerca.isBoxAuto());
-			statement.setDouble(13, ricerca.getLongitudine());
-			statement.setDouble(14, ricerca.getLatitudine());
+			statement.setInt(13, ricerca.getDimensioni());
+			statement.setDouble(14, ricerca.getLongitudine());
+			statement.setDouble(15, ricerca.getLatitudine());
 
-			try (ResultSet resultSet = statement.executeQuery()) {
-				while (resultSet.next()) {
-					int id = resultSet.getInt(COLUMN_ID);
-					String titolo = resultSet.getString(COLUMN_TITOLO);
-					String indirizzo = resultSet.getString(COLUMN_INDIRIZZO);
-					String immagine = resultSet.getString(COLUMN_IMMAGINE);
-					String descrizione = resultSet.getString(COLUMN_DESCRIZIONE);
-					int dimensioni = resultSet.getInt(COLUMN_DIMENSIONI);
-					float prezzo = resultSet.getFloat(COLUMN_PREZZO);
-					String piano = resultSet.getString(COLUMN_PIANO);
-					int numeroStanze = resultSet.getInt(COLUMN_NUMEROSTANZE);
-					String classeEnergetica = resultSet.getString(COLUMN_CLASSEENGERGETICA);
-					boolean ascensore = resultSet.getBoolean(COLUMN_ASCENSORE);
-					boolean portineria = resultSet.getBoolean(COLUMN_PORTINERIA);
-					boolean climatizzazione = resultSet.getBoolean(COLUMN_CLIMATIZZAZIONE);
-					boolean boxAuto = resultSet.getBoolean(COLUMN_BOXAUTO);
-					boolean terrazzo = resultSet.getBoolean(COLUMN_TERRAZZO);
-					boolean giardino = resultSet.getBoolean(COLUMN_GIARDINO);
-					String tipoAnnuncio = resultSet.getString(COLUMN_TIPOANNUNCIO);
-					String posizione = resultSet.getString(COLUMN_POSIZIONE);
-					String emailAgente = resultSet.getString(COLUMN_EMAILAGENTE);
-
-					Annuncio annuncio = new Annuncio.Builder(id)
-							.titolo(titolo)
-							.indirizzo(indirizzo)
-							.immagine(immagine)
-							.descrizione(descrizione)
-							.dimensioni(dimensioni)
-							.prezzo(prezzo)
-							.piano(piano)
-							.numeroStanze(numeroStanze)
-							.classeEnergetica(classeEnergetica)
-							.ascensore(ascensore)
-							.portineria(portineria)
-							.climatizzazione(climatizzazione)
-							.boxAuto(boxAuto)
-							.terrazzo(terrazzo)
-							.giardino(giardino)
-							.tipoAnnuncio(tipoAnnuncio)
-							.posizione(posizione)
-							.emailAgente(emailAgente)
-							.build();
-
-					listaAnnunci.add(annuncio);
-				}
-			}
+			elaborateListResultSet(listaAnnunci, statement);
 		} catch (SQLException e) {
 			throw new DataAccessException(ERROR_MESSAGE, e);
         }
 		return listaAnnunci;
     }
 
+	private void elaborateListResultSet(List<Annuncio> listaAnnunci, PreparedStatement statement) throws SQLException {
+		try (ResultSet resultSet = statement.executeQuery()) {
+			while (resultSet.next()) {
+				int id = resultSet.getInt(COLUMN_ID);
+				String titolo = resultSet.getString(COLUMN_TITOLO);
+				String indirizzo = resultSet.getString(COLUMN_INDIRIZZO);
+				String immagine = resultSet.getString(COLUMN_IMMAGINE);
+				String descrizione = resultSet.getString(COLUMN_DESCRIZIONE);
+				int dimensioni = resultSet.getInt(COLUMN_DIMENSIONI);
+				float prezzo = resultSet.getFloat(COLUMN_PREZZO);
+				String piano = resultSet.getString(COLUMN_PIANO);
+				int numeroStanze = resultSet.getInt(COLUMN_NUMEROSTANZE);
+				String classeEnergetica = resultSet.getString(COLUMN_CLASSEENGERGETICA);
+				boolean ascensore = resultSet.getBoolean(COLUMN_ASCENSORE);
+				boolean portineria = resultSet.getBoolean(COLUMN_PORTINERIA);
+				boolean climatizzazione = resultSet.getBoolean(COLUMN_CLIMATIZZAZIONE);
+				boolean boxAuto = resultSet.getBoolean(COLUMN_BOXAUTO);
+				boolean terrazzo = resultSet.getBoolean(COLUMN_TERRAZZO);
+				boolean giardino = resultSet.getBoolean(COLUMN_GIARDINO);
+				String tipoAnnuncio = resultSet.getString(COLUMN_TIPOANNUNCIO);
+				String posizione = resultSet.getString(COLUMN_POSIZIONE);
+				String emailAgente = resultSet.getString(COLUMN_EMAILAGENTE);
+
+				Annuncio annuncio = new Annuncio.Builder(id)
+						.titolo(titolo)
+						.indirizzo(indirizzo)
+						.immagine(immagine)
+						.descrizione(descrizione)
+						.dimensioni(dimensioni)
+						.prezzo(prezzo)
+						.piano(piano)
+						.numeroStanze(numeroStanze)
+						.classeEnergetica(classeEnergetica)
+						.ascensore(ascensore)
+						.portineria(portineria)
+						.climatizzazione(climatizzazione)
+						.boxAuto(boxAuto)
+						.terrazzo(terrazzo)
+						.giardino(giardino)
+						.tipoAnnuncio(tipoAnnuncio)
+						.posizione(posizione)
+						.emailAgente(emailAgente)
+						.build();
+
+				listaAnnunci.add(annuncio);
+			}
+		}
+	}
+
 	@Override
 	public List<Annuncio> getAllAnnunci() throws DataAccessException {
-		String query = "SELECT * FROM est.Annuncio";
+		String query = "SELECT idAnnuncio, titolo, indirizzo,immagine, descrizione, dimensioni, " +
+				"prezzo, piano, numeroStanze, classeEnergetica, ascensore, portineria, climatizzazione, " +
+				"boxAuto, terrazzo, giardino, tipoAnnuncio, posizione, email FROM est.Annuncio";
 		List<Annuncio> listaAnnunci = new ArrayList<>();
 
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
-			try (ResultSet resultSet = statement.executeQuery()) {
-				while (resultSet.next()) {
-					int id = resultSet.getInt(COLUMN_ID);
-					String titolo = resultSet.getString(COLUMN_TITOLO);
-					String indirizzo = resultSet.getString(COLUMN_INDIRIZZO);
-					String immagine = resultSet.getString(COLUMN_IMMAGINE);
-					String descrizione = resultSet.getString(COLUMN_DESCRIZIONE);
-					int dimensioni = resultSet.getInt(COLUMN_DIMENSIONI);
-					float prezzo = resultSet.getFloat(COLUMN_PREZZO);
-					String piano = resultSet.getString(COLUMN_PIANO);
-					int numeroStanze = resultSet.getInt(COLUMN_NUMEROSTANZE);
-					String classeEnergetica = resultSet.getString(COLUMN_CLASSEENGERGETICA);
-					boolean ascensore = resultSet.getBoolean(COLUMN_ASCENSORE);
-					boolean portineria = resultSet.getBoolean(COLUMN_PORTINERIA);
-					boolean climatizzazione = resultSet.getBoolean(COLUMN_CLIMATIZZAZIONE);
-					boolean boxAuto = resultSet.getBoolean(COLUMN_BOXAUTO);
-					boolean terrazzo = resultSet.getBoolean(COLUMN_TERRAZZO);
-					boolean giardino = resultSet.getBoolean(COLUMN_GIARDINO);
-					String tipoAnnuncio = resultSet.getString(COLUMN_TIPOANNUNCIO);
-					String posizione = resultSet.getString(COLUMN_POSIZIONE);
-					String emailAgente = resultSet.getString(COLUMN_EMAILAGENTE);
-
-					Annuncio annuncio = new Annuncio.Builder(id)
-							.titolo(titolo)
-							.indirizzo(indirizzo)
-							.immagine(immagine)
-							.descrizione(descrizione)
-							.dimensioni(dimensioni)
-							.prezzo(prezzo)
-							.piano(piano)
-							.numeroStanze(numeroStanze)
-							.classeEnergetica(classeEnergetica)
-							.ascensore(ascensore)
-							.portineria(portineria)
-							.climatizzazione(climatizzazione)
-							.boxAuto(boxAuto)
-							.terrazzo(terrazzo)
-							.giardino(giardino)
-							.tipoAnnuncio(tipoAnnuncio)
-							.posizione(posizione)
-							.emailAgente(emailAgente)
-							.build();
-
-					listaAnnunci.add(annuncio);
-				}
-			}
+			elaborateListResultSet(listaAnnunci, statement);
 		} catch (SQLException e) {
 			throw new DataAccessException(ERROR_MESSAGE, e);
 		}
@@ -218,59 +180,17 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 	@Override
 	public List<Annuncio> getAnnunciFromPosition(double longitude, double latitude) throws DataAccessException {
-		String query = "SELECT * FROM est.Annuncio WHERE ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 50000)";
+		String query = "SELECT idAnnuncio, titolo, indirizzo,immagine, descrizione, dimensioni, prezzo, piano, numeroStanze, " +
+				"classeEnergetica, ascensore, portineria, climatizzazione, " +
+				"boxAuto, terrazzo, giardino, tipoAnnuncio, posizione, email FROM est.Annuncio " +
+				"WHERE ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 50000)";
 		List<Annuncio> listaAnnunci = new ArrayList<>();
 
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
 			statement.setDouble(1, longitude);
 			statement.setDouble(2, latitude);
 
-			try (ResultSet resultSet = statement.executeQuery()) {
-				while (resultSet.next()) {
-					int id = resultSet.getInt(COLUMN_ID);
-					String titolo = resultSet.getString(COLUMN_TITOLO);
-					String indirizzo = resultSet.getString(COLUMN_INDIRIZZO);
-					String immagine = resultSet.getString(COLUMN_IMMAGINE);
-					String descrizione = resultSet.getString(COLUMN_DESCRIZIONE);
-					int dimensioni = resultSet.getInt(COLUMN_DIMENSIONI);
-					float prezzo = resultSet.getFloat(COLUMN_PREZZO);
-					String piano = resultSet.getString(COLUMN_PIANO);
-					int numeroStanze = resultSet.getInt(COLUMN_NUMEROSTANZE);
-					String classeEnergetica = resultSet.getString(COLUMN_CLASSEENGERGETICA);
-					boolean ascensore = resultSet.getBoolean(COLUMN_ASCENSORE);
-					boolean portineria = resultSet.getBoolean(COLUMN_PORTINERIA);
-					boolean climatizzazione = resultSet.getBoolean(COLUMN_CLIMATIZZAZIONE);
-					boolean boxAuto = resultSet.getBoolean(COLUMN_BOXAUTO);
-					boolean terrazzo = resultSet.getBoolean(COLUMN_TERRAZZO);
-					boolean giardino = resultSet.getBoolean(COLUMN_GIARDINO);
-					String tipoAnnuncio = resultSet.getString(COLUMN_TIPOANNUNCIO);
-					String posizione = resultSet.getString(COLUMN_POSIZIONE);
-					String emailAgente = resultSet.getString(COLUMN_EMAILAGENTE);
-
-					Annuncio annuncio = new Annuncio.Builder(id)
-							.titolo(titolo)
-							.indirizzo(indirizzo)
-							.immagine(immagine)
-							.descrizione(descrizione)
-							.dimensioni(dimensioni)
-							.prezzo(prezzo)
-							.piano(piano)
-							.numeroStanze(numeroStanze)
-							.classeEnergetica(classeEnergetica)
-							.ascensore(ascensore)
-							.portineria(portineria)
-							.climatizzazione(climatizzazione)
-							.boxAuto(boxAuto)
-							.terrazzo(terrazzo)
-							.giardino(giardino)
-							.tipoAnnuncio(tipoAnnuncio)
-							.posizione(posizione)
-							.emailAgente(emailAgente)
-							.build();
-
-					listaAnnunci.add(annuncio);
-				}
-			}
+			elaborateListResultSet(listaAnnunci, statement);
 		} catch (SQLException e) {
 			throw new DataAccessException(ERROR_MESSAGE, e);
 		}
