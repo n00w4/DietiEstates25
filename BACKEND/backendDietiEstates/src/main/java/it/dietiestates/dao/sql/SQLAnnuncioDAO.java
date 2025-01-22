@@ -83,11 +83,14 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 	@Override
 	public List<Annuncio> getAnnunciFromSearch(RicercaAnnuncio ricerca) throws DataAccessException {
-		String query = "SELECT * FROM est.Annuncio WHERE tipoAnnuncio = ?::public.enum_annuncio AND prezzo BETWEEN ? AND ? "
+		String query = "SELECT idAnnuncio, titolo, indirizzo,immagine, descrizione, dimensioni, prezzo, piano, numeroStanze, " +
+				"classeEnergetica, ascensore, portineria, climatizzazione, " +
+				"boxAuto, terrazzo, giardino, tipoAnnuncio, posizione, email FROM est.Annuncio " +
+				"WHERE tipoAnnuncio = ?::public.enum_annuncio AND prezzo BETWEEN ? AND ? "
 				+ "AND piano = ? AND numeroStanze >= ? AND classeEnergetica = ? "
 				+ "AND ascensore = ? AND portineria = ? AND climatizzazione = ? "
 				+ "AND terrazzo = ? AND giardino = ? AND boxAuto = ? "
-				+ "AND dimensioni = ? AND ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 50000)";
+				+ "AND dimensioni >= ? AND ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 50000)";
 
 		List<Annuncio> listaAnnunci = new ArrayList<>();
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
