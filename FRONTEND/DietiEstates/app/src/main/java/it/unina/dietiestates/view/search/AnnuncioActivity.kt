@@ -14,7 +14,7 @@ class AnnuncioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_annuncio)
 
-        val annuncio = intent.getSerializableExtra("ANNUNCIO", Annuncio::class.java)
+        val annuncio = intent.getSerializableExtra("ANNUNCIO") as Annuncio?
 
         findViewById<TextView>(R.id.titoloTextView).text = annuncio?.titolo
         findViewById<TextView>(R.id.indirizzoTextView).text = annuncio?.indirizzo

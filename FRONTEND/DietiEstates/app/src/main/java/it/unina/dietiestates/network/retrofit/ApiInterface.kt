@@ -21,8 +21,8 @@ interface ApiInterface {
     fun gitHubCallback(@Query("code") code: String?): Call<ApiResponse>
 
     @GET("annunci/search")
-    fun getRicercaAnnunci(@Query("lon") lon: Double,
-                          @Query("lat") lat: Double): Call<List<Annuncio>>
+    fun getRicercaAnnunci(@Query("lon") lon: Double?,
+                          @Query("lat") lat: Double?): Call<List<Annuncio>>
 
     @POST("annunci/search")
     fun getRicercaAnnunci(@Body filters: FiltriRicercaAnnunci): Call<List<Annuncio>>

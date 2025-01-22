@@ -46,6 +46,7 @@
         <activity android:name=".view.home.HomeAgenteActivity"> </activity>
         <activity android:name=".view.home.HomeAmministratoreActivity"> </activity>
         <activity android:name=".view.home.HomeGestoreActivity"> </activity>
+        <activity android:name=".view.search.AnnuncioActivity"> </activity>
 
     </application>
 
