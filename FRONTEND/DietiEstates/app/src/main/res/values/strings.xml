@@ -149,5 +149,22 @@
 
     <!-- Annuncio Activity-->
     <string name="no_image">no_image.png</string>
+    <string name="titolo_annuncio">Titolo Annuncio</string>
+    <string name="tipo_annuncio">In %1$s</string>
+    <string name="indirizzo_annuncio">Indirizzo:</string>
+    <string name="descrizione_annuncio">Descrizione:</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="more_info">Per maggiori informazioni contattare: %1$s .</string>
+    <string name="prenota_btn">Prenota una visita</string>
     <!-- /Annuncio Activity-->
+
+    <!-- PrenotazioneAnnuncio Activity-->
+    <string name="riepilogo_annuncio">Stai inserendo una prenotazione per:</string>
+    <string name="seleziona_data">Seleziona una data (entro 2 settimane):</string>
+    <string name="data">Data</string>
+    <string name="data_selezionata">Hai selezionato: %1$d.%2$d.%3$d .</string>
+    <string name="ora_selezionata">Hai selezionato: %1$d:%2$02d .</string>
+    <string name="seleziona_ora">Seleziona un orario:</string>
+    <string name="ora">Orario</string>
+    <!-- /PrenotazioneAnnuncio Activity-->
 </resources>

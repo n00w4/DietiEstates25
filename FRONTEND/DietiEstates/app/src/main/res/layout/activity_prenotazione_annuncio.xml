@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.search.RicercaMappaFragment"
+    tools:context=".view.search.AnnuncioActivity"
     android:background="@color/background_color_light">
 
     <ScrollView
@@ -19,7 +19,6 @@
             android:layout_width="357dp"
             android:layout_height="729dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,81 +30,74 @@
                 style="@style/AnnullaTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="30dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:text="@string/annulla_text" />
 
             <TextView
-                android:id="@+id/titoloTextView"
-                style="@style/ProfiloTitleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="30dp"
-                android:text="@string/ricerca_home_title" />
-
-            <TextView
-                android:id="@+id/info1TextView"
+                android:id="@+id/riepilogoTag"
                 style="@style/ProfiloSubtitleTextView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seleziona un punto sulla mappa e cerca annunci" />
-
+                android:text="@string/riepilogo_annuncio"/>
             <TextView
-                android:id="@+id/info2TextView"
+                android:id="@+id/riepilogoTextView"
                 style="@style/ProfiloSubtitleTextView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text=" nelle vicinanze" />
-
-            <FrameLayout
-                android:id="@+id/mapContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <org.osmdroid.views.MapView
-                    android:id="@+id/mapView"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp">
-                </org.osmdroid.views.MapView>
-            </FrameLayout>
+                android:layout_marginBottom="20dp"
+                android:textStyle="bold|italic"
+                android:text="@string/titolo_annuncio"/>
 
             <TextView
-                android:id="@+id/indirizzoTag"
-                style="@style/AnnullaTextView"
-                android:layout_width="match_parent"
+                android:id="@+id/dataTag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Posizione approssimativa:" />
-            <TextView
-                android:id="@+id/indirizzoTextView"
-                style="@style/AnnullaTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Roma, Italia" />
-
+                android:text="@string/seleziona_data"/>
             <Button
-                android:id="@+id/btn_save_location"
+                android:id="@+id/dataButton"
                 style="@style/BlueButton"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:text="@string/search_position_button" />
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/data"/>
+            <TextView
+                android:id="@+id/dataTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/data_selezionata"/>
 
+            <TextView
+                android:id="@+id/oraTag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/seleziona_ora"/>
             <Button
-                android:id="@+id/btn_add_filters"
-                style="@style/LoginButton"
+                android:id="@+id/oraButton"
+                style="@style/BlueButton"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/add_filters_button" />
+                android:layout_marginBottom="5dp"
+                android:text="@string/ora"/>
+            <TextView
+                android:id="@+id/oraTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ora_selezionata"/>
+
+
+
 
 
         </LinearLayout>
