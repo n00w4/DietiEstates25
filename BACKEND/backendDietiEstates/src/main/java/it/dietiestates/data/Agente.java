@@ -2,7 +2,12 @@ package it.dietiestates.data;
 
 public class Agente extends Utente {
 	private String partitaIVA;
-	
+
+	public Agente() {
+		super();
+		// Costruttore vuoto per permettere la deserializzazione
+	}
+
 	public Agente(String nome, String cognome, String email, String password, String partitaIVA) {
 		super(nome, cognome, email, password);
 		this.partitaIVA = partitaIVA;

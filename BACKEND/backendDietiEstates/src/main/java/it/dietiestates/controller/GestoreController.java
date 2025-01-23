@@ -12,7 +12,10 @@ import it.dietiestates.dto.SuccessApiResponse;
 import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.exception.UniqueConstraintViolationException;
 import it.dietiestates.filter.RequireJWTAuthentication;
-import jakarta.ws.rs.*;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -63,7 +66,7 @@ public class GestoreController {
                 return Response.status(Response.Status.CREATED).entity(successResponse).build();
             }
         } catch (UniqueConstraintViolationException e) {
-          return Response.status(Response.Status.CONFLICT).entity(e.getMessage()).build();
+            return Response.status(Response.Status.CONFLICT).entity(e.getApiResponse()).build();
         } catch (DataAccessException e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
