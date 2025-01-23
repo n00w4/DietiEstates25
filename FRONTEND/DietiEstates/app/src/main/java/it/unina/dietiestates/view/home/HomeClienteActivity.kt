@@ -20,7 +20,6 @@ class HomeClienteActivity : AppCompatActivity() {
         viewPager2 = findViewById(R.id.view_pager_client)
         myViewPagerAdapter = ViewPagerAdapterCliente(this)
         viewPager2.adapter = myViewPagerAdapter
-        // Disable swipe gestures
         viewPager2.isUserInputEnabled = false
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

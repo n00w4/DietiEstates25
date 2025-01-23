@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import it.unina.dietiestates.R
 import it.unina.dietiestates.controller.search.PrenotazioneAnnuncioController
 import java.util.Calendar
@@ -25,6 +26,11 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
         val idAnnuncio = getIntent().getStringExtra("id_annuncio")
         val titoloAnnuncio = getIntent().getStringExtra("titolo_annuncio")
         findViewById<TextView>(R.id.riepilogoTextView).text = titoloAnnuncio
+
+        dataSelected = findViewById(R.id.dataTextView)
+        dataSelected.isVisible = false
+        oraSelected = findViewById(R.id.oraTextView)
+        oraSelected.isVisible = false
 
         val dataBtn = findViewById<Button>(R.id.dataButton)
         val oraBtn = findViewById<Button>(R.id.oraButton)
@@ -58,6 +64,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
             { _, year, month, day ->
                 selectedDate = Triple(day, month + 1, year)
                 dataSelected.text = getString(R.string.data_selezionata, year, month + 1, day)
+                dataSelected.isVisible = true
             },
             calendar[Calendar.DAY_OF_MONTH], calendar[Calendar.MONTH], calendar[Calendar.YEAR])
         datePickerDialog.datePicker.minDate = tomorrow
@@ -71,6 +78,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
             { _, hour, minute ->
                 selectedTime = Pair(hour, minute)
                 oraSelected.text = getString(R.string.ora_selezionata, hour, minute)
+                oraSelected.isVisible = true
             }, 8, 30, true)
         timePickerDialog.show()
     }

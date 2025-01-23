@@ -1,6 +1,6 @@
 package it.unina.dietiestates.data.model
 
-import java.sql.Timestamp
+import java.util.Date
 
 data class Prenotazione(
     private var dataInizio: Date,

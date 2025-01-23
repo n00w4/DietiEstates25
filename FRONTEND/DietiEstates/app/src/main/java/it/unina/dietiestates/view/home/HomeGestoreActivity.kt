@@ -20,6 +20,7 @@ class HomeGestoreActivity : AppCompatActivity() {
         viewPager2 = findViewById(R.id.view_pager_gestore)
         myViewPagerAdapter = ViewPagerAdapterGestore(this)
         viewPager2.adapter = myViewPagerAdapter
+        viewPager2.isUserInputEnabled = false
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
