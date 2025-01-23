@@ -37,4 +37,9 @@
         <item name="android:textAlignment">viewStart</item>
     </style>
 
+    <!-- DialogTheme Styles -->
+    <style name="DialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorAccent">@color/button_color_light</item>
+    </style>
+
 </resources>

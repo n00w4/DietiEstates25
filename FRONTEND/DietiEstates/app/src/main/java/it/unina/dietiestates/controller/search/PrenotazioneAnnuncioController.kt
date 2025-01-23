@@ -1,13 +1,12 @@
 package it.unina.dietiestates.controller.search
 
 import android.content.Context
-import android.content.Intent
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.data.dto.SharedPrefManager
 import it.unina.dietiestates.data.model.Prenotazione
 import it.unina.dietiestates.network.retrofit.RetrofitClient
-import it.unina.dietiestates.view.auth.SignUpResult
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +17,7 @@ class PrenotazioneAnnuncioController (private val context: Context) {
 
     fun gestisciPrenotazione(idAnnuncio : Int?, data: Triple<Int?, Int?, Int?>, ora: Pair<Int?, Int?> ){
         if(isDateNull(data) || isTimeNull(ora) || idAnnuncio == null){
-            Toast.makeText(context, "Assicurarsi di aver inserito tutti i campi e riprovare.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Assicurarti di aver inserito tutti i campi e riprovare.", Toast.LENGTH_SHORT).show()
         }else{
             val emailUtente = SharedPrefManager.getUserEmail(context) ?: "no_email"
             val calendar = Calendar.getInstance()
@@ -43,20 +42,17 @@ class PrenotazioneAnnuncioController (private val context: Context) {
 
         api.insertPrenotazione(prenotazione).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                when (response.code()) { //TODO: Vedere gestione appropriata della response dal backend
+                when (response.code()) {
                     200, 201 -> {
                         val apiResponse = response.body()
                         if (apiResponse != null) {
-                            val signUpResult = Intent(context, SignUpResult::class.java)
-                            signUpResult.putExtra("resultMessage", apiResponse.message)
-                            signUpResult.putExtra("responseCode", response.code())
-                            context.startActivity(signUpResult)
+                            showPrenotazioneEffettuataPopup()
                         } else {
-                            Toast.makeText(context, "Errore: la risposta del server è incompleta", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, "Errore: la risposta del server è incompleta.", Toast.LENGTH_LONG).show()
                         }
                     }
                     409 -> {
-                        Toast.makeText(context, "Esiste già un account con quest'email. Impossibile creare un nuovo account", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Spiacenti, esiste già una prenotazione nella stessa data. Riprovare.", Toast.LENGTH_SHORT).show()
                     }
                     500 -> {
                         Toast.makeText(context, "Server error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
@@ -71,6 +67,14 @@ class PrenotazioneAnnuncioController (private val context: Context) {
                 Toast.makeText(context, "Failed to connect to server: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun showPrenotazioneEffettuataPopup(){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Prenotazione effettuata con successo.")
+        builder.setMessage("Potrai controllare in 'Calendario' lo stato della prenotazione.")
+        builder.setPositiveButton("Ok", null)
+        builder.show()
     }
 
 }

@@ -97,6 +97,28 @@
                 android:layout_marginBottom="30dp"
                 android:text="@string/ora_selezionata"/>
 
+        <LinearLayout
+            android:id="@+id/meteoLayout"
+            android:layout_width="357dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/white">
+
+            <TextView
+                android:id="@+id/meteoTag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Ecco le condizioni metereologiche per "/>
+        </LinearLayout>
+
             <Button
                 android:id="@+id/prenotaButton"
                 style="@style/BlueButton"

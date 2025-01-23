@@ -47,6 +47,7 @@ class AnnuncioActivity : AppCompatActivity() {
             val intent = Intent(this, PrenotazioneAnnuncioActivity::class.java)
             intent.putExtra("id_annuncio", annuncio?.id)
             intent.putExtra("titolo_annuncio", annuncio?.titolo)
+            intent.putExtra("posizione_annuncio", annuncio?.posizione)
             startActivity(intent)
         }
 

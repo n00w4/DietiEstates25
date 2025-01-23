@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -25,6 +26,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
 
         val idAnnuncio = getIntent().getStringExtra("id_annuncio")
         val titoloAnnuncio = getIntent().getStringExtra("titolo_annuncio")
+        val posizioneAnnuncio = getIntent().getStringExtra("posizione_annuncio")
         findViewById<TextView>(R.id.riepilogoTextView).text = titoloAnnuncio
 
         dataSelected = findViewById(R.id.dataTextView)
@@ -40,6 +42,12 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
         oraBtn.setOnClickListener{
             onTimeClicked()
         }
+
+
+        val meteoLayout = findViewById<LinearLayout>(R.id.meteoLayout)
+        meteoLayout.isVisible = false
+
+
 
         val prenotaBtn = findViewById<Button>(R.id.prenotaButton)
         prenotaBtn.setOnClickListener{
@@ -60,7 +68,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
         val twoWeeksFromNow = calendar.timeInMillis
 
         val datePickerDialog = DatePickerDialog(
-            this,
+            this, R.style.DialogTheme,
             { _, year, month, day ->
                 selectedDate = Triple(day, month + 1, year)
                 dataSelected.text = getString(R.string.data_selezionata, year, month + 1, day)
@@ -74,7 +82,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
 
     private fun onTimeClicked(){
         val timePickerDialog = TimePickerDialog(
-            this,
+            this, R.style.DialogTheme,
             { _, hour, minute ->
                 selectedTime = Pair(hour, minute)
                 oraSelected.text = getString(R.string.ora_selezionata, hour, minute)

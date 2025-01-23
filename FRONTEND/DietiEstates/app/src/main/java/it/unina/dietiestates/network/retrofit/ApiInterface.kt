@@ -34,4 +34,5 @@ interface ApiInterface {
 
     @POST("gestore/getData")
     fun getDataGestore(@Body token: String): Call<Gestore>
+
 }
