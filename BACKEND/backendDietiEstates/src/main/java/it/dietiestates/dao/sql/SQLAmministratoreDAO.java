@@ -17,7 +17,7 @@ public class SQLAmministratoreDAO implements AmministratoreDAO {
 	
 	@Override
 	public boolean insert(Amministratore amministratore) throws DataAccessException {
-		String query = "INSERT INTO est.Amministratore VALUES (?. ?, ?, ?, ?)";
+		String query = "INSERT INTO est.Amministratore VALUES (?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
 			statement.setString(1, amministratore.getNome());
 			statement.setString(2, amministratore.getCognome());

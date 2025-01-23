@@ -1,14 +1,14 @@
 package it.dietiestates.dao.sql;
 
+import it.dietiestates.dao.UtenteDAO;
+import it.dietiestates.data.Utente;
+import it.dietiestates.data.factory.UtenteFactory;
+import it.dietiestates.exception.DataAccessException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import it.dietiestates.dao.UtenteDAO;
-import it.dietiestates.data.Utente;
-import it.dietiestates.exception.DataAccessException;
-import it.dietiestates.utils.UtenteFactory;
 
 public class SQLUtenteDAO implements UtenteDAO {
 	private final Connection connection;

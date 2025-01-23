@@ -1,10 +1,6 @@
-package it.dietiestates.utils;
+package it.dietiestates.data.factory;
 
-import it.dietiestates.data.Agente;
-import it.dietiestates.data.Amministratore;
-import it.dietiestates.data.Cliente;
-import it.dietiestates.data.Gestore;
-import it.dietiestates.data.Utente;
+import it.dietiestates.data.*;
 
 public class UtenteFactory {
     // Costruttore privato per evitare l'instanziazione della classe

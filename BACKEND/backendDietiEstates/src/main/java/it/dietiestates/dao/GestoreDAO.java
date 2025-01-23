@@ -1,7 +1,7 @@
 package it.dietiestates.dao;
 
 import it.dietiestates.data.Gestore;
-import it.dietiestates.dto.ChangeAdminPwdForm;
+import it.dietiestates.data.dto.ChangeAdminPwdForm;
 import it.dietiestates.exception.DataAccessException;
 
 public interface GestoreDAO {

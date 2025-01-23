@@ -1,4 +1,4 @@
-package it.dietiestates.dto;
+package it.dietiestates.data.dto;
 
 public class ChangeAdminPwdForm {
     private String oldPassword;

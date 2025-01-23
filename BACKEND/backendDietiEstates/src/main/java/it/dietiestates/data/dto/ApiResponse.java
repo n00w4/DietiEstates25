@@ -1,4 +1,4 @@
-package it.dietiestates.dto;
+package it.dietiestates.data.dto;
 
 import java.io.Serializable;
 
