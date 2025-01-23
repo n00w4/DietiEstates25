@@ -150,4 +150,18 @@
     <!-- Annuncio Activity-->
     <string name="no_image">no_image.png</string>
     <!-- /Annuncio Activity-->
+
+    <!-- Fragment Gestore Crea Agenti -->
+    <string name="text_view_title_gestore_agenti">Aggiungi un agente</string>
+    <string name="label_password_gestore_agenti">La password sarà autogenerata dai nostri server.</string>
+    <string name="add_agente_gestore">Aggiungi</string>
+    <!-- /Fragment Gestore Crea Agenti -->
+
+    <!-- Fragment Gestore Modifica Pwd Admin -->
+    <string name="text_view_title_gestore_admin">Cambia password di amministrazione</string>
+    <string name="label_old_password_gestore_admin">Vecchia password</string>
+    <string name="hint_old_password_gestore_admin">Inserisci la vecchia password</string>
+    <string name="label_new_password_gestore_admin">Nuova password</string>
+    <string name="hint_new_password_gestore_admin">Inserisci la nuova password</string>
+    <!-- /Fragment Gestore Modifica Pwd Admin-->
 </resources>
