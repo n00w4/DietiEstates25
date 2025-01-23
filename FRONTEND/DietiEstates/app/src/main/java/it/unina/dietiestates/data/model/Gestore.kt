@@ -1,5 +1,10 @@
 package it.unina.dietiestates.data.model
 
-class Gestore : it.unina.dietiestates.data.model.Amministratore() {
-    private var passwordAdmin: String? = null
-}
+data class Gestore (
+    private var nome: String,
+    private var cognome: String,
+    private var email: String,
+    private var password: String,
+    private var passwordAdmin: String,
+    private var partitaIVA: String
+)

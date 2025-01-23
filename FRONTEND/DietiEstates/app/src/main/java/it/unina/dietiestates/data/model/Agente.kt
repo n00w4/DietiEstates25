@@ -1,5 +1,9 @@
 package it.unina.dietiestates.data.model
 
-class Agente : Utente() {
-    private var agenzia: Agenzia? = null
-}
+data class Agente (
+    private var nome: String,
+    private var cognome: String,
+    private var email: String,
+    private var password: String,
+    private var partitaIVA: String
+)

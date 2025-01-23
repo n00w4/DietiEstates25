@@ -1,7 +1,8 @@
 package it.unina.dietiestates.data.model
-class Cliente(
-    nome: String? = null,
-    cognome: String? = null,
-    email: String? = null,
-    password: String? = null
-) : Utente(nome, cognome, email, password)
+
+data class Cliente(
+    private var nome: String? = null,
+    private var cognome: String? = null,
+    private var email: String? = null,
+    private var password: String? = null
+)
