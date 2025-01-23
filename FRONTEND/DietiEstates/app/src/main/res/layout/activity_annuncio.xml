@@ -45,20 +45,21 @@
                 app:srcCompat="@drawable/no_image" />
 
             <TextView
-                android:id="@+id/titoloTag"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Titolo: " />
-
-            <TextView
                 android:id="@+id/titoloTextView"
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="titolo annuncio"/>
+                android:textStyle="bold"
+                android:text="@string/titolo_annuncio"/>
+
+            <TextView
+                android:id="@+id/tipoAnnuncioTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/tipo_annuncio"/>
 
             <TextView
                 android:id="@+id/indirizzoTag"
@@ -66,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Indirizzo: " />
+                android:text="@string/indirizzo_annuncio" />
 
             <TextView
                 android:id="@+id/indirizzoTextView"
@@ -75,7 +76,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_marginBottom="15dp"
-                android:text="indirizzo annuncio"/>
+                android:text="@string/indirizzo_annuncio"/>
 
 
             <TextView
@@ -84,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Descrizione: " />
+                android:text="@string/descrizione_annuncio" />
 
             <TextView
                 android:id="@+id/descrizioneTextView"
@@ -93,7 +94,285 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:lineSpacingMultiplier="0.5"
-                android:text="descrizione annuncio descrizione annuncio descrizione annuncio"/>
+                android:text="@string/lorem_ipsum"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/dimensioniTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Dimensioni: " />
+
+                <TextView
+                    android:id="@+id/dimensioniTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00"/>
+
+                <TextView
+                    android:id="@+id/m2Tag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" m2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/prezzoTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Prezzo: " />
+
+                <TextView
+                    android:id="@+id/prezzoTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00"/>
+
+                <TextView
+                    android:id="@+id/euroTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" €" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/pianoTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Piano: " />
+
+                <TextView
+                    android:id="@+id/pianoTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="piano terra"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/stanzeTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Numero di stanze: " />
+
+                <TextView
+                    android:id="@+id/stanzeTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/classeTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Classe energetica: " />
+
+                <TextView
+                    android:id="@+id/classeTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/serviziTag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/services_label" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/ascensoreTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ascensore: " />
+
+                <TextView
+                    android:id="@+id/ascensoreTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/portineriaTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Portineria: " />
+
+                <TextView
+                    android:id="@+id/portineriaTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/climatizzazioneTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Climatizzazione: " />
+
+                <TextView
+                    android:id="@+id/climatizzazioneTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" No"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/boxAutoTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Box Auto: " />
+
+                <TextView
+                    android:id="@+id/boxAutoTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" No"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/terrazzoTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terrazzo: " />
+
+                <TextView
+                    android:id="@+id/terrazzoTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" No"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/giardinoTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giardino: " />
+
+                <TextView
+                    android:id="@+id/giardinoTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" No"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/emailAgenteTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/more_info"/>
+
+            <Button
+                android:id="@+id/prenotaButton"
+                style="@style/BlueButton"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/prenota_btn" />
 
 
         </LinearLayout>

@@ -1,6 +1,7 @@
 package it.dietiestates;
 
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.grizzly.http.server.StaticHttpHandler;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import it.dietiestates.restconfig.RESTConfig;
@@ -28,7 +29,13 @@ public class Main {
         final ResourceConfig rc = new RESTConfig();
 
         // Create and start a new instance of Grizzly HTTP server
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+        HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+
+        // Serve static files from the IMAGES directory (LOCAL)
+        StaticHttpHandler staticHandler = new StaticHttpHandler("C:/Users/sabri/DietiEstates25/IMAGES");
+        server.getServerConfiguration().addHttpHandler(staticHandler, "/images");
+
+        return server;
     }
 
     /**
