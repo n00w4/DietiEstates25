@@ -59,8 +59,8 @@
                 android:text="@string/seleziona_data"/>
             <Button
                 android:id="@+id/dataButton"
-                style="@style/BlueButton"
-                android:layout_width="320dp"
+                style="@style/LoginButton"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -82,8 +82,8 @@
                 android:text="@string/seleziona_ora"/>
             <Button
                 android:id="@+id/oraButton"
-                style="@style/BlueButton"
-                android:layout_width="320dp"
+                style="@style/LoginButton"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
@@ -94,11 +94,18 @@
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
                 android:text="@string/ora_selezionata"/>
 
-
-
-
+            <Button
+                android:id="@+id/prenotaButton"
+                style="@style/BlueButton"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/prenota"/>
 
         </LinearLayout>
 

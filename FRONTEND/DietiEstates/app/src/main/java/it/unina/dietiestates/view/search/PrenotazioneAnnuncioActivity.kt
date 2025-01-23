@@ -14,8 +14,8 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
 
     private lateinit var dataSelected: TextView
     private lateinit var oraSelected: TextView
-    private lateinit var selectedDate: Triple<Int, Int, Int> // Year, Month, Day
-    private lateinit var selectedTime: Pair<Int, Int> // Hour, Minute
+    private var selectedDate: Triple<Int?, Int?, Int?> = Triple(null, null, null) // DD/MM/YYYY
+    private var selectedTime: Pair<Int?, Int?> = Pair(null, null) // HH:MM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,6 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
 
         val idAnnuncio = getIntent().getStringExtra("id_annuncio")
         val titoloAnnuncio = getIntent().getStringExtra("titolo_annuncio")
-
         findViewById<TextView>(R.id.riepilogoTextView).text = titoloAnnuncio
 
         val dataBtn = findViewById<Button>(R.id.dataButton)
@@ -36,9 +35,10 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
             onTimeClicked()
         }
 
-        //TODO: aggiungi prenotaBtn e controlli (nel controller oppure qui) per creare un Toast nel caso tutti i campi non siano selezionati
-        idAnnuncio?.let { controller.gestisciPrenotazione(idAnnuncio.toInt(), selectedDate, selectedTime) }
-
+        val prenotaBtn = findViewById<Button>(R.id.prenotaButton)
+        prenotaBtn.setOnClickListener{
+            controller.gestisciPrenotazione(idAnnuncio?.toInt(), selectedDate, selectedTime)
+        }
 
         val annullaTextView = findViewById<TextView>(R.id.annullaTextView)
         annullaTextView.setOnClickListener {
@@ -56,13 +56,10 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
         val datePickerDialog = DatePickerDialog(
             this,
             { _, year, month, day ->
-                selectedDate = Triple(year, month + 1, day)
+                selectedDate = Triple(day, month + 1, year)
                 dataSelected.text = getString(R.string.data_selezionata, year, month + 1, day)
             },
-            calendar[Calendar.YEAR],
-            calendar[Calendar.MONTH],
-            calendar[Calendar.DAY_OF_MONTH]
-        )
+            calendar[Calendar.DAY_OF_MONTH], calendar[Calendar.MONTH], calendar[Calendar.YEAR])
         datePickerDialog.datePicker.minDate = tomorrow
         datePickerDialog.datePicker.maxDate = twoWeeksFromNow
         datePickerDialog.show()
@@ -74,8 +71,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity() {
             { _, hour, minute ->
                 selectedTime = Pair(hour, minute)
                 oraSelected.text = getString(R.string.ora_selezionata, hour, minute)
-            }, 15, 30, false
-        )
+            }, 8, 30, true)
         timePickerDialog.show()
     }
 

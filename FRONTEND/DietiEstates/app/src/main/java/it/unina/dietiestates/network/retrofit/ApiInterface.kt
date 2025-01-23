@@ -6,6 +6,7 @@ import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.data.dto.Credenziali
 import it.unina.dietiestates.data.dto.FiltriRicercaAnnunci
 import it.unina.dietiestates.data.dto.TokenResponse
+import it.unina.dietiestates.data.model.Prenotazione
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -26,5 +27,8 @@ interface ApiInterface {
 
     @POST("annunci/search")
     fun getRicercaAnnunci(@Body filters: FiltriRicercaAnnunci): Call<List<Annuncio>>
+
+    @POST("prenota")
+    fun insertPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
 
 }
