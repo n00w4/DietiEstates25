@@ -19,14 +19,11 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
     public boolean insert(Prenotazione prenotazione) throws DataAccessException {
         String query = "INSERT INTO est.Prenotazione (dataInizio, dataFine, isAccettata, idAnnuncio, email) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            int idAnnuncio = prenotazione.getAnnuncio().getID();
-            String emailCliente = prenotazione.getCliente().getEmail();
-
             statement.setTimestamp(1, prenotazione.getDataInizio());
             statement.setTimestamp(2, prenotazione.getDataFine());
             statement.setBoolean(3, prenotazione.isAccettata());
-            statement.setInt(4, idAnnuncio);
-            statement.setString(5, emailCliente);
+            statement.setInt(4, prenotazione.getIdAnnuncio());
+            statement.setString(5, prenotazione.getEmailCliente());
 
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -38,10 +35,8 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
     public boolean delete(Prenotazione prenotazione) throws DataAccessException {
         String query = "DELETE FROM est.Prenotazione WHERE idPrenotazione = ? AND email = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            String emailCliente = prenotazione.getCliente().getEmail();
-
             statement.setInt(1, prenotazione.getID());
-            statement.setString(2, emailCliente);
+            statement.setString(2, prenotazione.getEmailCliente());
 
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {

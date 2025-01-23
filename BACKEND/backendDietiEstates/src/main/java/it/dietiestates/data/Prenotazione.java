@@ -7,8 +7,8 @@ public class Prenotazione {
 	private Timestamp dataInizio;
 	private Timestamp dataFine;
 	private boolean isAccettata;
-	private Cliente cliente;
-	private Annuncio annuncio;
+	private String emailCliente;
+	private int idAnnuncio;
 	
 	public int getID() {
 		return id;
@@ -40,19 +40,18 @@ public class Prenotazione {
 		this.isAccettata = isAccettata;
 	}
 	
-	//Getters and Setters for Cliente
-	public Cliente getCliente() {
-		return cliente;
+	public String getEmailCliente() {
+		return emailCliente;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setEmailCliente(String emailCliente) {
+		this.emailCliente = emailCliente;
 	}
 	
-	//Getters and Setters for Annuncio
-	public Annuncio getAnnuncio() {
-		return annuncio;
+	public int getIdAnnuncio() {
+		return idAnnuncio;
 	}
-	public void setAnnuncio(Annuncio annuncio) {
-		this.annuncio = annuncio;
+	public void setIdAnnuncio(int idAnnuncio) {
+		this.idAnnuncio = idAnnuncio;
 	}
+	
 }
