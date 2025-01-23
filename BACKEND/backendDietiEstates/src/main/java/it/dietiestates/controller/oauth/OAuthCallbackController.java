@@ -1,7 +1,7 @@
 package it.dietiestates.controller.oauth;
 
-import it.dietiestates.dto.ErrorApiResponse;
-import it.dietiestates.dto.SuccessApiResponse;
+import it.dietiestates.data.dto.ErrorApiResponse;
+import it.dietiestates.data.dto.SuccessApiResponse;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;

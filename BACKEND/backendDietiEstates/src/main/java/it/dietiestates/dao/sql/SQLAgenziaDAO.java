@@ -17,7 +17,7 @@ public class SQLAgenziaDAO implements AgenziaDAO {
 	
 	@Override
 	public boolean insert(Agenzia agenzia) throws DataAccessException {
-		String query = "INSERT INTO est.Agenzia VALUES (?. ?)";
+		String query = "INSERT INTO est.Agenzia VALUES (?, ?)";
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
 			statement.setString(1, agenzia.getNomeAgenzia());
 			statement.setString(2, agenzia.getPartitaIVA());

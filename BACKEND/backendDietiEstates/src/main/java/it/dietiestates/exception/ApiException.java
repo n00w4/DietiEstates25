@@ -1,7 +1,7 @@
 package it.dietiestates.exception;
 
-import it.dietiestates.dto.ApiResponse;
-import it.dietiestates.dto.ErrorApiResponse;
+import it.dietiestates.data.dto.ApiResponse;
+import it.dietiestates.data.dto.ErrorApiResponse;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

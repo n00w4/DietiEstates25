@@ -2,7 +2,7 @@ package it.dietiestates.dao.sql;
 
 import it.dietiestates.dao.GestoreDAO;
 import it.dietiestates.data.Gestore;
-import it.dietiestates.dto.ChangeAdminPwdForm;
+import it.dietiestates.data.dto.ChangeAdminPwdForm;
 import it.dietiestates.exception.DataAccessException;
 
 import java.sql.Connection;
