@@ -32,7 +32,9 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 	private static final String COLUMN_TIPOANNUNCIO = "tipoAnnuncio";
 	private static final String COLUMN_POSIZIONE = "posizione";
 	private static final String COLUMN_EMAILAGENTE = "email";
-	private static final String ERROR_MESSAGE = "Errore durante la ricerca dell'annuncio";
+	private static final String ERROR_MESSAGE_INSERT = "Errore durante l'inserimento dell'annuncio";
+	private static final String ERROR_MESSAGE_DELETE = "Errore durante la cancellazione dell'annuncio";
+	private static final String ERROR_MESSAGE_SEARCH = "Errore durante la ricerca dell'annuncio";
 
 	private final Connection connection;
 
@@ -64,7 +66,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 			return statement.executeUpdate() > 0;
 	    } catch (SQLException e) {
-			throw new DataAccessException(ERROR_MESSAGE, e);
+			throw new DataAccessException(ERROR_MESSAGE_INSERT, e);
 	    }
 	}
 
@@ -77,7 +79,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 			return statement.executeUpdate() > 0;
 		} catch (SQLException e) {
-			throw new DataAccessException("Errore durante la cancellazione dell'annuncio", e);
+			throw new DataAccessException(ERROR_MESSAGE_DELETE, e);
 		}
 	}
 
@@ -112,7 +114,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 			elaborateListResultSet(listaAnnunci, statement);
 		} catch (SQLException e) {
-			throw new DataAccessException(ERROR_MESSAGE, e);
+			throw new DataAccessException(ERROR_MESSAGE_SEARCH, e);
         }
 		return listaAnnunci;
     }
@@ -176,7 +178,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
 			elaborateListResultSet(listaAnnunci, statement);
 		} catch (SQLException e) {
-			throw new DataAccessException(ERROR_MESSAGE, e);
+			throw new DataAccessException(ERROR_MESSAGE_SEARCH, e);
 		}
         return listaAnnunci;
     }
@@ -195,7 +197,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 			elaborateListResultSet(listaAnnunci, statement);
 		} catch (SQLException e) {
-			throw new DataAccessException(ERROR_MESSAGE, e);
+			throw new DataAccessException(ERROR_MESSAGE_SEARCH, e);
 		}
 		return listaAnnunci;
 	}

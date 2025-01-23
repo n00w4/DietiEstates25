@@ -2,6 +2,7 @@ package it.dietiestates.dao.sql;
 
 import it.dietiestates.dao.GestoreDAO;
 import it.dietiestates.data.Gestore;
+import it.dietiestates.dto.ChangeAdminPwdForm;
 import it.dietiestates.exception.DataAccessException;
 
 import java.sql.Connection;
@@ -29,6 +30,21 @@ public class SQLGestoreDAO implements GestoreDAO {
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataAccessException("Errore durante l'inserimento del gestore", e);
+        }
+    }
+
+    @Override
+    public boolean updateAdminPassword(ChangeAdminPwdForm form) throws DataAccessException {
+        String query = "UPDATE est.Gestore SET passwordAdmin=? WHERE email=? AND passwordAdmin=? AND partitaIVA=?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, form.getNewPassword());
+            statement.setString(2, form.getEmail());
+            statement.setString(3, form.getOldPassword());
+            statement.setString(4, form.getPartitaIVA());
+
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new DataAccessException("Errore durante l'update della password gestore", e);
         }
     }
 }
