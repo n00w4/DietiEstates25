@@ -6,6 +6,7 @@ import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.data.dto.Credenziali
 import it.unina.dietiestates.data.dto.FiltriRicercaAnnunci
 import it.unina.dietiestates.data.dto.TokenResponse
+import it.unina.dietiestates.data.model.Gestore
 import it.unina.dietiestates.data.model.Prenotazione
 import retrofit2.Call
 import retrofit2.http.*
@@ -22,8 +23,8 @@ interface ApiInterface {
     fun gitHubCallback(@Query("code") code: String?): Call<ApiResponse>
 
     @GET("annunci/search")
-    fun getRicercaAnnunci(@Query("lon") lon: Double?,
-                          @Query("lat") lat: Double?): Call<List<Annuncio>>
+    fun getRicercaAnnunci(@Query("longitude") lon: Double?,
+                          @Query("latitude") lat: Double?): Call<List<Annuncio>>
 
     @POST("annunci/search")
     fun getRicercaAnnunci(@Body filters: FiltriRicercaAnnunci): Call<List<Annuncio>>
@@ -31,4 +32,6 @@ interface ApiInterface {
     @POST("prenota")
     fun insertPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
 
+    @POST("gestore/getData")
+    fun getDataGestore(@Body token: String): Call<Gestore>
 }

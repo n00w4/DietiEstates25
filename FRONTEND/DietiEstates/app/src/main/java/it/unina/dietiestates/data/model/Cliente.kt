@@ -1,5 +1,4 @@
 package it.unina.dietiestates.data.model
-
 class Cliente(
     nome: String? = null,
     cognome: String? = null,

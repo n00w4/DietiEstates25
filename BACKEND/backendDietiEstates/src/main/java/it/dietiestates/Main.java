@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
     public static final String BASE_URI = "http://0.0.0.0:8080/";
+    public static String IMAGES_PATH = System.getenv("IMAGES_PATH");
     // TODO: valutare se passare ad HTTPS
     // TODO: aggiungere versioning api (adesso risulterebbe controproducente per fini di testing)
 
@@ -30,9 +31,12 @@ public class Main {
 
         // Create and start a new instance of Grizzly HTTP server
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
-
+        
         // Serve static files from the IMAGES directory (LOCAL)
-        StaticHttpHandler staticHandler = new StaticHttpHandler("C:/Users/sabri/DietiEstates25/IMAGES");
+        if (IMAGES_PATH == null || IMAGES_PATH.isEmpty()) {
+            logger.severe("IMAGES_PATH environment variable is not set or is empty.");
+            IMAGES_PATH = "C:/Users/sabri/DietiEstates25/IMAGES";	}
+        StaticHttpHandler staticHandler = new StaticHttpHandler(IMAGES_PATH);
         server.getServerConfiguration().addHttpHandler(staticHandler, "/images");
 
         return server;

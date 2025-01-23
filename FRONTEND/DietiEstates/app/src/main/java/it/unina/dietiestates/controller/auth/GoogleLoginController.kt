@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import it.unina.dietiestates.data.dto.SharedPrefManager
 
 class GoogleLoginController(context: Context, private val task: Task<GoogleSignInAccount>) : LoginController(context) {
     override fun handleLogin() {
@@ -20,6 +21,7 @@ class GoogleLoginController(context: Context, private val task: Task<GoogleSignI
 
                 if (email != null && idToken != null) {
                     Toast.makeText(context, "Autenticato con Google: $email", Toast.LENGTH_SHORT).show()
+                    SharedPrefManager.saveToken(context, idToken)
                     salvaDatiUtente(nome, cognome, email, tipoUtente)
                     scegliHomePage(tipoUtente)
                 }
