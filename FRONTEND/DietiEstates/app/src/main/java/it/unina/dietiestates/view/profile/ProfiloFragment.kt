@@ -32,11 +32,17 @@ class ProfiloFragment : Fragment() {
         val email = SharedPrefManager.getUserEmail(requireContext())
         val tipoUtente = SharedPrefManager.getUserRole(requireContext())
 
-        titolo.text = getString(R.string.profilo_text, nome)
+        val nonDisponibileText = "Non Disponibile"
+        if(nome==null){
+            titolo.text = getString(R.string.profilo_text, " ")
+        } else titolo.text = getString(R.string.profilo_text, nome)
         textTipoUtente.text = "$tipoUtente"
         textNome.text = "$nome"
+        if(nome==null) textNome.text = nonDisponibileText
         textCognome.text = "$cognome"
+        if(cognome==null) textCognome.text = nonDisponibileText
         textEmail.text = "$email"
+        if(email==null) textEmail.text = nonDisponibileText
 
     }
 

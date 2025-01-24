@@ -6,8 +6,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import it.unina.dietiestates.R
+import it.unina.dietiestates.data.dto.SharedPrefManager
 import it.unina.dietiestates.data.model.Annuncio
 
 class AnnuncioActivity : AppCompatActivity() {
@@ -43,6 +45,7 @@ class AnnuncioActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.emailAgenteTextView).text = getString(R.string.more_info, annuncio?.emailAgente)
 
         val prenotaBtn = findViewById<Button>(R.id.prenotaButton)
+        if (SharedPrefManager.getUserRole(this) != "Cliente" ) { prenotaBtn.isVisible = false}
         prenotaBtn.setOnClickListener(){
             val intent = Intent(this, PrenotazioneAnnuncioActivity::class.java)
             intent.putExtra("id_annuncio", annuncio?.id)

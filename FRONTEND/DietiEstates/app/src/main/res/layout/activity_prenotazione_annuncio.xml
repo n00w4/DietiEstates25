@@ -74,6 +74,16 @@
                 android:layout_marginBottom="20dp"
                 android:text="@string/data_selezionata"/>
 
+        <LinearLayout
+            android:id="@+id/oraLayout"
+            android:layout_width="357dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
             <TextView
                 android:id="@+id/oraTag"
                 style="@style/ProfiloSubtitleTextView"
@@ -96,11 +106,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:text="@string/ora_selezionata"/>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/meteoLayout"
             android:layout_width="357dp"
-            android:layout_height="100dp"
+            android:layout_height="200dp"
             android:layout_marginTop="5dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -110,13 +121,57 @@
             android:layout_marginBottom="10dp"
             android:background="@android:color/white">
 
+            <Button
+                android:id="@+id/meteoButton"
+                style="@style/LoginButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="Meteo"/>
+
             <TextView
-                android:id="@+id/meteoTag"
+                android:id="@+id/meteo1Tag"
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:text="Ecco le condizioni metereologiche per "/>
+                android:text="Ecco le condizioni metereologiche per la data"/>
+            <TextView
+                android:id="@+id/meteo2Tag"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="selezionata: "/>
+            <TextView
+                android:id="@+id/temperaturaTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temperatura: "/>
+            <TextView
+                android:id="@+id/umiditaTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Umidità: "/>
+            <TextView
+                android:id="@+id/precipitazioniTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precipitazioni: "/>
+            <TextView
+                android:id="@+id/pioggiaTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pioggia: "/>
+            <TextView
+                android:id="@+id/codiceTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Codice: "/>
         </LinearLayout>
 
             <Button

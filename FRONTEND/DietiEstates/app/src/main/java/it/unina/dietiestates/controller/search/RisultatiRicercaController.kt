@@ -34,7 +34,7 @@ class RisultatiRicercaController (private val context: Context) {
                 }
             })
         }else{
-            api.getRicercaAnnunci(filtri.latitudine, filtri.longitudine).enqueue(object : Callback<List<Annuncio>> {
+            api.getRicercaAnnunci(filtri.longitudine, filtri.latitudine).enqueue(object : Callback<List<Annuncio>> {
                 override fun onResponse(call: Call<List<Annuncio>>, response: Response<List<Annuncio>>) {
                     if (response.isSuccessful) {
                         response.body()?.let { annunci ->

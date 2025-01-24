@@ -181,5 +181,12 @@
     <string name="seleziona_ora">Seleziona un orario (la visita ha durata di 1h):</string>
     <string name="ora">Orario</string>
     <string name="prenota">Prenota</string>
+    <!-- Meteo-->
+    <string name="temperatura">Temperatura (°C): %.1f </string>
+    <string name="umidita">Umidità (%%): %.1f </string>
+    <string name="precipitazioni">Precipitazioni (%%): %.1f </string>
+    <string name="pioggia">Pioggia (mm): %.1f </string>
+    <string name="codice">Codice: %d </string>
+    <string name="no_info_meteo">Impossibile recuperare info.</string>
     <!-- /PrenotazioneAnnuncio Activity-->
 </resources>

@@ -40,6 +40,8 @@
     <!-- DialogTheme Styles -->
     <style name="DialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
         <item name="colorAccent">@color/button_color_light</item>
+        <item name="android:textColorPrimary">@color/background_color_dark</item>
+        <item name="android:textColorSecondary">@color/background_color_dark</item>
     </style>
 
 </resources>
