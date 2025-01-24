@@ -2,11 +2,11 @@ package it.unina.dietiestates.controller.auth
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import android.widget.Toast
 import com.google.gson.Gson
 import it.unina.dietiestates.data.dto.ApiResponse
-import it.unina.dietiestates.data.dto.ClienteDTO
+import it.unina.dietiestates.data.dto.SharedPrefManager
+import it.unina.dietiestates.data.model.Cliente
 import it.unina.dietiestates.network.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,7 +15,6 @@ import retrofit2.Response
 class GitHubLoginController(context: Context, private val uri: Uri): LoginController(context) {
     override fun handleLogin() {
         val code = uri.getQueryParameter("code")
-        Log.d("GitHub", "Callback received: $code")
 
         val api = RetrofitClient.instance
         api.gitHubCallback(code).enqueue(object : Callback<ApiResponse> {
@@ -24,14 +23,15 @@ class GitHubLoginController(context: Context, private val uri: Uri): LoginContro
                     200 -> {
                         val userData = response.body()?.message
                         val gson = Gson()
-                        val clienteDTO: ClienteDTO? = gson.fromJson(userData, ClienteDTO::class.java)
-                        if (clienteDTO != null) {
-                            val nomeCompleto = clienteDTO.nome?.split(" ")
+                        val cliente: Cliente? = gson.fromJson(userData, Cliente::class.java)
+                        if (cliente != null) {
+                            val nomeCompleto = cliente.nome?.split(" ")
                             val nome = nomeCompleto?.getOrNull(0) ?: ""
                             val cognome = nomeCompleto?.getOrNull(1) ?: ""
-                            val email = clienteDTO.email.toString()
+                            val email = cliente.email.toString()
                             val tipoUtente = "Cliente"
 
+                            code?.let { SharedPrefManager.saveToken(context, it) }
                             salvaDatiUtente(nome, cognome, email, tipoUtente)
                             scegliHomePage(tipoUtente)
                         }
