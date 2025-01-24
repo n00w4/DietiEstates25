@@ -23,12 +23,14 @@ public class JWTService {
 
     // TODO: decidere se adottare un refresh token per garantire sicurezza senza login troppo frequenti
 
-    public static String generateToken(String nome, String cognome, String email, String tipoUtente) {
+    public static String generateToken(String nome, String cognome, String email, String tipoUtente, String partitaIVA, String nomeAgenzia) {
         return JWT.create()
                 .withIssuer(ISSUER)
                 .withClaim("nome", nome)
                 .withClaim("cognome", cognome)
                 .withClaim("email", email)
+                .withClaim("partitaIVA", partitaIVA)
+                .withClaim("nomeAgenzia", nomeAgenzia)
                 .withClaim("tipoUtente", tipoUtente)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))

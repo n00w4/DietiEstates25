@@ -35,7 +35,7 @@ public class AuthController {
         try {
             Utente utente = utenteDAO.autenticaUtente(credentials.getEmail(), credentials.getPassword());
             if (utente != null) {
-                String token = JWTService.generateToken(utente.getNome(), utente.getCognome(), utente.getEmail(), utente.getClass().getSimpleName());
+                String token = JWTService.generateToken(utente.getNome(), utente.getCognome(), utente.getEmail(), utente.getTipo(), utente.getPartitaIVA(), utente.getNomeAgenzia());
                 logger.info(() -> "Utente ha effettuato login con token: " + token);
                 return Response.ok(new TokenResponse(token)).build();
             } else {

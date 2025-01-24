@@ -1,12 +1,16 @@
 package it.dietiestates.data;
 
+import jakarta.json.bind.annotation.JsonbTypeInfo;
+
+@JsonbTypeInfo
 public abstract class Utente {
 	private String nome;
 	private String cognome;
 	private String email;
 	private String password;
-	
-	public Utente(String nome, String cognome, String email, String password) {
+	private String tipo;
+
+	protected Utente(String nome, String cognome, String email, String password) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
@@ -14,7 +18,8 @@ public abstract class Utente {
 		this.password = password;
 	}
 
-    public Utente() {}
+	protected Utente() {
+	}
 
     //Getter and Setter for nome
 	public String getNome() {
@@ -48,4 +53,19 @@ public abstract class Utente {
 		this.password = password;
 	}
 
+	public String getTipo() {
+		return this.getClass().getSimpleName();
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getPartitaIVA() {
+		return null;
+	}
+
+	public String getNomeAgenzia() {
+		return null;
+	}
 }

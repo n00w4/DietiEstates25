@@ -19,7 +19,7 @@ public class SQLUtenteDAO implements UtenteDAO {
 
 	@Override
 	public Utente autenticaUtente(String email, String password) throws DataAccessException {
-		String query = "SELECT tipo_utente, nome, cognome, email, password, passwordAdmin, partitaIVA "
+		String query = "SELECT tipo_utente, nome, cognome, email, password, passwordAdmin, partitaIVA, nomeAgenzia "
 				+ "FROM est.utenti_unificati "
 				+ "WHERE email = ? AND password = ?";
 
@@ -36,8 +36,9 @@ public class SQLUtenteDAO implements UtenteDAO {
 					String passwordUtente = resultSet.getString("password");
 					String passwordAdmin = resultSet.getString("passwordAdmin");
 					String partitaIVA = resultSet.getString("partitaIVA");
+					String nomeAgenzia = resultSet.getString("nomeAgenzia");
 
-					return UtenteFactory.creaUtente(tipoUtente, nome, cognome, emailUtente, passwordUtente, passwordAdmin, partitaIVA);
+					return UtenteFactory.creaUtente(tipoUtente, nome, cognome, emailUtente, passwordUtente, passwordAdmin, partitaIVA, nomeAgenzia);
 				}
 			}
 		} catch (SQLException e) {
