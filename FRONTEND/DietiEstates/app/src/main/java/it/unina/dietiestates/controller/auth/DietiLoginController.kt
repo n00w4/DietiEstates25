@@ -49,10 +49,12 @@ class DietiLoginController(context: Context, private val credenziali: Credenzial
             val cognome = jwt.getClaim("cognome").asString()
             val email = jwt.getClaim("email").asString()
             val tipoUtente = jwt.getClaim("tipoUtente").asString()
+            val partitaIva = jwt.getClaim("partitaIVA").asString()
+            val nomeAgenzia = jwt.getClaim("nomeAgenzia").asString()
 
             if (nome != null && cognome != null && email != null && tipoUtente != null) {
                 SharedPrefManager.saveToken(context, token)
-                salvaDatiUtente(nome, cognome, email, tipoUtente)
+                salvaDatiUtente(nome, cognome, email, tipoUtente, partitaIva, nomeAgenzia)
                 scegliHomePage(tipoUtente)
             } else {
                 Log.e("DietiLoginController", "Invalid token claims")

@@ -19,6 +19,16 @@ abstract class LoginController(protected val context: Context) {
         SharedPrefManager.saveUserRole(context, tipoUtente)
     }
 
+    protected fun salvaDatiUtente(nome: String?, cognome: String?, email: String,
+                                  tipoUtente: String, partitaIva: String?, nomeAgenzia: String?){
+        SharedPrefManager.saveUserNome(context, nome)
+        SharedPrefManager.saveUserCognome(context, cognome)
+        SharedPrefManager.saveUserEmail(context, email)
+        SharedPrefManager.saveUserRole(context, tipoUtente)
+        SharedPrefManager.savePartitaIva(context, partitaIva)
+        SharedPrefManager.saveNomeAgenzia(context, nomeAgenzia)
+    }
+
     protected fun scegliHomePage(tipoUtente: String){
         val intent = when (tipoUtente) {
             "Cliente" -> Intent(context, HomeClienteActivity::class.java)

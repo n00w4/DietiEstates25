@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isVisible
 import it.unina.dietiestates.R
 import it.unina.dietiestates.data.dto.SharedPrefManager
 
@@ -26,6 +27,10 @@ class ProfiloFragment : Fragment() {
         val textCognome = view.findViewById<TextView>(R.id.cognomeTextView)
         val textEmail = view.findViewById<TextView>(R.id.emailTextView)
         val textTipoUtente = view.findViewById<TextView>(R.id.tipoUtenteTextView)
+        val textNomeAgenzia = view.findViewById<TextView>(R.id.agenziaTextView)
+            textNomeAgenzia.isVisible = false
+        val textPartitaIva = view.findViewById<TextView>(R.id.ivaTextView)
+            textPartitaIva.isVisible = false
 
         val nome = SharedPrefManager.getUserNome(requireContext())
         val cognome = SharedPrefManager.getUserCognome(requireContext())
@@ -43,6 +48,15 @@ class ProfiloFragment : Fragment() {
         if(cognome==null) textCognome.text = nonDisponibileText
         textEmail.text = "$email"
         if(email==null) textEmail.text = nonDisponibileText
+
+        if(tipoUtente != "Cliente"){
+            val nomeAgenzia = SharedPrefManager.getNomeAgenzia(requireContext())
+            textNomeAgenzia.text = "$nomeAgenzia"
+            textNomeAgenzia.isVisible = true
+            val partitaIva = SharedPrefManager.getPartitaIva(requireContext())
+            textPartitaIva.text = "$partitaIva"
+            textPartitaIva.isVisible = true
+        }
 
     }
 
