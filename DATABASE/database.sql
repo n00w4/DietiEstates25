@@ -68,47 +68,55 @@ CREATE TABLE est.Gestore (
 CREATE OR REPLACE VIEW est.utenti_unificati AS
 SELECT 
     'Cliente' AS tipo_utente,
-    nome,
-    cognome,
-    email,
-    password,
+    c.nome,
+    c.cognome,
+    c.email,
+    c.password,
     NULL AS passwordAdmin,
-    NULL AS partitaIVA
+    NULL AS partitaIVA,
+    NULL AS nomeAgenzia
 FROM 
-    est.Cliente
+    est.Cliente c
 UNION ALL
 SELECT 
     'Agente' AS tipo_utente,
-    nome,
-    cognome,
-    email,
-    password,
+    a.nome,
+    a.cognome,
+    a.email,
+    a.password,
     NULL AS passwordAdmin,
-    partitaIVA
+    a.partitaIVA,
+    ag.nomeAgenzia
 FROM 
-    est.Agente
+    est.Agente a
+    JOIN est.Agenzia ag ON a.partitaIVA = ag.partitaIVA
 UNION ALL
 SELECT 
     'Amministratore' AS tipo_utente,
-    nome,
-    cognome,
-    email,
-    password,
+    adm.nome,
+    adm.cognome,
+    adm.email,
+    adm.password,
     NULL AS passwordAdmin,
-    partitaIVA
+    adm.partitaIVA,
+    ag.nomeAgenzia
 FROM 
-    est.Amministratore
+    est.Amministratore adm
+    JOIN est.Agenzia ag ON adm.partitaIVA = ag.partitaIVA
 UNION ALL
 SELECT 
     'Gestore' AS tipo_utente,
-    nome,
-    cognome,
-    email,
-    password,
-    passwordAdmin,
-    partitaIVA
+    g.nome,
+    g.cognome,
+    g.email,
+    g.password,
+    g.passwordAdmin,
+    g.partitaIVA,
+    ag.nomeAgenzia
 FROM 
-    est.Gestore;
+    est.Gestore g
+    JOIN est.Agenzia ag ON g.partitaIVA = ag.partitaIVA;
+
 
 -- Tipo ENUM_ANNUNCIO
 DROP TYPE IF EXISTS ENUM_ANNUNCIO CASCADE;
