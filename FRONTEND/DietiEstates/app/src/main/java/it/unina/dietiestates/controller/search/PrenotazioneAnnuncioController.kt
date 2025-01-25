@@ -1,11 +1,7 @@
 package it.unina.dietiestates.controller.search
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
-import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.data.dto.SharedPrefManager

@@ -35,9 +35,9 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
         setContentView(R.layout.activity_prenotazione_annuncio)
         val controller = PrenotazioneAnnuncioController(this)
 
-        val idAnnuncio = getIntent().getIntExtra("id_annuncio", -1)
-        val titoloAnnuncio = getIntent().getStringExtra("titolo_annuncio")
-        val posizioneAnnuncio = getIntent().getStringExtra("posizione_annuncio") ?: " "
+        val idAnnuncio = intent.getIntExtra("id_annuncio", -1)
+        val titoloAnnuncio = intent.getStringExtra("titolo_annuncio")
+        val posizioneAnnuncio = intent.getStringExtra("posizione_annuncio") ?: " "
         findViewById<TextView>(R.id.riepilogoTextView).text = titoloAnnuncio
 
         dataSelected = findViewById(R.id.dataTextView)

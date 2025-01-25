@@ -174,5 +174,5 @@ CREATE TABLE est.Notifica (
     email VARCHAR(255) REFERENCES est.Agente(email) ON DELETE CASCADE,
     idPrenotazione INTEGER REFERENCES est.Prenotazione(idPrenotazione) ON DELETE CASCADE,
 
-    CONSTRAINT checkValidDataNotifica CHECK ((dataOra < CURRENT_TIMESTAMP))
+    CONSTRAINT checkValidDataNotifica CHECK ((dataOra >= CURRENT_TIMESTAMP))
 );
