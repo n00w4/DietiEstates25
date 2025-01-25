@@ -3,7 +3,9 @@ package it.unina.dietiestates.view.search
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +20,7 @@ import java.util.Locale
 
 class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
 
+    private lateinit var posizioneAnnuncio: String
     private lateinit var dataSelected: TextView
     private lateinit var oraSelected: TextView
     private var selectedDate: Triple<Int?, Int?, Int?> = Triple(null, null, null) // DD/MM/YYYY
@@ -28,24 +31,24 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
     private lateinit var umidita: TextView
     private lateinit var precipitazioni: TextView
     private lateinit var pioggia: TextView
-    private lateinit var codice: TextView
+    private lateinit var immagine: ImageView
+    private lateinit var prenotaBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prenotazione_annuncio)
         val controller = PrenotazioneAnnuncioController(this)
 
-        val idAnnuncio = intent.getIntExtra("id_annuncio", -1)
-        val titoloAnnuncio = intent.getStringExtra("titolo_annuncio")
-        val posizioneAnnuncio = intent.getStringExtra("posizione_annuncio") ?: " "
+        val idAnnuncio = getIntent().getIntExtra("id_annuncio", -1)
+        Log.d("DEBUG_PRENOTAZIONE", "id annuncio: ${idAnnuncio}")
+        val titoloAnnuncio = getIntent().getStringExtra("titolo_annuncio")
+        posizioneAnnuncio = getIntent().getStringExtra("posizione_annuncio") ?: " "
         findViewById<TextView>(R.id.riepilogoTextView).text = titoloAnnuncio
 
         dataSelected = findViewById(R.id.dataTextView)
-        dataSelected.isVisible = false
         oraLayout = findViewById(R.id.oraLayout)
         oraLayout.isVisible = false
         oraSelected = findViewById(R.id.oraTextView)
-        oraSelected.isVisible = false
         val dataBtn = findViewById<Button>(R.id.dataButton)
         val oraBtn = findViewById<Button>(R.id.oraButton)
         dataBtn.setOnClickListener{
@@ -61,13 +64,10 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
         umidita = findViewById(R.id.umiditaTextView)
         precipitazioni = findViewById(R.id.precipitazioniTextView)
         pioggia = findViewById(R.id.pioggiaTextView)
-        codice = findViewById(R.id.codiceTextView)
-        val meteoBtn = findViewById<Button>(R.id.meteoButton)
-        meteoBtn.setOnClickListener{
-            calcolaMeteo(posizioneAnnuncio)
-        }
+        immagine = findViewById(R.id.meteoImageView)
 
-        val prenotaBtn = findViewById<Button>(R.id.prenotaButton)
+        prenotaBtn = findViewById(R.id.prenotaButton)
+        prenotaBtn.isVisible = false
         prenotaBtn.setOnClickListener{
             controller.gestisciPrenotazione(idAnnuncio, selectedDate, selectedTime)
         }
@@ -89,7 +89,6 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
             { _, year, month, day ->
                 selectedDate = Triple(day, month + 1, year)
                 dataSelected.text = getString(R.string.data_selezionata, year, month + 1, day)
-                dataSelected.isVisible = true
                 oraLayout.isVisible = true
             },
             calendar[Calendar.DAY_OF_MONTH], calendar[Calendar.MONTH], calendar[Calendar.YEAR])
@@ -103,8 +102,9 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
             { _, hour, minute ->
                 selectedTime = Pair(hour, minute)
                 oraSelected.text = getString(R.string.ora_selezionata, hour, minute)
-                oraSelected.isVisible = true
                 meteoLayout.isVisible = true
+                calcolaMeteo(posizioneAnnuncio)
+                prenotaBtn.isVisible = true
             }, 8, 30, true)
         timePickerDialog.show()
     }
@@ -120,7 +120,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
     private fun getFormattedDateTime(): String {
         return String.format(Locale.getDefault(), "%04d-%02d-%02dT%02d:%02d:00",
             selectedDate.third, selectedDate.second, selectedDate.first,
-            selectedTime.first, selectedTime.second) // Format as ISO-8601: YYYY-MM-DDTHH:MM:00
+            selectedTime.first, selectedTime.second) // Formato ISO-8601: YYYY-MM-DDTHH:MM:00
     }
 
     override fun onWeatherDataReceived(temperature: Double, humidity: Double,
@@ -130,11 +130,25 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
             umidita.text = getString(R.string.umidita, humidity.toFloat())
             precipitazioni.text = getString(R.string.precipitazioni, precipitation.toFloat())
             pioggia.text = getString(R.string.pioggia, rain.toFloat())
-            codice.text = getString(R.string.codice, weatherCode)
+            immagine.setImageResource(scegliImmagineMeteo(temperature, precipitation, weatherCode))
         }
     }
     override fun onError(message: String) {
-        runOnUiThread { temperatura.text = message }
+        runOnUiThread {
+            temperatura.text = message
+            umidita.text = message
+            precipitazioni.text = message
+            pioggia.text = message }
+    }
+
+    private fun scegliImmagineMeteo(temperature: Double, precipitation: Double, weatherCode: Int): Int{
+        return when {
+            precipitation > 40 || weatherCode in 51..67 -> R.drawable.rainy
+            temperature < 0 || weatherCode in 71..99 -> R.drawable.snowy
+            temperature < 15  || weatherCode in 2..48 -> R.drawable.cloudy
+            temperature > 30 -> R.drawable.extra_sunny
+            else -> R.drawable.sunny // default to sunny if no other conditions match
+        }
     }
 
 }

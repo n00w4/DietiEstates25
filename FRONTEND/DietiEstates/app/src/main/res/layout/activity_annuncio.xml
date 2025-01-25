@@ -36,30 +36,43 @@
                 android:focusable="true"
                 android:text="@string/annulla_text" />
 
-            <ImageView
-                android:id="@+id/imageView"
+            <LinearLayout
+                android:id="@+id/dataLayout"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginBottom="20dp"
-                android:contentDescription="@string/no_image"
-                app:srcCompat="@drawable/no_image" />
+                android:layout_height="420dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_edit_text"
+                android:padding="10dp"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/titoloTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:textStyle="bold"
-                android:text="@string/titolo_annuncio"/>
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginBottom="20dp"
+                    android:contentDescription="@string/no_image"
+                    app:srcCompat="@drawable/no_image" />
 
-            <TextView
-                android:id="@+id/tipoAnnuncioTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/tipo_annuncio"/>
+                <TextView
+                    android:id="@+id/titoloTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:text="@string/titolo_annuncio"/>
+
+                <TextView
+                    android:id="@+id/tipoAnnuncioTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:text="@string/tipo_annuncio"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/indirizzoTag"
@@ -92,8 +105,7 @@
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:lineSpacingMultiplier="0.5"
+                android:gravity="start"
                 android:text="@string/lorem_ipsum"/>
 
 

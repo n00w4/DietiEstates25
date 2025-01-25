@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -110,6 +111,7 @@ class RisultatiRicercaFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(annuncio.titolo)
         builder.setMessage("Descrizione: ${annuncio.descrizione}")
+        Log.d("DEBUG_POPUP", "id annuncio: ${annuncio.id}")
         builder.setPositiveButton("Dettagli") { _, _ ->
             val intent = Intent(requireContext(), AnnuncioActivity::class.java)
             intent.putExtra("ANNUNCIO", annuncio)

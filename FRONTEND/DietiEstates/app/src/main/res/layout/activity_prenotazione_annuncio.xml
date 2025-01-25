@@ -45,7 +45,7 @@
             <TextView
                 android:id="@+id/riepilogoTextView"
                 style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:textStyle="bold|italic"
@@ -56,122 +56,92 @@
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/seleziona_data"/>
-            <Button
-                android:id="@+id/dataButton"
-                style="@style/LoginButton"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="@string/data"/>
-            <TextView
-                android:id="@+id/dataTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="@string/data_selezionata"/>
+                android:text="@string/seleziona_data"/>
+
+            <LinearLayout
+                android:id="@+id/dataLayout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_edit_text"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/dataTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:background="@drawable/squared_text"
+                    android:layout_width="175dp"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/stringa_vuota"/>
+
+                <Button
+                    android:id="@+id/dataButton"
+                    style="@style/LoginButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/data"/>
+
+            </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/oraLayout"
             android:layout_width="357dp"
-            android:layout_height="135dp"
+            android:layout_height="90dp"
             android:layout_marginTop="5dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <TextView
                 android:id="@+id/oraTag"
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/seleziona_ora"/>
-            <Button
-                android:id="@+id/oraButton"
-                style="@style/LoginButton"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="@string/ora"/>
-            <TextView
-                android:id="@+id/oraTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:text="@string/ora_selezionata"/>
-        </LinearLayout>
+                android:text="@string/seleziona_ora"/>
 
-        <LinearLayout
-            android:id="@+id/meteoLayout"
-            android:layout_width="357dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="10dp"
-            android:background="@android:color/white">
+            <LinearLayout
+                android:id="@+id/ora2Layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_edit_text">
 
-            <Button
-                android:id="@+id/meteoButton"
-                style="@style/LoginButton"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:text="Meteo"/>
+                <TextView
+                    android:id="@+id/oraTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:background="@drawable/squared_text"
+                    android:layout_width="175dp"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/stringa_vuota"/>
 
-            <TextView
-                android:id="@+id/meteo1Tag"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ecco le condizioni metereologiche per la data"/>
-            <TextView
-                android:id="@+id/meteo2Tag"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="selezionata: "/>
-            <TextView
-                android:id="@+id/temperaturaTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Temperatura: "/>
-            <TextView
-                android:id="@+id/umiditaTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Umidità: "/>
-            <TextView
-                android:id="@+id/precipitazioniTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Precipitazioni: "/>
-            <TextView
-                android:id="@+id/pioggiaTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pioggia: "/>
-            <TextView
-                android:id="@+id/codiceTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Codice: "/>
+                <Button
+                    android:id="@+id/oraButton"
+                    style="@style/LoginButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/ora"/>
+            </LinearLayout>
+
         </LinearLayout>
 
             <Button
@@ -180,9 +150,96 @@
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@string/prenota"/>
+
+            <LinearLayout
+                android:id="@+id/meteoLayout"
+                android:layout_width="357dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_edit_text"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/meteo1Tag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="7dp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:text="Previsioni Meteo per la data selezionata:" />
+
+                <LinearLayout
+                    android:id="@+id/meteo2Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:id="@+id/infoMeteoLayout"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/temperaturaTextView"
+                            style="@style/ProfiloSubtitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="Temperatura: " />
+
+                        <TextView
+                            android:id="@+id/umiditaTextView"
+                            style="@style/ProfiloSubtitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="Umidità: " />
+
+                        <TextView
+                            android:id="@+id/precipitazioniTextView"
+                            style="@style/ProfiloSubtitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="Precipitazioni: " />
+
+                        <TextView
+                            android:id="@+id/pioggiaTextView"
+                            style="@style/ProfiloSubtitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="Pioggia: " />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/meteoImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:contentDescription="@string/content_description_logo"
+                        app:srcCompat="@drawable/sunny" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
