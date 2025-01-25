@@ -1,15 +1,23 @@
 package it.dietiestates.data;
 
+import jakarta.json.bind.annotation.JsonbDateFormat;
+
 import java.sql.Timestamp;
 
 public class Prenotazione {
 	private int id;
+    @JsonbDateFormat("MMM d, yyyy h:mm:ss a")
 	private Timestamp dataInizio;
+    @JsonbDateFormat("MMM d, yyyy h:mm:ss a")
 	private Timestamp dataFine;
 	private boolean isAccettata;
 	private String emailCliente;
 	private int idAnnuncio;
-	
+
+    public Prenotazione() {
+        // Costruttore vuoto per deserializzazione
+    }
+
 	public int getID() {
 		return id;
 	}

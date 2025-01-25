@@ -1,9 +1,9 @@
 package it.unina.dietiestates.data.model
 
 data class Amministratore (
-    private var nome: String,
-    private var cognome: String,
-    private var email: String,
-    private var password: String,
-    private var partitaIVA: String
+    val nome: String,
+    val cognome: String,
+    val email: String,
+    val password: String,
+    val partitaIVA: String
 )

@@ -3,6 +3,8 @@ package it.dietiestates.dao.sql;
 import it.dietiestates.dao.PrenotazioneDAO;
 import it.dietiestates.data.Prenotazione;
 import it.dietiestates.exception.DataAccessException;
+import it.dietiestates.exception.ForeignKeyConstraintViolationException;
+import it.dietiestates.exception.OverlappingBookingException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +29,12 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
 
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
+            if (e.getMessage().contains("Sovrapposizione di prenotazioni")) {
+                throw new OverlappingBookingException(e.getMessage());
+            }
+            if ("23503".equals(e.getSQLState())) {
+                throw new ForeignKeyConstraintViolationException("Nessun annuncio trovato da prenotare");
+            }
             throw new DataAccessException("Errore durante l'inserimento della prenotazione", e);
         }
     }

@@ -1,7 +1,11 @@
 package it.unina.dietiestates.controller.search
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
+import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.data.dto.SharedPrefManager
@@ -10,8 +14,8 @@ import it.unina.dietiestates.network.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.sql.Timestamp
 import java.util.Calendar
-import java.util.Date
 
 class PrenotazioneAnnuncioController (private val context: Context) {
 
@@ -22,9 +26,10 @@ class PrenotazioneAnnuncioController (private val context: Context) {
             val emailUtente = SharedPrefManager.getUserEmail(context) ?: "no_email"
             val calendar = Calendar.getInstance()
             calendar.set(data.third!!, data.second!! - 1, data.first!!, ora.first!!, ora.second!!, 0) // Month is 0-based
-            val dataInizio: Date = calendar.time
+            val dataInizio = Timestamp(calendar.time.toInstant().toEpochMilli())
             calendar.add(Calendar.HOUR_OF_DAY, 1)
-            val dataFine: Date = calendar.time
+            val dataFine = Timestamp(calendar.time.toInstant().toEpochMilli())
+
             val prenotazione = Prenotazione(dataInizio, dataFine, null, emailUtente, idAnnuncio)
             inserisciPrenotazione(prenotazione)
         }
