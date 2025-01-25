@@ -3,6 +3,7 @@ package it.unina.dietiestates.view.search
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -39,6 +40,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
         val controller = PrenotazioneAnnuncioController(this)
 
         val idAnnuncio = getIntent().getIntExtra("id_annuncio", -1)
+        Log.d("DEBUG_PRENOTAZIONE", "id annuncio: ${idAnnuncio}")
         val titoloAnnuncio = getIntent().getStringExtra("titolo_annuncio")
         posizioneAnnuncio = getIntent().getStringExtra("posizione_annuncio") ?: " "
         findViewById<TextView>(R.id.riepilogoTextView).text = titoloAnnuncio

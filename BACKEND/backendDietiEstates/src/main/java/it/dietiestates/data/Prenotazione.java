@@ -6,9 +6,9 @@ import java.sql.Timestamp;
 
 public class Prenotazione {
 	private int id;
-    @JsonbDateFormat("MMM d, yyyy h:mm:ss a")
+    @JsonbDateFormat("MMM dd, yyyy HH:mm:ss")
 	private Timestamp dataInizio;
-    @JsonbDateFormat("MMM d, yyyy h:mm:ss a")
+    @JsonbDateFormat("MMM dd, yyyy HH:mm:ss")
 	private Timestamp dataFine;
 	private boolean isAccettata;
 	private String emailCliente;

@@ -1,11 +1,8 @@
 package it.unina.dietiestates.controller.search
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.data.dto.SharedPrefManager
@@ -19,8 +16,8 @@ import java.util.Calendar
 
 class PrenotazioneAnnuncioController (private val context: Context) {
 
-    fun gestisciPrenotazione(idAnnuncio : Int?, data: Triple<Int?, Int?, Int?>, ora: Pair<Int?, Int?> ){
-        if(isDateNull(data) || isTimeNull(ora) || idAnnuncio == null){
+    fun gestisciPrenotazione(idAnnuncio : Int, data: Triple<Int?, Int?, Int?>, ora: Pair<Int?, Int?> ){
+        if(isDateNull(data) || isTimeNull(ora)){
             Toast.makeText(context, "Assicurarti di aver inserito tutti i campi e riprovare.", Toast.LENGTH_SHORT).show()
         }else{
             val emailUtente = SharedPrefManager.getUserEmail(context) ?: "no_email"
@@ -31,6 +28,7 @@ class PrenotazioneAnnuncioController (private val context: Context) {
             val dataFine = Timestamp(calendar.time.toInstant().toEpochMilli())
 
             val prenotazione = Prenotazione(dataInizio, dataFine, null, emailUtente, idAnnuncio)
+            Log.d("DEBUG_CONTROLLER", "id annuncio: ${prenotazione.idAnnuncio}")
             inserisciPrenotazione(prenotazione)
         }
     }

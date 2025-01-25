@@ -2,6 +2,7 @@ package it.unina.dietiestates.view.search
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,6 +20,7 @@ class AnnuncioActivity : AppCompatActivity() {
         setContentView(R.layout.activity_annuncio)
 
         val annuncio = intent.getSerializableExtra("ANNUNCIO") as Annuncio?
+        Log.d("DEBUG_ANNUNCIO", "id annuncio: ${annuncio?.id}")
 
         val immagine = findViewById<ImageView>(R.id.imageView)
         //Recupera immagine (LOCALE)
