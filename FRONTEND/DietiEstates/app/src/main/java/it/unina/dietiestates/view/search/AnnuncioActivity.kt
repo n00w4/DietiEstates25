@@ -20,7 +20,7 @@ class AnnuncioActivity : AppCompatActivity() {
         setContentView(R.layout.activity_annuncio)
 
         val annuncio = intent.getSerializableExtra("ANNUNCIO") as Annuncio?
-        Log.d("DEBUG_ANNUNCIO", "id annuncio: ${annuncio?.id}")
+        Log.d("DEBUG_ANNUNCIO", "id annuncio: ${annuncio?.ID}")
 
         val immagine = findViewById<ImageView>(R.id.imageView)
         //Recupera immagine (LOCALE)
@@ -50,7 +50,7 @@ class AnnuncioActivity : AppCompatActivity() {
         if (SharedPrefManager.getUserRole(this) != "Cliente" ) { prenotaBtn.isVisible = false}
         prenotaBtn.setOnClickListener(){
             val intent = Intent(this, PrenotazioneAnnuncioActivity::class.java)
-            intent.putExtra("id_annuncio", annuncio?.id)
+            intent.putExtra("id_annuncio", annuncio?.ID)
             intent.putExtra("titolo_annuncio", annuncio?.titolo)
             intent.putExtra("posizione_annuncio", annuncio?.posizione)
             startActivity(intent)

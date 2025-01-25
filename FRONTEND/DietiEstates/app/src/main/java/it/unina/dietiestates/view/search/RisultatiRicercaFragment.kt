@@ -98,6 +98,7 @@ class RisultatiRicercaFragment : Fragment() {
             if (geopoint != null){
                 marker.position = geopoint
                 marker.title = annuncio.titolo
+                Log.d("DEBUG_MAPPA", "id annuncio: ${annuncio.ID}")
                 marker.setOnMarkerClickListener { _, _ ->
                     showAnnuncioPopup(annuncio)
                     true
@@ -111,7 +112,7 @@ class RisultatiRicercaFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(annuncio.titolo)
         builder.setMessage("Descrizione: ${annuncio.descrizione}")
-        Log.d("DEBUG_POPUP", "id annuncio: ${annuncio.id}")
+        Log.d("DEBUG_POPUP", "id annuncio: ${annuncio.ID}")
         builder.setPositiveButton("Dettagli") { _, _ ->
             val intent = Intent(requireContext(), AnnuncioActivity::class.java)
             intent.putExtra("ANNUNCIO", annuncio)

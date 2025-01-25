@@ -3,7 +3,7 @@ package it.unina.dietiestates.data.model
 import java.io.Serializable
 
 data class Annuncio (
-    val id: Int,
+    val ID: Int,
     val titolo: String,
     val indirizzo: String,
     val immagine: String,
