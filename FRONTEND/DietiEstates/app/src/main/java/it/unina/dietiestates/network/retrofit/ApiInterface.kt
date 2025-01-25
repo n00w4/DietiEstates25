@@ -29,10 +29,6 @@ interface ApiInterface {
     @POST("annunci/search")
     fun getRicercaAnnunci(@Body filters: FiltriRicercaAnnunci): Call<List<Annuncio>>
 
-    @POST("prenota")
+    @POST("prenotazione/insert")
     fun insertPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
-
-    @POST("gestore/getData")
-    fun getDataGestore(@Body token: String): Call<Gestore>
-
 }
