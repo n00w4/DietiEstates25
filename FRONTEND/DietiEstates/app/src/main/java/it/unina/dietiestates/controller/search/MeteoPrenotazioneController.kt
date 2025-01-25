@@ -1,6 +1,5 @@
 package it.unina.dietiestates.controller.search
 
-import android.util.Log
 import it.unina.dietiestates.network.openmeteo.WeatherDataCallback
 import it.unina.dietiestates.network.openmeteo.WeatherResponse
 import it.unina.dietiestates.network.openmeteo.OpenMeteoInterface
@@ -40,12 +39,8 @@ class MeteoPrenotazioneController {
                     val weatherData = response.body()
                     weatherData?.hourly?.let { hourly ->
                         val specificTime = hourly.time.indexOfFirst { it.startsWith(dateTime.substring(0, 13)) }
-                        Log.d("DEBUG", "Hourly times: ${hourly.time}")
-                        Log.d("DEBUG", "Formatted dateTime: $dateTime")
-                        Log.d("MeteoController", "$specificTime")
                         if (specificTime != -1) {
                             val temperature = hourly.temperature_2m[specificTime]
-                            Log.d("MeteoController", "$temperature")
                             val humidity = hourly.relative_humidity_2m[specificTime]
                             val precipitation = hourly.precipitation_probability[specificTime]
                             val rain = hourly.rain[specificTime]

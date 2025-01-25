@@ -3,6 +3,7 @@
 
     <string name="annulla_text">&#60; Indietro</string>
     <string name="home_text">&#60; Torna alla Home</string>
+    <string name="stringa_vuota"> </string>
 
     <!-- Activity Main -->
     <!-- Descrizioni immagini -->
@@ -176,8 +177,8 @@
     <string name="riepilogo_annuncio">Stai inserendo una prenotazione per:</string>
     <string name="seleziona_data">Seleziona una data (entro 2 settimane):</string>
     <string name="data">Data</string>
-    <string name="data_selezionata">Hai selezionato: %1$d/%2$d/%3$d .</string>
-    <string name="ora_selezionata">Hai selezionato: %1$d:%2$02d .</string>
+    <string name="data_selezionata">%1$d/%2$d/%3$d</string>
+    <string name="ora_selezionata">%1$d:%2$02d</string>
     <string name="seleziona_ora">Seleziona un orario (la visita ha durata di 1h):</string>
     <string name="ora">Orario</string>
     <string name="prenota">Prenota</string>
@@ -186,7 +187,6 @@
     <string name="umidita">Umidità (%%): %.1f </string>
     <string name="precipitazioni">Precipitazioni (%%): %.1f </string>
     <string name="pioggia">Pioggia (mm): %.1f </string>
-    <string name="codice">Codice: %d </string>
     <string name="no_info_meteo">Impossibile recuperare info.</string>
     <!-- /PrenotazioneAnnuncio Activity-->
 </resources>
