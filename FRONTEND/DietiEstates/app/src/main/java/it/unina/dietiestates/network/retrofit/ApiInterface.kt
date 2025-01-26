@@ -31,4 +31,7 @@ interface ApiInterface {
 
     @POST("prenotazione/insert")
     fun insertPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
+
+    @POST("annuncio") //TODO: sostituisci con endpoint da server
+    fun insertAnnuncio(@Body annuncio: Annuncio): Call<ApiResponse>
 }

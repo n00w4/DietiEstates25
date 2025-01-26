@@ -25,8 +25,9 @@
     <string name="cerca_tab_text">Cerca</string>
     <string name="profilo_tab_text">Profilo</string>
     <string name="crea_tab_text">Crea</string>
-    <string name="prenotazioni_tab_text">Prenotazioni</string>
+    <string name="prenotazioni_tab_text">Visite</string>
     <string name="password_tab_text">Password</string>
+    <string name="notifiche_tab_text">Notifiche</string>
     <!-- /Client Home Page -->
 
     <!-- Fragment Profilo Utente -->

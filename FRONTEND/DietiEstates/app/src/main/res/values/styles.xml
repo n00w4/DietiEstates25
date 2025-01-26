@@ -37,6 +37,10 @@
         <item name="android:textAlignment">viewStart</item>
     </style>
 
+    <style name="CustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">6sp</item>
+    </style>
+
     <!-- DialogTheme Styles -->
     <style name="DialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
         <item name="colorAccent">@color/button_color_light</item>

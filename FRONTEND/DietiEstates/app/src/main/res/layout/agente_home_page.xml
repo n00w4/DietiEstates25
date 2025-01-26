@@ -37,6 +37,13 @@
             android:text="@string/prenotazioni_tab_text" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/notifiche_tabitem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/notifiche"
+            android:text="@string/notifiche_tab_text" />
+
+        <com.google.android.material.tabs.TabItem
             android:id="@+id/profilo_tabitem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
