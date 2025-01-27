@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.crea_annuncio.CreaAnnuncio2Fragment"
+    tools:context=".view.crea_annuncio.CreaAnnuncioResultFragment"
     android:background="@color/background_color_light">
 
     <ScrollView
@@ -36,44 +36,6 @@
                 android:focusable="true"
                 android:text="@string/annulla_text" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:contentDescription="@string/titolo_annuncio"
-                app:srcCompat="@drawable/two" />
-
-            <TextView
-                android:id="@+id/inserisciTextView"
-                style="@style/ProfiloTitleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/nuova_immagine_title" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="15dp"
-                android:contentDescription="@string/no_image"
-                app:srcCompat="@drawable/no_image" />
-
-            <TextView
-                android:id="@+id/indirizzoTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:text="@string/immagine_dal_dispositivo" />
-
-            <Button
-                android:id="@+id/aggiungiButton"
-                style="@style/LoginButton"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:text="@string/aggiungi_immagine" />
 
             <Button
                 android:id="@+id/avantiButton"

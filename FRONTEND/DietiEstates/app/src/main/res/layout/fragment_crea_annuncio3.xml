@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.crea_annuncio.CreaAnnuncio3Fragment"
+    android:background="@color/background_color_light">
+
+    <ScrollView
+        android:layout_width="357dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="357dp"
+            android:layout_height="729dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/annullaTextView"
+                style="@style/AnnullaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/annulla_text" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:contentDescription="@string/titolo_annuncio"
+                app:srcCompat="@drawable/three" />
+
+            <TextView
+                android:id="@+id/inserisciTextView"
+                style="@style/ProfiloTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/aggiungi_dettagli" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/property_type_label" />
+            <Spinner
+                android:id="@+id/spinner_tipo_annuncio"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="10dp"
+                android:entries="@array/tipo_annuncio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/floor_label" />
+            <Spinner
+                android:id="@+id/spinner_piano"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/piano"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/numero_stanze"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/text_dim_min"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:hint="3"
+                android:layout_marginBottom="15dp"
+                android:inputType="number"
+                android:autofillHints="0"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/energy_class_label" />
+            <Spinner
+                android:id="@+id/spinner_classe_ene"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/classe_energetica"
+                android:layout_marginBottom="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/services_label" />
+            <CheckBox
+                android:id="@+id/checkBox_portineria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/concierge_checkbox" />
+            <CheckBox
+                android:id="@+id/checkBox_terrazzo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/terrace_checkbox" />
+            <CheckBox
+                android:id="@+id/checkBox_ascensore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/elevator_checkbox" />
+            <CheckBox
+                android:id="@+id/checkBox_climatizzazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/climatization_checkbox" />
+            <CheckBox
+                android:id="@+id/checkBox_auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/garage_checkbox" />
+            <CheckBox
+                android:id="@+id/checkBox_giardino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/garden_checkbox" />
+
+            <Button
+                android:id="@+id/avantiButton"
+                style="@style/BlueButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:text="@string/avanti_button" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

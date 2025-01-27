@@ -11,12 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import it.unina.dietiestates.R
 
-class CreaAnnuncio2Fragment : Fragment(){
+class CreaAnnuncioRiepilogoFragment : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_crea_annuncio2, container, false)
+        return inflater.inflate(R.layout.fragment_crea_annuncio_riepilogo, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,13 +24,16 @@ class CreaAnnuncio2Fragment : Fragment(){
 
         val avantiBtn = view.findViewById<Button>(R.id.avantiButton)
         avantiBtn.setOnClickListener{
-            //save image...
-            findNavController().navigate(R.id.action_creaAnnuncio2Fragment_to_creaAnnuncio3Fragment)
+            findNavController().navigate(R.id.action_creaAnnuncio3Fragment_to_creaAnnuncioRiepilogoFragment)
         }
 
+        val annullaBtn = view.findViewById<TextView>(R.id.annullaButton)
+        annullaBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_creaAnnuncio3Fragment_to_creaAnnuncio2Fragment)
+        }
         val indietroBtn = view.findViewById<TextView>(R.id.annullaTextView)
         indietroBtn.setOnClickListener{
-            findNavController().navigate(R.id.action_creaAnnuncio2Fragment_to_creaAnnuncioFragment)
+            findNavController().navigate(R.id.action_creaAnnuncio3Fragment_to_creaAnnuncio2Fragment)
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -38,5 +41,4 @@ class CreaAnnuncio2Fragment : Fragment(){
             }
         })
     }
-
 }

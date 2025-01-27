@@ -105,7 +105,7 @@ class RicercaMappaFragment: Fragment() {
 
     private fun updateLocationTextView (){
         val geocoder = OsmdroidGeocoder()
-        geocoder.getAddressFromCoordinates(selectedLatitude, selectedLongitude, requireContext()){
+        geocoder.getAddressFromCoordinates(selectedLatitude, selectedLongitude){
             address -> indirizzoTextView.text = address
         }
     }

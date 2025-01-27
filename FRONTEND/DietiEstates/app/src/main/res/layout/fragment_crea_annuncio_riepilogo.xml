@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.crea_annuncio.CreaAnnuncioRiepilogoFragment"
+    android:background="@color/background_color_light">
+
+    <ScrollView
+        android:layout_width="357dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="357dp"
+            android:layout_height="729dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/annullaTextView"
+                style="@style/AnnullaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/annulla_text" />
+
+            <TextView
+                android:id="@+id/riepilogoTextView"
+                style="@style/ProfiloTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/riepilogo" />
+            <TextView
+                android:id="@+id/riepilogoInfoTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold|italic"
+                android:layout_marginBottom="15dp"
+                android:text="@string/riepilogo_crea_annuncio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/titolo_annuncio" />
+            <TextView
+                android:id="@+id/titoloTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_marginBottom="8dp"
+                android:text="@string/titolo_annuncio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/descrizione_annuncio" />
+            <TextView
+                android:id="@+id/descrizioneTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_marginBottom="8dp"
+                android:text="@string/property_type_label" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/indirizzo_annuncio" />
+            <TextView
+                android:id="@+id/indirizzoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_marginBottom="8dp"
+                android:text="@string/indirizzo_annuncio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/property_type_label" />
+            <TextView
+                android:id="@+id/tipoImmobileTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_marginBottom="8dp"
+                android:text="@string/property_type_label" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/dimensioni_annuncio" />
+            <TextView
+                android:id="@+id/dimensioniTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_marginBottom="8dp"
+                android:text="@string/dimensioni_annuncio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/prezzo_annuncio" />
+            <TextView
+                android:id="@+id/prezzoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_marginBottom="8dp"
+                android:text="@string/prezzo_annuncio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/piano" />
+            <TextView
+                android:id="@+id/pianoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_marginBottom="8dp"
+                android:text="@string/piano" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/numero_stanze" />
+            <TextView
+                android:id="@+id/numeroStanzeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_marginBottom="8dp"
+                android:text="@string/numero_stanze" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/classe_energetica" />
+            <TextView
+                android:id="@+id/classeEnergeticaTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_marginBottom="8dp"
+                android:text="@string/classe_energetica" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:textStyle="bold"
+                android:text="@string/services_label" />
+            <TextView
+                android:id="@+id/ascensoreTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/elevator_checkbox" />
+            <TextView
+                android:id="@+id/portineriaTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/concierge_checkbox" />
+            <TextView
+                android:id="@+id/climatizzazioneTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/climatization_checkbox" />
+            <TextView
+                android:id="@+id/boxAutoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/garage_checkbox" />
+            <TextView
+                android:id="@+id/terrazzoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/terrace_checkbox" />
+            <TextView
+                android:id="@+id/giardinoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfiloSubtitleTextView"
+                android:text="@string/garden_checkbox" />
+
+
+            <Button
+                android:id="@+id/avantiButton"
+                style="@style/BlueButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/avanti_button" />
+            <Button
+                android:id="@+id/annullaButton"
+                style="@style/LoginButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:text="@string/annulla_button" />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

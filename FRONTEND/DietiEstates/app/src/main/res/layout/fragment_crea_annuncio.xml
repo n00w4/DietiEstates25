@@ -26,7 +26,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="30dp"
@@ -68,11 +67,14 @@
                 android:id="@+id/descrizioneEditText"
                 style="@style/LoginEditText"
                 android:hint="'Appartamento accogliente...'"
+                android:minLines="2"
+                android:maxLines="5"
+                android:maxLength="200"
                 android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:textAlignment="viewStart"
-                android:inputType="text" />
+                android:inputType="text|textMultiLine" />
 
             <TextView
                 android:id="@+id/indirizzoTextView"
@@ -92,15 +94,14 @@
                 android:background="@drawable/rounded_edit_text"
                 android:gravity="center_vertical">
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/indirizzoEditText"
-                    android:hint="'Via 123, ...'"
                     android:layout_width="280dp"
                     android:layout_height="48dp"
+                    android:hint="'Via 123, ...'"
                     android:textColor="#000000"
                     android:padding="12dp"
-                    android:focusableInTouchMode="true"
-                    android:focusable="true"
+                    android:completionThreshold="1"
                     android:inputType="text" />
 
                 <Button
@@ -112,6 +113,8 @@
                     android:layout_gravity="center"
                     android:textSize="12sp" />
             </LinearLayout>
+
+
             <TextView
                 android:id="@+id/indirizzoErrori"
                 style="@style/ProfiloSubtitleTextView"
@@ -163,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="15dp"
-                android:text="Avanti" />
+                android:text="@string/avanti_button" />
 
 
         </LinearLayout>

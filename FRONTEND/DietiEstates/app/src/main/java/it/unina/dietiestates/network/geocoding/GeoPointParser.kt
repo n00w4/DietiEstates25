@@ -9,10 +9,10 @@ import org.osmdroid.util.GeoPoint
 
 class GeoPointParser {
 
-    fun parseWKBToGeoPoint(wkbString: String): GeoPoint? {
+    fun parseWKBToGeoPoint(wkbString: String?): GeoPoint? {
         try {
             // Convert hex string to byte array
-            val bytes = hexStringToByteArray(wkbString)
+            val bytes = wkbString?.let { hexStringToByteArray(it) }
 
             // Create a WKBReader instance
             val wkbReader = WKBReader()
@@ -68,17 +68,6 @@ class GeoPointParser {
     // Utility function to convert a byte array to a hex string
     private fun byteArrayToHexString(bytes: ByteArray): String {
         return bytes.joinToString("") { String.format("%02X", it) }
-    }
-
-    private fun parseWNTToGeoPoint(positionString: String): GeoPoint? {
-        val regex = Regex("""POINT\(([-\d.]+) ([-\d.]+)\)""")
-        val matchResult = regex.find(positionString)
-        return if (matchResult != null) {
-            val (longitude, latitude) = matchResult.destructured
-            GeoPoint(latitude.toDouble(), longitude.toDouble())
-        } else {
-            null // Return null if the format is invalid
-        }
     }
 
 }

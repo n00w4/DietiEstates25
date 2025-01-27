@@ -121,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Dimensioni: " />
+                    android:text="@string/dimensioni_annuncio" />
 
                 <TextView
                     android:id="@+id/dimensioniTextView"
@@ -135,7 +135,7 @@
                     style="@style/ProfiloSubtitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" m2" />
+                    android:text="@string/metri_quadrati" />
             </LinearLayout>
 
             <LinearLayout
@@ -150,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Prezzo: " />
+                    android:text="@string/prezzo_annuncio" />
 
                 <TextView
                     android:id="@+id/prezzoTextView"
@@ -179,7 +179,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Piano: " />
+                    android:text="@string/piano" />
 
                 <TextView
                     android:id="@+id/pianoTextView"
@@ -201,7 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Numero di stanze: " />
+                    android:text="@string/numero_stanze" />
 
                 <TextView
                     android:id="@+id/stanzeTextView"
@@ -223,7 +223,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Classe energetica: " />
+                    android:text="@string/classe_energetica" />
 
                 <TextView
                     android:id="@+id/classeTextView"

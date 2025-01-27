@@ -52,12 +52,12 @@
     <string name="apply_filters_title">Applica filtri:</string>
 
     <!-- Etichette -->
-    <string name="property_type_label">Tipo di Immobile</string>
-    <string name="min_price_label">Prezzo Minimo</string>
-    <string name="max_price_label">Prezzo Massimo</string>
-    <string name="floor_label">Piano</string>
-    <string name="min_rooms_label">Numero di stanze minimo</string>
-    <string name="energy_class_label">Classe Energetica</string>
+    <string name="property_type_label">Tipo di Immobile:</string>
+    <string name="min_price_label">Prezzo Minimo:</string>
+    <string name="max_price_label">Prezzo Massimo:</string>
+    <string name="floor_label">Piano:</string>
+    <string name="min_rooms_label">Numero di stanze minimo:</string>
+    <string name="energy_class_label">Classe Energetica:</string>
     <string name="services_label">Servizi:</string>
 
     <!-- Pulsanti -->
@@ -153,9 +153,15 @@
     <string name="no_image">no_image.png</string>
     <string name="titolo_annuncio">Titolo:</string>
     <string name="tipo_annuncio">In %1$s</string>
+    <string name="dimensioni_annuncio">Dimensioni: \ </string>
+    <string name="prezzo_annuncio">Prezzo: \ </string>
     <string name="indirizzo_annuncio">Indirizzo:</string>
+    <string name="metri_quadrati">\ m²</string>
     <string name="descrizione_annuncio">Descrizione:</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="numero_stanze">Numero di stanze: \ </string>
+    <string name="piano">Piano: \ </string>
+    <string name="classe_energetica">Classe energetica: \ </string>
     <string name="more_info">Per maggiori informazioni contattare: %1$s .</string>
     <string name="prenota_btn">Prenota una visita</string>
     <!-- /Annuncio Activity-->
@@ -196,7 +202,15 @@
 
     <!-- CreaAnnuncio Fragment-->
     <string name="nuovo_annuncio_title">Inserisci un annuncio</string>
+    <string name="nuova_immagine_title">Inserisci un\'immagine</string>
     <string name="indirizzo_mappa">Indirizzo (manualmente o tramite mappa):</string>
     <string name="indirizzo_non_valido">Indirizzo non valido. Riprovare.</string>
+    <string name="avanti_button">Avanti</string>
+    <string name="immagine_dal_dispositivo">Carica un\'immagine dal dispositivo</string>
+    <string name="aggiungi_dettagli">Aggiungi dettagli</string>
+    <string name="aggiungi_immagine">+</string>
+    <string name="riepilogo">Riepilogo</string>
+    <string name="riepilogo_crea_annuncio">Stai inserendo l\'annuncio:</string>
+    <string name="annulla_button">Annulla</string>
     <!-- /CreaAnnuncio Fragment-->
 </resources>
