@@ -18,12 +18,153 @@
         <LinearLayout
             android:layout_width="357dp"
             android:layout_height="729dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="30dp"
+                android:contentDescription="@string/titolo_annuncio"
+                app:srcCompat="@drawable/one" />
+
+            <TextView
+                android:id="@+id/inserisciTextView"
+                style="@style/ProfiloTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/nuovo_annuncio_title" />
+
+            <TextView
+                android:id="@+id/titoloTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="@string/titolo_annuncio" />
+            <EditText
+                android:id="@+id/titoloEditText"
+                style="@style/LoginEditText"
+                android:hint="'Casa Blu...'"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/descrizioneTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="@string/descrizione_annuncio" />
+            <EditText
+                android:id="@+id/descrizioneEditText"
+                style="@style/LoginEditText"
+                android:hint="'Appartamento accogliente...'"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:textAlignment="viewStart"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/indirizzoTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="@string/indirizzo_mappa" />
+
+            <LinearLayout
+                android:id="@+id/indirizzoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:background="@drawable/rounded_edit_text"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/indirizzoEditText"
+                    android:hint="'Via 123, ...'"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:textColor="#000000"
+                    android:padding="12dp"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"
+                    android:inputType="text" />
+
+                <Button
+                    android:id="@+id/dataButton"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    app:icon="@drawable/map_pin"
+                    android:layout_width="42dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/indirizzoErrori"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:textColor="#cc0000"
+                android:text="@string/stringa_vuota" />
+
+
+            <TextView
+                android:id="@+id/prezzoTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="Prezzo (in €):" />
+            <EditText
+                android:id="@+id/prezzoEditText"
+                style="@style/LoginEditText"
+                android:hint="0.00 €"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textAlignment="viewStart"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/dimensioniTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="Dimensioni (in m²):" />
+            <EditText
+                android:id="@+id/dimensioniEditText"
+                style="@style/LoginEditText"
+                android:hint="0"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textAlignment="viewStart"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/avantiButton"
+                style="@style/BlueButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:text="Avanti" />
+
 
         </LinearLayout>
 

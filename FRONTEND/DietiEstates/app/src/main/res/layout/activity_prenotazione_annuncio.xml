@@ -79,15 +79,7 @@
                     android:layout_marginStart="10dp"
                     android:text="@string/stringa_vuota"/>
 
-                <Button
-                    android:id="@+id/dataButton"
-                    style="@style/LoginButton"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/data"/>
+
 
             </LinearLayout>
 
@@ -152,7 +144,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:text="@string/prenota"/>
+                android:text="@string/prenota" />
 
             <LinearLayout
                 android:id="@+id/meteoLayout"

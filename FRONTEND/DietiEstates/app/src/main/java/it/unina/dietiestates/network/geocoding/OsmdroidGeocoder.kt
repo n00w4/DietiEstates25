@@ -38,7 +38,7 @@ class OsmdroidGeocoder {
 
 
     fun getCoordinatesFromAddress(address: String,
-                                  context: Context, callback: (Double, Double) -> Unit) {
+                                  context: Context, callback: (Double?, Double?) -> Unit) {
         val url = "https://nominatim.openstreetmap.org/search?q=${address.replace(" ", "+")}&format=json"
 
         Thread {
@@ -58,11 +58,12 @@ class OsmdroidGeocoder {
                     val lon = obj.getDouble("lon")
                     callback(lat, lon) // Returns latitude and longitude
                 } else {
-                    Toast.makeText(context, "No results found", Toast.LENGTH_SHORT).show()
+                    callback(null, null)
                 }
 
             } catch (e: Exception) {
                 e.printStackTrace()
+                callback(null, null)
             }
         }.start()
     }

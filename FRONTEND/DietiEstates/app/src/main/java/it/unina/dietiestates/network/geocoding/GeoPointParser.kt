@@ -1,7 +1,10 @@
 package it.unina.dietiestates.network.geocoding
 
+import org.locationtech.jts.geom.Coordinate
+import org.locationtech.jts.geom.GeometryFactory
 import org.locationtech.jts.io.WKBReader
 import org.locationtech.jts.geom.Point
+import org.locationtech.jts.io.WKBWriter
 import org.osmdroid.util.GeoPoint
 
 class GeoPointParser {
@@ -38,6 +41,33 @@ class GeoPointParser {
                     + Character.digit(s[i + 1], 16)).toByte()
         }
         return data
+    }
+
+    fun parseCoordinatesToWKB(latitude: Double, longitude: Double): String {
+        return try {
+            // Create a GeometryFactory instance
+            val geometryFactory = GeometryFactory()
+
+            // Create a Point object with the given latitude and longitude
+            val point = geometryFactory.createPoint(Coordinate(longitude, latitude))
+
+            // Create a WKBWriter instance
+            val wkbWriter = WKBWriter()
+
+            // Write the Point geometry to WKB
+            val wkbBytes = wkbWriter.write(point)
+
+            // Convert the byte array to a hex string
+            byteArrayToHexString(wkbBytes)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ""
+        }
+    }
+
+    // Utility function to convert a byte array to a hex string
+    private fun byteArrayToHexString(bytes: ByteArray): String {
+        return bytes.joinToString("") { String.format("%02X", it) }
     }
 
     private fun parseWNTToGeoPoint(positionString: String): GeoPoint? {

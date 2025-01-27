@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     style="@style/ProfiloSubtitleTextView"
                     android:textStyle="bold"
-                    android:text=" m2" />
+                    android:text=" m²" />
 
             </LinearLayout>
 

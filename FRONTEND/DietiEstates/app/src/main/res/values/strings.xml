@@ -151,7 +151,7 @@
 
     <!-- Annuncio Activity-->
     <string name="no_image">no_image.png</string>
-    <string name="titolo_annuncio">Titolo Annuncio</string>
+    <string name="titolo_annuncio">Titolo:</string>
     <string name="tipo_annuncio">In %1$s</string>
     <string name="indirizzo_annuncio">Indirizzo:</string>
     <string name="descrizione_annuncio">Descrizione:</string>
@@ -193,4 +193,10 @@
     <string name="pioggia">Pioggia (mm): %.1f </string>
     <string name="no_info_meteo">Impossibile recuperare info.</string>
     <!-- /PrenotazioneAnnuncio Activity-->
+
+    <!-- CreaAnnuncio Fragment-->
+    <string name="nuovo_annuncio_title">Inserisci un annuncio</string>
+    <string name="indirizzo_mappa">Indirizzo (manualmente o tramite mappa):</string>
+    <string name="indirizzo_non_valido">Indirizzo non valido. Riprovare.</string>
+    <!-- /CreaAnnuncio Fragment-->
 </resources>

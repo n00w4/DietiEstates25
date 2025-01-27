@@ -7,6 +7,15 @@
     <fragment
         android:id="@+id/creaAnnuncioFragment"
         android:name="it.unina.dietiestates.view.crea_annuncio.CreaAnnuncioFragment"
-        android:label="creaAnnuncio" />
+        android:label="creaAnnuncio" >
+        <action
+            android:id="@+id/action_creaAnnuncioFragment_to_creaAnnuncio2Fragment"
+            app:destination="@id/creaAnnuncio2Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/creaAnnuncio2Fragment"
+        android:name="it.unina.dietiestates.view.crea_annuncio.CreaAnnuncio2Fragment"
+        android:label="creaAnnuncio2" />
 
 </navigation>
