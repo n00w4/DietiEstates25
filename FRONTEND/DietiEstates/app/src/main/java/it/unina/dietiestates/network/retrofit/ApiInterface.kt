@@ -35,6 +35,6 @@ interface ApiInterface {
     @POST("gestore/updateAdminPassword")
     fun updateAdminPassword(@Body form: ChangeAdminPwdForm): Call<ApiResponse>
 
-    @POST("annuncio") //TODO: sostituisci con endpoint da server
+    @POST("annunci/insert")
     fun insertAnnuncio(@Body annuncio: Annuncio): Call<ApiResponse>
 }
