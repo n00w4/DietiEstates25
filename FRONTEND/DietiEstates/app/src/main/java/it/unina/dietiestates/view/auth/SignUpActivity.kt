@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import it.unina.dietiestates.R
 import it.unina.dietiestates.controller.auth.SignUpController
+import it.unina.dietiestates.utils.ValidationUtils
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,7 @@ class SignUpActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 val psw = s.toString()
-                val messaggiDiErrore = verificaPassword(psw)
+                val messaggiDiErrore = ValidationUtils.verificaPassword(psw)
 
                 if (messaggiDiErrore.isEmpty()) {
                     erroriPwd.visibility = TextView.GONE
@@ -58,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 val mail = s.toString()
-                val messaggiDiErrore = verificaEmail(mail)
+                val messaggiDiErrore = ValidationUtils.verificaEmail(mail)
 
                 if (messaggiDiErrore.isEmpty()) {
                     erroriEmail.visibility = TextView.GONE
@@ -80,42 +81,5 @@ class SignUpActivity : AppCompatActivity() {
         loginText.setOnClickListener {
             signUpController.onLoginClicked()
         }
-    }
-
-    private fun verificaPassword(password: String): List<String> {
-        val errori = mutableListOf<String>()
-
-        if (password.length < 8) {
-            errori.add("La password deve essere di almeno 8 caratteri.") }
-        if (!password.any { it.isUpperCase() }) {
-            errori.add("La password deve contenere almeno un carattere maiuscolo.") }
-        if (!password.any { it.isLowerCase() }) {
-            errori.add("La password deve contenere almeno un carattere minuscolo.") }
-        if (!password.any { it.isDigit() }) {
-            errori.add("La password deve contenere almeno un numero.") }
-        if (!password.any { "!@#$%^&*()_+-=[]{}|;:',.<>?/".contains(it) }) {
-            errori.add("La password deve contenere almeno un carattere speciale.") }
-
-        return errori
-    }
-
-    private fun verificaEmail(email: String): List<String> {
-        val errori = mutableListOf<String>()
-        val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
-
-        if(email.isEmpty()){
-            errori.add("L'email non può essere vuota.")
-        }
-        if (!email.contains('@')) {
-            errori.add("L'email deve contenere il simbolo '@'.")
-        }
-        if (!email.contains('.')) {
-            errori.add("L'email deve contenere un punto ('.') nel dominio.")
-        }
-        if (!emailRegex.matches(email)) {
-            errori.add("L'email non è valida.")
-        }
-
-        return errori
     }
 }
