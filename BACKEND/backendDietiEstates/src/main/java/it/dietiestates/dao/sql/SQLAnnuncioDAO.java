@@ -4,6 +4,8 @@ import it.dietiestates.dao.AnnuncioDAO;
 import it.dietiestates.data.Annuncio;
 import it.dietiestates.data.dto.RicercaAnnuncio;
 import it.dietiestates.exception.DataAccessException;
+import it.dietiestates.exception.ForeignKeyConstraintViolationException;
+import it.dietiestates.exception.UniqueConstraintViolationException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,6 +68,12 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 			return statement.executeUpdate() > 0;
 	    } catch (SQLException e) {
+			if ("23503".equals(e.getSQLState())) {
+				throw new ForeignKeyConstraintViolationException("Nessun agente trovato per questo annuncio");
+			}
+			if ("23505".equals(e.getSQLState())) {
+				throw new UniqueConstraintViolationException("Annuncio già inserito");
+			}
 			throw new DataAccessException(ERROR_MESSAGE_INSERT, e);
 	    }
 	}

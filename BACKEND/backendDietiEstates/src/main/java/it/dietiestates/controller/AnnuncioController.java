@@ -3,9 +3,13 @@ package it.dietiestates.controller;
 import it.dietiestates.dao.AnnuncioDAO;
 import it.dietiestates.dao.sql.SQLAnnuncioDAO;
 import it.dietiestates.data.Annuncio;
+import it.dietiestates.data.dto.ErrorApiResponse;
 import it.dietiestates.data.dto.RicercaAnnuncio;
+import it.dietiestates.data.dto.SuccessApiResponse;
 import it.dietiestates.database.PgSQL;
 import it.dietiestates.exception.DataAccessException;
+import it.dietiestates.exception.ForeignKeyConstraintViolationException;
+import it.dietiestates.exception.UniqueConstraintViolationException;
 import it.dietiestates.filter.RequireJWTAuthentication;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -82,5 +86,26 @@ public class AnnuncioController {
         }
         logger.info("Richiesta annunci per posizione effettuata con successo");
         return Response.ok(listaAnnunci).build();
+    }
+
+    @Path("insert")
+    @RequireJWTAuthentication
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response insertAnnuncio(Annuncio annuncio) {
+        try {
+            if (annuncioDAO.insert(annuncio)) {
+                logger.info("Richiesta di aggiunta annuncio con successo");
+                SuccessApiResponse successResponse = new SuccessApiResponse("Annuncio aggiunto con successo");
+                return Response.status(Response.Status.CREATED).entity(successResponse).build();
+            }
+        } catch (ForeignKeyConstraintViolationException | UniqueConstraintViolationException e) {
+            return Response.status(Response.Status.CONFLICT).entity(e.getApiResponse()).build();
+        } catch (DataAccessException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getApiResponse()).build();
+        }
+        ErrorApiResponse errorApiResponse = new ErrorApiResponse("Errore durante l'inserimento del annuncio: controlla i dati inseriti e riprova");
+        return Response.status(Response.Status.BAD_REQUEST).entity(errorApiResponse).build();
     }
 }
