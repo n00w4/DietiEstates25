@@ -105,7 +105,7 @@
                     android:inputType="text" />
 
                 <Button
-                    android:id="@+id/dataButton"
+                    android:id="@+id/mappaButton"
                     style="@style/Widget.MaterialComponents.Button.Icon"
                     app:icon="@drawable/map_pin"
                     android:layout_width="42dp"

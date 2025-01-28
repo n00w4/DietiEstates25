@@ -19,13 +19,13 @@ import androidx.navigation.fragment.findNavController
 import it.unina.dietiestates.R
 import it.unina.dietiestates.controller.crea_annuncio.CreaAnnuncioController
 import it.unina.dietiestates.data.viewmodel.AnnuncioViewModel
+import it.unina.dietiestates.data.viewmodel.CoordinateViewModel
 import it.unina.dietiestates.network.geocoding.OsmdroidGeocoder
 
 class CreaAnnuncioFragment : Fragment() {
 
     private val annuncioVM: AnnuncioViewModel by activityViewModels()
-    private var latitudine: Double? = null
-    private var longitudine: Double? = null
+    private val coordinateVM: CoordinateViewModel by activityViewModels()
     private val geocoder = OsmdroidGeocoder()
 
     override fun onCreateView(
@@ -71,17 +71,26 @@ class CreaAnnuncioFragment : Fragment() {
                 geocoder.getCoordinatesFromAddress(selectedAddress) { lat, lon ->
                     activity?.runOnUiThread {
                         if (lat != null && lon != null) {
-                            latitudine = lat
-                            longitudine = lon
+                            coordinateVM.latitudine = lat
+                            coordinateVM.longitudine = lon
                         } else {
-                            latitudine = null
-                            longitudine = null
+                            coordinateVM.latitudine = null
+                            coordinateVM.longitudine = null
                             erroriTextView.text = getString(R.string.indirizzo_non_valido)
                             erroriTextView.isVisible = true
                         }
                     }
                 }
             }
+        }
+
+        annuncioVM.indirizzo.let { indirizzo ->
+            indirizzoTextView.setText(indirizzo)
+        }
+
+        val mappaBtn = view.findViewById<Button>(R.id.mappaButton)
+        mappaBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_creaAnnuncioFragment_to_creaAnnuncioMappaFragment)
         }
 
         val avantiBtn = view.findViewById<Button>(R.id.avantiButton)
@@ -92,11 +101,11 @@ class CreaAnnuncioFragment : Fragment() {
             val prezzo = view.findViewById<EditText>(R.id.prezzoEditText).text.trim().toString().ifBlank{ "0.0" }.toFloat()
             val dimensioni = view.findViewById<EditText>(R.id.dimensioniEditText).text.trim().toString().ifBlank{ "0" }.toInt()
 
-            if(controller.isAnyFieldEmpty(titolo, descrizione, indirizzo, latitudine, longitudine, prezzo, dimensioni)){
+            if(controller.isAnyFieldEmpty(titolo, descrizione, indirizzo, coordinateVM.latitudine, coordinateVM.longitudine, prezzo, dimensioni)){
                 Toast.makeText(requireContext(), "Compilare tutti i campi prima di procedere.", Toast.LENGTH_SHORT).show()
             }else{
                 controller.saveDataInVM(titolo, descrizione, prezzo, dimensioni, annuncioVM)
-                controller.savePositionInVM(indirizzo, latitudine, longitudine, annuncioVM)
+                controller.savePositionInVM(indirizzo, coordinateVM.latitudine, coordinateVM.longitudine, annuncioVM)
                 findNavController().navigate(R.id.action_creaAnnuncioFragment_to_creaAnnuncio2Fragment)
             }
         }

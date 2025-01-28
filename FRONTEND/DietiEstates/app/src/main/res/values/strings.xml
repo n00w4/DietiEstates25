@@ -212,5 +212,6 @@
     <string name="riepilogo">Riepilogo</string>
     <string name="riepilogo_crea_annuncio">Stai inserendo l\'annuncio:</string>
     <string name="annulla_button">Annulla</string>
+    <string name="seleziona_button">Seleziona</string>
     <!-- /CreaAnnuncio Fragment-->
 </resources>

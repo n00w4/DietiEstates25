@@ -11,6 +11,18 @@
         <action
             android:id="@+id/action_creaAnnuncioFragment_to_creaAnnuncio2Fragment"
             app:destination="@id/creaAnnuncio2Fragment" />
+        <action
+            android:id="@+id/action_creaAnnuncioFragment_to_creaAnnuncioMappaFragment"
+            app:destination="@id/creaAnnuncioMappaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/creaAnnuncioMappaFragment"
+        android:name="it.unina.dietiestates.view.crea_annuncio.CreaAnnuncioMappaFragment"
+        android:label="creaAnnuncioMappa" >
+        <action
+            android:id="@+id/action_creaAnnuncioMappaFragment_to_creaAnnuncioFragment"
+            app:destination="@id/creaAnnuncioFragment" />
     </fragment>
 
     <fragment
