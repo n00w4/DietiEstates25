@@ -168,7 +168,9 @@
 
     <!-- Fragment Gestore Crea Agenti -->
     <string name="text_view_title_gestore_agenti">Aggiungi un agente</string>
-    <string name="label_password_gestore_agenti">La password sarà autogenerata dai nostri server.</string>
+    <string name="label_password_gestore_agenti">
+        La password sarà autogenerata dai nostri server e potrà essere cambiata anche in seguito.
+    </string>
     <string name="add_agente_gestore">Aggiungi</string>
     <!-- /Fragment Gestore Crea Agenti -->
 
