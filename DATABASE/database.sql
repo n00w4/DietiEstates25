@@ -127,7 +127,7 @@ CREATE TABLE est.Annuncio (
     idAnnuncio INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     titolo VARCHAR(255) NOT NULL,
     indirizzo VARCHAR(255) NOT NULL,
-    immagine VARCHAR(255) NOT NULL,
+    immagine TEXT NOT NULL,
     descrizione VARCHAR(255) NOT NULL,
     dimensioni INTEGER NOT NULL,
     prezzo NUMERIC(12,2) NOT NULL,
@@ -147,7 +147,6 @@ CREATE TABLE est.Annuncio (
     CONSTRAINT checkValidPrezzo CHECK (prezzo > 0),
     CONSTRAINT checkValidDimensioni CHECK (dimensioni > 0),
     CONSTRAINT checkValidNumeroStanze CHECK (numeroStanze > 0),
-    CONSTRAINT checkValidImmagine CHECK (immagine ~ '^[a-zA-Z0-9._%-]+\.(jpg|jpeg|png|gif)$'),
     CONSTRAINT enforceSridPosizione CHECK (ST_SRID(posizione) = 4326)
 );
 
