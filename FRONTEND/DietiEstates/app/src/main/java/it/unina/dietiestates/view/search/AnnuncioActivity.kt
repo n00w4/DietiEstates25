@@ -11,6 +11,7 @@ import it.unina.dietiestates.R
 import it.unina.dietiestates.data.dto.SharedPrefManager
 import it.unina.dietiestates.data.model.Annuncio
 import it.unina.dietiestates.utils.ImageUtils.decodeBase64ToBitmap
+import it.unina.dietiestates.utils.getSerializable
 
 class AnnuncioActivity : AppCompatActivity() {
 
@@ -18,7 +19,7 @@ class AnnuncioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_annuncio)
 
-        val annuncio = intent.getSerializableExtra("ANNUNCIO") as Annuncio?
+        val annuncio: Annuncio? = getSerializable(intent, "ANNUNCIO")
 
         val immagine = findViewById<ImageView>(R.id.imageView)
         // Recupera l'immagine in formato Base64 dall'oggetto `annuncio`
