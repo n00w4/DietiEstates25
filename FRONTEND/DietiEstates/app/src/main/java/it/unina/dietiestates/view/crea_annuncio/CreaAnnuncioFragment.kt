@@ -1,17 +1,15 @@
 package it.unina.dietiestates.view.crea_annuncio
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -39,29 +37,62 @@ class CreaAnnuncioFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val controller = CreaAnnuncioController()
 
+        setUpEditTexts(view, controller)
+        setUpAddressField(view)
+
+        setUpMappaButton(view, controller)
+        setUpAvantiButton(view, controller)
+    }
+
+    private fun setUpEditTexts(view: View, controller: CreaAnnuncioController) {
+        val titoloText = view.findViewById<EditText>(R.id.titoloEditText)
+        val descrizioneText = view.findViewById<EditText>(R.id.descrizioneEditText)
+        val prezzoText = view.findViewById<EditText>(R.id.prezzoEditText)
+        val dimensioniText = view.findViewById<EditText>(R.id.dimensioniEditText)
+        controller.setEditTextData(titoloText, descrizioneText, prezzoText, dimensioniText, annuncioVM)
+    }
+
+    private fun setUpAddressField(view: View) {
         val indirizzoTextView = view.findViewById<AutoCompleteTextView>(R.id.indirizzoEditText)
-        indirizzoTextView.threshold = 0
         val erroriTextView = view.findViewById<TextView>(R.id.indirizzoErrori)
-        erroriTextView.isVisible = false
+
+        indirizzoTextView.threshold = 0
+        annuncioVM.indirizzo?.let { indirizzo -> indirizzoTextView.setText(indirizzo) }
 
         val adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line)
         indirizzoTextView.setAdapter(adapter)
 
+        val handler = Handler(Looper.getMainLooper())
+        var debounceRunnable: Runnable? = null
+        val debounceDelay = 1000L
+
         indirizzoTextView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {/*Vuoto*/}
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val address = s.toString()
-                if (address.isNotBlank()) {
-                    geocoder.getPossibleAddresses(address) { addresses ->
-                        activity?.runOnUiThread {
-                            adapter.clear()
-                            adapter.addAll(addresses)
-                            adapter.notifyDataSetChanged() } }
-                    erroriTextView.isVisible = false
-                }else{
-                    erroriTextView.isVisible = true
+                debounceRunnable?.let { handler.removeCallbacks(it) }
+                debounceRunnable = Runnable {
+                    val address = s.toString()
+                    if (address.isNotBlank()) {
+                        geocoder.getPossibleAddresses(address) { addresses ->
+                            activity?.runOnUiThread {
+                                Log.d("ADDRESSES", "$addresses")
+                                Log.d("ADDRESSES_SIZE", "${addresses.size}")
+                                adapter.clear()
+                                adapter.addAll(addresses)
+                                adapter.notifyDataSetChanged()
+                                indirizzoTextView.showDropDown()
+                                erroriTextView.isVisible = (addresses.isEmpty())
+                            }
+                        }
+                        erroriTextView.isVisible = false
+                    } else {
+                        erroriTextView.isVisible = true
+                    }
                 }
+                handler.postDelayed(debounceRunnable!!, debounceDelay)
             }
+
             override fun afterTextChanged(s: Editable?) {/*Vuoto*/}
         })
 
@@ -83,33 +114,36 @@ class CreaAnnuncioFragment : Fragment() {
                 }
             }
         }
+    }
 
-        annuncioVM.indirizzo.let { indirizzo ->
-            indirizzoTextView.setText(indirizzo)
-        }
-
+    private fun setUpMappaButton(view: View, controller: CreaAnnuncioController) {
         val mappaBtn = view.findViewById<Button>(R.id.mappaButton)
-        mappaBtn.setOnClickListener{
-            findNavController().navigate(R.id.action_creaAnnuncioFragment_to_creaAnnuncioMappaFragment)
-        }
-
-        val avantiBtn = view.findViewById<Button>(R.id.avantiButton)
-        avantiBtn.setOnClickListener{
+        mappaBtn.setOnClickListener {
             val titolo = view.findViewById<EditText>(R.id.titoloEditText).text.trim().toString()
             val descrizione = view.findViewById<EditText>(R.id.descrizioneEditText).text.trim().toString()
-            val indirizzo = indirizzoTextView.text.trim().toString()
-            val prezzo = view.findViewById<EditText>(R.id.prezzoEditText).text.trim().toString().ifBlank{ "0.0" }.toFloat()
-            val dimensioni = view.findViewById<EditText>(R.id.dimensioniEditText).text.trim().toString().ifBlank{ "0" }.toInt()
+            val prezzo = view.findViewById<EditText>(R.id.prezzoEditText).text.trim().toString().ifBlank { "0.0" }.toFloat()
+            val dimensioni = view.findViewById<EditText>(R.id.dimensioniEditText).text.trim().toString().ifBlank { "0" }.toInt()
+            controller.saveDataInVM(titolo, descrizione, prezzo, dimensioni, annuncioVM)
+            findNavController().navigate(R.id.action_creaAnnuncioFragment_to_creaAnnuncioMappaFragment)
+        }
+    }
 
-            if(controller.isAnyFieldEmpty(titolo, descrizione, indirizzo, coordinateVM.latitudine, coordinateVM.longitudine, prezzo, dimensioni)){
+    private fun setUpAvantiButton(view: View, controller: CreaAnnuncioController) {
+        val avantiBtn = view.findViewById<Button>(R.id.avantiButton)
+        avantiBtn.setOnClickListener {
+            val titolo = view.findViewById<EditText>(R.id.titoloEditText).text.trim().toString()
+            val descrizione = view.findViewById<EditText>(R.id.descrizioneEditText).text.trim().toString()
+            val indirizzo = view.findViewById<AutoCompleteTextView>(R.id.indirizzoEditText).text.trim().toString()
+            val prezzo = view.findViewById<EditText>(R.id.prezzoEditText).text.trim().toString().ifBlank { "0.0" }.toFloat()
+            val dimensioni = view.findViewById<EditText>(R.id.dimensioniEditText).text.trim().toString().ifBlank { "0" }.toInt()
+
+            if (controller.isAnyFieldEmpty(titolo, descrizione, indirizzo, coordinateVM.latitudine, coordinateVM.longitudine, prezzo, dimensioni)) {
                 Toast.makeText(requireContext(), "Compilare tutti i campi prima di procedere.", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 controller.saveDataInVM(titolo, descrizione, prezzo, dimensioni, annuncioVM)
                 controller.savePositionInVM(indirizzo, coordinateVM.latitudine, coordinateVM.longitudine, annuncioVM)
                 findNavController().navigate(R.id.action_creaAnnuncioFragment_to_creaAnnuncio2Fragment)
             }
         }
-
     }
-
 }

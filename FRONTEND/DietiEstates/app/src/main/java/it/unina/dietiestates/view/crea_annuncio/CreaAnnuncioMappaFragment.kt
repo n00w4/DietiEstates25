@@ -101,11 +101,12 @@ class CreaAnnuncioMappaFragment : Fragment(){
         })
     }
 
-    private fun updateIndirizzoTextView (){
+    private fun updateIndirizzoTextView() {
         val geocoder = OsmdroidGeocoder()
-        coordinateVM.latitudine?.let {
-            coordinateVM.longitudine?.let { it1 ->
-                geocoder.getAddressFromCoordinates(it, it1){ address -> indirizzoTextView.text = address
+        coordinateVM.latitudine?.let { lat ->
+            coordinateVM.longitudine?.let { lon ->
+                geocoder.getAddressFromCoordinates(lat, lon) { address ->
+                    activity?.runOnUiThread { indirizzoTextView.text = address }
                 }
             }
         }

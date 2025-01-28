@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/creaAnnuncio3Fragment"
-        android:name="it.unina.dietiestates.view.crea_annuncio.CreaAnnuncio2Fragment"
+        android:name="it.unina.dietiestates.view.crea_annuncio.CreaAnnuncio3Fragment"
         android:label="creaAnnuncio3" >
         <action
             android:id="@+id/action_creaAnnuncio3Fragment_to_creaAnnuncio2Fragment"
@@ -51,7 +51,7 @@
 
     <fragment
         android:id="@+id/creaAnnuncioRiepilogoFragment"
-        android:name="it.unina.dietiestates.view.crea_annuncio.CreaAnnuncio2Fragment"
+        android:name="it.unina.dietiestates.view.crea_annuncio.CreaAnnuncioRiepilogoFragment"
         android:label="creaAnnuncioRiepilogo" >
         <action
             android:id="@+id/action_creaAnnuncioRiepilogoFragment_to_creaAnnuncioResultFragment"
@@ -63,7 +63,7 @@
 
     <fragment
         android:id="@+id/creaAnnuncioResultFragment"
-        android:name="it.unina.dietiestates.view.crea_annuncio.CreaAnnuncio2Fragment"
+        android:name="it.unina.dietiestates.view.crea_annuncio.CreaAnnuncioResultFragment"
         android:label="creaAnnuncioRiepilogo" >
         <action
             android:id="@+id/action_creaAnnuncioResultFragment_to_creaAnnuncioFragment"

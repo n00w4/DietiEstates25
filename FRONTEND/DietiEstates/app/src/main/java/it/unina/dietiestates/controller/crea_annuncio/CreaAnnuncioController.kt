@@ -1,11 +1,21 @@
 package it.unina.dietiestates.controller.crea_annuncio
 
 import android.util.Log
+import android.widget.EditText
 import it.unina.dietiestates.data.viewmodel.AnnuncioViewModel
 import it.unina.dietiestates.data.viewmodel.CoordinateViewModel
 import it.unina.dietiestates.network.geocoding.GeoPointParser
 
 class CreaAnnuncioController {
+
+    fun setEditTextData(titoloText : EditText, descrizioneText: EditText,
+                        prezzoText: EditText, dimensioniText: EditText,
+                        annuncioVM: AnnuncioViewModel){
+        if(!annuncioVM.titolo.isNullOrEmpty()) titoloText.setText(annuncioVM.titolo.toString())
+        if(!annuncioVM.descrizione.isNullOrEmpty()) descrizioneText.setText(annuncioVM.descrizione.toString())
+        if(!(annuncioVM.prezzo == null || annuncioVM.prezzo?.toDouble() == 0.0)) prezzoText.setText(annuncioVM.prezzo.toString())
+        if(!(annuncioVM.dimensioni == null || annuncioVM.dimensioni == 0)) dimensioniText.setText(annuncioVM.dimensioni.toString())
+    }
 
     fun isAnyFieldEmpty(titolo: String?, descrizione: String?,
                         indirizzo: String?, latitudine: Double?, longitudine: Double?,

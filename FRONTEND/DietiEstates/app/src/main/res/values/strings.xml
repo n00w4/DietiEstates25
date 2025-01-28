@@ -107,6 +107,7 @@
     <string name="save_position_button">Salva Posizione</string>
     <string name="search_position_button">Cerca per posizione</string>
     <string name="add_filters_button">Aggiungi filtri</string>
+    <string name="mappa_info">Seleziona un punto sulla mappa e cerca annunci nelle vicinanze</string>
     <!-- /Ricerca Mappa -->
 
     <!-- Fragment Ricerca -->

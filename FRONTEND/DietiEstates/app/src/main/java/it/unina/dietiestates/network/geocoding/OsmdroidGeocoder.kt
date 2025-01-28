@@ -17,6 +17,7 @@ class OsmdroidGeocoder {
             try {
                 val connection = URL(url).openConnection() as HttpURLConnection
                 connection.requestMethod = "GET"
+                connection.setRequestProperty("User-Agent", "DietiEstates25/1.0 (sabrinacassone@gmail.com)")
                 connection.connect()
 
                 val streamReader = BufferedReader(InputStreamReader(connection.inputStream))
@@ -74,6 +75,13 @@ class OsmdroidGeocoder {
             try {
                 val connection = URL(url).openConnection() as HttpURLConnection
                 connection.requestMethod = "GET"
+                connection.setRequestProperty("User-Agent", "DietiEstates25/1.0 (sabrinacassone@gmail.com)")
+                // Set timeouts
+                connection.connectTimeout = 10000 // 5 seconds
+                connection.readTimeout = 10000 // 5 seconds
+                // Delay requests to respect rate limits
+                Thread.sleep(1000) // 1 second delay between requests
+
                 connection.connect()
 
                 val streamReader = BufferedReader(InputStreamReader(connection.inputStream))

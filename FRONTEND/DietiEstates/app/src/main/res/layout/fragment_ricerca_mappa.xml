@@ -51,15 +51,8 @@
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Seleziona un punto sulla mappa e cerca annunci" />
-
-            <TextView
-                android:id="@+id/info2TextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text=" nelle vicinanze" />
+                android:layout_marginBottom="15dp"
+                android:text="@string/mappa_info" />
 
             <FrameLayout
                 android:id="@+id/mapContainer"
