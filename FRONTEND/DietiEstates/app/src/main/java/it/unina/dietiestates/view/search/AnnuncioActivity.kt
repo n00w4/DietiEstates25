@@ -2,16 +2,15 @@ package it.unina.dietiestates.view.search
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.bumptech.glide.Glide
 import it.unina.dietiestates.R
 import it.unina.dietiestates.data.dto.SharedPrefManager
 import it.unina.dietiestates.data.model.Annuncio
+import it.unina.dietiestates.utils.ImageUtils.decodeBase64ToBitmap
 
 class AnnuncioActivity : AppCompatActivity() {
 
@@ -20,14 +19,23 @@ class AnnuncioActivity : AppCompatActivity() {
         setContentView(R.layout.activity_annuncio)
 
         val annuncio = intent.getSerializableExtra("ANNUNCIO") as Annuncio?
-        Log.d("DEBUG_ANNUNCIO", "id annuncio: ${annuncio?.ID}")
 
         val immagine = findViewById<ImageView>(R.id.imageView)
-        //Recupera immagine (LOCALE)
-        val baseUrl = "http://192.168.1.108:8080/images/"
-        val imageUrl = baseUrl + (annuncio?.immagine ?: "")
-        Glide.with(this).load(imageUrl)
-            .placeholder(R.drawable.no_image).error(R.drawable.no_image).into(immagine)
+        // Recupera l'immagine in formato Base64 dall'oggetto `annuncio`
+        val base64Image = annuncio?.immagine
+        // Decodifica la stringa Base64 e imposta l'immagine nell'ImageView
+        if (!base64Image.isNullOrEmpty()) {
+            val bitmap = decodeBase64ToBitmap(base64Image)
+            if (bitmap != null) {
+                immagine.setImageBitmap(bitmap)
+            } else {
+                // Usa un'immagine di fallback in caso di errore di decodifica
+                immagine.setImageResource(R.drawable.no_image)
+            }
+        } else {
+            // Usa un'immagine di fallback se l'attributo `immagine` è null o vuoto
+            immagine.setImageResource(R.drawable.no_image)
+        }
 
         findViewById<TextView>(R.id.titoloTextView).text = annuncio?.titolo
         findViewById<TextView>(R.id.tipoAnnuncioTextView).text = getString(R.string.tipo_annuncio, annuncio?.tipoAnnuncio)
@@ -48,7 +56,7 @@ class AnnuncioActivity : AppCompatActivity() {
 
         val prenotaBtn = findViewById<Button>(R.id.prenotaButton)
         if (SharedPrefManager.getUserRole(this) != "Cliente" ) { prenotaBtn.isVisible = false}
-        prenotaBtn.setOnClickListener(){
+        prenotaBtn.setOnClickListener{
             val intent = Intent(this, PrenotazioneAnnuncioActivity::class.java)
             intent.putExtra("id_annuncio", annuncio?.ID)
             intent.putExtra("titolo_annuncio", annuncio?.titolo)

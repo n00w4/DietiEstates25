@@ -115,7 +115,7 @@
                 android:text="@string/label_password_gestore_agenti" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/buttonAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/add_agente_gestore" />
