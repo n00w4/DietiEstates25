@@ -49,7 +49,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 		String query = "INSERT INTO est.Annuncio (" +
 				"titolo, indirizzo, immagine, descrizione, dimensioni, prezzo, piano, numeroStanze, classeEnergetica, " +
 				"ascensore, portineria, climatizzazione, boxAuto, terrazzo, giardino, tipoAnnuncio, posizione, email" +
-				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::public.enum_annuncio, ?, ?)";
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
 	        statement.setString(1, annuncio.getTitolo());
 	        statement.setString(2, annuncio.getIndirizzo());

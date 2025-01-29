@@ -47,7 +47,7 @@ class CreaAnnuncioController(private val context: Context) {
     }
 
     private fun annuncioVMToAnnuncio(annuncioVM: AnnuncioViewModel) : Annuncio{
-        val annuncio = Annuncio(null, annuncioVM.titolo, annuncioVM.indirizzo, annuncioVM.immagine,
+        val annuncio = Annuncio(0, annuncioVM.titolo, annuncioVM.indirizzo, annuncioVM.immagine,
             annuncioVM.descrizione, annuncioVM.dimensioni, annuncioVM.prezzo, annuncioVM.piano,
             annuncioVM.numeroStanze, annuncioVM.classeEnergetica, annuncioVM.ascensore, annuncioVM.portineria,
             annuncioVM.climatizzazione, annuncioVM.boxAuto, annuncioVM.terrazzo, annuncioVM.giardino,
