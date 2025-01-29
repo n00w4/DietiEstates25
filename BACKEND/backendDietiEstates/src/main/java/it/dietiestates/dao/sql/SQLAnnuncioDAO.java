@@ -46,7 +46,10 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 
 	@Override
 	public boolean insert(Annuncio annuncio) throws DataAccessException {
-		String query = "INSERT INTO est.Annuncio VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO est.Annuncio (" +
+				"titolo, indirizzo, immagine, descrizione, dimensioni, prezzo, piano, numeroStanze, classeEnergetica, " +
+				"ascensore, portineria, climatizzazione, boxAuto, terrazzo, giardino, tipoAnnuncio, posizione, email" +
+				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
 	        statement.setString(1, annuncio.getTitolo());
 	        statement.setString(2, annuncio.getIndirizzo());
@@ -64,7 +67,8 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 	        statement.setBoolean(14, annuncio.isTerrazzo());
 	        statement.setBoolean(15, annuncio.isGiardino());
 	        statement.setString(16, annuncio.getTipoAnnuncio());
-	        statement.setString(17, annuncio.getEmailAgente());
+			statement.setString(17, annuncio.getPosizione());
+			statement.setString(18, annuncio.getEmailAgente());
 
 			return statement.executeUpdate() > 0;
 	    } catch (SQLException e) {
