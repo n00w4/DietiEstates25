@@ -1,7 +1,7 @@
 package it.dietiestates.data;
 
 public class Annuncio {
-	private int id;
+	private Integer id;
 	private String titolo;
 	private String indirizzo;
 	private String immagine;
