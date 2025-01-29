@@ -76,7 +76,7 @@
                 android:text="Posizione selezionata:" />
             <TextView
                 android:id="@+id/indirizzoTextView"
-                style="@style/AnnullaTextView"
+                style="@style/ProfiloSubtitleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" " />
