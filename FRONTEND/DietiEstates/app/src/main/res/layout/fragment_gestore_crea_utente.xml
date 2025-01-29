@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.profile.GestoreCreaAgenteFragment"
+    tools:context=".view.profile.GestoreCreaUtenteFragment"
     android:background="@color/background_color_light">
 
     <ScrollView
@@ -31,8 +31,22 @@
                 android:layout_width="match_parent"
                 android:layout_marginBottom="35dp"
                 android:layout_height="wrap_content"
-                android:text="@string/text_view_title_gestore_agenti" />
+                android:text="@string/text_view_title_gestore_utente" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/spinner_gestore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:entries="@array/tipo_utente"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,13 +126,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="20dp"
                 android:textStyle="bold"
-                android:text="@string/label_password_gestore_agenti" />
+                android:text="@string/label_password_gestore_utente" />
 
             <Button
                 android:id="@+id/buttonAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/add_agente_gestore" />
+                android:text="@string/btn_add_gestore_utente" />
 
         </LinearLayout>
     </ScrollView>

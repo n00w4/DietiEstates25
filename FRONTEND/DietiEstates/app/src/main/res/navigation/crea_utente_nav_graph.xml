@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/modificaAgentiFragment"
-        android:name="it.unina.dietiestates.view.profile.GestoreCreaAgenteFragment"
+        android:name="it.unina.dietiestates.view.profile.GestoreCreaUtenteFragment"
         android:label="modificaAgenti" />
 
 </navigation>
