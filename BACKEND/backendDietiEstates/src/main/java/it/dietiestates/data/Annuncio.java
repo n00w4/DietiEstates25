@@ -20,7 +20,11 @@ public class Annuncio {
 	private String tipoAnnuncio;
 	private String posizione;
 	private String emailAgente;
-	
+
+	public Annuncio() {
+		// Costruttore vuoto per deserializzazione dati
+	}
+
 	public Annuncio(Builder builder) {
 		this.id = builder.id;
 		this.titolo = builder.titolo;
