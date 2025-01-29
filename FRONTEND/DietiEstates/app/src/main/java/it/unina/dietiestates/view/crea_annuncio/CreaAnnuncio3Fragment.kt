@@ -5,13 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import it.unina.dietiestates.R
+import it.unina.dietiestates.data.viewmodel.AnnuncioViewModel
 
 class CreaAnnuncio3Fragment : Fragment(){
+
+    private val annuncioVM: AnnuncioViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,8 +30,33 @@ class CreaAnnuncio3Fragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val tipoAnnuncioSpinner = view.findViewById<Spinner>(R.id.spinner_tipo_annuncio)
+        tipoAnnuncioSpinner.setSelection(0)
+        val pianoSpinner = view.findViewById<Spinner>(R.id.spinner_piano)
+        pianoSpinner.setSelection(0)
+        val numeroStanzeEditText = view.findViewById<EditText>(R.id.numeroStanzeEditText)
+        val classeEnergeticaSpinner = view.findViewById<Spinner>(R.id.spinner_classe_ene)
+        classeEnergeticaSpinner.setSelection(0)
+        val ascensoreCheckBox = view.findViewById<CheckBox>(R.id.checkBox_ascensore)
+        val portineriaCheckBox = view.findViewById<CheckBox>(R.id.checkBox_portineria)
+        val climatizzazioneCheckBox = view.findViewById<CheckBox>(R.id.checkBox_climatizzazione)
+        val boxAutoCheckBox = view.findViewById<CheckBox>(R.id.checkBox_auto)
+        val terrazzoCheckBox = view.findViewById<CheckBox>(R.id.checkBox_terrazzo)
+        val giardinoCheckBox = view.findViewById<CheckBox>(R.id.checkBox_giardino)
+
         val avantiBtn = view.findViewById<Button>(R.id.avantiButton)
         avantiBtn.setOnClickListener{
+            annuncioVM.tipoAnnuncio = tipoAnnuncioSpinner.selectedItem.toString()
+            annuncioVM.piano = pianoSpinner.selectedItem.toString()
+            annuncioVM.numeroStanze = numeroStanzeEditText.text.trim().toString().ifBlank { "0" }.toInt()
+            annuncioVM.classeEnergetica = classeEnergeticaSpinner.selectedItem.toString()
+            annuncioVM.ascensore = ascensoreCheckBox.isChecked
+            annuncioVM.portineria = portineriaCheckBox.isChecked
+            annuncioVM.climatizzazione = climatizzazioneCheckBox.isChecked
+            annuncioVM.boxAuto = boxAutoCheckBox.isChecked
+            annuncioVM.terrazzo = terrazzoCheckBox.isChecked
+            annuncioVM.giardino = giardinoCheckBox.isChecked
+
             findNavController().navigate(R.id.action_creaAnnuncio3Fragment_to_creaAnnuncioRiepilogoFragment)
         }
 

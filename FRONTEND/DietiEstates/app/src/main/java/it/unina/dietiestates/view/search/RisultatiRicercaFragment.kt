@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -98,6 +99,7 @@ class RisultatiRicercaFragment : Fragment() {
             if (geopoint != null){
                 marker.position = geopoint
                 marker.title = annuncio.titolo
+                marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.map_picker)
                 Log.d("DEBUG_MAPPA", "id annuncio: ${annuncio.ID}")
                 marker.setOnMarkerClickListener { _, _ ->
                     showAnnuncioPopup(annuncio)

@@ -67,7 +67,7 @@
                 android:text="@string/immagine_dal_dispositivo" />
 
             <Button
-                android:id="@+id/aggiungiButton"
+                android:id="@+id/caricaButton"
                 style="@style/LoginButton"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"

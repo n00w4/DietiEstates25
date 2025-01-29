@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import it.unina.dietiestates.R
-import it.unina.dietiestates.controller.crea_annuncio.CreaAnnuncioController
+import it.unina.dietiestates.controller.crea_annuncio.CreaAnnuncioDettagliController
 import it.unina.dietiestates.data.viewmodel.AnnuncioViewModel
 import it.unina.dietiestates.data.viewmodel.CoordinateViewModel
 import it.unina.dietiestates.network.geocoding.OsmdroidGeocoder
@@ -25,6 +25,7 @@ class CreaAnnuncioFragment : Fragment() {
     private val annuncioVM: AnnuncioViewModel by activityViewModels()
     private val coordinateVM: CoordinateViewModel by activityViewModels()
     private val geocoder = OsmdroidGeocoder()
+    private val controller = CreaAnnuncioDettagliController()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +36,6 @@ class CreaAnnuncioFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val controller = CreaAnnuncioController()
 
         setUpEditTexts(view, controller)
         setUpAddressField(view)
@@ -44,7 +44,7 @@ class CreaAnnuncioFragment : Fragment() {
         setUpAvantiButton(view, controller)
     }
 
-    private fun setUpEditTexts(view: View, controller: CreaAnnuncioController) {
+    private fun setUpEditTexts(view: View, controller: CreaAnnuncioDettagliController) {
         val titoloText = view.findViewById<EditText>(R.id.titoloEditText)
         val descrizioneText = view.findViewById<EditText>(R.id.descrizioneEditText)
         val prezzoText = view.findViewById<EditText>(R.id.prezzoEditText)
@@ -116,7 +116,7 @@ class CreaAnnuncioFragment : Fragment() {
         }
     }
 
-    private fun setUpMappaButton(view: View, controller: CreaAnnuncioController) {
+    private fun setUpMappaButton(view: View, controller: CreaAnnuncioDettagliController) {
         val mappaBtn = view.findViewById<Button>(R.id.mappaButton)
         mappaBtn.setOnClickListener {
             val titolo = view.findViewById<EditText>(R.id.titoloEditText).text.trim().toString()
@@ -128,7 +128,7 @@ class CreaAnnuncioFragment : Fragment() {
         }
     }
 
-    private fun setUpAvantiButton(view: View, controller: CreaAnnuncioController) {
+    private fun setUpAvantiButton(view: View, controller: CreaAnnuncioDettagliController) {
         val avantiBtn = view.findViewById<Button>(R.id.avantiButton)
         avantiBtn.setOnClickListener {
             val titolo = view.findViewById<EditText>(R.id.titoloEditText).text.trim().toString()

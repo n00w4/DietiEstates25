@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -61,6 +62,7 @@ class RicercaMappaFragment: Fragment() {
         val marker = Marker(mapView)
         marker.position = startPoint
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.map_picker)
         mapView.overlays.add(marker)
         // Gestisci i click sulla mappa
         val mapEventsOverlay = MapEventsOverlay(object : MapEventsReceiver {

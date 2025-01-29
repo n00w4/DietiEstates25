@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import it.unina.dietiestates.R
-import it.unina.dietiestates.controller.crea_annuncio.CreaAnnuncioController
+import it.unina.dietiestates.controller.crea_annuncio.CreaAnnuncioDettagliController
 import it.unina.dietiestates.data.viewmodel.AnnuncioViewModel
 import it.unina.dietiestates.data.viewmodel.CoordinateViewModel
 import it.unina.dietiestates.network.geocoding.CitiesLabelOverlay
@@ -27,7 +28,7 @@ import org.osmdroid.views.overlay.Marker
 
 class CreaAnnuncioMappaFragment : Fragment(){
 
-    private val controller = CreaAnnuncioController()
+    private val controller = CreaAnnuncioDettagliController()
     private val annuncioVM: AnnuncioViewModel by activityViewModels()
     private val coordinateVM: CoordinateViewModel by activityViewModels()
     private lateinit var indirizzoTextView: TextView
@@ -61,11 +62,13 @@ class CreaAnnuncioMappaFragment : Fragment(){
         val marker = Marker(mapView)
         marker.position = startPoint
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker.icon = null //Invisibile fino a quando l'user non clicca sulla mappa per la prima volta
         mapView.overlays.add(marker)
         // Gestisci i click sulla mappa
         val mapEventsOverlay = MapEventsOverlay(object : MapEventsReceiver {
             override fun singleTapConfirmedHelper(p: GeoPoint): Boolean {
                 marker.position = p
+                if (marker.icon == null) marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.map_picker)
                 mapView.invalidate()
                 coordinateVM.latitudine = p.latitude
                 coordinateVM.longitudine = p.longitude

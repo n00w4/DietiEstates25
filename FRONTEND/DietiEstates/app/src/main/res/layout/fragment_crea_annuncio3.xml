@@ -83,7 +83,7 @@
                 android:text="@string/numero_stanze"
                 android:textStyle="bold"/>
             <EditText
-                android:id="@+id/text_dim_min"
+                android:id="@+id/numeroStanzeEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:hint="3"
