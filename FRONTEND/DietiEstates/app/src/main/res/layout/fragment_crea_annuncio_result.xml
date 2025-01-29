@@ -38,7 +38,7 @@
 
 
             <Button
-                android:id="@+id/avantiButton"
+                android:id="@+id/fineButton"
                 style="@style/BlueButton"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
