@@ -167,13 +167,17 @@
     <string name="prenota_btn">Prenota una visita</string>
     <!-- /Annuncio Activity-->
 
-    <!-- Fragment Gestore Crea Agenti -->
-    <string name="text_view_title_gestore_agenti">Aggiungi un agente</string>
-    <string name="label_password_gestore_agenti">
+    <!-- Fragment Gestore Crea Utente -->
+    <string name="text_view_title_gestore_utente">Aggiungi un utente</string>
+    <string name="label_password_gestore_utente">
         La password sarà autogenerata dai nostri server e potrà essere cambiata anche in seguito.
     </string>
-    <string name="add_agente_gestore">Aggiungi</string>
-    <!-- /Fragment Gestore Crea Agenti -->
+    <string name="btn_add_gestore_utente">Aggiungi</string>
+    <string-array name="tipo_utente">
+        <item>Agente</item>
+        <item>Amministratore</item>
+    </string-array>
+    <!-- /Fragment Gestore Crea Utente -->
 
     <!-- Fragment Gestore Modifica Pwd Admin -->
     <string name="text_view_title_gestore_admin">Cambia password di amministrazione</string>
