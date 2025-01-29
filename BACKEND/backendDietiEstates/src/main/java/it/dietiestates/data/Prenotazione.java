@@ -22,7 +22,7 @@ public class Prenotazione {
 		return id;
 	}
 	public void setID(int id) {
-		id = id;
+		this.id = id;
 	}
 	//Getters and Setters for dataInizio
 	public Timestamp getDataInizio() {

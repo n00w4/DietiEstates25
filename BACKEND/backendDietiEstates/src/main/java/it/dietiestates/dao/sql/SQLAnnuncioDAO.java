@@ -49,7 +49,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 		String query = "INSERT INTO est.Annuncio (" +
 				"titolo, indirizzo, immagine, descrizione, dimensioni, prezzo, piano, numeroStanze, classeEnergetica, " +
 				"ascensore, portineria, climatizzazione, boxAuto, terrazzo, giardino, tipoAnnuncio, posizione, email" +
-				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::public.enum_annuncio, ?, ?)";
+				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::public.enum_annuncio, ST_GeomFromWKB(?::bytea, 4326), ?))";
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
 	        statement.setString(1, annuncio.getTitolo());
 	        statement.setString(2, annuncio.getIndirizzo());
@@ -67,7 +67,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 	        statement.setBoolean(14, annuncio.isTerrazzo());
 	        statement.setBoolean(15, annuncio.isGiardino());
 	        statement.setString(16, annuncio.getTipoAnnuncio());
-			statement.setString(17, annuncio.getPosizione());
+			statement.setBytes(17, hexStringToByteArray(annuncio.getPosizione()));
 			statement.setString(18, annuncio.getEmailAgente());
 
 			return statement.executeUpdate() > 0;
@@ -81,6 +81,17 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 			throw new DataAccessException(ERROR_MESSAGE_INSERT, e);
 	    }
 	}
+
+	private byte[] hexStringToByteArray(String hex) {
+		int len = hex.length();
+		byte[] data = new byte[len / 2];
+		for (int i = 0; i < len; i += 2) {
+			data[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4)
+					+ Character.digit(hex.charAt(i + 1), 16));
+		}
+		return data;
+	}
+
 
 	@Override
 	public boolean delete(Annuncio annuncio) throws DataAccessException {
