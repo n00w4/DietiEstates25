@@ -68,7 +68,7 @@ class CreaAnnuncioMappaFragment : Fragment(){
         val mapEventsOverlay = MapEventsOverlay(object : MapEventsReceiver {
             override fun singleTapConfirmedHelper(p: GeoPoint): Boolean {
                 marker.position = p
-                if (marker.icon == null) marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.map_picker)
+                marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.map_picker)
                 mapView.invalidate()
                 coordinateVM.latitudine = p.latitude
                 coordinateVM.longitudine = p.longitude

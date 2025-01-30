@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.gson.Gson
 import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.data.dto.SharedPrefManager
 import it.unina.dietiestates.data.model.Prenotazione
@@ -12,7 +13,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.sql.Timestamp
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class PrenotazioneAnnuncioController (private val context: Context) {
 
@@ -27,8 +30,11 @@ class PrenotazioneAnnuncioController (private val context: Context) {
             calendar.add(Calendar.HOUR_OF_DAY, 1)
             val dataFine = Timestamp(calendar.time.toInstant().toEpochMilli())
 
-            val prenotazione = Prenotazione(dataInizio, dataFine, null, emailUtente, idAnnuncio)
-            Log.d("DEBUG_CONTROLLER", "id annuncio: ${prenotazione.idAnnuncio}")
+            val formattedDataInizio = formatTimestamp(dataInizio)
+            val formattedDataFine = formatTimestamp(dataFine)
+
+            val prenotazione = Prenotazione(formattedDataInizio, formattedDataFine, null, emailUtente, idAnnuncio)
+            Log.d("DEBUG_JSON", "Prenotazione JSON: ${Gson().toJson(prenotazione)}")
             inserisciPrenotazione(prenotazione)
         }
     }
@@ -78,6 +84,11 @@ class PrenotazioneAnnuncioController (private val context: Context) {
         builder.setMessage("Potrai controllare in 'Calendario' lo stato della prenotazione.")
         builder.setPositiveButton("Ok", null)
         builder.show()
+    }
+
+    private fun formatTimestamp(timestamp: Timestamp): String {
+        val sdf = SimpleDateFormat("MMM dd, yyyy HH:mm:ss", Locale.ENGLISH) // Force two-digit days
+        return sdf.format(timestamp)
     }
 
 }
