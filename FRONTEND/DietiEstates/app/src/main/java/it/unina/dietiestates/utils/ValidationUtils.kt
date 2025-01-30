@@ -54,7 +54,7 @@ object ValidationUtils {
         if (nome.isDigitsOnly()) {
             errori.add("Il nome non può essere composto di soli numeri")
         }
-        if (nome.firstOrNull()?.isLowerCase() == false) {
+        if (nome.firstOrNull()?.isLowerCase() == true) {
             errori.add("Il nome deve avere il primo carattere in maiuscolo")
         }
 

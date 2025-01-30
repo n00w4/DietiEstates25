@@ -58,7 +58,7 @@ public class GestoreController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addAgente(AddUtenteForm form) {
+    public Response addUtente(AddUtenteForm form) {
         try {
             if (utenteDAO.insertUtente(form)) {
                 logger.info("Richiesta di aggiunta agente avvenuta con successo");

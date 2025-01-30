@@ -46,7 +46,7 @@ class GestoreCreaUtenteFragment : Fragment() {
             builder.setTitle("Conferma Operazione")
             builder.setMessage("Sei sicuro di voler procedere?")
             builder.setPositiveButton("Conferma") { dialog, _ ->
-                addUtente(userType.toString(), name.toString(), surname.toString(), email.toString())
+                addUtente(userType.selectedItem.toString(), name.text.toString(), surname.text.toString(), email.text.toString())
                 dialog.dismiss()
             }
             builder.setNegativeButton("Annulla") { dialog, _ ->
@@ -66,7 +66,7 @@ class GestoreCreaUtenteFragment : Fragment() {
         api.addUtente(form).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 when (response.code()) {
-                    200 -> {
+                    201 -> {
                         val message = response.body()?.message
                         if (message != null) {
                             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -76,7 +76,7 @@ class GestoreCreaUtenteFragment : Fragment() {
                         Toast.makeText(context, "I dati inseriti non sono al momento validi. Riprova più tardi.", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
-                        Toast.makeText(context, "Errore durante il login: codice ${response.code()}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Errore codice ${response.code()}: riprova più tardi", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
