@@ -80,11 +80,11 @@
                 android:id="@+id/btn_citta"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:layout_gravity="center"
-                android:text="@string/ricerca_home_città_btn"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginBottom="30dp"
+                android:text="@string/ricerca_home_città_btn"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/oppureTextView"

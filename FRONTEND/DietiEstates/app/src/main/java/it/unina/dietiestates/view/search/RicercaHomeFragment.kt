@@ -37,7 +37,7 @@ class RicercaHomeFragment : Fragment(){
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                //Non fare niente (impossibile andare indietro alla pagina di login
+                //Non fare niente (impossibile andare indietro alla pagina di login)
             }
         })
     }

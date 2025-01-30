@@ -36,7 +36,7 @@ class SignUpResult : AppCompatActivity(){
         }
     }
 
-    fun onBtnLoginClicked() {
+    private fun onBtnLoginClicked() {
         val loginPage = Intent(this, MainActivity::class.java)
         startActivity(loginPage)
     }

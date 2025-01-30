@@ -33,6 +33,7 @@
     <!-- Fragment Profilo Utente -->
     <string name="profilo">PROFILO</string>
     <string name="profilo_text">Ciao, %1$s!</string>
+    <string name="logout_button">Logout</string>
     <!-- /Fragment Profilo Utente -->
 
     <!-- Fragment Ricerca Home -->

@@ -1,13 +1,17 @@
 package it.unina.dietiestates.view.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
+import it.unina.dietiestates.MainActivity
 import it.unina.dietiestates.R
 import it.unina.dietiestates.data.dto.SharedPrefManager
 
@@ -60,6 +64,17 @@ class ProfiloFragment : Fragment() {
             textPartitaIva.text = "$partitaIva"
             ivaLayout.isVisible = true
         }
+
+        val logoutBtn = view.findViewById<Button>(R.id.logoutButton)
+        logoutBtn.setOnClickListener{
+            SharedPrefManager.clear(requireContext())
+            val loginPage = Intent(requireContext(), MainActivity::class.java)
+            startActivity(loginPage)
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() { /*Non fare niente (impossibile andare indietro alla pagina di login)*/ }
+        })
 
     }
 
