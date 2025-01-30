@@ -126,9 +126,9 @@ CREATE TYPE ENUM_ANNUNCIO AS ENUM ('vendita', 'affitto');
 CREATE TABLE est.Annuncio (
     idAnnuncio INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     titolo VARCHAR(255) NOT NULL,
-    indirizzo VARCHAR(255) NOT NULL,
+    indirizzo TEXT NOT NULL,
     immagine TEXT,
-    descrizione VARCHAR(255) NOT NULL,
+    descrizione VARCHAR(500) NOT NULL,
     dimensioni INTEGER NOT NULL,
     prezzo NUMERIC(12,2) NOT NULL,
     piano VARCHAR(255) NOT NULL,

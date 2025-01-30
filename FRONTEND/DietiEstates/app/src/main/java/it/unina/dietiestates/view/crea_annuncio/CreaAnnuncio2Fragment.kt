@@ -85,7 +85,6 @@ class CreaAnnuncio2Fragment : Fragment(){
         selectedImageBitmap?.let { bitmap ->
             val immagineBase64 = ImageUtils.encodeBitmapToBase64(bitmap)
             annuncioVM.immagine = immagineBase64
-            Log.d("Base64Image", immagineBase64)
         } ?: Log.e("Base64Image", "No image selected!")
     }
 
