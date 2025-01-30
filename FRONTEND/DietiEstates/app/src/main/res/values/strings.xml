@@ -148,6 +148,9 @@
     <string name="status_text">Status code will be displayed here.</string>
     <string name="result_text">Result will be displayed here.</string>
     <string name="return_login_button_text">Torna a Accedi</string>
+    <string name="ok_signup">OK!</string>
+    <string name="ops_signup">Ops!</string>
+    <string name="ok_messaggio_signup">Profilo creato correttamente.</string>
     <!-- /Signup Result-->
 
     <!-- Annuncio Activity-->
@@ -218,7 +221,10 @@
     <string name="aggiungi_immagine">+</string>
     <string name="riepilogo">Riepilogo</string>
     <string name="riepilogo_crea_annuncio">Stai inserendo l\'annuncio:</string>
+    <string name="prezzo_riepilogo"> %1$s € </string>
+    <string name="dimensioni_riepilogo"> %1$s m²</string>
     <string name="annulla_button">Annulla</string>
     <string name="seleziona_button">Seleziona</string>
+    <string name="fine_crea_annuncio">Fine</string>
     <!-- /CreaAnnuncio Fragment-->
 </resources>

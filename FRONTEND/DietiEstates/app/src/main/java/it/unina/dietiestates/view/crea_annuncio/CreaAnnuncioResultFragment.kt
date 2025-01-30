@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -26,8 +28,25 @@ class CreaAnnuncioResultFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val imageView = view.findViewById<ImageView>(R.id.imageView)
+        val statusTextView = view.findViewById<TextView>(R.id.statusTextView)
+        val resultTextView = view.findViewById<TextView>(R.id.resultTextView)
+
         val controller = CreaAnnuncioController(requireContext())
-        controller.creaAnnuncio(annuncioVM)
+        controller.creaAnnuncio(annuncioVM){ apiResponse ->
+            when(apiResponse.status){
+                "Success" ->{
+                    imageView.setImageResource(R.drawable.happy_light)
+                    statusTextView.text = getString(R.string.ok_signup)
+                    resultTextView.text = apiResponse.message
+                }
+                else -> {
+                    imageView.setImageResource(R.drawable.sad_light)
+                    statusTextView.text = getString(R.string.ops_signup)
+                    resultTextView.text = apiResponse.message
+                }
+            }
+        }
 
         val fineBtn = view.findViewById<Button>(R.id.fineButton)
         fineBtn.setOnClickListener{

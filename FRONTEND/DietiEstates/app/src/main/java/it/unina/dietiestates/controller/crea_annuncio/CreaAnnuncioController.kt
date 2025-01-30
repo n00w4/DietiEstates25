@@ -13,35 +13,24 @@ import retrofit2.Response
 
 class CreaAnnuncioController(private val context: Context) {
 
-    fun creaAnnuncio(annuncioVM: AnnuncioViewModel){
+    fun creaAnnuncio(annuncioVM: AnnuncioViewModel, callback: (ApiResponse) -> Unit){
         val annuncio = annuncioVMToAnnuncio(annuncioVM)
 
         val api = RetrofitClient.instance
         api.insertAnnuncio(annuncio).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                when (response.code()) {
-                    200, 201 -> {
-                        val apiResponse = response.body()
-                        if (apiResponse != null) {
-                            Toast.makeText(context, "Annuncio creato correttamente", Toast.LENGTH_LONG).show()
-                        } else {
-                            Toast.makeText(context, "Errore: la risposta del server è incompleta", Toast.LENGTH_LONG).show()
-                        }
-                    }
-                    409 -> {
-                        Toast.makeText(context, "Esiste già un account con quest'email. Impossibile creare un nuovo account", Toast.LENGTH_SHORT).show()
-                    }
-                    500 -> {
-                        Toast.makeText(context, "Server error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
-                    }
-                    else -> {
-                        Toast.makeText(context, "Error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
-                    }
+                val apiResponse = when (response.code()) {
+                    200, 201 -> ApiResponse("Success", "Annuncio creato correttamente")
+                    409 -> ApiResponse("Conflict", "Errore nella creazione dell'annuncio (tipo: 'Conflitto').")
+                    500 -> ApiResponse("Server Error", "Errore interno del server: ${response.errorBody()?.string()}")
+                    else -> ApiResponse("Error", "Errore: ${response.errorBody()?.string()}")
                 }
+                callback(apiResponse)
             }
 
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Toast.makeText(context, "Failed to connect to server: ${t.message}", Toast.LENGTH_SHORT).show()
+                val apiResponse = ApiResponse("Failure", "Connessione al server fallita: ${t.message}")
+                callback(apiResponse)
             }
         })
     }
