@@ -1,5 +1,8 @@
 package it.dietiestates.data;
 
+import jakarta.json.bind.annotation.JsonbCreator;
+import jakarta.json.bind.annotation.JsonbProperty;
+
 public class Annuncio {
 	private Integer id;
 	private String titolo;
@@ -21,8 +24,47 @@ public class Annuncio {
 	private String posizione;
 	private String emailAgente;
 
-	public Annuncio() {
-		// Costruttore vuoto per deserializzazione dati
+	@JsonbCreator
+	public Annuncio(
+			@JsonbProperty("ID") Integer id,
+			@JsonbProperty("titolo") String titolo,
+			@JsonbProperty("indirizzo") String indirizzo,
+			@JsonbProperty("immagine") String immagine,
+			@JsonbProperty("descrizione") String descrizione,
+			@JsonbProperty("dimensioni") int dimensioni,
+			@JsonbProperty("prezzo") float prezzo,
+			@JsonbProperty("piano") String piano,
+			@JsonbProperty("numeroStanze") int numeroStanze,
+			@JsonbProperty("classeEnergetica") String classeEnergetica,
+			@JsonbProperty("ascensore") boolean ascensore,
+			@JsonbProperty("portineria") boolean portineria,
+			@JsonbProperty("climatizzazione") boolean climatizzazione,
+			@JsonbProperty("boxAuto") boolean boxAuto,
+			@JsonbProperty("terrazzo") boolean terrazzo,
+			@JsonbProperty("giardino") boolean giardino,
+			@JsonbProperty("tipoAnnuncio") String tipoAnnuncio,
+			@JsonbProperty("posizione") String posizione,
+			@JsonbProperty("emailAgente") String emailAgente
+	) {
+		this.id = id;
+		this.titolo = titolo;
+		this.indirizzo = indirizzo;
+		this.immagine = immagine;
+		this.descrizione = descrizione;
+		this.dimensioni = dimensioni;
+		this.prezzo = prezzo;
+		this.piano = piano;
+		this.numeroStanze = numeroStanze;
+		this.classeEnergetica = classeEnergetica;
+		this.ascensore = ascensore;
+		this.portineria = portineria;
+		this.climatizzazione = climatizzazione;
+		this.boxAuto = boxAuto;
+		this.terrazzo = terrazzo;
+		this.giardino = giardino;
+		this.tipoAnnuncio = tipoAnnuncio;
+		this.posizione = posizione;
+		this.emailAgente = emailAgente;
 	}
 
 	public Annuncio(Builder builder) {

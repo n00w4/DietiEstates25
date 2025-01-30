@@ -1,10 +1,10 @@
 package it.dietiestates;
 
+import it.dietiestates.restconfig.RESTConfig;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.server.StaticHttpHandler;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import it.dietiestates.restconfig.RESTConfig;
 
 import java.io.IOException;
 import java.net.URI;
@@ -15,7 +15,6 @@ public class Main {
     // Base URI the Grizzly HTTP server will listen on
     public static final String BASE_URI = "http://0.0.0.0:8080/";
     public static String IMAGES_PATH = System.getenv("IMAGES_PATH");
-    // TODO: valutare se passare ad HTTPS
     // TODO: aggiungere versioning api (adesso risulterebbe controproducente per fini di testing)
 
     // Creazione di un logger

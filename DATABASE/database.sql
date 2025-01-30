@@ -127,7 +127,7 @@ CREATE TABLE est.Annuncio (
     idAnnuncio INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     titolo VARCHAR(255) NOT NULL,
     indirizzo VARCHAR(255) NOT NULL,
-    immagine TEXT NOT NULL,
+    immagine TEXT,
     descrizione VARCHAR(255) NOT NULL,
     dimensioni INTEGER NOT NULL,
     prezzo NUMERIC(12,2) NOT NULL,
