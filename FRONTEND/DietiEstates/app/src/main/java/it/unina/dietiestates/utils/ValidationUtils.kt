@@ -1,5 +1,7 @@
 package it.unina.dietiestates.utils
 
+import androidx.core.text.isDigitsOnly
+
 object ValidationUtils {
     fun verificaPassword(password: String): List<String> {
         val errori = mutableListOf<String>()
@@ -42,4 +44,22 @@ object ValidationUtils {
 
         return errori
     }
+
+    fun verificaNome(nome: String): List<String> {
+        val errori = mutableListOf<String>()
+
+        if (nome.isEmpty()) {
+            errori.add("Il nome non può essere vuoto")
+        }
+        if (nome.isDigitsOnly()) {
+            errori.add("Il nome non può essere composto di soli numeri")
+        }
+        if (nome.firstOrNull()?.isLowerCase() == false) {
+            errori.add("Il nome deve avere il primo carattere in maiuscolo")
+        }
+
+        return errori
+    }
+
+
 }

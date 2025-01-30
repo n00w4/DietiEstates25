@@ -1,5 +1,6 @@
 package it.unina.dietiestates.network.retrofit
 
+import it.unina.dietiestates.data.dto.AddUtenteForm
 import it.unina.dietiestates.data.model.Annuncio
 import it.unina.dietiestates.data.model.Cliente
 import it.unina.dietiestates.data.dto.ApiResponse
@@ -34,6 +35,9 @@ interface ApiInterface {
 
     @POST("gestore/updateAdminPassword")
     fun updateAdminPassword(@Body form: ChangeAdminPwdForm): Call<ApiResponse>
+
+    @POST("gestore/addUtente")
+    fun addUtente(@Body form: AddUtenteForm): Call<ApiResponse>
 
     @POST("annunci/insert")
     fun insertAnnuncio(@Body annuncio: Annuncio): Call<ApiResponse>
