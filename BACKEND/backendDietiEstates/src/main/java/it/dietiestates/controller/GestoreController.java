@@ -1,10 +1,10 @@
 package it.dietiestates.controller;
 
-import it.dietiestates.dao.AgenteDAO;
 import it.dietiestates.dao.GestoreDAO;
-import it.dietiestates.dao.sql.SQLAgenteDAO;
+import it.dietiestates.dao.UtenteDAO;
 import it.dietiestates.dao.sql.SQLGestoreDAO;
-import it.dietiestates.data.Agente;
+import it.dietiestates.dao.sql.SQLUtenteDAO;
+import it.dietiestates.data.dto.AddUtenteForm;
 import it.dietiestates.data.dto.ChangeAdminPwdForm;
 import it.dietiestates.data.dto.ErrorApiResponse;
 import it.dietiestates.data.dto.SuccessApiResponse;
@@ -25,12 +25,12 @@ import java.util.logging.Logger;
 @Path("gestore")
 public class GestoreController {
     private final GestoreDAO gestoreDAO;
-    private final AgenteDAO agenteDAO;
+    private final UtenteDAO utenteDAO;
     private static final Logger logger = Logger.getLogger(GestoreController.class.getName());
 
     public GestoreController() throws SQLException {
         this.gestoreDAO = new SQLGestoreDAO(PgSQL.getConnection());
-        this.agenteDAO = new SQLAgenteDAO(PgSQL.getConnection());
+        this.utenteDAO = new SQLUtenteDAO(PgSQL.getConnection());
     }
 
     @Path("updateAdminPassword")
@@ -53,14 +53,14 @@ public class GestoreController {
         return Response.status(Response.Status.BAD_REQUEST).entity(errorResponse).build();
     }
 
-    @Path("addAgente")
+    @Path("addUtente")
     @RequireJWTAuthentication
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addAgente(Agente agente) {
+    public Response addAgente(AddUtenteForm form) {
         try {
-            if (agenteDAO.insert(agente)) {
+            if (utenteDAO.insertUtente(form)) {
                 logger.info("Richiesta di aggiunta agente avvenuta con successo");
                 SuccessApiResponse successResponse = new SuccessApiResponse("Agente aggiunto con successo");
                 return Response.status(Response.Status.CREATED).entity(successResponse).build();

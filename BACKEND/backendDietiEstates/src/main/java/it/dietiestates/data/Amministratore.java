@@ -9,6 +9,11 @@ public class Amministratore extends Utente {
 		// Costruttore vuoto per permettere la deserializzazione
 	}
 
+	public Amministratore(String nome, String cognome, String email, String password, String partitaIVA) {
+		super(nome, cognome, email, password);
+		setPartitaIVA(partitaIVA);
+	}
+
 	public Amministratore(String nome, String cognome, String email, String password, String partitaIVA, String nomeAgenzia) {
 		super(nome, cognome, email, password);
 		setPartitaIVA(partitaIVA);

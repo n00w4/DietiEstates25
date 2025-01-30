@@ -9,6 +9,11 @@ public class Agente extends Utente {
 		// Costruttore vuoto per permettere la deserializzazione
 	}
 
+	public Agente(String nome, String cognome, String email, String password, String partitaIVA) {
+		super(nome, cognome, email, password);
+		setPartitaIVA(partitaIVA);
+	}
+
 	public Agente(String nome, String cognome, String email, String password, String partitaIVA, String nomeAgenzia) {
 		super(nome, cognome, email, password);
 		setPartitaIVA(partitaIVA);
