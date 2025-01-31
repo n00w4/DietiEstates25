@@ -5,40 +5,44 @@ import java.sql.Timestamp;
 public class Notifica {
 	private int id;
 	private Timestamp dataOra;
-	private Agente agente;
-	private Prenotazione prenotazione;
-	
-	public Notifica(int id, Timestamp dataOra, Agente agente, Prenotazione prenotazione) {
-		super();
-		id = id;
-		this.dataOra = dataOra;
-		this.agente = agente;
-		this.prenotazione = prenotazione;
+    private String emailAgente;
+    private int idPrenotazione;
+
+    public Notifica(int id, Timestamp dataOra, String emailAgente, int idPrenotazione) {
+        setId(id);
+        setDataOra(dataOra);
+        setEmailAgente(emailAgente);
+        setIdPrenotazione(idPrenotazione);
 	}
-	
-	public int getID() {
+
+    public int getId() {
 		return id;
 	}
-	public void setID(int id) {
-		id = id;
+
+    public void setId(int id) {
+        this.id = id;
 	}
+
 	public Timestamp getDataOra() {
 		return dataOra;
 	}
 	public void setDataOra(Timestamp dataOra) {
 		this.dataOra = dataOra;
 	}
-	public Agente getAgente() {
-		return agente;
+
+    public String getEmailAgente() {
+        return emailAgente;
 	}
-	public void setAgente(Agente agente) {
-		this.agente = agente;
+
+    public void setEmailAgente(String emailAgente) {
+        this.emailAgente = emailAgente;
 	}
-	public Prenotazione getPrenotazione() {
-		return prenotazione;
+
+    public int getIdPrenotazione() {
+        return idPrenotazione;
 	}
-	public void setPrenotazione(Prenotazione prenotazione) {
-		this.prenotazione = prenotazione;
-	}
-	
+
+    public void setIdPrenotazione(int idPrenotazione) {
+        this.idPrenotazione = idPrenotazione;
+    }
 }

@@ -175,3 +175,37 @@ CREATE TABLE est.Notifica (
 
     CONSTRAINT checkValidDataNotifica CHECK ((dataOra >= CURRENT_TIMESTAMP))
 );
+
+-- View per avere notifiche più dettagliate
+CREATE VIEW est.NotificaConInfo AS
+SELECT 
+    n.idNotifica, 
+    n.dataOra AS dataOraNotifica, 
+    p.idPrenotazione, 
+    p.dataInizio, 
+    p.dataFine, 
+    p.isAccettata, 
+    p.idAnnuncio, 
+    p.email AS emailCliente, 
+    a.titolo AS titoloAnnuncio, 
+    a.indirizzo, 
+    a.immagine, 
+    a.descrizione, 
+    a.dimensioni, 
+    a.prezzo, 
+    a.piano, 
+    a.numeroStanze, 
+    a.classeEnergetica, 
+    a.ascensore, 
+    a.portineria, 
+    a.climatizzazione, 
+    a.boxAuto, 
+    a.terrazzo, 
+    a.giardino, 
+    a.tipoAnnuncio, 
+    a.posizione, 
+    a.email AS emailAgente
+FROM est.Notifica n
+JOIN est.Prenotazione p ON n.idPrenotazione = p.idPrenotazione
+JOIN est.Annuncio a ON p.idAnnuncio = a.idAnnuncio;
+

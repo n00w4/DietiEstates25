@@ -11,14 +11,23 @@ public class Prenotazione {
     @JsonbDateFormat("MMM dd, yyyy HH:mm:ss")
 	private Timestamp dataFine;
 	private boolean isAccettata;
-	private String emailCliente;
 	private int idAnnuncio;
+    private String emailCliente;
 
     public Prenotazione() {
         // Costruttore vuoto per deserializzazione
     }
 
-	public int getID() {
+    public Prenotazione(int idPrenotazione, Timestamp dataInizio, Timestamp dataFine, boolean isAccettata, int idAnnuncio, String emailCliente) {
+        setID(idPrenotazione);
+        setDataInizio(dataInizio);
+        setDataFine(dataFine);
+        setAccettata(isAccettata);
+        setIdAnnuncio(idAnnuncio);
+        setEmailCliente(emailCliente);
+    }
+
+    public int getID() {
 		return id;
 	}
 	public void setID(int id) {
