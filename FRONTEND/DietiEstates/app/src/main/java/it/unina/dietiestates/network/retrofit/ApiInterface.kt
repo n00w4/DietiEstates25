@@ -7,6 +7,7 @@ import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.data.dto.ChangeAdminPwdForm
 import it.unina.dietiestates.data.dto.Credenziali
 import it.unina.dietiestates.data.dto.FiltriRicercaAnnunci
+import it.unina.dietiestates.data.dto.NotificaConInfo
 import it.unina.dietiestates.data.dto.TokenResponse
 import it.unina.dietiestates.data.model.Prenotazione
 import retrofit2.Call
@@ -32,6 +33,14 @@ interface ApiInterface {
 
     @POST("prenotazione/insert")
     fun insertPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
+
+    //per le notifiche, da fare
+    @POST("prenotazione/valuta")
+    fun valutaPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
+
+    //per le notifiche, da fare
+    @POST("notifiche/all")
+    fun getNotifiche(@Body emailAgente: String): Call<List<NotificaConInfo>>
 
     @POST("gestore/updateAdminPassword")
     fun updateAdminPassword(@Body form: ChangeAdminPwdForm): Call<ApiResponse>
