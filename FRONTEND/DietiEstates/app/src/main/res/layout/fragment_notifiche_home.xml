@@ -25,12 +25,20 @@
                 android:text="@string/notifiche_titolo" />
 
             <TextView
-                android:id="@+id/tipoUtenteTextView"
+                android:id="@+id/notificheInfoTag"
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="@string/notifiche_info" />
+
+            <TextView
+                android:id="@+id/erroreTextView"
+                style="@style/ProfiloSubtitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/stringa_vuota" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/notificheRecyclerView"

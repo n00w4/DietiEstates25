@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import it.unina.dietiestates.R
 import it.unina.dietiestates.data.dto.NotificaConInfo
 import it.unina.dietiestates.view.search.AnnuncioActivity
-class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>, private val context: Context) :
+class NotificheAdapter (private val notificheList: List<NotificaConInfo>, private val context: Context) :
     RecyclerView.Adapter<NotificheAdapter.NotificaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificaViewHolder {
