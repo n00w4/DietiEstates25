@@ -8,6 +8,7 @@ import it.dietiestates.data.dto.NotificaConInfo;
 import it.dietiestates.exception.DataAccessException;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +66,8 @@ public class SQLNotificaConInfoDAO implements NotificaConInfoDAO {
                     Notifica notifica = new Notifica(id, dataOra, emailAgente, idPrenotazione);
 
                     // Creazione oggetto Prenotazione
-                    Timestamp dataInizio = resultSet.getTimestamp(COLUMN_DATA_INIZIO);
-                    Timestamp dataFine = resultSet.getTimestamp(COLUMN_DATA_FINE);
+                    LocalDateTime dataInizio = resultSet.getTimestamp(COLUMN_DATA_INIZIO).toLocalDateTime();
+                    LocalDateTime dataFine = resultSet.getTimestamp(COLUMN_DATA_FINE).toLocalDateTime();
                     boolean isAccettata = resultSet.getBoolean(COLUMN_IS_ACCETTATA);
                     int idAnnuncio = resultSet.getInt(COLUMN_ID_ANNUNCIO);
                     String emailCliente = resultSet.getString(COLUMN_EMAIL_CLIENTE);

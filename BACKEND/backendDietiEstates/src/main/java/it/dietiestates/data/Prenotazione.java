@@ -2,14 +2,14 @@ package it.dietiestates.data;
 
 import jakarta.json.bind.annotation.JsonbDateFormat;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Prenotazione {
 	private int id;
     @JsonbDateFormat("MMM dd, yyyy HH:mm:ss")
-	private Timestamp dataInizio;
+    private LocalDateTime dataInizio;
     @JsonbDateFormat("MMM dd, yyyy HH:mm:ss")
-	private Timestamp dataFine;
+    private LocalDateTime dataFine;
 	private boolean isAccettata;
 	private int idAnnuncio;
     private String emailCliente;
@@ -18,7 +18,7 @@ public class Prenotazione {
         // Costruttore vuoto per deserializzazione
     }
 
-    public Prenotazione(int idPrenotazione, Timestamp dataInizio, Timestamp dataFine, boolean isAccettata, int idAnnuncio, String emailCliente) {
+    public Prenotazione(int idPrenotazione, LocalDateTime dataInizio, LocalDateTime dataFine, boolean isAccettata, int idAnnuncio, String emailCliente) {
         setID(idPrenotazione);
         setDataInizio(dataInizio);
         setDataFine(dataFine);
@@ -34,18 +34,20 @@ public class Prenotazione {
 		this.id = id;
 	}
 	//Getters and Setters for dataInizio
-	public Timestamp getDataInizio() {
+    public LocalDateTime getDataInizio() {
 		return dataInizio;
 	}
-	public void setDataInizio(Timestamp dataInizio) {
+
+    public void setDataInizio(LocalDateTime dataInizio) {
 		this.dataInizio = dataInizio;
 	}
 	
 	//Getters and Setters for dataFine
-	public Timestamp getDataFine() {
+    public LocalDateTime getDataFine() {
 		return dataFine;
 	}
-	public void setDataFine(Timestamp dataFine) {
+
+    public void setDataFine(LocalDateTime dataFine) {
 		this.dataFine = dataFine;
 	}
 	

@@ -9,6 +9,7 @@ import it.dietiestates.exception.OverlappingBookingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class SQLPrenotazioneDAO implements PrenotazioneDAO {
     private final Connection connection;
@@ -21,8 +22,8 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
     public boolean insert(Prenotazione prenotazione) throws DataAccessException {
         String query = "INSERT INTO est.Prenotazione (dataInizio, dataFine, isAccettata, idAnnuncio, email) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setTimestamp(1, prenotazione.getDataInizio());
-            statement.setTimestamp(2, prenotazione.getDataFine());
+            statement.setTimestamp(1, Timestamp.valueOf(prenotazione.getDataInizio()));
+            statement.setTimestamp(2, Timestamp.valueOf(prenotazione.getDataFine()));
             statement.setBoolean(3, prenotazione.isAccettata());
             statement.setInt(4, prenotazione.getIdAnnuncio());
             statement.setString(5, prenotazione.getEmailCliente());
