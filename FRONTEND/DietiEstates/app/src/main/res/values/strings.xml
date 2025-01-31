@@ -236,9 +236,9 @@
     <!-- NotificaFragment Fragment-->
     <string name="notifica_tag">Hai una richiesta di prenotazione per:</string>
     <string name="titolo_tag">" <u>%1$s</u> "</string>
-    <string name="utente_tag">Dall\'utente <u>%1$s</u> , </string>
-    <string name="giorno_tag">Per il giorno <u>%1$s</u> , </string>
-    <string name="inizio_fine_tag">Dalle <u>%1$s</u> alle <u>%2$s</u> .</string>
+    <string name="utente_tag">Dall\'utente <u>%1$s</u>,</string>
+    <string name="giorno_tag">Per il giorno <u>%1$s</u>,</string>
+    <string name="inizio_fine_tag">Dalle <u>%1$s</u> alle <u>%2$s</u>.</string>
     <string name="accetta_notifica">Accetta</string>
     <string name="accettata_notifica">Accettata</string>
     <string name="rifiuta_notifica">Rifiuta</string>

@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="30dp"
-                android:text="@string/ricerca_home_title" />
+                android:text="Seleziona un punto sulla mappa" />
 
             <TextView
                 android:id="@+id/infoTextView"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="Seleziona un punto sulla mappa" />
+                android:text="Seleziona il punto in cui si trova l'annuncio che stai creando." />
 
             <FrameLayout
                 android:id="@+id/mapContainer"
@@ -74,6 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Posizione selezionata:" />
+
             <TextView
                 android:id="@+id/indirizzoTextView"
                 style="@style/ProfiloSubtitleTextView"

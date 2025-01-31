@@ -1,6 +1,7 @@
 package it.unina.dietiestates.view.notifiche
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import it.unina.dietiestates.R
 import it.unina.dietiestates.data.dto.NotificaConInfo
-
+import it.unina.dietiestates.view.search.AnnuncioActivity
 class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>, private val context: Context) :
     RecyclerView.Adapter<NotificheAdapter.NotificaViewHolder>() {
 
@@ -48,9 +49,11 @@ class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>,
             Log.d("NotifichaViewHolder", "bind called")
             titoloTextView.text = notifica.annuncio.titolo
             emailTextView.text = context.getString(R.string.titolo_tag, notifica.prenotazione.emailCliente)
-            giornoTextView.text = context.getString(R.string.giorno_tag, notifica.prenotazione.dataInizio)
-            oraTextView.text = context.getString(R.string.inizio_fine_tag, notifica.prenotazione.dataInizio, notifica.prenotazione.dataFine)
-            //completa giorno e ora, vedi formato
+            val giorno = notifica.prenotazione.dataInizio.substring(0, 12)
+            giornoTextView.text = context.getString(R.string.giorno_tag, giorno)
+            val oraInizio = notifica.prenotazione.dataInizio.substring(13, 18)
+            val oraFine = notifica.prenotazione.dataFine.substring(13, 18)
+            oraTextView.text = context.getString(R.string.inizio_fine_tag, oraInizio, oraFine)
 
             if (notifica.prenotazione.isAccettata == true) {
                 accettaBtn.text = context.getString(R.string.accettata_notifica)
@@ -61,6 +64,12 @@ class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>,
                 rifiutaBtn.text = context.getString(R.string.rifiutata_notifica)
                 rifiutaBtn.isEnabled = false
                 accettaBtn.isVisible = false
+            }
+
+            titoloTextView.setOnClickListener{
+                val intent = Intent(context, AnnuncioActivity::class.java)
+                intent.putExtra("ANNUNCIO", notifica.annuncio)
+                context.startActivity(intent)
             }
 
             accettaBtn.setOnClickListener {

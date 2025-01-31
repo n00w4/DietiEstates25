@@ -41,6 +41,9 @@ class NotificheHomeFragment : Fragment(){
     }
 
     private fun loadNotifiche() {
+
+        notificheList.clear()
+
         // Example: Adding some test data
         val annuncio = Annuncio(0, "Casa Blu", "via 123, Napoli, Italia", "no_image", "casa accogliente",
             100, 10000.0f, "piano terra", 3, "A", true, false, true,
@@ -54,7 +57,7 @@ class NotificheHomeFragment : Fragment(){
         notificheList.add(NotificaConInfo(notifica, prenotazione, annuncio))
         notificheList.add(NotificaConInfo(notifica, prenotazione, annuncio))
 
-        adapter.notifyItemRangeInserted(startPosition, 3)
+        adapter.notifyItemRangeInserted(startPosition, notificheList.size)
     }
 
 }
