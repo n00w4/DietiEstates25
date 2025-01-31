@@ -37,7 +37,7 @@
             style="@style/ProfiloTitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ciao, nome" />
+            android:text="@string/profilo_text" />
 
         <TextView
             android:id="@+id/tipoUtenteTextView"
@@ -175,8 +175,7 @@
             android:layout_gravity="end|bottom"
             android:layout_marginTop="100dp"
             android:layout_marginBottom="30dp"
-            android:text="@string/logout_button"
-            android:textSize="20sp" />
+            android:text="@string/logout_button" />
 
     </LinearLayout>
 

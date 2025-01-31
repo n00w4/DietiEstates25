@@ -228,4 +228,21 @@
     <string name="seleziona_button">Seleziona</string>
     <string name="fine_crea_annuncio">Fine</string>
     <!-- /CreaAnnuncio Fragment-->
+
+    <!-- NotificheHome Fragment-->
+    <string name="notifiche_titolo">Notifiche</string>
+    <string name="notifiche_info">Gestisci le prenotazioni per i tuoi annunci</string>
+    <!-- /NotificheHome Fragment-->
+    <!-- NotificaFragment Fragment-->
+    <string name="notifica_tag">Hai una richiesta di prenotazione per:</string>
+    <string name="titolo_tag">" <u>%1$s</u> "</string>
+    <string name="utente_tag">Dall\'utente <u>%1$s</u> , </string>
+    <string name="giorno_tag">Per il giorno <u>%1$s</u> , </string>
+    <string name="inizio_fine_tag">Dalle <u>%1$s</u> alle <u>%2$s</u> .</string>
+    <string name="accetta_notifica">Accetta</string>
+    <string name="accettata_notifica">Accettata</string>
+    <string name="rifiuta_notifica">Rifiuta</string>
+    <string name="rifiutata_notifica">Rifiutata</string>
+    <!-- /NotificaFragment Fragment-->
+
 </resources>
