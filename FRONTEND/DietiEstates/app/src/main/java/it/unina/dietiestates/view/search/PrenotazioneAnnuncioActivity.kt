@@ -90,6 +90,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
                 selectedDate = Triple(day, month + 1, year)
                 dataSelected.text = getString(R.string.data_selezionata, year, month + 1, day)
                 oraLayout.isVisible = true
+                calcolaMeteo(posizioneAnnuncio)
             },
             calendar[Calendar.DAY_OF_MONTH], calendar[Calendar.MONTH], calendar[Calendar.YEAR])
         datePickerDialog.datePicker.minDate = tomorrow
