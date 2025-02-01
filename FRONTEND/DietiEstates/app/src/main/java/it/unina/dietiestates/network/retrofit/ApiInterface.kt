@@ -38,9 +38,8 @@ interface ApiInterface {
     @POST("prenotazione/valuta")
     fun valutaPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
 
-    //per le notifiche, da fare
     @GET("notifiche/getAll")
-    fun getNotifiche(@Query("emailAgente") emailAgente: String): Call<List<NotificaConInfo>>
+    fun getNotifiche(@Query("emailAgente") emailAgente: String): Call<MutableList<NotificaConInfo>>
 
     @POST("gestore/updateAdminPassword")
     fun updateAdminPassword(@Body form: ChangeAdminPwdForm): Call<ApiResponse>

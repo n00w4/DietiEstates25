@@ -20,7 +20,7 @@ class NotificheHomeFragment : Fragment(){
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NotificheAdapter
     private lateinit var erroreTextView: TextView
-    private lateinit var notificheList: List<NotificaConInfo>
+    private var notificheList: MutableList<NotificaConInfo> = mutableListOf()
     private lateinit var controller: NotificheHomeController
 
     override fun onCreateView(
@@ -34,7 +34,6 @@ class NotificheHomeFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         Log.d("NotificheHomeFragment", "onViewCreated called")
         controller = NotificheHomeController(requireContext())
-        notificheList = emptyList()
 
         erroreTextView = view.findViewById(R.id.erroreTextView)
         erroreTextView.isVisible = false
@@ -48,23 +47,22 @@ class NotificheHomeFragment : Fragment(){
     }
 
     private fun loadNotifiche() {
-        val startPosition = notificheList.size
-
         controller.getNotifiche { result ->
             if (result.isSuccess) {
                 val listaResult = result.getOrNull()
                 listaResult?.let {
-                    notificheList = listaResult
+                    notificheList.clear()
+                    notificheList.addAll(it) // Update dataset reference
+                    adapter.notifyItemRangeInserted(0, notificheList.size)
                 }
-            }else if (result.isFailure) {
+            } else if (result.isFailure) {
                 val error = result.exceptionOrNull()?.message
                 erroreTextView.isVisible = true
                 erroreTextView.text = "$error"
                 Toast.makeText(requireContext(), "Errore: $error", Toast.LENGTH_SHORT).show()
             }
         }
-
-        adapter.notifyItemRangeInserted(startPosition, notificheList.size)
     }
+
 
 }

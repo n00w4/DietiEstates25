@@ -11,9 +11,10 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import it.unina.dietiestates.R
+import it.unina.dietiestates.controller.notifiche.NotificaController
 import it.unina.dietiestates.data.dto.NotificaConInfo
 import it.unina.dietiestates.view.search.AnnuncioActivity
-class NotificheAdapter (private val notificheList: List<NotificaConInfo>, private val context: Context) :
+class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>, private val context: Context) :
     RecyclerView.Adapter<NotificheAdapter.NotificaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificaViewHolder {
@@ -44,6 +45,7 @@ class NotificheAdapter (private val notificheList: List<NotificaConInfo>, privat
         private val oraTextView: TextView = itemView.findViewById(R.id.oraTag)
         private val accettaBtn: Button = itemView.findViewById(R.id.accettaButton)
         private val rifiutaBtn: Button = itemView.findViewById(R.id.rifiutaButton)
+        private val controller = NotificaController(context)
 
         fun bind(notifica: NotificaConInfo) {
             Log.d("NotifichaViewHolder", "bind called")
