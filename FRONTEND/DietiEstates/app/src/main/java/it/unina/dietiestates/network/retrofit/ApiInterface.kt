@@ -34,8 +34,7 @@ interface ApiInterface {
     @POST("prenotazione/insert")
     fun insertPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
 
-    //per le notifiche, da fare
-    @POST("prenotazione/update-status")
+    @PATCH("prenotazione/update-status")
     fun valutaPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
 
     @GET("notifiche/get-all")
