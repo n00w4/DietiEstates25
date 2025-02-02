@@ -56,11 +56,11 @@ public class Prenotazione {
 		this.dataFine = dataFine;
 	}
 
-    public boolean isAccettata() {
+    public Boolean isAccettata() {
 		return isAccettata;
 	}
 
-    public void setAccettata(boolean isAccettata) {
+    public void setAccettata(Boolean isAccettata) {
 		this.isAccettata = isAccettata;
 	}
 	

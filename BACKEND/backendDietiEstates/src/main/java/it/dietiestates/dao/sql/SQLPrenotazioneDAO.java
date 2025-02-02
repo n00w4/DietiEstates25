@@ -24,7 +24,7 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setTimestamp(1, Timestamp.valueOf(prenotazione.getDataInizio()));
             statement.setTimestamp(2, Timestamp.valueOf(prenotazione.getDataFine()));
-            statement.setBoolean(3, prenotazione.isAccettata());
+            statement.setObject(3, prenotazione.isAccettata());
             statement.setInt(4, prenotazione.getIdAnnuncio());
             statement.setString(5, prenotazione.getEmailCliente());
 
