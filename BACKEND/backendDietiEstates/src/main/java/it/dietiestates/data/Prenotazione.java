@@ -12,7 +12,7 @@ public class Prenotazione {
     private LocalDateTime dataInizio;
     @JsonbDateFormat("MMM dd, yyyy HH:mm:ss")
     private LocalDateTime dataFine;
-	private boolean isAccettata;
+	private Boolean isAccettata;
 	private int idAnnuncio;
     private String emailCliente;
 
@@ -21,7 +21,7 @@ public class Prenotazione {
             @JsonbProperty("idPrenotazione") int id,
             @JsonbProperty("dataInizio") LocalDateTime dataInizio,
             @JsonbProperty("dataFine") LocalDateTime dataFine,
-            @JsonbProperty("isAccettata") boolean isAccettata,
+			@JsonbProperty("isAccettata") Boolean isAccettata,
             @JsonbProperty("idAnnuncio") int idAnnuncio,
             @JsonbProperty("emailCliente") String emailCliente
     ) {
