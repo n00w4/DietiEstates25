@@ -1,6 +1,8 @@
 package it.dietiestates.data;
 
+import jakarta.json.bind.annotation.JsonbCreator;
 import jakarta.json.bind.annotation.JsonbDateFormat;
+import jakarta.json.bind.annotation.JsonbProperty;
 
 import java.time.LocalDateTime;
 
@@ -14,12 +16,16 @@ public class Prenotazione {
 	private int idAnnuncio;
     private String emailCliente;
 
-    public Prenotazione() {
-        // Costruttore vuoto per deserializzazione
-    }
-
-    public Prenotazione(int idPrenotazione, LocalDateTime dataInizio, LocalDateTime dataFine, boolean isAccettata, int idAnnuncio, String emailCliente) {
-        setID(idPrenotazione);
+    @JsonbCreator
+    public Prenotazione(
+            @JsonbProperty("idPrenotazione") int id,
+            @JsonbProperty("dataInizio") LocalDateTime dataInizio,
+            @JsonbProperty("dataFine") LocalDateTime dataFine,
+            @JsonbProperty("isAccettata") boolean isAccettata,
+            @JsonbProperty("idAnnuncio") int idAnnuncio,
+            @JsonbProperty("emailCliente") String emailCliente
+    ) {
+        setID(id);
         setDataInizio(dataInizio);
         setDataFine(dataFine);
         setAccettata(isAccettata);
@@ -33,7 +39,7 @@ public class Prenotazione {
 	public void setID(int id) {
 		this.id = id;
 	}
-	//Getters and Setters for dataInizio
+
     public LocalDateTime getDataInizio() {
 		return dataInizio;
 	}
@@ -41,8 +47,7 @@ public class Prenotazione {
     public void setDataInizio(LocalDateTime dataInizio) {
 		this.dataInizio = dataInizio;
 	}
-	
-	//Getters and Setters for dataFine
+
     public LocalDateTime getDataFine() {
 		return dataFine;
 	}
@@ -50,12 +55,12 @@ public class Prenotazione {
     public void setDataFine(LocalDateTime dataFine) {
 		this.dataFine = dataFine;
 	}
-	
-	//Getters and Setters for isAccettata
-	public boolean isAccettata() {
+
+    public boolean isAccettata() {
 		return isAccettata;
 	}
-	public void setAccettata(boolean isAccettata) {
+
+    public void setAccettata(boolean isAccettata) {
 		this.isAccettata = isAccettata;
 	}
 	

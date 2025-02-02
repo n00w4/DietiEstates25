@@ -52,4 +52,19 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
             throw new DataAccessException("Errore durante l'eliminazione della prenotazione", e);
         }
     }
+
+    @Override
+    public boolean updateStatusPrenotazione(Prenotazione prenotazione) throws DataAccessException {
+        String query = "UPDATE est.Prenotazione SET isAccettata = ? WHERE idPrenotazione = ? AND idAnnuncio = ? AND email = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setBoolean(1, prenotazione.isAccettata());
+            statement.setInt(2, prenotazione.getID());
+            statement.setInt(3, prenotazione.getIdAnnuncio());
+            statement.setString(4, prenotazione.getEmailCliente());
+
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new DataAccessException("Errore durante l'aggiornamento dello stato della prenotazione. Si prega di verificare i dati inseriti e riprovare.", e);
+        }
+    }
 }

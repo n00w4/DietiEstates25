@@ -27,7 +27,7 @@ public class NotificaController {
         this.notificaConInfoDAO = new SQLNotificaConInfoDAO(PgSQL.getConnection());
     }
 
-    @Path("getAll")
+    @Path("get-all")
     @RequireJWTAuthentication
     @GET
     @Produces(MediaType.APPLICATION_JSON)

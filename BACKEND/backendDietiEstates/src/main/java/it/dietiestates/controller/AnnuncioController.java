@@ -30,7 +30,7 @@ public class AnnuncioController {
         this.annuncioDAO = new SQLAnnuncioDAO(PgSQL.getConnection());
     }
 
-    @Path("getAll")
+    @Path("get-all")
     @RequireJWTAuthentication
     @GET
     @Produces(MediaType.APPLICATION_JSON)

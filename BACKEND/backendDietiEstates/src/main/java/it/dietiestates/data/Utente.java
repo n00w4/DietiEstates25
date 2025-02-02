@@ -8,7 +8,6 @@ public abstract class Utente {
 	private String cognome;
 	private String email;
 	private String password;
-	private String tipo;
 
 	protected Utente(String nome, String cognome, String email, String password) {
 		super();
@@ -19,34 +18,32 @@ public abstract class Utente {
 	}
 
 	protected Utente() {
+        //Costruttore vuoto per deserializzazione
 	}
 
-    //Getter and Setter for nome
-	public String getNome() {
+
+    public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	//Getter and Setter for cognome
-	public String getCognome() {
+
+    public String getCognome() {
 		return cognome;
 	}
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
-	
-	//Getter and Setter for email
-	public String getEmail() {
+
+    public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	//Getter and Setter for password
-	public String getPassword() {
+
+    public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
@@ -55,10 +52,6 @@ public abstract class Utente {
 
 	public String getTipo() {
 		return this.getClass().getSimpleName();
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 	public String getPartitaIVA() {

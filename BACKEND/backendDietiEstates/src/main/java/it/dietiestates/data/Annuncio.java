@@ -4,25 +4,25 @@ import jakarta.json.bind.annotation.JsonbCreator;
 import jakarta.json.bind.annotation.JsonbProperty;
 
 public class Annuncio {
-	private Integer id;
-	private String titolo;
-	private String indirizzo;
-	private String immagine;
-	private String descrizione;
-	private int dimensioni;
-	private float prezzo;
-	private String piano;
-	private int numeroStanze;
-	private String classeEnergetica;
-	private boolean ascensore;
-	private boolean portineria;
-	private boolean climatizzazione;
-	private boolean boxAuto;
-	private boolean terrazzo;
-	private boolean giardino;
-	private String tipoAnnuncio;
-	private String posizione;
-	private String emailAgente;
+    private final Integer id;
+    private final String titolo;
+    private final String indirizzo;
+    private final String immagine;
+    private final String descrizione;
+    private final int dimensioni;
+    private final float prezzo;
+    private final String piano;
+    private final int numeroStanze;
+    private final String classeEnergetica;
+    private final boolean ascensore;
+    private final boolean portineria;
+    private final boolean climatizzazione;
+    private final boolean boxAuto;
+    private final boolean terrazzo;
+    private final boolean giardino;
+    private final String tipoAnnuncio;
+    private final String posizione;
+    private final String emailAgente;
 
 	@JsonbCreator
 	public Annuncio(

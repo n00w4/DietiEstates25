@@ -33,7 +33,7 @@ public class GestoreController {
         this.utenteDAO = new SQLUtenteDAO(PgSQL.getConnection());
     }
 
-    @Path("updateAdminPassword")
+    @Path("update-admin-password")
     @RequireJWTAuthentication
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -53,7 +53,7 @@ public class GestoreController {
         return Response.status(Response.Status.BAD_REQUEST).entity(errorResponse).build();
     }
 
-    @Path("addUtente")
+    @Path("add-utente")
     @RequireJWTAuthentication
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
