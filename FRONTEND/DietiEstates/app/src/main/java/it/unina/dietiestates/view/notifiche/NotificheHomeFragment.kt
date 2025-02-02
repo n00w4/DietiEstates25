@@ -52,7 +52,7 @@ class NotificheHomeFragment : Fragment(){
                 val listaResult = result.getOrNull()
                 listaResult?.let {
                     notificheList.clear()
-                    notificheList.addAll(it) // Update dataset reference
+                    notificheList.addAll(it)
                     adapter.notifyItemRangeInserted(0, notificheList.size)
                 }
             } else if (result.isFailure) {

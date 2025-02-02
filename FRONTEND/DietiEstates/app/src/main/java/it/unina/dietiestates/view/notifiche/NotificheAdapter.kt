@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import it.unina.dietiestates.R
 import it.unina.dietiestates.controller.notifiche.NotificaController
 import it.unina.dietiestates.data.dto.NotificaConInfo
 import it.unina.dietiestates.view.search.AnnuncioActivity
+
 class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>, private val context: Context) :
     RecyclerView.Adapter<NotificheAdapter.NotificaViewHolder>() {
 
@@ -49,48 +51,68 @@ class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>,
 
         fun bind(notifica: NotificaConInfo) {
             Log.d("NotifichaViewHolder", "bind called")
+            setupTextViews(notifica)
+            setupButtons(notifica)
+
+            titoloTextView.setOnClickListener { openAnnuncioActivity(notifica) }
+            accettaBtn.setOnClickListener { handleButtonClick(notifica, true) }
+            rifiutaBtn.setOnClickListener { handleButtonClick(notifica, false) }
+        }
+
+        private fun setupTextViews(notifica: NotificaConInfo) {
             titoloTextView.text = notifica.annuncio.titolo
             emailTextView.text = context.getString(R.string.titolo_tag, notifica.prenotazione.emailCliente)
+
             val giorno = notifica.prenotazione.dataInizio.substring(0, 12)
             giornoTextView.text = context.getString(R.string.giorno_tag, giorno)
+
             val oraInizio = notifica.prenotazione.dataInizio.substring(13, 18)
             val oraFine = notifica.prenotazione.dataFine.substring(13, 18)
             oraTextView.text = context.getString(R.string.inizio_fine_tag, oraInizio, oraFine)
+        }
 
-            if (notifica.prenotazione.isAccettata == true) {
-                accettaBtn.text = context.getString(R.string.accettata_notifica)
-                accettaBtn.isEnabled = false
-                rifiutaBtn.isVisible = false
-            }
-            if (notifica.prenotazione.isAccettata == false){
-                rifiutaBtn.text = context.getString(R.string.rifiutata_notifica)
-                rifiutaBtn.isEnabled = false
-                accettaBtn.isVisible = false
-            }
-
-            titoloTextView.setOnClickListener{
-                val intent = Intent(context, AnnuncioActivity::class.java)
-                intent.putExtra("ANNUNCIO", notifica.annuncio)
-                context.startActivity(intent)
-            }
-
-            accettaBtn.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    //richiesta al server di accettare la prenotazione, poi chiama notifyChange per modificare i button del fragment
-                    notifica.prenotazione.isAccettata = true
-                    notifyChange(position)
+        private fun setupButtons(notifica: NotificaConInfo) {
+            when (notifica.prenotazione.isAccettata) {
+                true -> {
+                    accettaBtn.text = context.getString(R.string.accettata_notifica)
+                    accettaBtn.isEnabled = false
+                    rifiutaBtn.isVisible = false
                 }
-            }
-
-            rifiutaBtn.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    //richiesta al server di rifiutare la prenotazione, poi chiama notifyChange per modificare i button del fragment
-                    notifica.prenotazione.isAccettata = false
-                    notifyChange(position)
+                false -> {
+                    rifiutaBtn.text = context.getString(R.string.rifiutata_notifica)
+                    rifiutaBtn.isEnabled = false
+                    accettaBtn.isVisible = false
+                }
+                else -> {
+                    accettaBtn.isEnabled = true
+                    rifiutaBtn.isEnabled = true
+                    accettaBtn.isVisible = true
+                    rifiutaBtn.isVisible = true
                 }
             }
         }
+
+        private fun openAnnuncioActivity(notifica: NotificaConInfo) {
+            val intent = Intent(context, AnnuncioActivity::class.java)
+            intent.putExtra("ANNUNCIO", notifica.annuncio)
+            context.startActivity(intent)
+        }
+
+        private fun handleButtonClick(notifica: NotificaConInfo, isAccepted: Boolean) {
+            val position = bindingAdapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                notifica.prenotazione.isAccettata = isAccepted
+                controller.valutaPrenotazione(notifica.prenotazione) { result ->
+                    if (result.isSuccess) {
+                        notifyChange(position)
+                    } else {
+                        notifica.prenotazione.isAccettata = null
+                        val error = result.exceptionOrNull()?.message
+                        Toast.makeText(context, "Errore: $error", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+
     }
 }
