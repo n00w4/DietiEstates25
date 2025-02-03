@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
     //https://api.open-meteo.com/v1/forecast?latitude=41.8919&longitude=12.5113
     // &hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code
     // &timezone=Europe%2FLondon
-    // &forecast_days=14
+    // &forecast_days=16
 
 class MeteoPrenotazioneController {
 
@@ -30,7 +30,7 @@ class MeteoPrenotazioneController {
             longitude = location.longitude,
             hourly = "temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code",
             timezone = "Europe/London",
-            forecastDays = 14
+            forecastDays = 16
         )
 
         call.enqueue(object : Callback<WeatherResponse> {

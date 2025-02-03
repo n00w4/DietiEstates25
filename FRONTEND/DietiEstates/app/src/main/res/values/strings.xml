@@ -245,4 +245,9 @@
     <string name="rifiutata_notifica">Rifiutata</string>
     <!-- /NotificaFragment Fragment-->
 
+    <!-- Calendario Fragment-->
+    <string name="nessuna_prenotazione">Nessuna prenotazione presente per il giorno selezionato.</string>
+    <string name="prenotazione_per">Prenotazione per:</string>
+    <!-- /Calendario Fragment-->
+
 </resources>

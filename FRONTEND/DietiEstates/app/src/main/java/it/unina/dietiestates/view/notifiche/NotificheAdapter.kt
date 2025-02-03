@@ -51,6 +51,7 @@ class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>,
 
         fun bind(notifica: NotificaConInfo) {
             Log.d("NotifichaViewHolder", "bind called")
+            Log.d("NotificaDebugger", "${notifica.prenotazione}")
             setupTextViews(notifica)
             setupButtons(notifica)
 
@@ -78,11 +79,13 @@ class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>,
                     accettaBtn.isEnabled = false
                     rifiutaBtn.isVisible = false
                 }
+
                 false -> {
                     rifiutaBtn.text = context.getString(R.string.rifiutata_notifica)
                     rifiutaBtn.isEnabled = false
                     accettaBtn.isVisible = false
                 }
+
                 else -> {
                     accettaBtn.isEnabled = true
                     rifiutaBtn.isEnabled = true
@@ -105,7 +108,7 @@ class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>,
                 controller.valutaPrenotazione(notifica.prenotazione) { result ->
                     if (result.isSuccess) {
                         notifyChange(position)
-                    } else {
+                    } else if (result.isFailure){
                         notifica.prenotazione.isAccettata = null
                         val error = result.exceptionOrNull()?.message
                         Toast.makeText(context, "Errore: $error", Toast.LENGTH_SHORT).show()
