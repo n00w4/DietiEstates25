@@ -1,10 +1,10 @@
 package it.unina.dietiestates.data.model
 
 data class Prenotazione(
-    val id: Int,
+    val ID: Int,
     val dataInizio: String,
     val dataFine: String,
-    var isAccettata: Boolean?,
+    var accettata: Boolean?,
     val emailCliente: String,
     val idAnnuncio: Int
 )

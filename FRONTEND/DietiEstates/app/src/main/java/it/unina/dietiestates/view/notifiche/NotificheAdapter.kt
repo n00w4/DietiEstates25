@@ -73,19 +73,17 @@ class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>,
         }
 
         private fun setupButtons(notifica: NotificaConInfo) {
-            when (notifica.prenotazione.isAccettata) {
+            when (notifica.prenotazione.accettata) {
                 true -> {
                     accettaBtn.text = context.getString(R.string.accettata_notifica)
                     accettaBtn.isEnabled = false
                     rifiutaBtn.isVisible = false
                 }
-
                 false -> {
                     rifiutaBtn.text = context.getString(R.string.rifiutata_notifica)
                     rifiutaBtn.isEnabled = false
                     accettaBtn.isVisible = false
                 }
-
                 else -> {
                     accettaBtn.isEnabled = true
                     rifiutaBtn.isEnabled = true
@@ -104,12 +102,12 @@ class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>,
         private fun handleButtonClick(notifica: NotificaConInfo, isAccepted: Boolean) {
             val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                notifica.prenotazione.isAccettata = isAccepted
+                notifica.prenotazione.accettata = isAccepted
                 controller.valutaPrenotazione(notifica.prenotazione) { result ->
                     if (result.isSuccess) {
                         notifyChange(position)
                     } else if (result.isFailure){
-                        notifica.prenotazione.isAccettata = null
+                        notifica.prenotazione.accettata = null
                         val error = result.exceptionOrNull()?.message
                         Toast.makeText(context, "Errore: $error", Toast.LENGTH_SHORT).show()
                     }

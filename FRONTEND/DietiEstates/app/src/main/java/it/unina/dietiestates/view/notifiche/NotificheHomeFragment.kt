@@ -46,7 +46,8 @@ class NotificheHomeFragment : Fragment(){
         loadNotifiche()
     }
 
-    private fun loadNotifiche() {
+    fun loadNotifiche() {
+        Log.d("NotificheHomeFragment", "loadNotifiche() called")
         controller.getNotifiche { result ->
             if (result.isSuccess) {
                 val listaResult = result.getOrNull()

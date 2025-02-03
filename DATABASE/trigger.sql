@@ -48,8 +48,30 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER preventOverlappingPrenotazioni
-BEFORE INSERT OR UPDATE ON est.Prenotazione
+BEFORE INSERT ON est.Prenotazione
 FOR EACH ROW EXECUTE FUNCTION est.preventOverlappingPrenotazioni();
+
+-- Aggiorna tutte le altre prenotazioni per lo stesso annuncio, 
+    -- nella stessa data/fascia oraria, che non sono state ancora valutate
+CREATE OR REPLACE FUNCTION est.rejectConflictingPrenotazioni() RETURNS TRIGGER AS
+$$
+BEGIN
+    UPDATE est.Prenotazione
+    SET isAccettata = FALSE
+    WHERE idAnnuncio = NEW.idAnnuncio
+      AND idPrenotazione <> NEW.idPrenotazione -- Escludiamo la prenotazione accettata
+      AND isAccettata IS NULL
+      AND (dataInizio < NEW.dataFine AND dataFine > NEW.dataInizio);
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER rejectConflictingPrenotazioni
+AFTER UPDATE ON est.Prenotazione
+FOR EACH ROW
+WHEN (NEW.isAccettata = TRUE) -- Si attiva solo quando una prenotazione viene accettata
+EXECUTE FUNCTION est.rejectConflictingPrenotazioni();
 
 -- Creazione notifica
 CREATE OR REPLACE FUNCTION est.createNotifica() RETURNS TRIGGER AS

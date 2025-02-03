@@ -81,6 +81,7 @@ class CalendarioAgenteFragment : Fragment() {
     }
 
     private fun loadPrenotazioni() {
+        prenotazioniList.clear()
         // Example: Adding some test data
         val annuncio = Annuncio(0, "Casa Blu", "via 123, Napoli, Italia", "no_image", "casa accogliente",
             100, 10000.0f, "piano terra", 3, "A", true, false, true,
