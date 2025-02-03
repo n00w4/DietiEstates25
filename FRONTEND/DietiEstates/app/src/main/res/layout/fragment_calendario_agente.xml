@@ -25,6 +25,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/titoloTextView"
+                style="@style/ProfiloTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/visualizza_appuntamenti" />
+
+            <Button
+                android:id="@+id/refreshButton"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                app:icon="@drawable/refresh"
+                app:cornerRadius="50dp"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"/>
+
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"
                 android:background="@drawable/rounded_edit_text"
@@ -37,13 +54,14 @@
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="15dp"
                 android:text="@string/nessuna_prenotazione"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/prenotazioniRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginBottom="30dp"
                 android:layout_weight="1"/>
 
         </LinearLayout>

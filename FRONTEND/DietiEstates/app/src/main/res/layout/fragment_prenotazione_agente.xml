@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="viewStart"
-            android:text="@string/prenotazione_per" />
+            android:text="@string/appuntamento_per" />
 
         <TextView
             android:id="@+id/annuncioTitolo"

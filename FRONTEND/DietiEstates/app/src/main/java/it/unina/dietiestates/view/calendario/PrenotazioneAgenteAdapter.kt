@@ -26,6 +26,12 @@ class PrenotazioneAgenteAdapter(private val prenotazioniList: MutableList<Prenot
 
     override fun getItemCount() = prenotazioniList.size
 
+    fun updateData(newList: List<PrenotazioneConInfo>) {
+        prenotazioniList.clear()
+        prenotazioniList.addAll(newList)
+        notifyDataSetChanged()
+    }
+
     class PrenotazioneAgenteViewHolder(view: View, private val context: Context)
         : RecyclerView.ViewHolder(view) {
         private val titoloTextView: TextView = itemView.findViewById(R.id.annuncioTitolo)
@@ -36,7 +42,7 @@ class PrenotazioneAgenteAdapter(private val prenotazioniList: MutableList<Prenot
         fun bind(prenotazione: PrenotazioneConInfo) {
             titoloTextView.text = prenotazione.annuncio.titolo
             titoloTextView.setOnClickListener { openAnnuncioActivity(prenotazione) }
-            emailTextView.text = context.getString(R.string.titolo_tag, prenotazione.prenotazione.emailCliente)
+            emailTextView.text = context.getString(R.string.utente_tag, prenotazione.prenotazione.emailCliente)
 
             val giorno = prenotazione.prenotazione.dataInizio.substring(0, 12)
             giornoTextView.text = context.getString(R.string.giorno_tag, giorno)

@@ -4,17 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.DayViewDecorator
+import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.spans.DotSpan
 import it.unina.dietiestates.R
 import it.unina.dietiestates.data.dto.PrenotazioneConInfo
 import it.unina.dietiestates.data.model.Annuncio
 import it.unina.dietiestates.data.model.Prenotazione
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -41,6 +47,9 @@ class CalendarioAgenteFragment : Fragment() {
         erroreTextView.isVisible = false
 
         calendarView = view.findViewById(R.id.calendarView)
+        val today = CalendarDay.today()
+        calendarView.selectedDate = today
+
         recyclerView = view.findViewById(R.id.prenotazioniRecyclerView)
         adapter = PrenotazioneAgenteAdapter(prenotazioniList, requireContext())
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -48,9 +57,26 @@ class CalendarioAgenteFragment : Fragment() {
 
         loadPrenotazioni()
 
+        calendarView.addDecorator(object : DayViewDecorator {
+            override fun shouldDecorate(day: CalendarDay): Boolean {
+                // Highlight days with appointments
+                return prenotazioniList.any {
+                    it.prenotazione.dataInizio.toLocalDate() == day.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() }
+            }
+
+            override fun decorate(view: DayViewFacade) {
+                view.addSpan(DotSpan(10f, resources.getColor(R.color.colorPrimary, null)))
+            }
+        })
+
         calendarView.setOnDateChangedListener { _, date, _ ->
             val selectedDate = date.date
             updateAppointmentsForSelectedDate(selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+        }
+
+        val refreshBtn = view.findViewById<Button>(R.id.refreshButton)
+        refreshBtn.setOnClickListener{
+            loadPrenotazioni()
         }
     }
 
@@ -59,7 +85,7 @@ class CalendarioAgenteFragment : Fragment() {
         val annuncio = Annuncio(0, "Casa Blu", "via 123, Napoli, Italia", "no_image", "casa accogliente",
             100, 10000.0f, "piano terra", 3, "A", true, false, true,
             false, true, false)
-        val prenotazione = Prenotazione("Feb 02, 2025 10:00:00", "Feb 02, 2025 11:00:00", null,
+        val prenotazione = Prenotazione(0, "Feb 02, 2025 10:00:00", "Feb 02, 2025 11:00:00", null,
             "sara.verdi@gmail.it", 0)
 
         prenotazioniList.add(PrenotazioneConInfo(prenotazione, annuncio))
@@ -70,25 +96,26 @@ class CalendarioAgenteFragment : Fragment() {
     private fun updateAppointmentsForSelectedDate(selectedDate: LocalDate) {
         val filteredAppointments = prenotazioniList
             .filter { it.prenotazione.dataInizio.toLocalDate() == selectedDate }
-            .sortedBy { it.prenotazione.dataInizio.toLocalDate() }
-            .toMutableList()
+            .sortedBy { it.prenotazione.dataInizio.toLocalTime() }
 
         if (filteredAppointments.isNotEmpty()) {
-            // Show the RecyclerView and update data
             recyclerView.isVisible = true
             erroreTextView.isVisible = false
-            adapter = PrenotazioneAgenteAdapter(filteredAppointments, requireContext())
-            recyclerView.adapter = adapter
+            adapter.updateData(filteredAppointments)
         } else {
-            // Hide the RecyclerView if no appointments
             recyclerView.isVisible = false
             erroreTextView.isVisible = true
         }
     }
 
-    fun String.toLocalDate(): LocalDate {
+    private fun String.toLocalDate(): LocalDate {
         val formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss", Locale.ENGLISH)
         return LocalDate.parse(this, formatter)
+    }
+
+    private fun String.toLocalTime(): LocalDateTime {
+        val formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss", Locale.ENGLISH)
+        return LocalDateTime.parse(this, formatter)
     }
 
 }

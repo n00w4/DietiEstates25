@@ -246,8 +246,9 @@
     <!-- /NotificaFragment Fragment-->
 
     <!-- Calendario Fragment-->
-    <string name="nessuna_prenotazione">Nessuna prenotazione presente per il giorno selezionato.</string>
-    <string name="prenotazione_per">Prenotazione per:</string>
+    <string name="nessuna_prenotazione">Nessun appuntamento presente per il giorno selezionato.</string>
+    <string name="appuntamento_per">Appuntamento per:</string>
+    <string name="visualizza_appuntamenti">Visualizza appuntamenti</string>
     <!-- /Calendario Fragment-->
 
 </resources>

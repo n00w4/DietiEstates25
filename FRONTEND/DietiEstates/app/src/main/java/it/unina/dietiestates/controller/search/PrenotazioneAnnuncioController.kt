@@ -33,7 +33,7 @@ class PrenotazioneAnnuncioController (private val context: Context) {
             val formattedDataInizio = formatTimestamp(dataInizio)
             val formattedDataFine = formatTimestamp(dataFine)
 
-            val prenotazione = Prenotazione(formattedDataInizio, formattedDataFine, null, emailUtente, idAnnuncio)
+            val prenotazione = Prenotazione(0, formattedDataInizio, formattedDataFine, null, emailUtente, idAnnuncio)
             Log.d("DEBUG_JSON", "Prenotazione JSON: ${Gson().toJson(prenotazione)}")
             inserisciPrenotazione(prenotazione)
         }
