@@ -209,3 +209,33 @@ FROM est.Notifica n
 JOIN est.Prenotazione p ON n.idPrenotazione = p.idPrenotazione
 JOIN est.Annuncio a ON p.idAnnuncio = a.idAnnuncio;
 
+-- View per ottenere le prenotazioni con i dettagli degli annunci
+CREATE VIEW est.PrenotazioneConInfo AS
+SELECT 
+    p.idPrenotazione, 
+    p.dataInizio, 
+    p.dataFine, 
+    p.isAccettata, 
+    p.email AS emailCliente, 
+    a.idAnnuncio, 
+    a.titolo AS titoloAnnuncio, 
+    a.indirizzo, 
+    a.immagine, 
+    a.descrizione, 
+    a.dimensioni, 
+    a.prezzo, 
+    a.piano, 
+    a.numeroStanze, 
+    a.classeEnergetica, 
+    a.ascensore, 
+    a.portineria, 
+    a.climatizzazione, 
+    a.boxAuto, 
+    a.terrazzo, 
+    a.giardino, 
+    a.tipoAnnuncio, 
+    a.posizione, 
+    a.email AS emailAgente
+FROM est.Prenotazione p
+JOIN est.Annuncio a ON p.idAnnuncio = a.idAnnuncio;
+
