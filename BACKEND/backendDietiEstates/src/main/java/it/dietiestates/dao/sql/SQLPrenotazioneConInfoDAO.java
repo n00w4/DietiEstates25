@@ -26,10 +26,11 @@ public class SQLPrenotazioneConInfoDAO implements PrenotazioneConInfoDAO {
         String query = "SELECT idPrenotazione, dataInizio, dataFine, isAccettata, emailCliente, idAnnuncio, " +
                 "titoloAnnuncio, indirizzo, immagine, descrizione, dimensioni, prezzo, piano, numeroStanze, " +
                 "classeEnergetica, ascensore, portineria, climatizzazione, boxAuto, terrazzo, giardino, tipoAnnuncio, " +
-                "posizione, emailAgente FROM est.PrenotazioneConInfo WHERE isAccettata = TRUE";
+                "posizione FROM est.PrenotazioneConInfo WHERE isAccettata = TRUE AND emailAgente = ?";
 
         List<PrenotazioneConInfo> listaPrenotazioni = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, emailAgente);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     int idAnnuncio = resultSet.getInt("idAnnuncio");

@@ -68,7 +68,7 @@ public class SQLNotificaConInfoDAO implements NotificaConInfoDAO {
                     // Creazione oggetto Prenotazione
                     LocalDateTime dataInizio = resultSet.getTimestamp(COLUMN_DATA_INIZIO).toLocalDateTime();
                     LocalDateTime dataFine = resultSet.getTimestamp(COLUMN_DATA_FINE).toLocalDateTime();
-                    boolean isAccettata = resultSet.getBoolean(COLUMN_IS_ACCETTATA);
+                    Boolean isAccettata = resultSet.getObject(COLUMN_IS_ACCETTATA, Boolean.class);
                     int idAnnuncio = resultSet.getInt(COLUMN_ID_ANNUNCIO);
                     String emailCliente = resultSet.getString(COLUMN_EMAIL_CLIENTE);
 
