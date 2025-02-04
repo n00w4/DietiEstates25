@@ -13,7 +13,7 @@ BEGIN
         AND P.isAccettata IS NULL;
 
     IF prenotazioneInCorso > 0 THEN
-        RAISE EXCEPTION 'Non puoi prenotare due annunci contemporaneamente';
+        RAISE EXCEPTION 'Non puoi prenotare un annuncio se hai già una prenotazione in corso';
     END IF;
 
     RETURN NEW;

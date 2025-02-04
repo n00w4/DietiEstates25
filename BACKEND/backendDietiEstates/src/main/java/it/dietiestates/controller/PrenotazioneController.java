@@ -11,6 +11,7 @@ import it.dietiestates.database.PgSQL;
 import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.exception.ForeignKeyConstraintViolationException;
 import it.dietiestates.exception.OverlappingBookingException;
+import it.dietiestates.exception.ValidBookingException;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -42,7 +43,7 @@ public class PrenotazioneController {
             logger.info(message);
             SuccessApiResponse successResponse = new SuccessApiResponse(message);
             return Response.status(Response.Status.CREATED).entity(successResponse).build();
-        } catch (OverlappingBookingException e) {
+        } catch (OverlappingBookingException | ValidBookingException e) {
             return Response.status(Response.Status.CONFLICT).entity(e.getApiResponse()).build();
         } catch (ForeignKeyConstraintViolationException e) {
             return Response.status(Response.Status.NOT_FOUND).entity(e.getApiResponse()).build();
