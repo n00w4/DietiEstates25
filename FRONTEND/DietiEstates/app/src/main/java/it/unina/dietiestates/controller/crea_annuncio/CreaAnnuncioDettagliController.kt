@@ -22,7 +22,8 @@ class CreaAnnuncioDettagliController {
                         prezzo: Float?, dimensioni: Int?) : Boolean{
         if(titolo.isNullOrEmpty()) return true
         if(descrizione.isNullOrEmpty()) return true
-        if(indirizzo.isNullOrEmpty() || latitudine == null || longitudine == null) return true
+        if(indirizzo.isNullOrEmpty() || indirizzo == "Nessun indirizzo corrispondente.") return true
+        if ( latitudine == null || longitudine == null ) return true
         if(prezzo == null || prezzo.toDouble() == 0.0) return true
         if(dimensioni == null || dimensioni == 0) return true
         return false

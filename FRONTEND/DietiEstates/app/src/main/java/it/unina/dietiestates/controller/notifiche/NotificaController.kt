@@ -43,7 +43,7 @@ class NotificaController (private val context: Context){
         val messaggio= when (response.code()) {
             400 -> "Richiesta non valida. Riprovare con una richiesta diversa."
             401, 403 -> "Utente non autorizzato."
-            404 -> errore   //TODO: errore, va sempre in questo caso
+            404 -> errore
             500 -> "Errore del server: Riprovare tra qualche minuto."
             else -> "Errore non previsto: ${response.code()} - ${response.message()}"
         }

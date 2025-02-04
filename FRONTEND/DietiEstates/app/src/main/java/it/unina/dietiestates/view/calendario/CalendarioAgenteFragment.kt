@@ -1,11 +1,13 @@
 package it.unina.dietiestates.view.calendario
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,9 +18,8 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.spans.DotSpan
 import it.unina.dietiestates.R
+import it.unina.dietiestates.controller.calendario.CalendarioAgenteController
 import it.unina.dietiestates.data.dto.PrenotazioneConInfo
-import it.unina.dietiestates.data.model.Annuncio
-import it.unina.dietiestates.data.model.Prenotazione
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -32,6 +33,7 @@ class CalendarioAgenteFragment : Fragment() {
     private lateinit var erroreTextView: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PrenotazioneAgenteAdapter
+    private lateinit var controller: CalendarioAgenteController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,11 +57,11 @@ class CalendarioAgenteFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
+        controller = CalendarioAgenteController(requireContext())
         loadPrenotazioni()
 
         calendarView.addDecorator(object : DayViewDecorator {
             override fun shouldDecorate(day: CalendarDay): Boolean {
-                // Highlight days with appointments
                 return prenotazioniList.any {
                     it.prenotazione.dataInizio.toLocalDate() == day.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() }
             }
@@ -77,28 +79,31 @@ class CalendarioAgenteFragment : Fragment() {
         val refreshBtn = view.findViewById<Button>(R.id.refreshButton)
         refreshBtn.setOnClickListener{
             loadPrenotazioni()
+            calendarView.selectedDate = today
         }
     }
 
     private fun loadPrenotazioni() {
-        prenotazioniList.clear()
-        // Example: Adding some test data
-        val annuncio = Annuncio(0, "Casa Blu", "via 123, Napoli, Italia", "no_image", "casa accogliente",
-            100, 10000.0f, "piano terra", 3, "A", true, false, true,
-            false, true, false)
-        val prenotazione = Prenotazione(0, "Feb 02, 2025 10:00:00", "Feb 02, 2025 11:00:00", null,
-            "sara.verdi@gmail.it", 0)
-
-        prenotazioniList.add(PrenotazioneConInfo(prenotazione, annuncio))
-        prenotazioniList.add(PrenotazioneConInfo(prenotazione, annuncio))
-        prenotazioniList.add(PrenotazioneConInfo(prenotazione, annuncio))
+        Log.d("CalendarioAgenteFragment", "loadPrenotazioni() called")
+        controller.getPrenotazioniAccettate { result ->
+            if (result.isSuccess) {
+                val listaResult = result.getOrNull()
+                listaResult?.let {
+                    prenotazioniList.clear()
+                    prenotazioniList.addAll(it)
+                }
+            } else if (result.isFailure) {
+                val error = result.exceptionOrNull()?.message
+                erroreTextView.isVisible = true
+                Toast.makeText(requireContext(), "Errore: $error", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun updateAppointmentsForSelectedDate(selectedDate: LocalDate) {
         val filteredAppointments = prenotazioniList
             .filter { it.prenotazione.dataInizio.toLocalDate() == selectedDate }
             .sortedBy { it.prenotazione.dataInizio.toLocalTime() }
-
         if (filteredAppointments.isNotEmpty()) {
             recyclerView.isVisible = true
             erroreTextView.isVisible = false
@@ -113,7 +118,6 @@ class CalendarioAgenteFragment : Fragment() {
         val formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss", Locale.ENGLISH)
         return LocalDate.parse(this, formatter)
     }
-
     private fun String.toLocalTime(): LocalDateTime {
         val formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss", Locale.ENGLISH)
         return LocalDateTime.parse(this, formatter)

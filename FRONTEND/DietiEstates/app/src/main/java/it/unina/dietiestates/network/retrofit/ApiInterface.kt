@@ -8,6 +8,7 @@ import it.unina.dietiestates.data.dto.ChangeAdminPwdForm
 import it.unina.dietiestates.data.dto.Credenziali
 import it.unina.dietiestates.data.dto.FiltriRicercaAnnunci
 import it.unina.dietiestates.data.dto.NotificaConInfo
+import it.unina.dietiestates.data.dto.PrenotazioneConInfo
 import it.unina.dietiestates.data.dto.TokenResponse
 import it.unina.dietiestates.data.model.Prenotazione
 import retrofit2.Call
@@ -36,6 +37,9 @@ interface ApiInterface {
 
     @PATCH("prenotazione/update-status")
     fun valutaPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
+
+    @GET("prenotazione/get-prenotazioni-accettate")
+    fun getPrenotazioniAccettate(@Query("emailAgente") emailAgente: String): Call<MutableList<PrenotazioneConInfo>>
 
     @GET("notifiche/get-all")
     fun getNotifiche(@Query("emailAgente") emailAgente: String): Call<MutableList<NotificaConInfo>>

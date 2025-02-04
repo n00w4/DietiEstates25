@@ -32,12 +32,23 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/notifiche_info" />
 
+            <Button
+                android:id="@+id/refreshButton"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                app:icon="@drawable/refresh"
+                app:cornerRadius="50dp"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_gravity="end|bottom"/>
+
             <TextView
                 android:id="@+id/erroreTextView"
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="@string/stringa_vuota" />
 
             <androidx.recyclerview.widget.RecyclerView

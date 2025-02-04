@@ -65,10 +65,9 @@ class CreaAnnuncioFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         var debounceRunnable: Runnable? = null
         val debounceDelay = 1000L
-
         indirizzoTextView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {/*Vuoto*/}
-
+            override fun afterTextChanged(s: Editable?) {/*Vuoto*/}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 debounceRunnable?.let { handler.removeCallbacks(it) }
                 debounceRunnable = Runnable {
@@ -92,8 +91,6 @@ class CreaAnnuncioFragment : Fragment() {
                 }
                 handler.postDelayed(debounceRunnable!!, debounceDelay)
             }
-
-            override fun afterTextChanged(s: Editable?) {/*Vuoto*/}
         })
 
         indirizzoTextView.setOnItemClickListener { _, _, position, _ ->
