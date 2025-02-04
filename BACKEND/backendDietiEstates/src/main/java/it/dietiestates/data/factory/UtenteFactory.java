@@ -1,6 +1,6 @@
 package it.dietiestates.data.factory;
 
-import it.dietiestates.data.*;
+import it.dietiestates.data.model.*;
 
 public class UtenteFactory {
     // Costruttore privato per evitare l'instanziazione della classe

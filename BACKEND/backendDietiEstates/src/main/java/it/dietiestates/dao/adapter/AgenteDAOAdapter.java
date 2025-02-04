@@ -1,8 +1,8 @@
 package it.dietiestates.dao.adapter;
 
-import it.dietiestates.dao.AgenteDAO;
-import it.dietiestates.data.Agente;
+import it.dietiestates.dao.model.AgenteDAO;
 import it.dietiestates.data.dto.AddUtenteForm;
+import it.dietiestates.data.model.Agente;
 import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.utils.PasswordGenerator;
 

@@ -1,7 +1,7 @@
 package it.dietiestates.data.dto;
 
-import it.dietiestates.data.Annuncio;
-import it.dietiestates.data.Prenotazione;
+import it.dietiestates.data.model.Annuncio;
+import it.dietiestates.data.model.Prenotazione;
 
 public class PrenotazioneConInfo {
     private Prenotazione prenotazione;

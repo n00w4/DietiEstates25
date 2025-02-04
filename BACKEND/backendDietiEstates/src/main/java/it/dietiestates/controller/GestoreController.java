@@ -1,9 +1,9 @@
 package it.dietiestates.controller;
 
-import it.dietiestates.dao.GestoreDAO;
-import it.dietiestates.dao.UtenteDAO;
-import it.dietiestates.dao.sql.SQLGestoreDAO;
-import it.dietiestates.dao.sql.SQLUtenteDAO;
+import it.dietiestates.dao.model.GestoreDAO;
+import it.dietiestates.dao.model.UtenteDAO;
+import it.dietiestates.dao.sql.model.SQLGestoreDAO;
+import it.dietiestates.dao.sql.model.SQLUtenteDAO;
 import it.dietiestates.data.dto.AddUtenteForm;
 import it.dietiestates.data.dto.ChangeAdminPwdForm;
 import it.dietiestates.data.dto.ErrorApiResponse;

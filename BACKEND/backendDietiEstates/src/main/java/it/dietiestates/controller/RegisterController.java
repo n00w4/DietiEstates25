@@ -1,9 +1,9 @@
 package it.dietiestates.controller;
 
-import it.dietiestates.dao.ClienteDAO;
-import it.dietiestates.dao.sql.SQLClienteDAO;
-import it.dietiestates.data.Cliente;
+import it.dietiestates.dao.model.ClienteDAO;
+import it.dietiestates.dao.sql.model.SQLClienteDAO;
 import it.dietiestates.data.dto.SuccessApiResponse;
+import it.dietiestates.data.model.Cliente;
 import it.dietiestates.database.PgSQL;
 import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.exception.UniqueConstraintViolationException;

@@ -3,8 +3,8 @@ package it.dietiestates.dao.factory;
 import it.dietiestates.dao.adapter.AgenteDAOAdapter;
 import it.dietiestates.dao.adapter.AmministratoreDAOAdapter;
 import it.dietiestates.dao.adapter.UtenteDAOAdapter;
-import it.dietiestates.dao.sql.SQLAgenteDAO;
-import it.dietiestates.dao.sql.SQLAmministratoreDAO;
+import it.dietiestates.dao.sql.model.SQLAgenteDAO;
+import it.dietiestates.dao.sql.model.SQLAmministratoreDAO;
 
 import java.sql.Connection;
 

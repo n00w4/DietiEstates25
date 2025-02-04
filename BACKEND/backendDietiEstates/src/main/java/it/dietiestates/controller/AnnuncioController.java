@@ -1,11 +1,11 @@
 package it.dietiestates.controller;
 
-import it.dietiestates.dao.AnnuncioDAO;
-import it.dietiestates.dao.sql.SQLAnnuncioDAO;
-import it.dietiestates.data.Annuncio;
+import it.dietiestates.dao.model.AnnuncioDAO;
+import it.dietiestates.dao.sql.model.SQLAnnuncioDAO;
 import it.dietiestates.data.dto.ErrorApiResponse;
 import it.dietiestates.data.dto.RicercaAnnuncio;
 import it.dietiestates.data.dto.SuccessApiResponse;
+import it.dietiestates.data.model.Annuncio;
 import it.dietiestates.database.PgSQL;
 import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.exception.ForeignKeyConstraintViolationException;

@@ -1,7 +1,7 @@
 package it.dietiestates.controller;
 
-import it.dietiestates.dao.NotificaConInfoDAO;
-import it.dietiestates.dao.sql.SQLNotificaConInfoDAO;
+import it.dietiestates.dao.dto.NotificaConInfoDAO;
+import it.dietiestates.dao.sql.dto.SQLNotificaConInfoDAO;
 import it.dietiestates.data.dto.NotificaConInfo;
 import it.dietiestates.database.PgSQL;
 import it.dietiestates.exception.DataAccessException;

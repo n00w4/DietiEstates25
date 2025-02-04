@@ -1,11 +1,11 @@
 package it.dietiestates.controller;
 
-import it.dietiestates.dao.UtenteDAO;
-import it.dietiestates.dao.sql.SQLUtenteDAO;
-import it.dietiestates.data.Utente;
+import it.dietiestates.dao.model.UtenteDAO;
+import it.dietiestates.dao.sql.model.SQLUtenteDAO;
 import it.dietiestates.data.dto.Credentials;
 import it.dietiestates.data.dto.ErrorApiResponse;
 import it.dietiestates.data.dto.TokenResponse;
+import it.dietiestates.data.model.Utente;
 import it.dietiestates.database.PgSQL;
 import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.filter.JWTService;

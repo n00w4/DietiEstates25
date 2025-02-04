@@ -1,8 +1,8 @@
 package it.dietiestates.data.dto;
 
-import it.dietiestates.data.Annuncio;
-import it.dietiestates.data.Notifica;
-import it.dietiestates.data.Prenotazione;
+import it.dietiestates.data.model.Annuncio;
+import it.dietiestates.data.model.Notifica;
+import it.dietiestates.data.model.Prenotazione;
 
 public class NotificaConInfo {
     private Notifica notifica;

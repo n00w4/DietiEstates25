@@ -1,12 +1,12 @@
 package it.dietiestates.controller;
 
-import it.dietiestates.dao.PrenotazioneDAO;
-import it.dietiestates.dao.PrenotazioneConInfoDAO;
-import it.dietiestates.dao.sql.SQLPrenotazioneConInfoDAO;
-import it.dietiestates.dao.sql.SQLPrenotazioneDAO;
-import it.dietiestates.data.Prenotazione;
+import it.dietiestates.dao.dto.PrenotazioneConInfoDAO;
+import it.dietiestates.dao.model.PrenotazioneDAO;
+import it.dietiestates.dao.sql.dto.SQLPrenotazioneConInfoDAO;
+import it.dietiestates.dao.sql.model.SQLPrenotazioneDAO;
 import it.dietiestates.data.dto.PrenotazioneConInfo;
 import it.dietiestates.data.dto.SuccessApiResponse;
+import it.dietiestates.data.model.Prenotazione;
 import it.dietiestates.database.PgSQL;
 import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.exception.ForeignKeyConstraintViolationException;
