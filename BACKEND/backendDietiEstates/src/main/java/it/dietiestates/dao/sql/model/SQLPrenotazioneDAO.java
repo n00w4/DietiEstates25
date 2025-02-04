@@ -34,7 +34,7 @@ public class SQLPrenotazioneDAO implements PrenotazioneDAO {
             if (e.getMessage().contains("Sovrapposizione di prenotazioni")) {
                 throw new OverlappingBookingException(e.getMessage());
             }
-            if (e.getMessage().contains("Non puoi prenotare un annuncio se hai già una prenotazione in corso")) {
+            if (e.getMessage().contains("Non puoi prenotare lo stesso annuncio")) {
                 throw new ValidBookingException(e.getMessage());
             }
             if ("23503".equals(e.getSQLState())) {

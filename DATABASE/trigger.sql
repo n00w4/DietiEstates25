@@ -9,11 +9,11 @@ BEGIN
     SELECT COUNT(*) INTO prenotazioneInCorso
     FROM est.Prenotazione AS P
     WHERE P.email = NEW.email
-        AND P.idAnnuncio != NEW.idAnnuncio
+        AND P.idAnnuncio = NEW.idAnnuncio
         AND P.isAccettata IS NULL;
 
     IF prenotazioneInCorso > 0 THEN
-        RAISE EXCEPTION 'Non puoi prenotare un annuncio se hai già una prenotazione in corso';
+        RAISE EXCEPTION 'Non puoi prenotare lo stesso annuncio se hai già una prenotazione in corso';
     END IF;
 
     RETURN NEW;
