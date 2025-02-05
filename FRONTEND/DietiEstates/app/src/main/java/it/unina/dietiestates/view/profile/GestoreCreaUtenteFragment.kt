@@ -37,6 +37,8 @@ class GestoreCreaUtenteFragment : Fragment() {
         val email : EditText = view.findViewById(R.id.editTextEmailGestore)
         val buttonAdd : Button = view.findViewById(R.id.buttonAdd)
 
+        buttonAdd.isEnabled = false
+
         setupValidation(name, ValidationUtils::verificaNome, buttonAdd)
         setupValidation(surname, ValidationUtils::verificaNome, buttonAdd)
         setupValidation(email, ValidationUtils::verificaEmail, buttonAdd)

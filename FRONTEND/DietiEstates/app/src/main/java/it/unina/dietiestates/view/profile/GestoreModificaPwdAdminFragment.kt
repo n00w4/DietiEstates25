@@ -35,7 +35,7 @@ class GestoreModificaPwdAdminFragment : Fragment() {
         val confirmNewPwd : EditText = view.findViewById(R.id.editTextConfermaNuovaPassword)
         val buttonChange: Button = view.findViewById(R.id.buttonChange)
 
-        buttonChange.isEnabled = true
+        buttonChange.isEnabled = false
 
         newPwd.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
