@@ -41,6 +41,9 @@ interface ApiInterface {
     @GET("prenotazione/get-prenotazioni-accettate")
     fun getPrenotazioniAccettate(@Query("emailAgente") emailAgente: String): Call<MutableList<PrenotazioneConInfo>>
 
+    @GET("prenotazione/get-prenotazioni-utente")
+    fun getPrenotazioniCliente(@Query("emailUtente") emailUtente: String): Call<MutableList<PrenotazioneConInfo>>
+
     @GET("notifiche/get-all")
     fun getNotifiche(@Query("emailAgente") emailAgente: String): Call<MutableList<NotificaConInfo>>
 

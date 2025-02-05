@@ -18,7 +18,7 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.spans.DotSpan
 import it.unina.dietiestates.R
-import it.unina.dietiestates.controller.calendario.CalendarioAgenteController
+import it.unina.dietiestates.controller.calendario.CalendarioClienteController
 import it.unina.dietiestates.data.dto.PrenotazioneConInfo
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -26,20 +26,20 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class CalendarioAgenteFragment : Fragment() {
+class CalendarioClienteFragment : Fragment() {
 
     private var prenotazioniList: MutableList<PrenotazioneConInfo> = mutableListOf()
     private lateinit var calendarView: MaterialCalendarView
     private lateinit var erroreTextView: TextView
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: PrenotazioneAgenteAdapter
-    private lateinit var controller: CalendarioAgenteController
+    private lateinit var adapter: PrenotazioneClienteAdapter
+    private lateinit var controller: CalendarioClienteController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_calendario_agente, container, false)
+        return inflater.inflate(R.layout.fragment_calendario_cliente, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,11 +53,11 @@ class CalendarioAgenteFragment : Fragment() {
         calendarView.selectedDate = today
 
         recyclerView = view.findViewById(R.id.prenotazioniRecyclerView)
-        adapter = PrenotazioneAgenteAdapter(prenotazioniList, requireContext())
+        adapter = PrenotazioneClienteAdapter(prenotazioniList, requireContext())
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-        controller = CalendarioAgenteController(requireContext())
+        controller = CalendarioClienteController(requireContext())
         loadPrenotazioni()
 
         applyCalendarDecorator()
@@ -75,8 +75,8 @@ class CalendarioAgenteFragment : Fragment() {
     }
 
     private fun loadPrenotazioni() {
-        Log.d("CalendarioAgenteFragment", "loadPrenotazioni() called")
-        controller.getPrenotazioniAccettate { result ->
+        Log.d("CalendarioClienteFragment", "loadPrenotazioni() called")
+        controller.getPrenotazioniCliente { result ->
             if (result.isSuccess) {
                 val listaResult = result.getOrNull()
                 listaResult?.let {

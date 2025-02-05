@@ -12,6 +12,7 @@ import it.unina.dietiestates.network.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import org.json.JSONObject
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -61,7 +62,9 @@ class PrenotazioneAnnuncioController (private val context: Context) {
                         }
                     }
                     409 -> {
-                        Toast.makeText(context, "Spiacenti, esiste già una prenotazione nella stessa data. Riprovare.", Toast.LENGTH_SHORT).show()
+                        val errorMessage = parseError(response)
+                        //Toast.makeText(context, "Spiacenti, esiste già una prenotazione nella stessa data. Riprovare.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                     }
                     500 -> {
                         Toast.makeText(context, "Server error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
@@ -89,6 +92,17 @@ class PrenotazioneAnnuncioController (private val context: Context) {
     private fun formatTimestamp(timestamp: Timestamp): String {
         val sdf = SimpleDateFormat("MMM dd, yyyy HH:mm:ss", Locale.ENGLISH) // Force two-digit days
         return sdf.format(timestamp)
+    }
+
+    private fun parseError(response: Response<*>): String {
+        return try {
+            response.errorBody()?.string()?.let {
+                val jsonObject = JSONObject(it)
+                jsonObject.getString("message")
+            } ?: "Si è verificato un errore sconosciuto"
+        } catch (e: Exception) {
+            "Errore durante l'elaborazione della risposta"
+        }
     }
 
 }

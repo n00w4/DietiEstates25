@@ -26,6 +26,7 @@
     <string name="profilo_tab_text">Profilo</string>
     <string name="crea_tab_text">Crea</string>
     <string name="prenotazioni_tab_text">Visite</string>
+    <string name="calendario_tab_text">Calendario</string>
     <string name="password_tab_text">Password</string>
     <string name="notifiche_tab_text">Notifiche</string>
     <!-- /Client Home Page -->
@@ -249,6 +250,9 @@
     <string name="nessuna_prenotazione">Nessun appuntamento presente per il giorno selezionato.</string>
     <string name="appuntamento_per">Appuntamento per:</string>
     <string name="visualizza_appuntamenti">Visualizza appuntamenti</string>
+    <string name="visualizza_prenotazioni">Visualizza prenotazioni</string>
+    <string name="visualizza_prenotazioni_info">Controlla lo stato delle prenotazioni effettuate</string>
+    <string name="non_valutata_prenotazione">Non ancora valutata</string>
     <!-- /Calendario Fragment-->
 
 </resources>

@@ -10,24 +10,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CalendarioAgenteController (private val context: Context) {
+class CalendarioClienteController (private val context: Context) {
 
     val errore: String = "Nessuna prenotazione disponibile."
 
-    fun getPrenotazioniAccettate(callback: (Result<List<PrenotazioneConInfo>>) -> Unit){
+    fun getPrenotazioniCliente(callback: (Result<List<PrenotazioneConInfo>>) -> Unit){
         val api = RetrofitClient.instance
-        val emailAgente = SharedPrefManager.getUserEmail(context) ?: "no_email"
-        Log.d("CalendarioAgenteController", "getPrenotazioniAccettate() called")
+        val emailCliente = SharedPrefManager.getUserEmail(context) ?: "no_email"
+        Log.d("CalendarioClienteController", "getPrenotazioniCliente() called")
 
-        api.getPrenotazioniAccettate(emailAgente).enqueue(object : Callback<MutableList<PrenotazioneConInfo>> {
+        api.getPrenotazioniCliente(emailCliente).enqueue(object : Callback<MutableList<PrenotazioneConInfo>> {
             override fun onResponse(call: Call<MutableList<PrenotazioneConInfo>>, response: Response<MutableList<PrenotazioneConInfo>>) {
                 if (response.isSuccessful) {
-                    Log.d("CalendarioAgenteController", "response.isSuccessful")
+                    Log.d("CalendarioClienteController", "response.isSuccessful")
                     response.body()?.let { prenotazioni ->
                         callback(Result.success(prenotazioni))
                     } ?: callback(Result.failure(Exception(errore)))
                 } else {
-                    Log.d("CalendarioAgenteController", "response failed")
+                    Log.d("CalendarioClienteController", "response failed")
                     val errorMessage = assegnaErrore(response)
                     callback(Result.failure(Exception(errorMessage)))
                 }
