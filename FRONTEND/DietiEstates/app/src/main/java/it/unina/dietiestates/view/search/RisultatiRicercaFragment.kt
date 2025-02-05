@@ -19,7 +19,6 @@ import it.unina.dietiestates.R
 import it.unina.dietiestates.controller.search.RisultatiRicercaController
 import it.unina.dietiestates.data.model.Annuncio
 import it.unina.dietiestates.data.viewmodel.FiltriRicercaViewModel
-import it.unina.dietiestates.network.geocoding.CitiesLabelOverlay
 import it.unina.dietiestates.network.geocoding.GeoPointParser
 import org.osmdroid.config.Configuration
 import org.osmdroid.views.MapView
@@ -91,7 +90,6 @@ class RisultatiRicercaFragment : Fragment() {
         val lat = filtriRicercaVM.filtriRicerca.latitudine ?: 41.9028
         val long = filtriRicercaVM.filtriRicerca.longitudine ?: 12.4964 //Default (Roma)
         map.controller.setCenter(GeoPoint(lat, long))
-        map.overlays.add(0, CitiesLabelOverlay())
         val parser = GeoPointParser()
         listaAnnunci.forEach { annuncio ->
             val marker = Marker(map)

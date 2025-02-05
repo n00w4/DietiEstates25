@@ -30,4 +30,23 @@ object ImageUtils {
             ""
         }
     }
+
+    fun resizeAndCompressBitmap(bitmap: Bitmap, maxWidth: Int, maxHeight: Int, quality: Int): Bitmap {
+        val width = bitmap.width
+        val height = bitmap.height
+        // Calculate scale factor
+        val scaleFactor = minOf(maxWidth.toFloat() / width, maxHeight.toFloat() / height)
+        // Resize the bitmap
+        val resizedBitmap = Bitmap.createScaledBitmap(
+            bitmap,
+            (width * scaleFactor).toInt(),
+            (height * scaleFactor).toInt(),
+            true
+        )
+        // Compress the resized bitmap
+        val outputStream = ByteArrayOutputStream()
+        resizedBitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
+
+        return BitmapFactory.decodeByteArray(outputStream.toByteArray(), 0, outputStream.size())
+    }
 }

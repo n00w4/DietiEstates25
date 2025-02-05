@@ -75,7 +75,10 @@ class CreaAnnuncio2Fragment : Fragment(){
     private fun convertUriToBitmap(uri: Uri) {
         try {
             val source = ImageDecoder.createSource(requireActivity().contentResolver, uri)
-            selectedImageBitmap = ImageDecoder.decodeBitmap(source)
+            val originalBitmap  = ImageDecoder.decodeBitmap(source)
+            // Resize & Compress Image
+            selectedImageBitmap = ImageUtils.resizeAndCompressBitmap(originalBitmap, 300, 300, 70)
+            immagineView.setImageBitmap(selectedImageBitmap) // Display the resized image
         } catch (e: Exception) {
             e.printStackTrace()
         }

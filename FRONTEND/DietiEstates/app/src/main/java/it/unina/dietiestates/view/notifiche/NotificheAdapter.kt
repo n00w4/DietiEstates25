@@ -100,6 +100,25 @@ class NotificheAdapter (private val notificheList: MutableList<NotificaConInfo>,
         }
 
         private fun handleButtonClick(notifica: NotificaConInfo, isAccepted: Boolean) {
+            val action = if (isAccepted) "accettare" else "rifiutare"
+            showPopUpConferma(action) {
+                valutaPrenotazione(notifica, isAccepted)
+            }
+        }
+
+        private fun showPopUpConferma(action: String, onConfirm: () -> Unit) {
+            val builder = android.app.AlertDialog.Builder(context)
+            builder.setTitle("Sei sicuro di voler $action questa prenotazione?")
+            builder.setMessage("Al termine di questa operazione lo stato di più prenotazioni potrebbe essere cambiato. Si consiglia di ricaricare la pagina.")
+
+            builder.setPositiveButton("Conferma") { _, _ -> onConfirm() }
+            builder.setNegativeButton("Annulla") { dialog, _ -> dialog.dismiss() }
+
+            val dialog = builder.create()
+            dialog.show()
+        }
+
+        private fun valutaPrenotazione(notifica: NotificaConInfo, isAccepted: Boolean) {
             val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 notifica.prenotazione.accettata = isAccepted

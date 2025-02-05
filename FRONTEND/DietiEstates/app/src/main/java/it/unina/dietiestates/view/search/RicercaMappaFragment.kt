@@ -15,7 +15,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import it.unina.dietiestates.R
 import it.unina.dietiestates.data.viewmodel.FiltriRicercaViewModel
-import it.unina.dietiestates.network.geocoding.CitiesLabelOverlay
 import it.unina.dietiestates.network.geocoding.OsmdroidGeocoder
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapEventsReceiver
@@ -55,7 +54,6 @@ class RicercaMappaFragment: Fragment() {
         mapView.setTileSource(TileSourceFactory.MAPNIK)
         mapView.setMultiTouchControls(true)
         mapView.controller.setZoom(10.0)
-        mapView.overlays.add(0, CitiesLabelOverlay())
         val startPoint = GeoPoint(selectedLatitude, selectedLongitude) // Punto iniziale (Roma)
         mapView.controller.setCenter(startPoint)
         // Aggiungi un marker

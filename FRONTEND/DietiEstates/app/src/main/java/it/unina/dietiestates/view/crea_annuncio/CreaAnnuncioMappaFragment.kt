@@ -16,7 +16,6 @@ import it.unina.dietiestates.R
 import it.unina.dietiestates.controller.crea_annuncio.CreaAnnuncioDettagliController
 import it.unina.dietiestates.data.viewmodel.AnnuncioViewModel
 import it.unina.dietiestates.data.viewmodel.CoordinateViewModel
-import it.unina.dietiestates.network.geocoding.CitiesLabelOverlay
 import it.unina.dietiestates.network.geocoding.OsmdroidGeocoder
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapEventsReceiver
@@ -55,7 +54,6 @@ class CreaAnnuncioMappaFragment : Fragment(){
         mapView.setTileSource(TileSourceFactory.MAPNIK)
         mapView.setMultiTouchControls(true)
         mapView.controller.setZoom(10.0)
-        mapView.overlays.add(0, CitiesLabelOverlay())
         val startPoint = GeoPoint(41.9028, 12.4964) // Punto iniziale (Roma)
         mapView.controller.setCenter(startPoint)
         // Aggiungi un marker

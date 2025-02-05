@@ -60,13 +60,15 @@ class NotificheHomeFragment : Fragment(){
                 listaResult?.let {
                     notificheList.clear()
                     notificheList.addAll(it)
-                    adapter.notifyItemRangeInserted(0, notificheList.size)
+                    adapter.notifyDataSetChanged()
                 }
             } else if (result.isFailure) {
-                val error = result.exceptionOrNull()?.message
-                erroreTextView.isVisible = true
-                erroreTextView.text = "$error"
-                Toast.makeText(requireContext(), "Errore: $error", Toast.LENGTH_SHORT).show()
+                if (notificheList.isEmpty()) { // Only show Toast if list is actually empty
+                    val error = result.exceptionOrNull()?.message
+                    erroreTextView.isVisible = true
+                    erroreTextView.text = "$error"
+                    Toast.makeText(requireContext(), "$error", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

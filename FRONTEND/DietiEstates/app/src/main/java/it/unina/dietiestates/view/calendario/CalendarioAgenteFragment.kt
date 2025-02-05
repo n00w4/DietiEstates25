@@ -60,16 +60,7 @@ class CalendarioAgenteFragment : Fragment() {
         controller = CalendarioAgenteController(requireContext())
         loadPrenotazioni()
 
-        calendarView.addDecorator(object : DayViewDecorator {
-            override fun shouldDecorate(day: CalendarDay): Boolean {
-                return prenotazioniList.any {
-                    it.prenotazione.dataInizio.toLocalDate() == day.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() }
-            }
-
-            override fun decorate(view: DayViewFacade) {
-                view.addSpan(DotSpan(10f, resources.getColor(R.color.colorPrimary, null)))
-            }
-        })
+        applyCalendarDecorator()
 
         calendarView.setOnDateChangedListener { _, date, _ ->
             val selectedDate = date.date
@@ -91,11 +82,14 @@ class CalendarioAgenteFragment : Fragment() {
                 listaResult?.let {
                     prenotazioniList.clear()
                     prenotazioniList.addAll(it)
+                    applyCalendarDecorator()
                 }
             } else if (result.isFailure) {
                 val error = result.exceptionOrNull()?.message
                 erroreTextView.isVisible = true
-                Toast.makeText(requireContext(), "Errore: $error", Toast.LENGTH_SHORT).show()
+                if (isAdded) { // Controllo fragment esistente prima di chiamare requireContext() (prevenzione di errori a runtime)
+                    Toast.makeText(requireContext(), "$error", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -122,5 +116,21 @@ class CalendarioAgenteFragment : Fragment() {
         val formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss", Locale.ENGLISH)
         return LocalDateTime.parse(this, formatter)
     }
+
+    private fun applyCalendarDecorator() {
+        calendarView.removeDecorators() // Remove any existing decorators
+        calendarView.addDecorator(object : DayViewDecorator {
+            override fun shouldDecorate(day: CalendarDay): Boolean {
+                return prenotazioniList.any {
+                    it.prenotazione.dataInizio.toLocalDate() == day.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+                }
+            }
+
+            override fun decorate(view: DayViewFacade) {
+                view.addSpan(DotSpan(10f, resources.getColor(R.color.colorPrimary, null)))
+            }
+        })
+    }
+
 
 }
