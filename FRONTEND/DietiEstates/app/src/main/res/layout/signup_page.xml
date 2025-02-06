@@ -44,8 +44,9 @@
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:layout_marginBottom="8dp"
+            android:gravity="center"
             android:text="@string/signup_info_text" />
 
         <TextView
@@ -53,7 +54,7 @@
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="@string/name_label" />
 
         <EditText
@@ -70,7 +71,7 @@
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="@string/surname_label" />
 
         <EditText
@@ -87,7 +88,7 @@
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="@string/email_label" />
 
         <EditText
@@ -104,17 +105,24 @@
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="@string/password_label" />
 
-        <EditText
-            android:id="@+id/editTextPassword"
-            style="@style/LoginEditText"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="@string/password_label"
-            android:inputType="textPassword" />
+            app:hintEnabled="false"
+            app:endIconMode="password_toggle">
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                style="@style/LoginEditText"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:hint="@string/password_text"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/erroriEmailTextView"
