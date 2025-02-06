@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/amministratoreCreaUtenteFragment">
+
+    <fragment
+        android:id="@+id/amministratoreCreaUtenteFragment"
+        android:name="it.unina.dietiestates.view.profile.AmministratoreCreaUtenteFragment"
+        android:label="amministratoreCreaUtente" />
+
+</navigation>

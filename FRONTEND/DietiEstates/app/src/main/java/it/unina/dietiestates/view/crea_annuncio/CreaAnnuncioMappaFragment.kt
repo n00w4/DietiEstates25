@@ -60,7 +60,7 @@ class CreaAnnuncioMappaFragment : Fragment(){
         val marker = Marker(mapView)
         marker.position = startPoint
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-        marker.icon = null //Invisibile fino a quando l'user non clicca sulla mappa per la prima volta
+        marker.icon = ContextCompat.getDrawable(requireContext(), R.drawable.transparent_img) //Invisibile fino a quando l'user non clicca sulla mappa per la prima volta
         mapView.overlays.add(marker)
         // Gestisci i click sulla mappa
         val mapEventsOverlay = MapEventsOverlay(object : MapEventsReceiver {

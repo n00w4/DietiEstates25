@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import it.unina.dietiestates.R
+import it.unina.dietiestates.data.dto.AddUtenteForm
 import it.unina.dietiestates.data.dto.ApiResponse
-import it.unina.dietiestates.data.dto.ChangeAdminPwdForm
 import it.unina.dietiestates.data.dto.SharedPrefManager
 import it.unina.dietiestates.network.retrofit.RetrofitClient
 import it.unina.dietiestates.utils.ValidationUtils
@@ -19,61 +20,41 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GestoreModificaPwdAdminFragment : Fragment() {
+class AmministratoreCreaUtenteFragment : Fragment() {
 
-    private lateinit var oldPwd : EditText
-    private lateinit var newPwd : EditText
-    private lateinit var confirmNewPwd: EditText
+    private lateinit var userType: Spinner
+    private lateinit var name : EditText
+    private lateinit var surname : EditText
+    private lateinit var email : EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_gestore_modifica_pwd_admin, container, false)
+        return inflater.inflate(R.layout.fragment_amministratore_crea_utente, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        oldPwd = view.findViewById(R.id.editTextVecchiaPassword)
-        newPwd = view.findViewById(R.id.editTextNuovaPassword)
-        confirmNewPwd = view.findViewById(R.id.editTextConfermaNuovaPassword)
-        val buttonChange: Button = view.findViewById(R.id.buttonChange)
+        userType = view.findViewById(R.id.spinner_gestore)
+        name = view.findViewById(R.id.editTextNome)
+        surname = view.findViewById(R.id.editTextCognome)
+        email = view.findViewById(R.id.editTextEmailGestore)
+        val buttonAdd : Button = view.findViewById(R.id.buttonAdd)
 
-        newPwd.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                var messaggiDiErrore = ValidationUtils.verificaPassword(newPwd.text.toString())
-                if (newPwd.text.toString() == oldPwd.text.toString()) {
-                    messaggiDiErrore = messaggiDiErrore.plus("La password vecchia è uguale alla nuova")
-                }
-                if (messaggiDiErrore.isNotEmpty()) {
-                    newPwd.error = messaggiDiErrore.joinToString("\n")
-                    buttonChange.isEnabled = false
-                } else {
-                    newPwd.error = null
-                    buttonChange.isEnabled = true
-                }
-            }
-        }
+        buttonAdd.isEnabled = false
 
-        confirmNewPwd.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                if (newPwd.text.toString() != confirmNewPwd.text.toString()) {
-                    confirmNewPwd.error = "La password non è uguale alla nuova password"
-                    buttonChange.isEnabled = false
-                } else {
-                    confirmNewPwd.error = null
-                    buttonChange.isEnabled = true
-                }
-            }
-        }
+        setupValidation(name, ValidationUtils::verificaNome, buttonAdd)
+        setupValidation(surname, ValidationUtils::verificaNome, buttonAdd)
+        setupValidation(email, ValidationUtils::verificaEmail, buttonAdd)
 
-        buttonChange.setOnClickListener {
-            onButtonChangeCliked()
+        buttonAdd.setOnClickListener {
+            onButtonAddClicked()
         }
     }
 
-    private fun onButtonChangeCliked(){
+    private fun onButtonAddClicked(){
         if(checkEmptyEditText()){
             Toast.makeText(context, "Compilare tutti i campi prima di procedere.", Toast.LENGTH_SHORT).show()
         }else{
@@ -81,7 +62,7 @@ class GestoreModificaPwdAdminFragment : Fragment() {
             builder.setTitle("Conferma Operazione")
             builder.setMessage("Sei sicuro di voler procedere?")
             builder.setPositiveButton("Conferma") { dialog, _ ->
-                changeAdminPwd(oldPwd.text.toString(), newPwd.text.toString())
+                addUtente(userType.selectedItem.toString(), name.text.toString(), surname.text.toString(), email.text.toString())
                 dialog.dismiss()
             }
             builder.setNegativeButton("Annulla") { dialog, _ ->
@@ -92,24 +73,23 @@ class GestoreModificaPwdAdminFragment : Fragment() {
     }
 
     private fun checkEmptyEditText() : Boolean{
-        if(oldPwd.text.toString().trim().isEmpty()) return true
-        if(newPwd.text.toString().trim().isEmpty()) return true
-        if(confirmNewPwd.text.toString().trim().isEmpty()) return true
+        if(name.text.toString().trim().isEmpty()) return true
+        if(surname.text.toString().trim().isEmpty()) return true
+        if(email.text.toString().trim().isEmpty()) return true
         return false
     }
 
-    private fun changeAdminPwd(oldPwd: String, newPwd: String) {
-        val emailGestore = SharedPrefManager.getUserEmail(requireContext())
+    private fun addUtente(userType: String, name: String, surname: String, email: String) {
         val partitaIVAGestore = SharedPrefManager.getPartitaIva(requireContext())
 
-        val form = ChangeAdminPwdForm(oldPwd, newPwd, emailGestore!!, partitaIVAGestore!!)
+        val form = AddUtenteForm(userType, name, surname, email, partitaIVAGestore!!)
 
         val api = RetrofitClient.instance
 
-        api.updateAdminPassword(form).enqueue(object : Callback<ApiResponse> {
+        api.addUtente(form).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 when (response.code()) {
-                    200 -> {
+                    201 -> {
                         val message = response.body()?.message
                         if (message != null) {
                             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -117,6 +97,9 @@ class GestoreModificaPwdAdminFragment : Fragment() {
                     }
                     400 -> {
                         Toast.makeText(context, "I dati inseriti non sono al momento validi. Riprova più tardi.", Toast.LENGTH_SHORT).show()
+                    }
+                    409 -> {
+                        Toast.makeText(context, "Esiste già un utente con questa email.", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
                         Toast.makeText(context, "Errore codice ${response.code()}: riprova più tardi", Toast.LENGTH_SHORT).show()
@@ -129,4 +112,15 @@ class GestoreModificaPwdAdminFragment : Fragment() {
             }
         })
     }
+
+    private fun setupValidation(editText: EditText, validationFunction: (String) -> List<String>, buttonAdd: Button) {
+        editText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                val messaggiDiErrore = validationFunction(editText.text.toString())
+                editText.error = if (messaggiDiErrore.isNotEmpty()) messaggiDiErrore.joinToString("\n") else null
+                buttonAdd.isEnabled = messaggiDiErrore.isEmpty()
+            }
+        }
+    }
+
 }

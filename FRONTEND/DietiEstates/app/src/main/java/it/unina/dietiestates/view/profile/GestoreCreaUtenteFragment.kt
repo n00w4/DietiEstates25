@@ -21,6 +21,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class GestoreCreaUtenteFragment : Fragment() {
+
+    private lateinit var userType: Spinner
+    private lateinit var name : EditText
+    private lateinit var surname : EditText
+    private lateinit var email : EditText
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,19 +37,26 @@ class GestoreCreaUtenteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userType : Spinner = view.findViewById(R.id.spinner_gestore)
-        val name : EditText = view.findViewById(R.id.editTextNome)
-        val surname : EditText = view.findViewById(R.id.editTextCognome)
-        val email : EditText = view.findViewById(R.id.editTextEmailGestore)
+        userType = view.findViewById(R.id.spinner_gestore)
+        name = view.findViewById(R.id.editTextNome)
+        surname = view.findViewById(R.id.editTextCognome)
+        email = view.findViewById(R.id.editTextEmailGestore)
         val buttonAdd : Button = view.findViewById(R.id.buttonAdd)
-
-        buttonAdd.isEnabled = false
 
         setupValidation(name, ValidationUtils::verificaNome, buttonAdd)
         setupValidation(surname, ValidationUtils::verificaNome, buttonAdd)
         setupValidation(email, ValidationUtils::verificaEmail, buttonAdd)
 
         buttonAdd.setOnClickListener {
+            onButtonAddClicked()
+        }
+
+    }
+
+    private fun onButtonAddClicked(){
+        if(checkEmptyEditText()){
+            Toast.makeText(context, "Compilare tutti i campi prima di procedere.", Toast.LENGTH_SHORT).show()
+        }else{
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("Conferma Operazione")
             builder.setMessage("Sei sicuro di voler procedere?")
@@ -56,6 +69,13 @@ class GestoreCreaUtenteFragment : Fragment() {
             }
             builder.create().show()
         }
+    }
+
+    private fun checkEmptyEditText() : Boolean{
+        if(name.text.toString().trim().isEmpty()) return true
+        if(surname.text.toString().trim().isEmpty()) return true
+        if(email.text.toString().trim().isEmpty()) return true
+        return false
     }
 
     private fun addUtente(userType: String, name: String, surname: String, email: String) {
@@ -76,6 +96,9 @@ class GestoreCreaUtenteFragment : Fragment() {
                     }
                     400 -> {
                         Toast.makeText(context, "I dati inseriti non sono al momento validi. Riprova più tardi.", Toast.LENGTH_SHORT).show()
+                    }
+                    409 -> {
+                        Toast.makeText(context, "Esiste già un utente con questa email.", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
                         Toast.makeText(context, "Errore codice ${response.code()}: riprova più tardi", Toast.LENGTH_SHORT).show()
