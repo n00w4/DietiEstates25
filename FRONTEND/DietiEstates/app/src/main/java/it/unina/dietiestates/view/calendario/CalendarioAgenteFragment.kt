@@ -123,7 +123,7 @@ class CalendarioAgenteFragment : Fragment() {
 
     private fun applyCalendarDecorator() {
         if (!isAdded || context == null) return
-        calendarView.removeDecorators() // Remove any existing decorators
+        calendarView.removeDecorators()
         calendarView.addDecorator(object : DayViewDecorator {
             override fun shouldDecorate(day: CalendarDay): Boolean {
                 return prenotazioniList.any {

@@ -78,6 +78,7 @@ class CalendarioClienteFragment : Fragment() {
         Log.d("CalendarioClienteFragment", "loadPrenotazioni() called")
         if (!isAdded) return
         controller.getPrenotazioniCliente { result ->
+            if (!isAdded) return@getPrenotazioniCliente
             if (result.isSuccess) {
                 val listaResult = result.getOrNull()
                 listaResult?.let {
