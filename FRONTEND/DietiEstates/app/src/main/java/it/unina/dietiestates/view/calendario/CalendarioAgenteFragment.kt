@@ -71,12 +71,16 @@ class CalendarioAgenteFragment : Fragment() {
         refreshBtn.setOnClickListener{
             loadPrenotazioni()
             calendarView.selectedDate = today
+            val currentDay = LocalDate.now()
+            updateAppointmentsForSelectedDate(currentDay)
         }
     }
 
     private fun loadPrenotazioni() {
         Log.d("CalendarioAgenteFragment", "loadPrenotazioni() called")
+        if (!isAdded) return
         controller.getPrenotazioniAccettate { result ->
+            if (!isAdded) return@getPrenotazioniAccettate
             if (result.isSuccess) {
                 val listaResult = result.getOrNull()
                 listaResult?.let {
@@ -118,6 +122,7 @@ class CalendarioAgenteFragment : Fragment() {
     }
 
     private fun applyCalendarDecorator() {
+        if (!isAdded || context == null) return
         calendarView.removeDecorators() // Remove any existing decorators
         calendarView.addDecorator(object : DayViewDecorator {
             override fun shouldDecorate(day: CalendarDay): Boolean {

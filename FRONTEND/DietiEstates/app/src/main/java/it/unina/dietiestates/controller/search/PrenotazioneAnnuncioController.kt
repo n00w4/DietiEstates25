@@ -63,7 +63,6 @@ class PrenotazioneAnnuncioController (private val context: Context) {
                     }
                     409 -> {
                         val errorMessage = parseError(response)
-                        //Toast.makeText(context, "Spiacenti, esiste già una prenotazione nella stessa data. Riprovare.", Toast.LENGTH_SHORT).show()
                         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                     }
                     500 -> {
@@ -96,9 +95,12 @@ class PrenotazioneAnnuncioController (private val context: Context) {
 
     private fun parseError(response: Response<*>): String {
         return try {
-            response.errorBody()?.string()?.let {
-                val jsonObject = JSONObject(it)
-                jsonObject.getString("message")
+            response.errorBody()?.string()?.let { errorBody ->
+                val jsonObject = JSONObject(errorBody)
+                val errorMessage = jsonObject.getString("message")
+                val regex = Regex("ERRORE: (.*?)\\s*Dove:", RegexOption.DOT_MATCHES_ALL)
+                val matchResult = regex.find(errorMessage)
+                matchResult?.groupValues?.get(1)?.trim() ?: "Si è verificato un errore"
             } ?: "Si è verificato un errore sconosciuto"
         } catch (e: Exception) {
             "Errore durante l'elaborazione della risposta"

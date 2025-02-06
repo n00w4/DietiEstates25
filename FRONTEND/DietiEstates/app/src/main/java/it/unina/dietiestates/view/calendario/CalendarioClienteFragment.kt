@@ -76,6 +76,7 @@ class CalendarioClienteFragment : Fragment() {
 
     private fun loadPrenotazioni() {
         Log.d("CalendarioClienteFragment", "loadPrenotazioni() called")
+        if (!isAdded) return
         controller.getPrenotazioniCliente { result ->
             if (result.isSuccess) {
                 val listaResult = result.getOrNull()
@@ -118,7 +119,8 @@ class CalendarioClienteFragment : Fragment() {
     }
 
     private fun applyCalendarDecorator() {
-        calendarView.removeDecorators() // Remove any existing decorators
+        if (!isAdded || context == null) return
+        calendarView.removeDecorators()
         calendarView.addDecorator(object : DayViewDecorator {
             override fun shouldDecorate(day: CalendarDay): Boolean {
                 return prenotazioniList.any {
