@@ -80,7 +80,26 @@ public class PrenotazioneController {
         try {
             listaPrenotazioni = prenotazioneConInfoDAO.getPrenotazioniAccettate(emailAgente);
             if (listaPrenotazioni.equals(Collections.emptyList())) {
-                logger.info("Richiesta per prenotazioni non trovate");
+                logger.info("Richiesta per prenotazioni agente non trovate");
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+        } catch (DataAccessException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getApiResponse()).build();
+        }
+        return Response.ok(listaPrenotazioni).build();
+    }
+
+    @Path("get-prenotazioni-accettate-cliente")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPrenotazioniAccettateCliente(@QueryParam("emailCliente") String emailCliente) {
+        List<PrenotazioneConInfo> listaPrenotazioni;
+
+        try {
+            listaPrenotazioni = prenotazioneConInfoDAO.getPrenotazioniAccettateCliente(emailCliente);
+            if (listaPrenotazioni.equals(Collections.emptyList())) {
+                logger.info("Richiesta per prenotazioni cliente non trovate");
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
         } catch (DataAccessException e) {
