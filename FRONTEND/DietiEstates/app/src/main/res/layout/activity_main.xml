@@ -50,6 +50,7 @@
             <EditText
                 android:id="@+id/editTextEmail"
                 style="@style/LoginEditText"
+                android:importantForAutofill="no"
                 android:hint="@string/email_text"
                 android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
@@ -75,6 +76,7 @@
                     style="@style/LoginEditText"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:importantForAutofill="no"
                     android:hint="@string/password_text"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -84,8 +86,9 @@
                 style="@style/LoginButton"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="15dp"
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="54dp"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/login_button_text" />
 
             <LinearLayout
@@ -136,7 +139,7 @@
                 <ImageView
                     android:id="@+id/imageViewGoogle"
                     android:layout_width="150dp"
-                    android:layout_height="45dp"
+                    android:layout_height="48dp"
                     android:clickable="true"
                     android:contentDescription="@string/content_description_google_login"
                     android:focusable="true"
@@ -145,7 +148,7 @@
                 <ImageView
                     android:id="@+id/imageViewGitHub"
                     android:layout_width="150dp"
-                    android:layout_height="45dp"
+                    android:layout_height="48dp"
                     android:clickable="true"
                     android:contentDescription="@string/content_description_github_login"
                     android:focusable="true"

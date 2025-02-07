@@ -49,14 +49,24 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/editTextVecchiaPassword"
-                style="@style/LoginEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutVecchiaPassword"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="@string/hint_old_password_gestore_admin"
-                android:inputType="textPassword" />
+                app:hintEnabled="false"
+                app:endIconMode="password_toggle">
+
+                <EditText
+                    android:id="@+id/editTextVecchiaPassword"
+                    style="@style/LoginEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:importantForAutofill="no"
+                    android:hint="@string/hint_old_password_gestore_admin"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,14 +83,25 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/editTextNuovaPassword"
-                style="@style/LoginEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutNuovaPassword"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="@string/hint_new_password_gestore_admin"
-                android:inputType="textPassword" />
+                app:hintEnabled="false"
+                app:endIconMode="password_toggle"
+                app:errorIconDrawable="@null">
+
+                <EditText
+                    android:id="@+id/editTextNuovaPassword"
+                    style="@style/LoginEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:importantForAutofill="no"
+                    android:hint="@string/hint_new_password_gestore_admin"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,20 +118,32 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/editTextConfermaNuovaPassword"
-                style="@style/LoginEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutConfermaNuovaPassword"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="@string/hint_confirm_new_password_gestore_admin"
-                android:inputType="textPassword" />
+                app:hintEnabled="false"
+                app:endIconMode="password_toggle"
+                app:errorIconDrawable="@null">
+
+                <EditText
+                    android:id="@+id/editTextConfermaNuovaPassword"
+                    style="@style/LoginEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:importantForAutofill="no"
+                    android:hint="@string/hint_confirm_new_password_gestore_admin"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <Button
                 android:id="@+id/buttonChange"
                 android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/change_pwd_gestore" />
 
         </LinearLayout>

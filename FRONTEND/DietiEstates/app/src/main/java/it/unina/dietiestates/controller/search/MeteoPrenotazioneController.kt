@@ -1,5 +1,6 @@
 package it.unina.dietiestates.controller.search
 
+import it.unina.dietiestates.R
 import it.unina.dietiestates.network.openmeteo.WeatherDataCallback
 import it.unina.dietiestates.network.openmeteo.WeatherResponse
 import it.unina.dietiestates.network.openmeteo.OpenMeteoInterface
@@ -62,5 +63,15 @@ class MeteoPrenotazioneController {
                 callback.onError("Errore di rete: ${t.message}")
             }
         })
+    }
+
+    fun scegliImmagineMeteo(temperature: Double, precipitation: Double, weatherCode: Int): Int{
+        return when {
+            precipitation > 40 || weatherCode in 51..67 -> R.drawable.rainy
+            temperature < 0 || weatherCode in 71..99 -> R.drawable.snowy
+            temperature < 15  || weatherCode in 2..48 -> R.drawable.cloudy
+            temperature > 30 -> R.drawable.extra_sunny
+            else -> R.drawable.sunny // default: sunny
+        }
     }
 }

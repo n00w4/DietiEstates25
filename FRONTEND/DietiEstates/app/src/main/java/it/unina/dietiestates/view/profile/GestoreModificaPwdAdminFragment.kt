@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.material.textfield.TextInputLayout
 import it.unina.dietiestates.R
 import it.unina.dietiestates.controller.profile.GestoreModificaPwdAdminController
 import it.unina.dietiestates.utils.ValidationUtils
@@ -18,7 +19,9 @@ import it.unina.dietiestates.utils.ValidationUtils
 class GestoreModificaPwdAdminFragment : Fragment() {
 
     private lateinit var oldPwd : EditText
+    private lateinit var newPwdLayout : TextInputLayout
     private lateinit var newPwd : EditText
+    private lateinit var confirmNewPwdLayout : TextInputLayout
     private lateinit var confirmNewPwd : EditText
     private lateinit var controller : GestoreModificaPwdAdminController
 
@@ -34,12 +37,14 @@ class GestoreModificaPwdAdminFragment : Fragment() {
         controller = GestoreModificaPwdAdminController(requireContext())
 
         oldPwd = view.findViewById(R.id.editTextVecchiaPassword)
+        newPwdLayout = view.findViewById(R.id.layoutNuovaPassword)
         newPwd = view.findViewById(R.id.editTextNuovaPassword)
+        confirmNewPwdLayout = view.findViewById(R.id.layoutConfermaNuovaPassword)
         confirmNewPwd = view.findViewById(R.id.editTextConfermaNuovaPassword)
         val buttonChange: Button = view.findViewById(R.id.buttonChange)
 
-        setupValidation(newPwd, ValidationUtils::verificaPassword, buttonChange)
-        setupValidation(confirmNewPwd, ValidationUtils::verificaPassword, buttonChange)
+        setupValidation(newPwd, newPwdLayout, ValidationUtils::verificaPassword, buttonChange)
+        setupValidation(confirmNewPwd, confirmNewPwdLayout, ValidationUtils::verificaPassword, buttonChange)
 
         buttonChange.setOnClickListener {
             onButtonChangeCliked()
@@ -47,6 +52,10 @@ class GestoreModificaPwdAdminFragment : Fragment() {
     }
 
     private fun onButtonChangeCliked(){
+        if (!checkNewPasswordConfirmed()){
+            Toast.makeText(context, "La conferma della nuova password non coincide con la nuova password.", Toast.LENGTH_SHORT).show()
+            return
+        }
         if(checkEmptyEditText()){
             Toast.makeText(context, "Compilare tutti i campi prima di procedere.", Toast.LENGTH_SHORT).show()
         }else{
@@ -71,9 +80,12 @@ class GestoreModificaPwdAdminFragment : Fragment() {
         return false
     }
 
+    private fun checkNewPasswordConfirmed() : Boolean{
+        if(newPwd.text.toString().trim() == confirmNewPwd.text.toString().trim()) return true
+        return false
+    }
 
-
-    private fun setupValidation(editText: EditText, validationFunction: (String) -> List<String>, buttonAdd: Button) {
+    private fun setupValidation(editText: EditText, layout: TextInputLayout, validationFunction: (String) -> List<String>, buttonAdd: Button) {
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { /*empty*/ }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { /*empty*/ }
@@ -81,10 +93,11 @@ class GestoreModificaPwdAdminFragment : Fragment() {
                 val messaggiDiErrore = validationFunction(editText.text.toString())
 
                 if (messaggiDiErrore.isEmpty()) {
+                    layout.error = null
                     buttonAdd.isEnabled = true
                     buttonAdd.backgroundTintList = requireContext().getColorStateList(R.color.button_color_light)
                 } else {
-                    editText.error = messaggiDiErrore.joinToString("\n")
+                    layout.error = messaggiDiErrore.joinToString("\n")
                     buttonAdd.isEnabled = false
                     buttonAdd.backgroundTintList = requireContext().getColorStateList(android.R.color.darker_gray)
                 }

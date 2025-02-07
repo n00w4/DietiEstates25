@@ -34,10 +34,14 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
     private lateinit var immagine: ImageView
     private lateinit var prenotaBtn: Button
 
+    private lateinit var controller: PrenotazioneAnnuncioController
+    private lateinit var meteoController: MeteoPrenotazioneController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prenotazione_annuncio)
-        val controller = PrenotazioneAnnuncioController(this)
+        controller = PrenotazioneAnnuncioController(this)
+        meteoController = MeteoPrenotazioneController()
 
         val idAnnuncio = getIntent().getIntExtra("id_annuncio", -1)
         Log.d("DEBUG_PRENOTAZIONE", "id annuncio: $idAnnuncio")
@@ -51,12 +55,10 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
         oraSelected = findViewById(R.id.oraTextView)
         val dataBtn = findViewById<Button>(R.id.dataButton)
         val oraBtn = findViewById<Button>(R.id.oraButton)
-        dataBtn.setOnClickListener{
-            onDateClicked()
-        }
-        oraBtn.setOnClickListener{
-            onTimeClicked()
-        }
+        dataBtn.setOnClickListener{ onDateClicked() }
+        dataSelected.setOnClickListener{ onDateClicked() }
+        oraBtn.setOnClickListener{ onTimeClicked() }
+        oraSelected.setOnClickListener{ onTimeClicked() }
 
         meteoLayout = findViewById(R.id.meteoLayout)
         meteoLayout.isVisible = false
@@ -88,7 +90,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
         val datePickerDialog = DatePickerDialog(this, R.style.DialogTheme,
             { _, year, month, day ->
                 selectedDate = Triple(day, month + 1, year)
-                dataSelected.text = getString(R.string.data_selezionata, year, month + 1, day)
+                dataSelected.text = getString(R.string.data_selezionata, day, month + 1, year)
                 oraLayout.isVisible = true
                 calcolaMeteo(posizioneAnnuncio)
             },
@@ -111,7 +113,6 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
     }
 
     private fun calcolaMeteo(posizioneAnnuncio : String){
-        val meteoController = MeteoPrenotazioneController()
         val geoPointParser = GeoPointParser()
         val posizione = geoPointParser.parseWKBToGeoPoint(posizioneAnnuncio)
         if (posizione != null) { meteoController.getMeteo(this, posizione, getFormattedDateTime())
@@ -131,25 +132,16 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
             umidita.text = getString(R.string.umidita, humidity.toFloat())
             precipitazioni.text = getString(R.string.precipitazioni, precipitation.toFloat())
             pioggia.text = getString(R.string.pioggia, rain.toFloat())
-            immagine.setImageResource(scegliImmagineMeteo(temperature, precipitation, weatherCode))
+            immagine.setImageResource(meteoController.scegliImmagineMeteo(temperature, precipitation, weatherCode))
         }
     }
+
     override fun onError(message: String) {
         runOnUiThread {
             temperatura.text = message
-            umidita.text = message
-            precipitazioni.text = message
-            pioggia.text = message }
-    }
-
-    private fun scegliImmagineMeteo(temperature: Double, precipitation: Double, weatherCode: Int): Int{
-        return when {
-            precipitation > 40 || weatherCode in 51..67 -> R.drawable.rainy
-            temperature < 0 || weatherCode in 71..99 -> R.drawable.snowy
-            temperature < 15  || weatherCode in 2..48 -> R.drawable.cloudy
-            temperature > 30 -> R.drawable.extra_sunny
-            else -> R.drawable.sunny // default to sunny if no other conditions match
-        }
+            umidita.text = getString(R.string.stringa_vuota)
+            precipitazioni.text = getString(R.string.stringa_vuota)
+            pioggia.text = getString(R.string.stringa_vuota) }
     }
 
 }

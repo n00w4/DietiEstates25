@@ -77,6 +77,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:text="@string/stringa_vuota"/>
 
                 <Button
@@ -130,6 +132,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:text="@string/stringa_vuota"/>
 
                 <Button

@@ -29,7 +29,8 @@
         <ImageView
             android:id="@+id/imgLogo"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/dietiestates25" />
 
         <TextView
@@ -63,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginBottom="16dp"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:hint="@string/name_label"/>
 
@@ -80,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginBottom="16dp"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:hint="@string/surname_label"/>
 
@@ -97,6 +100,7 @@
             android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="44dp"
+            android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:hint="@string/email_label"/>
 
@@ -120,6 +124,7 @@
                 style="@style/LoginEditText"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
+                android:importantForAutofill="no"
                 android:hint="@string/password_text"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -129,7 +134,7 @@
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="@string/errors_email_label" />
 
         <TextView
@@ -137,7 +142,7 @@
             style="@style/LoginTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="@string/errors_password_label" />
 
 
@@ -145,23 +150,25 @@
             android:id="@+id/signUpButton"
             style="@style/LoginButton"
             android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="54dp"
-            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
             android:text="@string/signup_button_text" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:layout_marginBottom="60dp">
 
             <TextView
                 android:id="@+id/textView6"
                 style="@style/ForgotPasswordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:layout_weight="1"
                 android:text="@string/already_account_text" />
 
@@ -170,7 +177,7 @@
                 style="@style/ForgotPasswordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:layout_weight="1"
                 android:text="@string/login_text"
                 android:clickable="true"
