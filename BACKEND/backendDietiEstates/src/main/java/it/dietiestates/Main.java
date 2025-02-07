@@ -33,7 +33,7 @@ public class Main {
      * Main method.
      * @param args Command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         logger.setLevel(Level.INFO);
 
         // Start the server
@@ -44,7 +44,8 @@ public class Main {
 
         // Wait for user input to stop the server
         try {
-            System.in.read();
+            int input = System.in.read();
+            logger.info(() -> String.format("%d", input));
         } catch (IOException e) {
             logger.severe("Error waiting for input: " + e.getMessage());
         } finally {

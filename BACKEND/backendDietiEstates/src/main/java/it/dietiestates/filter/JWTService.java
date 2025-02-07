@@ -21,8 +21,6 @@ public class JWTService {
         throw new UnsupportedOperationException("Utility class should not be instantiated");
     }
 
-    // TODO: decidere se adottare un refresh token per garantire sicurezza senza login troppo frequenti
-
     public static String generateToken(String nome, String cognome, String email, String tipoUtente, String partitaIVA, String nomeAgenzia) {
         return JWT.create()
                 .withIssuer(ISSUER)
