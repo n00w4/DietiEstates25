@@ -49,54 +49,90 @@ class SignUpControllerTest {
     }
 
     @Test
-    fun handleSignUpValidInputTest() {
+    fun handleSignUp_ValidInput_Test() {
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
 
-        verify(signUpController).signUp(any()) // Ensure signUp was called
-        verify(signUpController, never()).showToast(anyOrNull(), anyOrNull()) // Ensure showToast was NOT called
+        verify(signUpController, times(1)).signUp(any())
+        verify(signUpController, never()).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUpInvalidNameTest() {
-        // Simulate invalid input
+    fun handleSignUp_EmptyName_Test() {
         mockEditText(nomeEditText, "")
 
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
 
-        verify(signUpController, never()).signUp(any()) // Ensure signUp was NOT called
-        verify(signUpController).showToast(anyOrNull(), anyOrNull()) // Ensure showToast was called
+        verify(signUpController, never()).signUp(any())
+        verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUpInvalidSurnameTest() {
-        // Simulate invalid input
+    fun handleSignUp_WhiteSpaceName_Test() {
+        mockEditText(nomeEditText, " ")
+
+        signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
+
+        verify(signUpController, never()).signUp(any())
+        verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
+    }
+
+    @Test
+    fun handleSignUp_EmptySurname_Test() {
         mockEditText(cognomeEditText, "")
 
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
 
-        verify(signUpController, never()).signUp(any()) // Ensure signUp was NOT called
-        verify(signUpController).showToast(anyOrNull(), anyOrNull()) // Ensure showToast was called
+        verify(signUpController, never()).signUp(any())
+        verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUpInvalidEmailTest() {
-        // Simulate invalid input
+    fun handleSignUp_WhiteSpaceSurname_Test() {
+        mockEditText(cognomeEditText, "\n")
+
+        signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
+
+        verify(signUpController, never()).signUp(any())
+        verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
+    }
+
+    @Test
+    fun handleSignUp_EmptyEmail_Test() {
         mockEditText(emailEditText, "")
 
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
 
-        verify(signUpController, never()).signUp(any()) // Ensure signUp was NOT called
-        verify(signUpController).showToast(anyOrNull(), anyOrNull()) // Ensure showToast was called
+        verify(signUpController, never()).signUp(any())
+        verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUpInvalidPasswordTest() {
-        // Simulate invalid input
+    fun handleSignUp_WhiteSpaceEmail_Test() {
+        mockEditText(emailEditText, "\t")
+
+        signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
+
+        verify(signUpController, never()).signUp(any())
+        verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
+    }
+
+    @Test
+    fun handleSignUp_EmptyPassword_Test() {
         mockEditText(passwordEditText, "")
 
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
 
-        verify(signUpController, never()).signUp(any()) // Ensure signUp was NOT called
-        verify(signUpController).showToast(anyOrNull(), anyOrNull()) // Ensure showToast was called
+        verify(signUpController, never()).signUp(any())
+        verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
+    }
+
+    @Test
+    fun handleSignUp_WhiteSpacePassword_Test() {
+        mockEditText(passwordEditText, " ")
+
+        signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
+
+        verify(signUpController, never()).signUp(any())
+        verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 }
