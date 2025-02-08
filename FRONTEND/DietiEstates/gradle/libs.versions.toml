@@ -13,6 +13,10 @@ osmdroid = "6.1.14"
 retrofit = "2.9.0"
 converter_gson = "2.9.0"
 
+mockito-core = "5.6.0"  # Update to the latest version if needed
+mockito-inline = "5.2.0"
+mockito-kotlin = "4.1.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -26,8 +30,10 @@ osmdroid = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroid" 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 converter_gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converter_gson" }
 
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito-core" }
+mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockito-inline" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito-kotlin" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
-

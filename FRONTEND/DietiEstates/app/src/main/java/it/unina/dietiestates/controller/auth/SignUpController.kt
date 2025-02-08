@@ -2,6 +2,8 @@ package it.unina.dietiestates.controller.auth
 
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.widget.EditText
 import android.widget.Toast
 import it.unina.dietiestates.MainActivity
@@ -13,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUpController(private val context: Context) {
+open class SignUpController(private val context: Context) {
 
     fun handleSignUp(nomeEditText: EditText, cognomeEditText: EditText,
                      emailEditText: EditText, passwordEditText: EditText) {
@@ -23,14 +25,15 @@ class SignUpController(private val context: Context) {
         val password = passwordEditText.text.toString().trim()
 
         if ( nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(context, "Compilare tutti i campi prima di procedere.", Toast.LENGTH_SHORT).show()
+            showToast(context, "Compilare tutti i campi prima di procedere.")
         } else {
             val cliente = Cliente(nome, cognome, email, password)
             signUp(cliente)
         }
     }
 
-    private fun signUp(cliente: Cliente) {
+    fun signUp(cliente: Cliente?) {
+        cliente ?: return
         val api = RetrofitClient.instance
 
         api.register(cliente).enqueue(object : Callback<ApiResponse> {
@@ -68,5 +71,9 @@ class SignUpController(private val context: Context) {
     fun onLoginClicked(){
         val loginPage = Intent(context, MainActivity::class.java)
         context.startActivity(loginPage)
+    }
+
+    fun showToast(context: Context, message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }
