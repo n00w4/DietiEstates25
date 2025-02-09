@@ -5,4 +5,6 @@ import it.dietiestates.exception.DataAccessException;
 
 public interface AgenteDAO {
 	boolean insert(Agente agente) throws DataAccessException;
+
+	String findEmailByIdAnnuncio(int idAnnuncio) throws DataAccessException;
 }
