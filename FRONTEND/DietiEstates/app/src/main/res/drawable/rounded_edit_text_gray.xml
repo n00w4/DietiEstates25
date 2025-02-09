@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Imposta un colore di sfondo -->
+    <solid android:color="#FFFFFF" /> <!-- Bianco -->
+
+    <!-- Imposta un bordo arrotondato -->
+    <corners android:radius="5dp" /> <!-- Arrotondamento -->
+
+    <!-- Imposta un bordo visibile -->
+    <stroke
+        android:width="2dp"
+        android:color="@android:color/darker_gray" /> <!-- Grigio -->
+</shape>

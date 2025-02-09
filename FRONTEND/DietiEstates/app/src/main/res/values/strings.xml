@@ -160,7 +160,9 @@
     <string name="titolo_annuncio">Titolo:</string>
     <string name="tipo_annuncio">In %1$s</string>
     <string name="dimensioni_annuncio">Dimensioni: \ </string>
+    <string name="dimensioni_annuncio_m2"> %1$s m²</string>
     <string name="prezzo_annuncio">Prezzo: \ </string>
+    <string name="prezzo_annuncio_euro">%1$s €</string>
     <string name="indirizzo_annuncio">Indirizzo:</string>
     <string name="metri_quadrati">\ m²</string>
     <string name="descrizione_annuncio">Descrizione:</string>

@@ -74,46 +74,57 @@
                     android:text="@string/tipo_annuncio"/>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/indirizzoTag"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/indirizzo_annuncio" />
-
-            <TextView
-                android:id="@+id/indirizzoTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
+                android:orientation="vertical"
+                android:padding="8dp"
                 android:layout_marginBottom="15dp"
-                android:text="@string/indirizzo_annuncio"/>
+                android:background="@drawable/rounded_edit_text_gray">
 
+                <TextView
+                    android:id="@+id/indirizzoTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/indirizzo_annuncio" />
 
-            <TextView
-                android:id="@+id/descrizioneTag"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/descrizione_annuncio" />
+                <TextView
+                    android:id="@+id/indirizzoTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/indirizzo_annuncio"/>
 
-            <TextView
-                android:id="@+id/descrizioneTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="@string/lorem_ipsum"/>
+                <TextView
+                    android:id="@+id/descrizioneTag"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/descrizione_annuncio" />
+
+                <TextView
+                    android:id="@+id/descrizioneTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    android:text="@string/lorem_ipsum"/>
+
+            </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="@drawable/rounded_edit_text_gray">
 
                 <TextView
                     android:id="@+id/dimensioniTag"
@@ -126,23 +137,21 @@
                 <TextView
                     android:id="@+id/dimensioniTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0.00"/>
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/dimensioni_annuncio_m2"/>
 
-                <TextView
-                    android:id="@+id/m2Tag"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/metri_quadrati" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="@drawable/rounded_edit_text_gray">
 
                 <TextView
                     android:id="@+id/prezzoTag"
@@ -155,23 +164,20 @@
                 <TextView
                     android:id="@+id/prezzoTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0.00"/>
-
-                <TextView
-                    android:id="@+id/euroTag"
-                    style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" €" />
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/prezzo_annuncio_euro"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="@drawable/rounded_edit_text_gray">
 
                 <TextView
                     android:id="@+id/pianoTag"
@@ -184,8 +190,10 @@
                 <TextView
                     android:id="@+id/pianoTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:textAlignment="textEnd"
                     android:text="piano terra"/>
             </LinearLayout>
 
@@ -193,7 +201,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="@drawable/rounded_edit_text_gray">
 
                 <TextView
                     android:id="@+id/stanzeTag"
@@ -206,8 +216,10 @@
                 <TextView
                     android:id="@+id/stanzeTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:textAlignment="textEnd"
                     android:text="0"/>
             </LinearLayout>
 
@@ -215,7 +227,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="@drawable/rounded_edit_text_gray"
+                android:layout_marginBottom="15dp">
 
                 <TextView
                     android:id="@+id/classeTag"
@@ -228,10 +243,20 @@
                 <TextView
                     android:id="@+id/classeTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:textAlignment="textEnd"
                     android:text="A"/>
             </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:background="@drawable/rounded_edit_text_gray">
 
             <TextView
                 android:id="@+id/serviziTag"
@@ -257,8 +282,10 @@
                 <TextView
                     android:id="@+id/ascensoreTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="75dp"
                     android:text="No"/>
             </LinearLayout>
 
@@ -278,8 +305,10 @@
                 <TextView
                     android:id="@+id/portineriaTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="75dp"
                     android:text="No"/>
             </LinearLayout>
 
@@ -299,8 +328,10 @@
                 <TextView
                     android:id="@+id/climatizzazioneTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="75dp"
                     android:text=" No"/>
             </LinearLayout>
 
@@ -320,8 +351,10 @@
                 <TextView
                     android:id="@+id/boxAutoTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="75dp"
                     android:text=" No"/>
             </LinearLayout>
 
@@ -341,8 +374,10 @@
                 <TextView
                     android:id="@+id/terrazzoTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="75dp"
                     android:text=" No"/>
             </LinearLayout>
 
@@ -350,7 +385,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -363,17 +397,23 @@
                 <TextView
                     android:id="@+id/giardinoTextView"
                     style="@style/ProfiloSubtitleTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="75dp"
                     android:text=" No"/>
             </LinearLayout>
+
+        </LinearLayout>
 
             <TextView
                 android:id="@+id/emailAgenteTextView"
                 style="@style/ProfiloSubtitleTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:textAlignment="center"
                 android:text="@string/more_info"/>
 
             <Button
@@ -382,7 +422,7 @@
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/prenota_btn" />
 

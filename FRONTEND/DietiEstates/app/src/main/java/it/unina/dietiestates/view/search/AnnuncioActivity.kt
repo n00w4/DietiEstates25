@@ -42,8 +42,8 @@ class AnnuncioActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tipoAnnuncioTextView).text = getString(R.string.tipo_annuncio, annuncio?.tipoAnnuncio)
         findViewById<TextView>(R.id.indirizzoTextView).text = annuncio?.indirizzo
         findViewById<TextView>(R.id.descrizioneTextView).text = annuncio?.descrizione
-        findViewById<TextView>(R.id.dimensioniTextView).text = annuncio?.dimensioni.toString()
-        findViewById<TextView>(R.id.prezzoTextView).text = annuncio?.prezzo.toString()
+        findViewById<TextView>(R.id.dimensioniTextView).text = getString(R.string.dimensioni_annuncio_m2, annuncio?.dimensioni.toString())
+        findViewById<TextView>(R.id.prezzoTextView).text = getString(R.string.prezzo_annuncio_euro, annuncio?.prezzo.toString())
         findViewById<TextView>(R.id.pianoTextView).text = annuncio?.piano
         findViewById<TextView>(R.id.stanzeTextView).text = annuncio?.numeroStanze.toString()
         findViewById<TextView>(R.id.classeTextView).text = annuncio?.classeEnergetica
