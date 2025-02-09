@@ -18,7 +18,7 @@ object ValidationUtils {
         if (!password.any { it.isDigit() }) {
             errori.add("La password deve contenere almeno un numero.")
         }
-        if (!password.any { "!@#$%^&*()_+-=[]{}|;:',.<>?/".contains(it) }) {
+        if (!password.any { "!@#$%^&*()_+-=[]{}|;:,.<>?/".contains(it) }) {
             errori.add("La password deve contenere almeno un carattere speciale.")
         }
 
