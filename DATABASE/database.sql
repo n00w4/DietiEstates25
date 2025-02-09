@@ -23,7 +23,7 @@ CREATE TABLE est.Cliente (
     password VARCHAR(255) NOT NULL,
 
     CONSTRAINT checkValidEmail CHECK (email ~ '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+-=[]{}|;:,.<>?/])[A-Za-z\d@$!%*?&]{8,}$')
+    CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{}|;:,.<>?/])[A-Za-z\d!@#$%^&*()_+\-=\[\]{}|;:,.<>?/]{8,}$')
 );
 
 -- Table Agente
@@ -35,7 +35,7 @@ CREATE TABLE est.Agente (
     partitaIVA CHAR(11) REFERENCES est.Agenzia(partitaIVA) ON DELETE CASCADE,
 
     CONSTRAINT checkValidEmail CHECK (email ~ '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+-=[]{}|;:,.<>?/])[A-Za-z\d@$!%*?&]{8,}$')
+    CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{}|;:,.<>?/])[A-Za-z\d!@#$%^&*()_+\-=\[\]{}|;:,.<>?/]{8,}$')
 );
 
 -- Table Amministratore
@@ -47,7 +47,7 @@ CREATE TABLE est.Amministratore (
     partitaIVA CHAR(11) REFERENCES est.Agenzia(partitaIVA) ON DELETE CASCADE,
 
     CONSTRAINT checkValidEmail CHECK (email ~ '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+-=[]{}|;:,.<>?/])[A-Za-z\d@$!%*?&]{8,}$')
+    CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{}|;:,.<>?/])[A-Za-z\d!@#$%^&*()_+\-=\[\]{}|;:,.<>?/]{8,}$')
 );
 
 -- Table Gestore
@@ -60,8 +60,8 @@ CREATE TABLE est.Gestore (
     partitaIVA CHAR(11) REFERENCES est.Agenzia(partitaIVA) ON DELETE CASCADE,
 
     CONSTRAINT checkValidEmail CHECK (email ~ '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+-=[]{}|;:,.<>?/])[A-Za-z\d@$!%*?&]{8,}$'),
-    CONSTRAINT checkValidPasswdAdmin CHECK (passwordAdmin ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+-=[]{}|;:,.<>?/])[A-Za-z\d@$!%*?&]{8,}$')
+    CONSTRAINT checkValidPasswd CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{}|;:,.<>?/])[A-Za-z\d!@#$%^&*()_+\-=\[\]{}|;:,.<>?/]{8,}$'),
+    CONSTRAINT checkValidPasswdAdmin CHECK (passwordAdmin ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{}|;:,.<>?/])[A-Za-z\d!@#$%^&*()_+\-=\[\]{}|;:,.<>?/]{8,}$')
 );
 
 -- View unificata per tutti gli utenti
