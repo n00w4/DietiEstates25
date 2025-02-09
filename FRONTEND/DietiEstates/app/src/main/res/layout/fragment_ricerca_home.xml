@@ -26,15 +26,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/homeTextView"
-                style="@style/AnnullaTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textAlignment="center"
-                android:text="Home" />
-
-            <TextView
                 android:id="@+id/titoloTextView"
                 style="@style/ProfiloTitleTextView"
                 android:layout_width="match_parent"
@@ -64,53 +55,73 @@
                 android:textSize="18sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:textAlignment="textStart"
+                android:layout_marginBottom="25dp"
                 android:text="@string/ricerca_home_options" />
 
-            <TextView
-                android:id="@+id/cittaTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="textStart"
-                android:text="@string/ricerca_home_città" />
-
-            <Button
-                android:id="@+id/btn_citta"
-                android:layout_width="320dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="20dp"
                 android:layout_marginBottom="30dp"
-                android:text="@string/ricerca_home_città_btn"
-                android:textSize="20sp" />
+                android:background="@drawable/rounded_edit_text">
+
+                <TextView
+                    android:id="@+id/cittaTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/ricerca_home_città" />
+
+                <Button
+                    android:id="@+id/btn_citta"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/ricerca_home_città_btn"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+
 
             <TextView
                 android:id="@+id/oppureTextView"
                 style="@style/ProfiloSubtitleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="25dp"
                 android:text="@string/oppure" />
 
-            <TextView
-                android:id="@+id/mappaTextView"
-                style="@style/ProfiloSubtitleTextView"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="textStart"
-                android:text="@string/ricerca_home_mappa" />
-
-            <Button
-                android:id="@+id/btn_mappa"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:layout_gravity="center"
-                android:text="@string/ricerca_home_mappa_btn"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="30dp"/>
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/rounded_edit_text">
+
+                <TextView
+                    android:id="@+id/mappaTextView"
+                    style="@style/ProfiloSubtitleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/ricerca_home_mappa" />
+
+                <Button
+                    android:id="@+id/btn_mappa"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:text="@string/ricerca_home_mappa_btn"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+
 
 
 
