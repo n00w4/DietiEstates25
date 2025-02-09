@@ -1,8 +1,10 @@
 package it.dietiestates.controller;
 
 import it.dietiestates.dao.dto.PrenotazioneConInfoDAO;
+import it.dietiestates.dao.model.AgenteDAO;
 import it.dietiestates.dao.model.PrenotazioneDAO;
 import it.dietiestates.dao.sql.dto.SQLPrenotazioneConInfoDAO;
+import it.dietiestates.dao.sql.model.SQLAgenteDAO;
 import it.dietiestates.dao.sql.model.SQLPrenotazioneDAO;
 import it.dietiestates.data.dto.PrenotazioneConInfo;
 import it.dietiestates.data.dto.SuccessApiResponse;
@@ -12,6 +14,7 @@ import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.exception.ForeignKeyConstraintViolationException;
 import it.dietiestates.exception.OverlappingBookingException;
 import it.dietiestates.exception.ValidBookingException;
+import it.dietiestates.utils.EmailService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -25,11 +28,13 @@ import java.util.logging.Logger;
 public class PrenotazioneController {
     private final PrenotazioneDAO prenotazioneDAO;
     private final PrenotazioneConInfoDAO prenotazioneConInfoDAO;
+    private final AgenteDAO agenteDAO;
     private static final Logger logger = Logger.getLogger(PrenotazioneController.class.getName());
 
     public PrenotazioneController() throws SQLException {
         this.prenotazioneDAO = new SQLPrenotazioneDAO(PgSQL.getConnection());
         this.prenotazioneConInfoDAO = new SQLPrenotazioneConInfoDAO(PgSQL.getConnection());
+        this.agenteDAO = new SQLAgenteDAO(PgSQL.getConnection());
     }
 
     @Path("insert")
@@ -41,6 +46,15 @@ public class PrenotazioneController {
             prenotazioneDAO.insert(prenotazione);
             String message = "Prenotazione inserita con successo";
             logger.info(message);
+
+            String[] emailData = EmailService.generateEmailContentAgente(prenotazione);
+            String emailSubject = emailData[0];
+            String emailContent = emailData[1];
+
+            String emailAgente = agenteDAO.findEmailByIdAnnuncio(prenotazione.getIdAnnuncio());
+
+            EmailService.sendEmail(emailAgente, emailSubject, emailContent);
+
             SuccessApiResponse successResponse = new SuccessApiResponse(message);
             return Response.status(Response.Status.CREATED).entity(successResponse).build();
         } catch (OverlappingBookingException | ValidBookingException e) {

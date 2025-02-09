@@ -3,6 +3,7 @@ package it.dietiestates.dao.sql.model;
 import it.dietiestates.dao.model.AmministratoreDAO;
 import it.dietiestates.data.model.Amministratore;
 import it.dietiestates.exception.DataAccessException;
+import it.dietiestates.exception.UniqueConstraintViolationException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +28,9 @@ public class SQLAmministratoreDAO implements AmministratoreDAO {
 
 			return statement.executeUpdate() > 0;
 		} catch (SQLException e) {
+			if ("23505".equals(e.getSQLState())) {
+				throw new UniqueConstraintViolationException("Amministratore già registrato");
+			}
 			throw new DataAccessException("Errore durante l'inserimento dell'amministratore", e);
 		}
 	}
