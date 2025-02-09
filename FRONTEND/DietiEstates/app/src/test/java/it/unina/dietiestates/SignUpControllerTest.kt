@@ -27,15 +27,15 @@ class SignUpControllerTest {
 
     @Before
     fun setUp() {
-        context = ApplicationProvider.getApplicationContext() // Use Robolectric's test context
-        signUpController = spy(SignUpController(context)) // Spy to track method calls
+        context = ApplicationProvider.getApplicationContext()
+        signUpController = spy(SignUpController(context))
 
+        //Arrange
         nomeEditText = mock(EditText::class.java)
         cognomeEditText = mock(EditText::class.java)
         emailEditText = mock(EditText::class.java)
         passwordEditText = mock(EditText::class.java)
 
-        // Mock Editable responses
         mockEditText(nomeEditText, "Mario")
         mockEditText(cognomeEditText, "Rossi")
         mockEditText(emailEditText, "mario.rossi@example.com")
@@ -49,89 +49,90 @@ class SignUpControllerTest {
     }
 
     @Test
-    fun handleSignUp_ValidInput_Test() {
+    fun handleSignUp_ValidInput_Test() { //ACE3+, BCE3+, CCE3+, DCE3+
+        //Act
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
-
+        //Assert
         verify(signUpController, times(1)).signUp(any())
         verify(signUpController, never()).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUp_EmptyName_Test() {
-        mockEditText(nomeEditText, "")
-
+    fun handleSignUp_EmptyName_Test() { //ACE1-, BCE3+, CCE3+, DCE3+
+        mockEditText(nomeEditText, "") //Arrange
+        //Act
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
-
+        //Assert
         verify(signUpController, never()).signUp(any())
         verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUp_WhiteSpaceName_Test() {
-        mockEditText(nomeEditText, " ")
-
+    fun handleSignUp_WhiteSpaceName_Test() { //ACE2-, BCE3+, CCE3+, DCE3+
+        mockEditText(nomeEditText, " ") //Arrange
+        //Act
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
-
+        //Assert
         verify(signUpController, never()).signUp(any())
         verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUp_EmptySurname_Test() {
-        mockEditText(cognomeEditText, "")
-
+    fun handleSignUp_EmptySurname_Test() { //ACE3+, BCE1-, CCE3+, DCE3+
+        mockEditText(cognomeEditText, "") //Arrange
+        //Act
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
-
+        //Assert
         verify(signUpController, never()).signUp(any())
         verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUp_WhiteSpaceSurname_Test() {
-        mockEditText(cognomeEditText, "\n")
-
+    fun handleSignUp_WhiteSpaceSurname_Test() { //ACE3+, BCE2-, CCE3+, DCE3+
+        mockEditText(cognomeEditText, "\n") //Arrange
+        //Act
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
-
+        //Assert
         verify(signUpController, never()).signUp(any())
         verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUp_EmptyEmail_Test() {
-        mockEditText(emailEditText, "")
-
+    fun handleSignUp_EmptyEmail_Test() { //ACE3+, BCE3+, CCE1-, DCE3+
+        mockEditText(emailEditText, "") //Arrange
+        //Act
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
-
+        //Assert
         verify(signUpController, never()).signUp(any())
         verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUp_WhiteSpaceEmail_Test() {
-        mockEditText(emailEditText, "\t")
-
+    fun handleSignUp_WhiteSpaceEmail_Test() { //ACE3+, BCE3+, CCE2-, DCE3+
+        mockEditText(emailEditText, "\t") //Arrange
+        //Act
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
-
+        //Assert
         verify(signUpController, never()).signUp(any())
         verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUp_EmptyPassword_Test() {
-        mockEditText(passwordEditText, "")
-
+    fun handleSignUp_EmptyPassword_Test() { //ACE3+, BCE3+, CCE3+, DCE1-
+        mockEditText(passwordEditText, "") //Arrange
+        //Act
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
-
+        //Assert
         verify(signUpController, never()).signUp(any())
         verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
 
     @Test
-    fun handleSignUp_WhiteSpacePassword_Test() {
-        mockEditText(passwordEditText, " ")
-
+    fun handleSignUp_WhiteSpacePassword_Test() { //ACE3+, BCE3+, CCE3+, DCE2-
+        mockEditText(passwordEditText, " ") //Arrange
+        //Act
         signUpController.handleSignUp(nomeEditText, cognomeEditText, emailEditText, passwordEditText)
-
+        //Assert
         verify(signUpController, never()).signUp(any())
         verify(signUpController, times(1)).showToast(anyOrNull(), anyOrNull())
     }
