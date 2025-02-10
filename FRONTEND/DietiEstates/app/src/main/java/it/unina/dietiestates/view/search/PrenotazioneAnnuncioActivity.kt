@@ -32,6 +32,8 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
     private lateinit var precipitazioni: TextView
     private lateinit var pioggia: TextView
     private lateinit var immagine: ImageView
+    private lateinit var dataBtn : Button
+    private lateinit var oraBtn : Button
     private lateinit var prenotaBtn: Button
 
     private lateinit var controller: PrenotazioneAnnuncioController
@@ -53,8 +55,8 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
         oraLayout = findViewById(R.id.oraLayout)
         oraLayout.isVisible = false
         oraSelected = findViewById(R.id.oraTextView)
-        val dataBtn = findViewById<Button>(R.id.dataButton)
-        val oraBtn = findViewById<Button>(R.id.oraButton)
+        dataBtn = findViewById(R.id.dataButton)
+        oraBtn = findViewById(R.id.oraButton)
         dataBtn.setOnClickListener{ onDateClicked() }
         dataSelected.setOnClickListener{ onDateClicked() }
         oraBtn.setOnClickListener{ onTimeClicked() }
@@ -91,6 +93,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
             { _, year, month, day ->
                 selectedDate = Triple(day, month + 1, year)
                 dataSelected.text = getString(R.string.data_selezionata, day, month + 1, year)
+                dataBtn.setBackgroundColor(getColor(R.color.button_color_light))
                 oraLayout.isVisible = true
                 calcolaMeteo(posizioneAnnuncio)
             },
@@ -105,6 +108,7 @@ class PrenotazioneAnnuncioActivity : AppCompatActivity(), WeatherDataCallback {
             { _, hour, minute ->
                 selectedTime = Pair(hour, minute)
                 oraSelected.text = getString(R.string.ora_selezionata, hour, minute)
+                oraBtn.setBackgroundColor(getColor(R.color.button_color_light))
                 meteoLayout.isVisible = true
                 calcolaMeteo(posizioneAnnuncio)
                 prenotaBtn.isVisible = true

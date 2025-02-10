@@ -2,8 +2,6 @@ package it.unina.dietiestates.controller.auth
 
 import android.content.Context
 import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import android.widget.EditText
 import android.widget.Toast
 import it.unina.dietiestates.MainActivity

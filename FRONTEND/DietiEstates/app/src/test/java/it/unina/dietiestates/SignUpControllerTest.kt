@@ -39,7 +39,7 @@ class SignUpControllerTest {
         mockEditText(nomeEditText, "Mario")
         mockEditText(cognomeEditText, "Rossi")
         mockEditText(emailEditText, "mario.rossi@example.com")
-        mockEditText(passwordEditText, "password123")
+        mockEditText(passwordEditText, "pAssword123!")
     }
 
     private fun mockEditText(editText: EditText, text: String) {
