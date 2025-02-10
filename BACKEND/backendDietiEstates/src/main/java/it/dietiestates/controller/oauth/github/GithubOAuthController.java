@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class GithubOAuthController extends OAuthController {
     private static final String CLIENT_ID = "Ov23liQUbv2UNe6YL5dp";
-    private static final String REDIRECT_URI = "http://10.0.2.2:8080/api/auth/github/callback";
+    private static final String REDIRECT_URI = System.getenv("GITHUB_REDIRECT_URI");
     private static final String GITHUB_AUTH_URL = "https://github.com/login/oauth/authorize";
     private static final String SCOPE = "user";
 

@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PgSQL {
-    private static final String URL = "jdbc:postgresql://localhost:5432/DietiEstates25?currentSchema=est,public";
+    private static final String URL = System.getenv("DB_URL");
     private static final String USER = System.getenv("DB_USER");
     private static final String PASSWORD = System.getenv("DB_PASSWORD");
 

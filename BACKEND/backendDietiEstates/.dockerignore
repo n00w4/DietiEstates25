@@ -1,0 +1,7 @@
+target/
+*.jar
+*.class
+.mvn/
+.git/
+Dockerfile
+docker-compose.yml

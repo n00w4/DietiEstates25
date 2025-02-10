@@ -5,7 +5,6 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,20 +36,16 @@ public class Main {
         logger.setLevel(Level.INFO);
 
         // Start the server
-        final HttpServer server = startServer();
+        startServer();
 
         logger.info("Jersey app started with endpoints available at " + BASE_URI);
         logger.info("Input something in the console to stop it...");
 
         // Wait for user input to stop the server
         try {
-            int input = System.in.read();
-            logger.info(() -> String.format("%d", input));
-        } catch (IOException e) {
-            logger.severe("Error waiting for input: " + e.getMessage());
-        } finally {
-            server.shutdownNow(); // Gracefully stop the server
-            logger.info("Server stopped.");
+            Thread.currentThread().join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }

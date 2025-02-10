@@ -12,7 +12,7 @@ public class GithubOAuthCallbackController extends OAuthCallbackController {
     private static final String CLIENT_SECRET = System.getenv("GITHUB_CLIENT_SECRET");
     private static final String TOKEN_URL = "https://github.com/login/oauth/access_token";
     private static final String USER_INFO_URL = "https://api.github.com/user";
-    private static final String REDIRECT_URI = "http://10.0.2.2:8080/api/auth/github/callback";
+    private static final String REDIRECT_URI = System.getenv("GITHUB_REDIRECT_URI");
 
     @Override
     protected String getTokenUrl() {
