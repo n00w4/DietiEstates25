@@ -25,7 +25,7 @@ class GitHubWebViewActivity : AppCompatActivity() {
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 val requestUrl = request?.url?.toString()
-                if (requestUrl != null && requestUrl.startsWith("http://10.0.2.2:8080/api/auth/")) {
+                if (requestUrl != null && requestUrl.startsWith("http://10.0.2.2:8080/api/v1/auth/")) {
                     // Capture the callback URL
                     val resultIntent = Intent()
                     resultIntent.data = Uri.parse(requestUrl)

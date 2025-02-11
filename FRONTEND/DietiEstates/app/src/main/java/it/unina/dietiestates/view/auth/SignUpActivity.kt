@@ -21,6 +21,15 @@ class SignUpActivity : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.editTextEmail)
         val password = findViewById<EditText>(R.id.editTextPassword)
 
+        // Recupero dati da Google Sign-In se presenti
+        val nomeProviderEsterno = intent.getStringExtra("EXTRA_NOME")
+        val cognomeProviderEsterno = intent.getStringExtra("EXTRA_COGNOME")
+        val emailProviderEsterno = intent.getStringExtra("EXTRA_EMAIL")
+
+        nome.setText(nomeProviderEsterno ?: "")
+        cognome.setText(cognomeProviderEsterno ?: "")
+        email.setText(emailProviderEsterno ?: "")
+
         val loginText = findViewById<TextView>(R.id.loginText)
         val erroriPwd = findViewById<TextView>(R.id.erroriPwdTextView)
             erroriPwd.visibility = TextView.GONE

@@ -18,7 +18,7 @@
     <string name="login_button_text">Accedi</string>
     <string name="no_account_text">Non hai ancora un account?</string>
     <string name="register_text">Registrati</string>
-    <string name="login_with_text">Accedi con:</string>
+    <string name="login_with_text">Registrati con:</string>
     <!-- /Activity Main -->
 
     <!-- Client Home Page -->

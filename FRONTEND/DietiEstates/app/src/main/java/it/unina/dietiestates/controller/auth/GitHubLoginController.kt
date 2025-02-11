@@ -1,13 +1,14 @@
 package it.unina.dietiestates.controller.auth
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import com.google.gson.Gson
 import it.unina.dietiestates.data.dto.ApiResponse
-import it.unina.dietiestates.data.dto.SharedPrefManager
 import it.unina.dietiestates.data.model.Cliente
 import it.unina.dietiestates.network.retrofit.RetrofitClient
+import it.unina.dietiestates.view.auth.SignUpActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,12 +29,14 @@ class GitHubLoginController(context: Context, private val uri: Uri): LoginContro
                             val nomeCompleto = cliente.nome?.split(" ")
                             val nome = nomeCompleto?.getOrNull(0) ?: ""
                             val cognome = nomeCompleto?.getOrNull(1) ?: ""
-                            val email = cliente.email.toString()
-                            val tipoUtente = "Cliente"
+                            val email = cliente.email
 
-                            code?.let { SharedPrefManager.saveToken(context, it) }
-                            salvaDatiUtente(nome, cognome, email, tipoUtente)
-                            scegliHomePage(tipoUtente)
+                            val intent = Intent(context, SignUpActivity::class.java).apply {
+                                putExtra("EXTRA_NOME", nome)
+                                putExtra("EXTRA_COGNOME", cognome)
+                                putExtra("EXTRA_EMAIL", email)
+                            }
+                            context.startActivity(intent)
                         }
                     }
                     else -> {

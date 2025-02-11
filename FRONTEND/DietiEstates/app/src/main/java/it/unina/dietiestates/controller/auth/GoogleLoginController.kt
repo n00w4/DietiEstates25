@@ -1,12 +1,13 @@
 package it.unina.dietiestates.controller.auth
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import it.unina.dietiestates.data.dto.SharedPrefManager
+import it.unina.dietiestates.view.auth.SignUpActivity
 
 class GoogleLoginController(context: Context, private val task: Task<GoogleSignInAccount>) : LoginController(context) {
     override fun handleLogin() {
@@ -17,13 +18,14 @@ class GoogleLoginController(context: Context, private val task: Task<GoogleSignI
                 val nome = it.givenName
                 val cognome = it.familyName
                 val idToken = it.idToken
-                val tipoUtente = "Cliente"
 
                 if (email != null && idToken != null) {
-                    Toast.makeText(context, "Autenticato con Google: $email", Toast.LENGTH_SHORT).show()
-                    SharedPrefManager.saveToken(context, idToken)
-                    salvaDatiUtente(nome, cognome, email, tipoUtente)
-                    scegliHomePage(tipoUtente)
+                    val intent = Intent(context, SignUpActivity::class.java).apply {
+                        putExtra("EXTRA_NOME", nome)
+                        putExtra("EXTRA_COGNOME", cognome)
+                        putExtra("EXTRA_EMAIL", email)
+                    }
+                    context.startActivity(intent)
                 }
             }
         } catch (e: ApiException) {
