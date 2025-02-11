@@ -1,5 +1,8 @@
 -- In questo file sono riportati i trigger del database
 
+-- Connettersi al database appena creato (valido SOLO da Docker)
+\c "DietiEstates25";
+
 -- Prenotazione valida
 CREATE OR REPLACE FUNCTION est.checkValidPrenotazione() RETURNS TRIGGER AS
 $$

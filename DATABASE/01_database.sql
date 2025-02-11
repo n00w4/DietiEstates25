@@ -1,5 +1,11 @@
 -- In questo file è riportata la creazione del database
 
+-- Creazione del database (valido SOLO da Docker)
+CREATE DATABASE "DietiEstates25";
+
+-- Connettersi al database appena creato (valido SOLO da Docker)
+\c "DietiEstates25";
+
 -- Verifica estensione postGIS per dati geografici
 CREATE EXTENSION IF NOT EXISTS postgis;
 

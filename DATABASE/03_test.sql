@@ -1,5 +1,8 @@
 -- In questo file sono contenuti dati con cui testare il database
 
+-- Connettersi al database appena creato (valido SOLO da Docker)
+\c "DietiEstates25";
+
 -- Insert cliente
 INSERT INTO est.Cliente (nome, cognome, email, password) 
 VALUES (
