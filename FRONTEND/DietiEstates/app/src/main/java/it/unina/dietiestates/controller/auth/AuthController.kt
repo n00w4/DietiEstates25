@@ -9,15 +9,8 @@ import it.unina.dietiestates.view.home.HomeAmministratoreActivity
 import it.unina.dietiestates.view.home.HomeClienteActivity
 import it.unina.dietiestates.view.home.HomeGestoreActivity
 
-abstract class LoginController(protected val context: Context) {
-    abstract fun handleLogin()
-
-    protected fun salvaDatiUtente(nome: String?, cognome: String?, email: String, tipoUtente: String){
-        SharedPrefManager.saveUserNome(context, nome)
-        SharedPrefManager.saveUserCognome(context, cognome)
-        SharedPrefManager.saveUserEmail(context, email)
-        SharedPrefManager.saveUserRole(context, tipoUtente)
-    }
+abstract class AuthController(protected val context: Context) {
+    abstract fun handleAuth()
 
     protected fun salvaDatiUtente(nome: String?, cognome: String?, email: String,
                                   tipoUtente: String, partitaIva: String?, nomeAgenzia: String?){

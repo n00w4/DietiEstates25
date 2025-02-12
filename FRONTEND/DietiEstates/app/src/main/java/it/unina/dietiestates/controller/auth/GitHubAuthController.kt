@@ -13,8 +13,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GitHubLoginController(context: Context, private val uri: Uri): LoginController(context) {
-    override fun handleLogin() {
+class GitHubAuthController(context: Context, private val uri: Uri): AuthController(context) {
+    override fun handleAuth() {
         val code = uri.getQueryParameter("code")
 
         val api = RetrofitClient.instance

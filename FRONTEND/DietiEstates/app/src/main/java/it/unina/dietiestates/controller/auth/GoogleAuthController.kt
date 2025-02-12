@@ -9,8 +9,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import it.unina.dietiestates.view.auth.SignUpActivity
 
-class GoogleLoginController(context: Context, private val task: Task<GoogleSignInAccount>) : LoginController(context) {
-    override fun handleLogin() {
+class GoogleAuthController(context: Context, private val task: Task<GoogleSignInAccount>) : AuthController(context) {
+    override fun handleAuth() {
         try {
             val account = task.getResult(ApiException::class.java)
             account?.let {

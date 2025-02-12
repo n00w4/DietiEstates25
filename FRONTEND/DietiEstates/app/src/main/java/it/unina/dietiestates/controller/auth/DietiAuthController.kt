@@ -12,8 +12,8 @@ import com.auth0.android.jwt.JWT
 import it.unina.dietiestates.data.dto.SharedPrefManager
 import it.unina.dietiestates.data.dto.TokenResponse
 
-class DietiLoginController(context: Context, private val credenziali: Credenziali): LoginController(context) {
-    override fun handleLogin() {
+class DietiAuthController(context: Context, private val credenziali: Credenziali): AuthController(context) {
+    override fun handleAuth() {
         val api = RetrofitClient.instance
 
         api.login(credenziali).enqueue(object : Callback<TokenResponse> {
@@ -57,11 +57,11 @@ class DietiLoginController(context: Context, private val credenziali: Credenzial
                 salvaDatiUtente(nome, cognome, email, tipoUtente, partitaIva, nomeAgenzia)
                 scegliHomePage(tipoUtente)
             } else {
-                Log.e("DietiLoginController", "Invalid token claims")
+                Log.e("DietiAuthController", "Invalid token claims")
                 Toast.makeText(context, "Login failed: invalid token claims.", Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
-            Log.e("DietiLoginController", "Token processing error: ${e.message}")
+            Log.e("DietiAuthController", "Token processing error: ${e.message}")
             Toast.makeText(context, "Invalid token: token processing error.", Toast.LENGTH_SHORT).show()
         }
     }

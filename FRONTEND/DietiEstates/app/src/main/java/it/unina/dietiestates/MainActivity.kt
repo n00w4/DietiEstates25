@@ -17,9 +17,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import it.unina.dietiestates.controller.auth.GitHubLoginController
-import it.unina.dietiestates.controller.auth.GoogleLoginController
-import it.unina.dietiestates.controller.auth.DietiLoginController
+import it.unina.dietiestates.controller.auth.GitHubAuthController
+import it.unina.dietiestates.controller.auth.GoogleAuthController
+import it.unina.dietiestates.controller.auth.DietiAuthController
 import it.unina.dietiestates.data.dto.Credenziali
 import it.unina.dietiestates.view.auth.GitHubWebViewActivity
 import it.unina.dietiestates.view.auth.SignUpActivity
@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var gitHubResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var googleSignInLauncher: ActivityResultLauncher<Intent>
     private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var dietiLoginController: DietiLoginController
-    private lateinit var gitHubLoginController: GitHubLoginController
-    private lateinit var googleLoginController: GoogleLoginController
+    private lateinit var dietiAuthController: DietiAuthController
+    private lateinit var gitHubAuthController: GitHubAuthController
+    private lateinit var googleAuthController: GoogleAuthController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,8 +62,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Compilare tutti i campi prima di procedere.", Toast.LENGTH_SHORT).show()
             } else {
                 val credenziali = Credenziali(email, password)
-                dietiLoginController = DietiLoginController(this, credenziali)
-                dietiLoginController.handleLogin()
+                dietiAuthController = DietiAuthController(this, credenziali)
+                dietiAuthController.handleAuth()
             }
         }
 
@@ -74,15 +74,15 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == RESULT_OK) {
                 val uri = result.data?.data
                 uri?.let {
-                    gitHubLoginController = GitHubLoginController(this, uri)
-                    gitHubLoginController.handleLogin()
+                    gitHubAuthController = GitHubAuthController(this, uri)
+                    gitHubAuthController.handleAuth()
                 }
             }
         }
         googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            googleLoginController = GoogleLoginController(this, task)
-            googleLoginController.handleLogin()
+            googleAuthController = GoogleAuthController(this, task)
+            googleAuthController.handleAuth()
         }
 
         gitHubLoginBtn.setOnClickListener{
