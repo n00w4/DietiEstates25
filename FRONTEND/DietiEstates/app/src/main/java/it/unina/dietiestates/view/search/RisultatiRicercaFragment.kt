@@ -31,6 +31,7 @@ class RisultatiRicercaFragment : Fragment() {
     private val filtriRicercaVM: FiltriRicercaViewModel by activityViewModels()
     private lateinit var controller: RisultatiRicercaController
     private lateinit var listaAnnunci: List<Annuncio>
+    private lateinit var mapView : MapView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +44,7 @@ class RisultatiRicercaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         controller = RisultatiRicercaController(requireContext())
 
-        val mapView = view.findViewById<MapView>(R.id.mapView)
+        mapView = view.findViewById(R.id.mapView)
         mapView.isVisible = false
         val erroreTextView = view.findViewById<TextView>(R.id.erroreTextView)
         erroreTextView.isVisible = false

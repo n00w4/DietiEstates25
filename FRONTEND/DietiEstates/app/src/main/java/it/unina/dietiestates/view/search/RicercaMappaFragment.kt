@@ -29,7 +29,10 @@ class RicercaMappaFragment: Fragment() {
     private val filtriRicercaVM: FiltriRicercaViewModel by activityViewModels()
     private var selectedLatitude: Double = 41.9028
     private var selectedLongitude: Double = 12.4964 //punto iniziale di default (Roma)
+    private lateinit var mapView: MapView
     private lateinit var indirizzoTextView: TextView
+    private lateinit var btnSaveLocation: Button
+    private lateinit var btnAddFilters: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,9 +44,9 @@ class RicercaMappaFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mapView = view.findViewById<MapView>(R.id.mapView)
-        val btnSaveLocation = view.findViewById<Button>(R.id.btn_save_location)
-        val btnAddFilters = view.findViewById<Button>(R.id.btn_add_filters)
+        mapView = view.findViewById(R.id.mapView)
+        btnSaveLocation = view.findViewById(R.id.btn_save_location)
+        btnAddFilters = view.findViewById(R.id.btn_add_filters)
         indirizzoTextView = view.findViewById(R.id.indirizzoTextView)
 
         // Inizializza la configurazione di OSMDroid

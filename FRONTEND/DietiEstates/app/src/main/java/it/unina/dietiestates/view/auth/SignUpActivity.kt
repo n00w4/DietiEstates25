@@ -12,14 +12,21 @@ import it.unina.dietiestates.controller.auth.SignUpController
 import it.unina.dietiestates.utils.ValidationUtils
 
 class SignUpActivity : AppCompatActivity() {
+    private lateinit var nome : EditText
+    private lateinit var cognome : EditText
+    private lateinit var email : EditText
+    private lateinit var password : EditText
+
+    private lateinit var signUpController: SignUpController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_page)
 
-        val nome = findViewById<EditText>(R.id.editTextNome)
-        val cognome = findViewById<EditText>(R.id.editTextCognome)
-        val email = findViewById<EditText>(R.id.editTextEmail)
-        val password = findViewById<EditText>(R.id.editTextPassword)
+        nome = findViewById<EditText>(R.id.editTextNome)
+        cognome = findViewById<EditText>(R.id.editTextCognome)
+        email = findViewById<EditText>(R.id.editTextEmail)
+        password = findViewById<EditText>(R.id.editTextPassword)
 
         // Recupero dati da Google Sign-In se presenti
         val nomeProviderEsterno = intent.getStringExtra("EXTRA_NOME")
@@ -37,7 +44,7 @@ class SignUpActivity : AppCompatActivity() {
             erroriEmail.visibility = TextView.GONE
         val signUpBtn = findViewById<Button>(R.id.signUpButton)
 
-        val signUpController = SignUpController(this)
+        signUpController = SignUpController(this)
 
         password.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { /*empty*/ }

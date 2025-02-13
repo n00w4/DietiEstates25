@@ -10,14 +10,18 @@ import it.unina.dietiestates.MainActivity
 import it.unina.dietiestates.R
 
 class SignUpResult : AppCompatActivity(){
+    private lateinit var resultTextView : TextView
+    private lateinit var resultMessage : String
+    private lateinit var statusTextView : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_result)
 
-        val resultMessage = intent.getStringExtra("resultMessage") ?: "Nessun messaggio"
+        resultMessage = intent.getStringExtra("resultMessage") ?: "Nessun messaggio"
         val statusCode = intent.getIntExtra("responseCode", -1)
-        val resultTextView = findViewById<TextView>(R.id.resultTextView)
-        val statusTextView = findViewById<TextView>(R.id.statusTextView)
+        resultTextView = findViewById<TextView>(R.id.resultTextView)
+        statusTextView = findViewById<TextView>(R.id.statusTextView)
         val immagine = findViewById<ImageView>(R.id.imageView)
 
         val btnLogin = findViewById<Button>(R.id.loginButton)

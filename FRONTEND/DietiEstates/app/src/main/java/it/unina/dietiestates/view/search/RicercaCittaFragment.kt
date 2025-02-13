@@ -23,6 +23,8 @@ import it.unina.dietiestates.data.dto.cities
 class RicercaCittaFragment : Fragment() {
 
     private val filtriRicercaVM: FiltriRicercaViewModel by activityViewModels()
+    private lateinit var btnSearch: Button
+    private lateinit var btnAddFilters: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +36,10 @@ class RicercaCittaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnSearch = view.findViewById<Button>(R.id.btn_cerca)
+        btnSearch = view.findViewById(R.id.btn_cerca)
         btnSearch.isEnabled = false
         btnSearch.backgroundTintList = getColorStateList(requireContext(), android.R.color.darker_gray)
-        val btnAddFilters = view.findViewById<Button>(R.id.btn_add_filters)
+        btnAddFilters = view.findViewById(R.id.btn_add_filters)
         val annullaText = view.findViewById<TextView>(R.id.annullaTextView)
 
         val cittaInput = view.findViewById<AutoCompleteTextView>(R.id.cittaInput)

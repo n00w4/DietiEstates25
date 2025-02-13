@@ -12,6 +12,9 @@ import androidx.navigation.fragment.findNavController
 
 class RicercaHomeFragment : Fragment(){
 
+    private lateinit var btnCitta: Button
+    private lateinit var btnMappa: Button
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,8 +25,8 @@ class RicercaHomeFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnCitta: Button = view.findViewById(R.id.btn_citta)
-        val btnMappa: Button = view.findViewById(R.id.btn_mappa)
+        btnCitta = view.findViewById(R.id.btn_citta)
+        btnMappa = view.findViewById(R.id.btn_mappa)
 
         val navController = findNavController()
 

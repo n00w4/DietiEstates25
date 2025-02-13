@@ -1,6 +1,5 @@
 package it.unina.dietiestates.view.profile
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,11 +10,17 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
-import it.unina.dietiestates.MainActivity
 import it.unina.dietiestates.R
+import it.unina.dietiestates.controller.profile.ProfiloController
 import it.unina.dietiestates.data.dto.SharedPrefManager
 
 class ProfiloFragment : Fragment() {
+
+    private var nome: String? = null
+    private var cognome: String? = null
+    private var email: String? = null
+    private lateinit var logoutBtn: Button
+    private lateinit var controller: ProfiloController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +31,7 @@ class ProfiloFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        controller = ProfiloController(requireContext())
 
         val titolo = view.findViewById<TextView>(R.id.titoloTextView)
         val textNome = view.findViewById<TextView>(R.id.nomeTextView)
@@ -39,9 +45,9 @@ class ProfiloFragment : Fragment() {
         val textPartitaIva = view.findViewById<TextView>(R.id.ivaTextView)
             ivaLayout.isVisible = false
 
-        val nome = SharedPrefManager.getUserNome(requireContext())
-        val cognome = SharedPrefManager.getUserCognome(requireContext())
-        val email = SharedPrefManager.getUserEmail(requireContext())
+        nome = SharedPrefManager.getUserNome(requireContext())
+        cognome = SharedPrefManager.getUserCognome(requireContext())
+        email = SharedPrefManager.getUserEmail(requireContext())
         val tipoUtente = SharedPrefManager.getUserRole(requireContext())
 
         val nonDisponibileText = "Non Disponibile"
@@ -65,11 +71,9 @@ class ProfiloFragment : Fragment() {
             ivaLayout.isVisible = true
         }
 
-        val logoutBtn = view.findViewById<Button>(R.id.logoutButton)
+        logoutBtn = view.findViewById(R.id.logoutButton)
         logoutBtn.setOnClickListener{
-            SharedPrefManager.clear(requireContext())
-            val loginPage = Intent(requireContext(), MainActivity::class.java)
-            startActivity(loginPage)
+            controller.handleLogout()
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {

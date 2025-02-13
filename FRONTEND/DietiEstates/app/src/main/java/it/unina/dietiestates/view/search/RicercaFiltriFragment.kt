@@ -15,6 +15,7 @@ import it.unina.dietiestates.data.viewmodel.FiltriRicercaViewModel
 class RicercaFiltriFragment : Fragment() {
 
     private val filtriRicercaVM: FiltriRicercaViewModel by activityViewModels()
+    private lateinit var btnFiltri: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +26,7 @@ class RicercaFiltriFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btnFiltri = view.findViewById(R.id.btn_applica_filtri)
 
         val spinnerTipoAnnuncio: Spinner = view.findViewById(R.id.spinner_tipo_annuncio)
         spinnerTipoAnnuncio.setSelection(0)
@@ -41,7 +43,6 @@ class RicercaFiltriFragment : Fragment() {
         val textDimensioniMin: EditText = view.findViewById(R.id.text_dim_min)
         val textPrezzoMin: EditText = view.findViewById(R.id.text_prezzo_min)
         val textPrezzoMax: EditText = view.findViewById(R.id.text_prezzo_max)
-        val btnFiltri: Button = view.findViewById(R.id.btn_applica_filtri)
         val checkBoxAscensore : CheckBox = view.findViewById(R.id.checkBox_ascensore)
         val checkBoxPortineria: CheckBox = view.findViewById(R.id.checkBox_portineria)
         val checkBoxClimatizzazione : CheckBox = view.findViewById(R.id.checkBox_climatizzazione)
