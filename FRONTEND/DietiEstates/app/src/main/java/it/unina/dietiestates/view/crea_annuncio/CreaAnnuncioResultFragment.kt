@@ -17,6 +17,9 @@ import it.unina.dietiestates.data.viewmodel.AnnuncioViewModel
 class CreaAnnuncioResultFragment : Fragment(){
 
     private val annuncioVM: AnnuncioViewModel by activityViewModels()
+    private lateinit var statusTextView: TextView
+    private lateinit var resultTextView: TextView
+    private lateinit var controller: CreaAnnuncioController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,10 +32,10 @@ class CreaAnnuncioResultFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         val imageView = view.findViewById<ImageView>(R.id.imageView)
-        val statusTextView = view.findViewById<TextView>(R.id.statusTextView)
-        val resultTextView = view.findViewById<TextView>(R.id.resultTextView)
+        statusTextView = view.findViewById(R.id.statusTextView)
+        resultTextView = view.findViewById(R.id.resultTextView)
 
-        val controller = CreaAnnuncioController(requireContext())
+        controller = CreaAnnuncioController(requireContext())
         controller.creaAnnuncio(annuncioVM){ apiResponse ->
             when(apiResponse.status){
                 "Success" ->{

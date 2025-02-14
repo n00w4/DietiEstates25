@@ -15,13 +15,17 @@ import it.unina.dietiestates.utils.getSerializable
 
 class AnnuncioActivity : AppCompatActivity() {
 
+    private var annuncio: Annuncio? = null
+    private lateinit var immagine: ImageView
+    private lateinit var prenotaBtn: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_annuncio)
 
-        val annuncio: Annuncio? = getSerializable(intent, "ANNUNCIO")
+        annuncio= getSerializable(intent, "ANNUNCIO")
 
-        val immagine = findViewById<ImageView>(R.id.imageView)
+        immagine = findViewById(R.id.imageView)
         // Recupera l'immagine in formato Base64 dall'oggetto `annuncio`
         val base64Image = annuncio?.immagine
         // Decodifica la stringa Base64 e imposta l'immagine nell'ImageView
@@ -55,7 +59,7 @@ class AnnuncioActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.giardinoTextView).text = if (annuncio?.giardino == true) " Si" else " No"
         findViewById<TextView>(R.id.emailAgenteTextView).text = getString(R.string.more_info, annuncio?.emailAgente)
 
-        val prenotaBtn = findViewById<Button>(R.id.prenotaButton)
+        prenotaBtn = findViewById(R.id.prenotaButton)
         if (SharedPrefManager.getUserRole(this) != "Cliente" ) { prenotaBtn.isVisible = false}
         prenotaBtn.setOnClickListener{
             val intent = Intent(this, PrenotazioneAnnuncioActivity::class.java)

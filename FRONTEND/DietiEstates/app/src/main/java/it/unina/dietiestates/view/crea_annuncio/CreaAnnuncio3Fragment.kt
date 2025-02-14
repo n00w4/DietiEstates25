@@ -19,6 +19,7 @@ import it.unina.dietiestates.data.viewmodel.AnnuncioViewModel
 class CreaAnnuncio3Fragment : Fragment(){
 
     private val annuncioVM: AnnuncioViewModel by activityViewModels()
+    private lateinit var avantiBtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +45,7 @@ class CreaAnnuncio3Fragment : Fragment(){
         val terrazzoCheckBox = view.findViewById<CheckBox>(R.id.checkBox_terrazzo)
         val giardinoCheckBox = view.findViewById<CheckBox>(R.id.checkBox_giardino)
 
-        val avantiBtn = view.findViewById<Button>(R.id.avantiButton)
+        avantiBtn = view.findViewById(R.id.avantiButton)
         avantiBtn.setOnClickListener{
             annuncioVM.tipoAnnuncio = tipoAnnuncioSpinner.selectedItem.toString()
             annuncioVM.piano = pianoSpinner.selectedItem.toString()

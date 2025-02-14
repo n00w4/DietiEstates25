@@ -3,7 +3,6 @@ package it.unina.dietiestates.data.viewmodel
 import androidx.lifecycle.ViewModel
 
 class AnnuncioViewModel : ViewModel(){
-    var ID: Int? = null
     var titolo: String? = null
     var indirizzo: String? = null
     var immagine: String? = null
@@ -21,5 +20,4 @@ class AnnuncioViewModel : ViewModel(){
     var giardino: Boolean? = null
     var tipoAnnuncio: String? = null
     var posizione: String? = null
-    var emailAgente: String? = null
 }

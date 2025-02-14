@@ -17,6 +17,8 @@ import it.unina.dietiestates.data.viewmodel.AnnuncioViewModel
 class CreaAnnuncioRiepilogoFragment : Fragment(){
 
     private val annuncioVM: AnnuncioViewModel by activityViewModels()
+    private lateinit var avantiBtn: Button
+    private lateinit var annullaBtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,12 +52,12 @@ class CreaAnnuncioRiepilogoFragment : Fragment(){
         val giardino = view.findViewById<TextView>(R.id.giardinoTextView)
         giardino.isVisible = (annuncioVM.giardino == true)
 
-        val avantiBtn = view.findViewById<Button>(R.id.avantiButton)
+        avantiBtn = view.findViewById(R.id.avantiButton)
         avantiBtn.setOnClickListener{
             findNavController().navigate(R.id.action_creaAnnuncioRiepilogoFragment_to_creaAnnuncioResultFragment)
         }
 
-        val annullaBtn = view.findViewById<TextView>(R.id.annullaButton)
+        annullaBtn = view.findViewById(R.id.annullaButton)
         annullaBtn.setOnClickListener{
             findNavController().navigate(R.id.action_creaAnnuncioRiepilogoFragment_to_creaAnnuncio3Fragment)
         }
