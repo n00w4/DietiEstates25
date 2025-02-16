@@ -111,7 +111,7 @@ public class PrenotazioneController {
         List<PrenotazioneConInfo> listaPrenotazioni;
 
         try {
-            listaPrenotazioni = prenotazioneConInfoDAO.getPrenotazioniAccettateCliente(emailCliente);
+            listaPrenotazioni = prenotazioneConInfoDAO.getPrenotazioniCliente(emailCliente);
             if (listaPrenotazioni.equals(Collections.emptyList())) {
                 logger.info("Richiesta per prenotazioni cliente non trovate");
                 return Response.status(Response.Status.NOT_FOUND).build();

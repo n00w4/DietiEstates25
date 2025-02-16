@@ -32,11 +32,11 @@ public class SQLPrenotazioneConInfoDAO implements PrenotazioneConInfoDAO {
     }
 
     @Override
-    public List<PrenotazioneConInfo> getPrenotazioniAccettateCliente(String emailCliente) throws DataAccessException {
+    public List<PrenotazioneConInfo> getPrenotazioniCliente(String emailCliente) throws DataAccessException {
         String query = "SELECT idPrenotazione, dataInizio, dataFine, isAccettata, emailCliente, idAnnuncio, " +
                 "titoloAnnuncio, indirizzo, immagine, descrizione, dimensioni, prezzo, piano, numeroStanze, " +
                 "classeEnergetica, ascensore, portineria, climatizzazione, boxAuto, terrazzo, giardino, tipoAnnuncio, " +
-                "posizione, emailAgente FROM est.PrenotazioneConInfo WHERE isAccettata = TRUE AND emailCliente = ?";
+                "posizione, emailAgente FROM est.PrenotazioneConInfo WHERE emailCliente = ?";
 
         return getPrenotazioniByQuery(query, emailCliente);
     }
