@@ -1,5 +1,7 @@
 # DietiEstates25
 
+![Logo](https://avatars.githubusercontent.com/oa/2839851?s=240&u=0ed0ce6afe772ecd43a727a414eb650a8345a58a&v=4)
+
 DietiEstates25 è una piattaforma per la gestione di servizi immobiliari. Il sistema permette a più agenzie di pubblicare inserzioni immobiliari.  
 Gli utenti possono quindi visualizzare le inserzioni, prenotare visite e fare offerte per acquistare/affittare un immobile.  
 
