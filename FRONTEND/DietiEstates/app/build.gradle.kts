@@ -4,13 +4,22 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile =
+                file("certs/keystore.jks")
+            storePassword = "DietiEstates.25"
+            keyAlias = "my-key-alias"
+            keyPassword = "DietiEstates.25"
+        }
+    }
     namespace = "it.unina.dietiestates"
     compileSdk = 35
 
     defaultConfig {
         applicationId = "it.unina.dietiestates"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
