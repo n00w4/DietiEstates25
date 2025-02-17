@@ -147,8 +147,8 @@
     <!-- /Signup Page -->
 
     <!-- Signup Result -->
-    <string name="status_text">Status code will be displayed here.</string>
-    <string name="result_text">Result will be displayed here.</string>
+    <string name="status_text">Attendere…</string>
+    <string name="result_text">Il risultato dell\'operazione verrà mostrato a breve.</string>
     <string name="return_login_button_text">Torna a Accedi</string>
     <string name="ok_signup">OK!</string>
     <string name="ops_signup">Ops!</string>
@@ -175,7 +175,9 @@
     <!-- /Annuncio Activity-->
 
     <!-- Fragment Gestore Crea Utente -->
-    <string name="text_view_title_gestore_utente">Aggiungi un utente</string>
+    <string name="text_view_title_gestore_utente">Aggiungi un collaboratore</string>
+    <string name="text_view_subtitle_gestore_utente">Sei il gestore o un amministratore di un\'agenzia immobiliare? Registra qui un nuovo profilo per i tuoi collaboratori!</string>
+    <string name="add_utente_tipo_utente">Nuovo Agente o Amministratore:</string>
     <string name="label_password_gestore_utente">
         La password sarà autogenerata dai nostri server e potrà essere cambiata anche in seguito.
     </string>
@@ -188,6 +190,7 @@
 
     <!-- Fragment Gestore Modifica Pwd Admin -->
     <string name="text_view_title_gestore_admin">Cambia password di amministrazione</string>
+    <string name="text_view_subtitle_gestore_admin">Modifica la password di amministrazione per proteggere i dati della tua agenzia.</string>
     <string name="label_old_password_gestore_admin">Vecchia password</string>
     <string name="hint_old_password_gestore_admin">Inserisci la vecchia password</string>
     <string name="label_confirm_new_password_gestore_admin">Conferma nuova password</string>

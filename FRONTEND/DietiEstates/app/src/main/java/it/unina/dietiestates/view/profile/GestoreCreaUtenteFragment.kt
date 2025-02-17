@@ -85,7 +85,7 @@ class GestoreCreaUtenteFragment : Fragment() {
 
                 if (messaggiDiErrore.isEmpty()) {
                     buttonAdd.isEnabled = true
-                    buttonAdd.backgroundTintList = requireContext().getColorStateList(R.color.button_color_light)
+                    buttonAdd.backgroundTintList = requireContext().getColorStateList(R.color.button_color_dark)
                 } else {
                     editText.error = messaggiDiErrore.joinToString("\n")
                     buttonAdd.isEnabled = false
