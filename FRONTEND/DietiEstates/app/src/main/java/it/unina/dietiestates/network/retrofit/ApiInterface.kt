@@ -39,13 +39,13 @@ interface ApiInterface {
     fun valutaPrenotazione(@Body prenotazione: Prenotazione): Call<ApiResponse>
 
     @GET("prenotazione/get-prenotazioni-accettate")
-    fun getPrenotazioniAccettate(@Query("emailAgente") emailAgente: String): Call<MutableList<PrenotazioneConInfo>>
+    fun getPrenotazioniAccettate(@Query("email-agente") emailAgente: String): Call<MutableList<PrenotazioneConInfo>>
 
-    @GET("prenotazione/get-prenotazioni-accettate-cliente")
-    fun getPrenotazioniCliente(@Query("emailCliente") emailUtente: String): Call<MutableList<PrenotazioneConInfo>>
+    @GET("prenotazione/get-prenotazioni-cliente")
+    fun getPrenotazioniCliente(@Query("email-cliente") emailUtente: String): Call<MutableList<PrenotazioneConInfo>>
 
     @GET("notifiche/get-all")
-    fun getNotifiche(@Query("emailAgente") emailAgente: String): Call<MutableList<NotificaConInfo>>
+    fun getNotifiche(@Query("email-agente") emailAgente: String): Call<MutableList<NotificaConInfo>>
 
     @POST("gestore/update-admin-password")
     fun updateAdminPassword(@Body form: ChangeAdminPwdForm): Call<ApiResponse>

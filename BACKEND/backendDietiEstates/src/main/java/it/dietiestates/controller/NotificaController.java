@@ -31,7 +31,7 @@ public class NotificaController {
     @RequireJWTAuthentication
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll(@QueryParam("emailAgente") String emailAgente) {
+    public Response getAll(@QueryParam("email-agente") String emailAgente) {
         List<NotificaConInfo> listaNotifica;
         try {
             listaNotifica = notificaConInfoDAO.getAll(emailAgente);

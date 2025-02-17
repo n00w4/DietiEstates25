@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface PrenotazioneConInfoDAO {
     List<PrenotazioneConInfo> getPrenotazioniAccettate(String emailAgente) throws DataAccessException;
-
     List<PrenotazioneConInfo> getPrenotazioniCliente(String emailCliente) throws DataAccessException;
 }

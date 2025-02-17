@@ -88,7 +88,7 @@ public class PrenotazioneController {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPrenotazioniAccettate(@QueryParam("emailAgente") String emailAgente) {
+    public Response getPrenotazioniAccettate(@QueryParam("email-agente") String emailAgente) {
         List<PrenotazioneConInfo> listaPrenotazioni;
 
         try {
@@ -103,11 +103,11 @@ public class PrenotazioneController {
         return Response.ok(listaPrenotazioni).build();
     }
 
-    @Path("get-prenotazioni-accettate-cliente")
+    @Path("get-prenotazioni-cliente")
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPrenotazioniAccettateCliente(@QueryParam("emailCliente") String emailCliente) {
+    public Response getPrenotazioniAccettateCliente(@QueryParam("email-cliente") String emailCliente) {
         List<PrenotazioneConInfo> listaPrenotazioni;
 
         try {
