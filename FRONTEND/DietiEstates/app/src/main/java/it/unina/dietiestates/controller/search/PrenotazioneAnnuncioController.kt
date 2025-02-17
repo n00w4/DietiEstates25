@@ -9,6 +9,7 @@ import it.unina.dietiestates.data.dto.ApiResponse
 import it.unina.dietiestates.data.dto.SharedPrefManager
 import it.unina.dietiestates.data.model.Prenotazione
 import it.unina.dietiestates.network.retrofit.RetrofitClient
+import it.unina.dietiestates.view.search.PrenotazioneAnnuncioActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -84,7 +85,12 @@ class PrenotazioneAnnuncioController (private val context: Context) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Prenotazione effettuata con successo.")
         builder.setMessage("Potrai controllare in 'Calendario' lo stato della prenotazione.")
-        builder.setPositiveButton("Ok", null)
+        builder.setPositiveButton("Ok") { dialog, _ ->
+            dialog.dismiss() // Chiude il popup
+            if (context is PrenotazioneAnnuncioActivity) {
+                context.finish() // Chiude l'activity e torna alla precedente
+            }
+        }
         builder.show()
     }
 

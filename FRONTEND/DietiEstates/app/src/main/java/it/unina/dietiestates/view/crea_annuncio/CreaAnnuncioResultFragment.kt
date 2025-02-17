@@ -53,6 +53,24 @@ class CreaAnnuncioResultFragment : Fragment(){
 
         val fineBtn = view.findViewById<Button>(R.id.fineButton)
         fineBtn.setOnClickListener{
+            annuncioVM.titolo = null
+            annuncioVM.indirizzo = null
+            annuncioVM.immagine = null
+            annuncioVM.descrizione = null
+            annuncioVM.dimensioni = null
+            annuncioVM.prezzo = null
+            annuncioVM.piano = null
+            annuncioVM.numeroStanze = null
+            annuncioVM.classeEnergetica = null
+            annuncioVM.numeroStanze = null
+            annuncioVM.ascensore = null
+            annuncioVM.portineria = null
+            annuncioVM.climatizzazione = null
+            annuncioVM.boxAuto = null
+            annuncioVM.terrazzo = null
+            annuncioVM.giardino = null
+            annuncioVM.tipoAnnuncio = null
+            annuncioVM.posizione = null
             findNavController().navigate(R.id.action_creaAnnuncioResultFragment_to_creaAnnuncioFragment)
         }
     }

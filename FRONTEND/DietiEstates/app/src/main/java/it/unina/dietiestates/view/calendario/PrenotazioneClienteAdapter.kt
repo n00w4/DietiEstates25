@@ -2,6 +2,7 @@ package it.unina.dietiestates.view.calendario
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ class PrenotazioneClienteAdapter(private val prenotazioniList: MutableList<Preno
     override fun getItemCount() = prenotazioniList.size
 
     fun updateData(newList: List<PrenotazioneConInfo>) {
+        Log.d("Prenotazione Cliente", "update data CALLED")
         prenotazioniList.clear()
         prenotazioniList.addAll(newList)
         notifyDataSetChanged()
@@ -40,6 +42,7 @@ class PrenotazioneClienteAdapter(private val prenotazioniList: MutableList<Preno
         private val statoPrenotazioneTextView: TextView = itemView.findViewById(R.id.statoPrenotazioneTextView)
 
         fun bind(prenotazione: PrenotazioneConInfo) {
+            Log.d("Prenotazione Cliente", "$prenotazione")
             titoloTextView.text = prenotazione.annuncio.titolo
             titoloTextView.setOnClickListener { openAnnuncioActivity(prenotazione) }
 
@@ -49,6 +52,10 @@ class PrenotazioneClienteAdapter(private val prenotazioniList: MutableList<Preno
             val oraFine = prenotazione.prenotazione.dataFine.substring(13, 18)
             oraTextView.text = context.getString(R.string.inizio_fine_tag, oraInizio, oraFine)
 
+            if(prenotazione.prenotazione.accettata == null){
+                statoPrenotazioneTextView.text = context.getString(R.string.non_valutata_prenotazione)
+                statoPrenotazioneTextView.setTextColor(context.getColor(android.R.color.darker_gray))
+            }
             if(prenotazione.prenotazione.accettata == true){
                 statoPrenotazioneTextView.text = context.getString(R.string.accettata_notifica)
                 statoPrenotazioneTextView.setTextColor(context.getColor(R.color.background_color_dark))
@@ -56,10 +63,6 @@ class PrenotazioneClienteAdapter(private val prenotazioniList: MutableList<Preno
             if(prenotazione.prenotazione.accettata == false){
                 statoPrenotazioneTextView.text = context.getString(R.string.rifiutata_notifica)
                 statoPrenotazioneTextView.setTextColor(context.getColor(R.color.button_color_red))
-            }
-            if(prenotazione.prenotazione.accettata == null){
-                statoPrenotazioneTextView.text = context.getString(R.string.non_valutata_prenotazione)
-                statoPrenotazioneTextView.setTextColor(context.getColor(android.R.color.darker_gray))
             }
         }
 
