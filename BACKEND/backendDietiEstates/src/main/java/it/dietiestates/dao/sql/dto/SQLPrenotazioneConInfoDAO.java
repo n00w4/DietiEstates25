@@ -102,7 +102,7 @@ public class SQLPrenotazioneConInfoDAO implements PrenotazioneConInfoDAO {
         int idPrenotazione = resultSet.getInt("idPrenotazione");
         LocalDateTime dataInizio = resultSet.getTimestamp("dataInizio").toLocalDateTime();
         LocalDateTime dataFine = resultSet.getTimestamp("dataFine").toLocalDateTime();
-        Boolean isAccettata = resultSet.getBoolean("isAccettata");
+        Boolean isAccettata = resultSet.getObject("isAccettata", Boolean.class);
         String emailCliente = resultSet.getString("emailCliente");
 
         Prenotazione prenotazione = new Prenotazione(
