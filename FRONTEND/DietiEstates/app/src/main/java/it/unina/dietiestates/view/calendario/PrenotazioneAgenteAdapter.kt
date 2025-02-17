@@ -2,6 +2,7 @@ package it.unina.dietiestates.view.calendario
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ class PrenotazioneAgenteAdapter(private val prenotazioniList: MutableList<Prenot
     override fun getItemCount() = prenotazioniList.size
 
     fun updateData(newList: List<PrenotazioneConInfo>) {
+        Log.d("Prenotazione Cliente", "update data CALLED with list of ${newList.size} elements")
         prenotazioniList.clear()
         prenotazioniList.addAll(newList)
         notifyDataSetChanged()
@@ -40,6 +42,7 @@ class PrenotazioneAgenteAdapter(private val prenotazioniList: MutableList<Prenot
         private val oraTextView: TextView = itemView.findViewById(R.id.oraTag)
 
         fun bind(prenotazione: PrenotazioneConInfo) {
+            Log.d("Prenotazione Cliente", "accettata == ${prenotazione.prenotazione.accettata}")
             titoloTextView.text = prenotazione.annuncio.titolo
             titoloTextView.setOnClickListener { openAnnuncioActivity(prenotazione) }
             emailTextView.text = context.getString(R.string.utente_tag, prenotazione.prenotazione.emailCliente)

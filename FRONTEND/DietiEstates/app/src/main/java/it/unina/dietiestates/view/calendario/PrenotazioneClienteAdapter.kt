@@ -28,7 +28,7 @@ class PrenotazioneClienteAdapter(private val prenotazioniList: MutableList<Preno
     override fun getItemCount() = prenotazioniList.size
 
     fun updateData(newList: List<PrenotazioneConInfo>) {
-        Log.d("Prenotazione Cliente", "update data CALLED")
+        Log.d("Prenotazione Cliente", "update data CALLED with list of ${newList.size} elements")
         prenotazioniList.clear()
         prenotazioniList.addAll(newList)
         notifyDataSetChanged()
@@ -42,7 +42,7 @@ class PrenotazioneClienteAdapter(private val prenotazioniList: MutableList<Preno
         private val statoPrenotazioneTextView: TextView = itemView.findViewById(R.id.statoPrenotazioneTextView)
 
         fun bind(prenotazione: PrenotazioneConInfo) {
-            Log.d("Prenotazione Cliente", "$prenotazione")
+            Log.d("Prenotazione Cliente", "accettata == ${prenotazione.prenotazione.accettata}")
             titoloTextView.text = prenotazione.annuncio.titolo
             titoloTextView.setOnClickListener { openAnnuncioActivity(prenotazione) }
 

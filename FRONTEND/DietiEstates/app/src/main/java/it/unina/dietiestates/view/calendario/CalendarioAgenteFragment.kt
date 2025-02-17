@@ -53,7 +53,8 @@ class CalendarioAgenteFragment : Fragment() {
         calendarView.selectedDate = today
 
         recyclerView = view.findViewById(R.id.prenotazioniRecyclerView)
-        adapter = PrenotazioneAgenteAdapter(prenotazioniList, requireContext())
+        val adapterList: MutableList<PrenotazioneConInfo> = mutableListOf()
+        adapter = PrenotazioneAgenteAdapter(adapterList, requireContext())
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
@@ -87,6 +88,9 @@ class CalendarioAgenteFragment : Fragment() {
                     prenotazioniList.clear()
                     prenotazioniList.addAll(it)
                     applyCalendarDecorator()
+                    calendarView.selectedDate?.date?.let { date ->
+                        updateAppointmentsForSelectedDate(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+                    }
                 }
             } else if (result.isFailure) {
                 val error = result.exceptionOrNull()?.message
