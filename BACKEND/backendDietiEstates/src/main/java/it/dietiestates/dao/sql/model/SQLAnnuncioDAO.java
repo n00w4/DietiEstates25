@@ -218,7 +218,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 		String query = "SELECT idAnnuncio, titolo, indirizzo,immagine, descrizione, dimensioni, prezzo, piano, numeroStanze, " +
 				"classeEnergetica, ascensore, portineria, climatizzazione, " +
 				"boxAuto, terrazzo, giardino, tipoAnnuncio, posizione, email FROM est.Annuncio " +
-				"WHERE ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 50000)";
+				"WHERE ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 100000)";
 		List<Annuncio> listaAnnunci = new ArrayList<>();
 
 		try (PreparedStatement statement = connection.prepareStatement(query)) {

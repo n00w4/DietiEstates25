@@ -14,6 +14,7 @@ import it.dietiestates.exception.DataAccessException;
 import it.dietiestates.exception.ForeignKeyConstraintViolationException;
 import it.dietiestates.exception.OverlappingBookingException;
 import it.dietiestates.exception.ValidBookingException;
+import it.dietiestates.filter.RequireJWTAuthentication;
 import it.dietiestates.utils.EmailService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -39,6 +40,7 @@ public class PrenotazioneController {
 
     @Path("insert")
     @POST
+    @RequireJWTAuthentication
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response insertPrenotazione(Prenotazione prenotazione) {
@@ -68,6 +70,7 @@ public class PrenotazioneController {
 
     @Path("update-status")
     @PATCH
+    @RequireJWTAuthentication
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateStatusPrenotazione(Prenotazione prenotazione) {
@@ -86,6 +89,7 @@ public class PrenotazioneController {
 
     @Path("get-prenotazioni-accettate")
     @GET
+    @RequireJWTAuthentication
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPrenotazioniAccettate(@QueryParam("email-agente") String emailAgente) {
@@ -105,6 +109,7 @@ public class PrenotazioneController {
 
     @Path("get-prenotazioni-cliente")
     @GET
+    @RequireJWTAuthentication
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPrenotazioniAccettateCliente(@QueryParam("email-cliente") String emailCliente) {
