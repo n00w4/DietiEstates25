@@ -2,6 +2,8 @@ package it.unina.dietiestates.view.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import it.unina.dietiestates.R
 import com.google.android.material.tabs.TabLayout
@@ -17,6 +19,11 @@ class HomeGestoreActivity : AppCompatActivity() {
         setContentView(R.layout.gestore_home_page)
 
         tabLayout = findViewById(R.id.tab_layout_gestore)
+        ViewCompat.setOnApplyWindowInsetsListener(tabLayout) { v, insets ->
+            val bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
+            v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, bottomInset)
+            insets
+        }
         viewPager2 = findViewById(R.id.view_pager_gestore)
         myViewPagerAdapter = ViewPagerAdapterGestore(this)
         viewPager2.adapter = myViewPagerAdapter
