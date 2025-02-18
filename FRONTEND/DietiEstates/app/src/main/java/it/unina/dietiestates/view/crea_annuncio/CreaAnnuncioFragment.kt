@@ -64,7 +64,7 @@ class CreaAnnuncioFragment : Fragment() {
 
         val handler = Handler(Looper.getMainLooper())
         var debounceRunnable: Runnable? = null
-        val debounceDelay = 1000L
+        val debounceDelay = 500L
         indirizzoTextView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {/*Vuoto*/}
             override fun afterTextChanged(s: Editable?) {/*Vuoto*/}
@@ -80,8 +80,8 @@ class CreaAnnuncioFragment : Fragment() {
                                 adapter.clear()
                                 adapter.addAll(addresses)
                                 adapter.notifyDataSetChanged()
-                                indirizzoTextView.showDropDown()
-                                erroriTextView.isVisible = (addresses.isEmpty())
+                                indirizzoTextView.post { indirizzoTextView.showDropDown() } // Forza apertura dropdown
+                                erroriTextView.isVisible = addresses.isEmpty()
                             }
                         }
                         erroriTextView.isVisible = false
