@@ -122,7 +122,7 @@ public class SQLAnnuncioDAO implements AnnuncioDAO {
 				+ "AND piano = ? AND numeroStanze >= ? AND classeEnergetica = ? "
 				+ "AND ascensore = ? AND portineria = ? AND climatizzazione = ? "
 				+ "AND terrazzo = ? AND giardino = ? AND boxAuto = ? "
-				+ "AND dimensioni >= ? AND ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 50000)";
+				+ "AND dimensioni >= ? AND ST_DWithin(posizione, ST_SetSRID(ST_MakePoint(?, ?), 4326), 100000)";
 
 		List<Annuncio> listaAnnunci = new ArrayList<>();
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
