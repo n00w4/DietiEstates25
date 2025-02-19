@@ -1,5 +1,6 @@
 package it.unina.dietiestates.network.geocoding
 
+import android.os.Looper
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -26,10 +27,17 @@ class OsmdroidGeocoder {
 
                 val jsonObject = JSONObject(response)
                 val address = jsonObject.getString("display_name")
-                callback(address) // Returns the address
+
+                // Esegui il callback nel thread principale
+                android.os.Handler(Looper.getMainLooper()).post {
+                    callback(address)
+                }
             } catch (e: Exception) {
                 val address = "Nessun indirizzo corrispondente."
-                callback(address)
+
+                android.os.Handler(Looper.getMainLooper()).post {
+                    callback(address)
+                }
                 e.printStackTrace()
             }
         }.start()
