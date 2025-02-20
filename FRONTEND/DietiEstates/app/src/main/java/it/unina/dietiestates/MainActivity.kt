@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
     }
     private fun launchGitHubIntent(resultLauncher: ActivityResultLauncher<Intent>) {
-        val url = "http://10.0.2.2:8080/api/v1/auth/github/"
+        val url = "http://dietiestates.htc5a0feg2g0bnem.italynorth.azurecontainer.io:8080/api/v1/auth/github/"
         val intent = Intent(this, GitHubWebViewActivity::class.java).apply {
             putExtra("url", url)  // Passa l'URL alla WebView
         }
