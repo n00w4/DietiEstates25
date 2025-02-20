@@ -32,10 +32,10 @@ class GestoreModificaPwdAdminController (private val context: Context){
                         }
                     }
                     400 -> {
-                        Toast.makeText(context, "I dati inseriti non sono al momento validi. Riprova più tardi.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "I dati inseriti non sono validi. Controlla e riprova.", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
-                        Toast.makeText(context, "Errore codice ${response.code()}: riprova più tardi", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Errore codice ${response.code()}: riprova più tardi.", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
