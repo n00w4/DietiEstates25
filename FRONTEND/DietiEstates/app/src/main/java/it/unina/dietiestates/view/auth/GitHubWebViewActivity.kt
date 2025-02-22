@@ -15,6 +15,7 @@ class GitHubWebViewActivity : AppCompatActivity() {
 
         // Crea una WebView per caricare l'URL di callback
         val webView = WebView(this)
+        webView.settings.javaScriptEnabled = true
         webView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         setContentView(webView)
 
