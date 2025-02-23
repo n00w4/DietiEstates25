@@ -49,6 +49,8 @@ class RisultatiRicercaFragment : Fragment() {
         val erroreTextView = view.findViewById<TextView>(R.id.erroreTextView)
         erroreTextView.isVisible = false
         val numAnnunci = view.findViewById<TextView>(R.id.numRisultatiTextView)
+        val risultatiTag = view.findViewById<TextView>(R.id.risultatiTag)
+        risultatiTag.isVisible = false
 
         controller.getRisultatiRicerca(filtriRicercaVM.filtriRicerca){ result ->
             if (result.isSuccess) {
@@ -57,9 +59,12 @@ class RisultatiRicercaFragment : Fragment() {
                     listaAnnunci = annunci
                     mapView.isVisible = true
                     numAnnunci.setText(String.format(Locale.getDefault(), "%d",annunci.size))
+                    risultatiTag.isVisible = true
                     initializeMap(mapView)
                 }
             }else if (result.isFailure) {
+                numAnnunci.setText("0")
+                risultatiTag.isVisible = true
                 val error = result.exceptionOrNull()?.message
                 mapView.isVisible = false
                 erroreTextView.isVisible = true
